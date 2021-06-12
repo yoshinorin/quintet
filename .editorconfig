@@ -1,0 +1,54 @@
+root = true
+
+[*]
+trim_trailing_whitespace = true
+indent_style = space
+insert_final_newline = true
+charset = utf-8
+end_of_line = lf
+
+[*.css]
+indent_size = 2
+
+[*.scss]
+indent_size = 2
+
+[*.js]
+indent_size = 2
+
+[*.ts]
+indent_size = 2
+
+[*.tsx]
+indent_size = 2
+
+[*.cs]
+indent_style = tab
+indent_size = 4
+
+[*.php]
+indent_size = 4
+
+[*.ml]
+indent_size = 2
+
+[*.sql]
+indent_size = 2
+
+[*.cpp]
+indent_size = 4
+
+[*.py]
+indent_size = 4
+
+[*.yaml]
+indent_size = 2
+
+[*.yml]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.vue]
+indent_size = 2
