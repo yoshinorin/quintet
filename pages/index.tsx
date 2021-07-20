@@ -12,7 +12,7 @@ export default function Home({articles}) {
       <Head>
       </Head>
       <main className={styles.main}>
-        {articles.map((article) => {
+        {articles.map((article: Article) => {
           return (
             <article>
               <h2>
