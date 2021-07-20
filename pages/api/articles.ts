@@ -2,7 +2,7 @@ import { ArticleResponse } from '../../types/article'
 import { api } from '../../config'
 
 export async function getArticles(): Promise<Array<ArticleResponse>> {
-  const ArticlesResponse: Promise<Array<ArticleResponse>> = await fetch(
+  const articlesResponse: Promise<Array<ArticleResponse>> = await fetch(
     `${api.url}/articles/`,
     {
       method: 'GET',
@@ -12,5 +12,5 @@ export async function getArticles(): Promise<Array<ArticleResponse>> {
     }
   ).then((response) => response.json());
   // TODO: error handling
-  return ArticlesResponse;
+  return articlesResponse;
 }
