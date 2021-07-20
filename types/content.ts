@@ -1,15 +1,11 @@
 export interface Content {
-  path: String,
   title: String,
   content: String,
-  publishedAt: String,
-  updatedAt: String
+  publishedAt: String
 }
 
 export interface ContentResponse {
-  path: String,
   title: String,
-  htmlContent: String,
-  publishedAt: number,
-  updatedAt: number
+  content: String,
+  publishedAt: number
 }
