@@ -29,8 +29,8 @@ export default function Home({articles}) {
 }
 
 export async function getStaticProps() {
-  const ArticleResponses: Array<ArticleResponse> = await getArticles()
-  const articles = ArticleResponses.map(article => {
+  const articleResponses: Array<ArticleResponse> = await getArticles()
+  const articles = articleResponses.map(article => {
     return {
       path: article.path,
       title: article.title,
