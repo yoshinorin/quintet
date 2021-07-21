@@ -1,4 +1,4 @@
-import ContentComponent from '../components/contents/content';
+import ContentComponent from '../components/content';
 import { convertUnixtimeToDate } from '../utils/time';
 import styles from '../styles/Home.module.scss'
 import { ContentResponse, Content } from '../types/content';

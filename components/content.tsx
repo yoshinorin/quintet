@@ -1,4 +1,4 @@
-import { Content } from '../../types/content';
+import { Content } from '../types/content';
 
 const ContentComponent: React.FunctionComponent<{ content: Content }> = ({content}) => {
   return(
