@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import Link from 'next/link'
+import HeadMeta from '../components/headmeta'
 import { getArticles } from './api/articles';
 import { convertUnixtimeToDate } from '../utils/time';
 import styles from '../styles/Home.module.scss'
@@ -8,8 +8,7 @@ import { Article, ArticleResponse } from '../types/article';
 export default function Home({articles}) {
   return (
     <div className={styles.container}>
-      <Head>
-      </Head>
+      <HeadMeta/>
       <main className={styles.main}>
         {articles.map((article: Article) => {
           return (
