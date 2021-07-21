@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.scss'
 import { ContentResponse, Content } from '../types/content';
 import { findByPath } from './api/content';
 
-// @ts-ignore
 export default function Article({content}) {
   return (
     <div className={styles.container}>

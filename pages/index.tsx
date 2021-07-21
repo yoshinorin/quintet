@@ -5,7 +5,6 @@ import { convertUnixtimeToDate } from '../utils/time';
 import styles from '../styles/Home.module.scss'
 import { Article, ArticleResponse } from '../types/article';
 
-// @ts-ignore
 export default function Home({articles}) {
   return (
     <div className={styles.container}>
