@@ -3,8 +3,8 @@
 
 .home-articles-group {
   .home-articles {
-      margin-top:    10px;
-      margin-bottom:  5px;
+    margin-top:     1em;
+    margin-bottom:  0.2em;
   }
 }
 
@@ -15,42 +15,42 @@
   vertical-align: top;
 
   .home-articles-header {
-      .home-articles-title {
-          margin:     0;
-          word-break: initial;
-          overflow:   hidden;
-          font-weight: 400;
-      }
+    .home-articles-title {
+      margin:     0;
+      word-break: initial;
+      overflow:   hidden;
+      font-weight: 400;
+    }
   }
   .home-articles-meta {
-      margin: 0.2em 0 0 0;
-      line-height: 1.5em;
-      a {
-          color: #828d9e;
-      }
+    margin: 0.2em 0 0 0;
+    line-height: 1.5em;
+    a {
+      color: #828d9e;
+    }
   }
   .home-articles-meta,
   .home-articles-time {
-      font-size: 0.9em;
-      color: #939ba8;
+    font-size: 0.9em;
+    color: #939ba8;
   }
   .home-articles-meta {
-      font-size:   map-get($font-size, small);
-      font-weight: 400;
+    font-size:   map-get($font-size, small);
+    font-weight: 400;
   }
   .home-articles-excerpt {
-      text-rendering: optimizelegibility;
-      letter-spacing: 0.2px;
-      color:          #7e7c8a;
-      font-weight:    400;
-      overflow:       hidden;
+    text-rendering: optimizelegibility;
+    letter-spacing: 0.1em;
+    color:          #7e7c8a;
+    font-weight:    400;
+    overflow:       hidden;
   }
   .home-articles-excerpt {
-      margin-top: 12px;
+      margin-top: 0.8em;
   }
 }
 
 .home-articles-wrap {
-  margin-left: 5px;
-  padding:     12px;
+  margin-left: 0.2em;
+  padding:     0.8em;
 }
