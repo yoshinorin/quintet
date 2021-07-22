@@ -1,0 +1,62 @@
+@import
+    '_variables';
+
+.content {
+  position:       relative;
+  width:          100%;
+  display:        inline-block;
+  vertical-align: top;
+
+  .content-header {
+    .content-title {
+      margin:     0;
+      word-break: initial;
+      overflow:   hidden;
+      font-weight: normal;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .content-meta {
+    line-height: 1.5em;
+    font-size:   map-get($font-size, small);
+    font-weight: 400;
+    color:       map-get($colors, light);
+
+    a {
+      color: map-get($colors, light);
+    }
+  }
+  .content-main {
+    text-rendering: optimizelegibility;
+    letter-spacing: 0.2em;
+    color:          map-get($colors, base);
+    margin-top:     1em;
+    font-weight:    400;
+    overflow:       hidden;
+
+    img {
+      display:   block;
+      width:     auto;
+      max-width: 100%;
+    }
+    :not(blockquote):not(li):not(.alert) {
+      & > p {
+        margin: 1.4em 0 1.3em 0.8em;
+      }
+    }
+    ul {
+      margin: 0 0 0 0.5em;
+    }
+    li {
+      p {
+        margin: 0 0 0 0;
+      }
+    }
+  }
+  .content-footer {
+    margin-top: 1em;
+  }
+}

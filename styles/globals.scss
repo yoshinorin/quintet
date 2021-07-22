@@ -91,3 +91,19 @@ a.unstyled {
     }
   }
 }
+
+hr {
+  margin:     0.4em 0 0;
+  outline:    none;
+  border:     none;
+  border-top: 1px solid #ececec;
+}
+
+dl {
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    margin-left: 0;
+  }
+}

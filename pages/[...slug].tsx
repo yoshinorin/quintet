@@ -2,18 +2,19 @@ import ContentComponent from '../components/content';
 import HeadMeta from '../components/headmeta'
 import Header from '../components/header'
 import { convertUnixtimeToDate } from '../utils/time';
-import styles from '../styles/home.module.scss'
 import { ContentResponse, Content } from '../types/content';
 import { findByPath } from './api/content';
 
 export default function Article({content}) {
   return (
-    <div className={styles.container}>
+    <div>
       <HeadMeta />
       <Header/>
-      <ContentComponent
-        content={content}
-      />
+      <main>
+        <ContentComponent
+          content={content}
+        />
+      </main>
     </div>
   )
 }
