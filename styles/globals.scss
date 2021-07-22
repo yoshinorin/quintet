@@ -1,16 +1,93 @@
-html,
+@import
+    '_variables';
+
+html {
+  font-family: $font-families-base;
+  font-size:   map-get($font-size, base);
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  width:          100%;
+  height:         100%;
+  margin:         0;
+  padding:        0;
+  font-size:      map-get($font-size, normal);
+  line-height:    $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.05em;
+  font-family:    $font-families-headings;
+  line-height:    1.45em;
+  color:          map-get($colors, headings);
+}
+
+h1 {
+  margin: 2.7em 0 0.9em 0;
+}
+h2 {
+  margin: 2.5em 0 0.4em 0;
+}
+h3 {
+  margin: 1.5em 0 0 0;
+}
+
+h4,
+h5,
+h6 {
+  margin: 1em 0 0 0;
+}
+
+p {
+  margin: 0 0.5em 0.5em 0;
+}
+
+sub {
+  font-size: 0.6rem;
+  opacity: 0.7;
+  line-height: 1rem;
+}
+
+ul,
+ol,
+dl {
+  margin: 0.2em 0 0.2em 0;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  &,
+  &:hover,
+  &:active,
+  &:visited {
+      cursor:          pointer;
+      color:           map-get($colors, link);
+      text-decoration: none;
+  }
+  &:hover {
+      color:           map-get($colors, link);
+      text-decoration: underline;
+  }
 }
 
-* {
-  box-sizing: border-box;
+a.unstyled {
+  &,
+  &:hover,
+  &:active {
+    cursor:          pointer !important;
+    color:           inherit !important;
+    text-decoration: none !important;
+  }
+  a.link {
+    &,
+    &:hover,
+    &:active {
+        text-decoration: underline !important;
+    }
+  }
 }

@@ -1,3 +1,14 @@
+$font-families-base: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", "Segoe UI", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+$font-families-headings: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+
+$font-size: (
+  'base':     0.55rem,
+  'xlarge':   2rem,
+  'large':    1.7rem,
+  'normal':   1.6rem,
+  'small':    1.4rem,
+);
+
 $z-indexes: (
   'header': 100
 );
@@ -8,8 +19,18 @@ $header:(
 );
 
 $main:(
-  'padding-top': 0px,
-  'background-color': #fcfcfc,
-  'max-width': 900px,
-  'padding-rl': 0.1em,
+  'padding-top':         0px,
+  'background-color':  #fcfcfc,
+  'max-width':           900px,
+  'padding-rl':          0.1em,
 );
+
+$colors:(
+  'base':     #3e3c4a,
+  'light':    #35343f,
+  'link':     #1e90ff,
+  'headings': #575663,
+);
+
+$line-height:      1.9em;
+$letter-spacing:   0.01em;

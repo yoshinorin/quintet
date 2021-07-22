@@ -1,0 +1,26 @@
+.menu-button {
+  border-radius:     0.2em;
+  margin-right:      0.2em;
+  color:             rgb(73, 70, 84) !important;
+  display:           inline-block;
+  font-size:         0.9em;
+  font-weight:       400;
+  line-height:       1.2em;
+  padding:           0.3em;
+  text-decoration:   none !important;
+}
+
+.menu-button:hover {
+  color:        #fff !important;
+  background:   rgb(214, 211, 211);
+}
+
+.continue-read-button-wrap {
+  text-align:        right;
+  text-decoration:   underline;
+  margin-top:        0.2em;
+}
+
+.continue-read-button {
+  opacity:        0.5;
+}
