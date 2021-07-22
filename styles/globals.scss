@@ -107,3 +107,52 @@ dl {
     margin-left: 0;
   }
 }
+
+acronym,
+abbr {
+  border-bottom: 0.1em dotted map-get($colors, 'base');
+}
+
+// TODO: move somewhere?
+pre > code {
+  display:     block;
+  width:       100%;
+  box-sizing:  border-box;
+  padding:     1.4em;
+  font-family: $font-families-code;
+  border:      none;
+  margin:      0;
+  cursor:      text;
+  overflow-x:  auto;
+  line-height: map-get($highlight, line-height) + 0.4em;
+  font-size:   map-get($highlight, font-size);
+}
+
+// TODO: move somewhere?
+code {
+  font-size:        map-get($font-size, medium);
+  display:          inline-block;
+  font-family:      $font-families-code;
+  font-weight:      400;
+  background-color: map-get($highlight, 'background');
+  padding:          0 0.55em;
+}
+
+// TODO: move somewhere?
+blockquote {
+  border-left: 0.5em solid #86a5bd;
+  padding:     0 15px;
+  font-style:  italic;
+  margin: 1.7em 0 1.7em 1.7em;
+  opacity: 0.7;
+
+  cite {
+    &:before {
+      content: ' — ';
+      padding: 0 0.3em;
+    }
+  }
+  & > p:first-child {
+    margin: 0;
+  }
+}

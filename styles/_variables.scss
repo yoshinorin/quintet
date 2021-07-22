@@ -1,5 +1,6 @@
 $font-families-base: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", "Segoe UI", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
 $font-families-headings: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+$font-families-code: Consolas, Monaco, Menlo;
 
 $font-size: (
   'base':     0.55rem,
@@ -34,3 +35,10 @@ $colors:(
 
 $line-height:      1.9em;
 $letter-spacing:   0.01em;
+
+$highlight: (
+  'background':  #faf9f6,
+  'font-size':   1.5rem,
+  'border':      1px solid,
+  'line-height': 1.3em
+);
