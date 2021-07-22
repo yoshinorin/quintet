@@ -20,6 +20,10 @@ export default function Home({articles}) {
               <article className={styles['home-articles']}>
                 <div className={styles['home-articles-wrap']}>
                   <div className={styles['home-articles-header']}>
+                    <time dateTime={`${article.publishedAt}`} className={styles['home-articles-time']}>
+                      { /* TODO: to utility function */}
+                      {`${article.publishedAt.split(' ')[0].replace(/\//g,".")}`}
+                    </time>
                     <h2 className={styles['home-articles-title']}>
                       <Link href={`${article.path}`}>
                         <a className='unstyled'>{`${article.title}`}</a>
