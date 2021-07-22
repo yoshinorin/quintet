@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import HeadMeta from '../components/headmeta'
+import Header from '../components/header'
 import { getArticles } from './api/articles';
 import { convertUnixtimeToDate } from '../utils/time';
 import styles from '../styles/Home.module.scss'
@@ -9,6 +10,7 @@ export default function Home({articles}) {
   return (
     <div className={styles.container}>
       <HeadMeta/>
+      <Header/>
       <main className={styles.main}>
         {articles.map((article: Article) => {
           return (

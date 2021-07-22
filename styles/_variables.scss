@@ -1,0 +1,15 @@
+$z-indexes: (
+  'header': 100
+);
+
+$header:(
+  'height': 1rem,
+  'border': 1px solid #eef2f8,
+);
+
+$main:(
+  'padding-top': 0px,
+  'background-color': #fcfcfc,
+  'max-width': 900px,
+  'padding-rl': 0.1em,
+);

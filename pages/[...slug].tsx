@@ -1,5 +1,6 @@
 import ContentComponent from '../components/content';
 import HeadMeta from '../components/headmeta'
+import Header from '../components/header'
 import { convertUnixtimeToDate } from '../utils/time';
 import styles from '../styles/Home.module.scss'
 import { ContentResponse, Content } from '../types/content';
@@ -9,6 +10,7 @@ export default function Article({content}) {
   return (
     <div className={styles.container}>
       <HeadMeta />
+      <Header/>
       <ContentComponent
         content={content}
       />

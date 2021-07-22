@@ -1,0 +1,74 @@
+@import
+    '_variables';
+
+.nav-root {
+  display:                     block;
+  width:                       100%;
+  height:                      map-get($header, height);
+  background:                  transparent;
+  position:                    fixed;
+  top:                         0;
+  z-index:                     map-get($z-indexes, header);
+}
+.nav-wrap {
+  display:       block;
+  max-width:     map-get($main, max-width);
+  margin:        0 auto;
+  padding-right: map-get($main, padding-rl);
+  padding-left:  map-get($main, padding-rl);
+}
+.nav-left-picture {
+  color:    map-get($header, color);
+  margin-top: 4px;
+  .nav-picture {
+      display:       block;
+      width:         30px;
+      height:        30px;
+      border-radius: 15px;
+  }
+}
+.nav-icon {
+  padding-top: 6px;
+}
+
+.navbar {
+  color: white;
+  position: relative;
+  z-index: 30;
+}
+
+.navbar-menu {
+  display: none;
+}
+
+.navbar-item {
+  color: #fff;
+  line-height: 1.5;
+  padding: 0.5rem 0.6rem;
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+  align-items: stretch;
+  display: flex;
+}
+
+.navbar-menu {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.navbar-start {
+  justify-content: flex-start;
+  margin-right: auto;
+}
+.navbar-end {
+  justify-content: flex-end;
+  margin-left: auto;
+}
