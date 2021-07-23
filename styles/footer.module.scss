@@ -1,0 +1,33 @@
+@import
+    '_variables';
+
+#footer {
+  background: map-get($colors, base);
+  color:      map-get($colors, steel-gray);
+  font-size:  map-get($font-size, medium);
+  text-align: center;
+  margin-top: 40px;
+  min-height: 180px;
+  height:     auto;
+  padding:    40px 5px 40px 5px;
+
+  .copyrights {
+    padding-top: 65px;
+    color: #bebec2;
+    a {
+      color: #ecebeb;
+    }
+  }
+}
+
+// TODO: move somewhere
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container .footer-item {
+  color: #ecebeb !important;
+  font-size: 13px;
+  width: 33%;
+}
