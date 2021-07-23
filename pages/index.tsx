@@ -58,7 +58,7 @@ export async function getStaticProps() {
     return {
       path: article.path,
       title: article.title,
-      content: article.content,
+      content: `${article.content} ...`,
       publishedAt: convertUnixtimeToDate(article.publishedAt).toLocaleString(),
       updatedAt: convertUnixtimeToDate(article.updatedAt).toLocaleString()
     } as Article
