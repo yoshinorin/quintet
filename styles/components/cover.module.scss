@@ -1,0 +1,43 @@
+@import
+    '_variables';
+
+.cover {
+  display:                     table;
+  position:                    relative;
+  top:                         0;
+  left:                        0;
+  background:                  #070b19;
+  background-size:             cover;
+  background-position:         center;
+  background-repeat:           no-repeat;
+  width:                       100%;
+  padding:                     calc(#{map-get($header, 'height')} * 20) 0 calc(#{map-get($header, 'height')} * 10) 0;
+  height:                      40%;
+  max-height:                  250px;
+  z-index:                     map-get($z-indexes, 'cover');
+
+  .content-header {
+    display:        table-cell;
+    vertical-align: middle;
+
+    .content-title {
+      max-width:     map-get($main, 'max-width');
+      margin:        0 auto;
+      color:         #fff;
+      margin-bottom: 8em;
+    }
+    .content-meta {
+      max-width:      map-get($main, 'max-width');
+      font-size:      map-get($font-size, 'normal');
+      color:          #fff !important;
+      font-weight:    400;
+      letter-spacing: 0.05em;
+      margin:         0 auto;
+      opacity:        0.8;
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+}

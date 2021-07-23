@@ -1,4 +1,5 @@
 import ContentComponent from '../components/content';
+import Cover from '../components/cover';
 import HeadMeta from '../components/headmeta'
 import Header from '../components/header'
 import { convertUnixtimeToDate } from '../utils/time';
@@ -10,6 +11,7 @@ export default function Article({content}) {
     <div>
       <HeadMeta />
       <Header/>
+      <Cover />
       <main>
         <ContentComponent
           content={content}

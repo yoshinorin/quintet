@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import HeadMeta from '../components/headmeta'
 import Header from '../components/header'
+import Cover from '../components/cover';
 import { getArticles } from './api/articles';
 import { convertUnixtimeToDate } from '../utils/time';
 import { Article, ArticleResponse } from '../types/article';
@@ -13,6 +14,7 @@ export default function Home({articles}) {
     <div>
       <HeadMeta/>
       <Header/>
+      <Cover />
       <main>
         <section className={`${containerStyles.container} ${styles['home-articles-group']}`}>
           {articles.map((article: Article) => {
