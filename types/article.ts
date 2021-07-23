@@ -1,15 +1,15 @@
 export interface Article {
-  path: String,
-  title: String,
-  content: String,
-  publishedAt: String,
-  updatedAt: String
+  path: string,
+  title: string,
+  content: string,
+  publishedAt: string,
+  updatedAt: string
 }
 
 export interface ArticleResponse {
-  path: String,
-  title: String,
-  content: String,
+  path: string,
+  title: string,
+  content: string,
   publishedAt: number,
   updatedAt: number
 }

@@ -1,7 +1,7 @@
 import { ContentResponse } from '../../types/content'
 import { api } from '../../config'
 
-export async function findByPath(path: String): Promise<ContentResponse> {
+export async function findByPath(path: string): Promise<ContentResponse> {
   // TODO: move to util func and write tests code.
   if (path.startsWith("/")) {
     path = path.substr(1);

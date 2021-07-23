@@ -1,11 +1,11 @@
 export interface Content {
-  title: String,
-  content: String,
-  publishedAt: String
+  title: string,
+  content: string,
+  publishedAt: string
 }
 
 export interface ContentResponse {
-  title: String,
-  content: String,
+  title: string,
+  content: string,
   publishedAt: number
 }
