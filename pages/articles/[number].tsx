@@ -1,12 +1,12 @@
-import HeadMeta from '../components/headmeta'
-import Header from '../components/header'
-import Cover from '../components/cover';
-import ArticlesComponent from '../components/articles';
-import { getArticles } from './api/articles';
-import { convertUnixtimeToDate } from '../utils/time';
-import { Article, ArticleResponseWithCount } from '../types/article';
+import HeadMeta from '../../components/headmeta';
+import Header from '../../components/header';
+import Cover from '../../components/cover';
+import ArticlesComponent from '../../components/articles';
+import { getArticles } from '../api/articles';
+import { convertUnixtimeToDate } from '../../utils/time';
+import { Article, ArticleResponseWithCount } from '../../types/article';
 
-export default function Home({ count, articles}) {
+export default function Page({ count, articles }) {
   return (
     <div>
       <HeadMeta/>
@@ -21,9 +21,8 @@ export default function Home({ count, articles}) {
   )
 }
 
-export async function getStaticProps() {
-  const articlesResponseWithCount: ArticleResponseWithCount = await getArticles()
-  // TODO: redirect to 404 if articles count is zero.
+export async function getServerSideProps(ctx: any) {
+  const articlesResponseWithCount: ArticleResponseWithCount = await getArticles(ctx.params.number)
   const articles = articlesResponseWithCount.articles.map(article => {
     return {
       path: article.path,
