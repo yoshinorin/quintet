@@ -1,8 +1,8 @@
-import { ArticleResponse } from '../../types/article'
+import { ArticleResponseWithCount } from '../../types/article'
 import { api } from '../../config'
 
-export async function getArticles(): Promise<Array<ArticleResponse>> {
-  const articlesResponse: Promise<Array<ArticleResponse>> = await fetch(
+export async function getArticles(): Promise<ArticleResponseWithCount> {
+  const articlesResponseWithCount: Promise<ArticleResponseWithCount> = await fetch(
     `${api.url}/articles/`,
     {
       method: 'GET',
@@ -12,5 +12,5 @@ export async function getArticles(): Promise<Array<ArticleResponse>> {
     }
   ).then((response) => response.json());
   // TODO: error handling
-  return articlesResponse;
+  return articlesResponseWithCount;
 }

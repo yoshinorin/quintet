@@ -13,3 +13,8 @@ export interface ArticleResponse {
   publishedAt: number,
   updatedAt: number
 }
+
+export interface ArticleResponseWithCount {
+  count: number,
+  articles: Array<ArticleResponse>
+}

@@ -4,12 +4,12 @@ import Header from '../components/header'
 import Cover from '../components/cover';
 import { getArticles } from './api/articles';
 import { convertUnixtimeToDate } from '../utils/time';
-import { Article, ArticleResponse } from '../types/article';
+import { Article, ArticleResponseWithCount } from '../types/article';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import buttonStyles from '../styles/components/button.module.scss';
 
-export default function Home({articles}) {
+export default function Home({ count, articles}) {
   return (
     <div>
       <HeadMeta/>
@@ -53,8 +53,8 @@ export default function Home({articles}) {
 }
 
 export async function getStaticProps() {
-  const articleResponses: Array<ArticleResponse> = await getArticles()
-  const articles = articleResponses.map(article => {
+  const articlesResponseWithCount: ArticleResponseWithCount = await getArticles()
+  const articles = articlesResponseWithCount.articles.map(article => {
     return {
       path: article.path,
       title: article.title,
@@ -65,6 +65,6 @@ export async function getStaticProps() {
   });
 
   return {
-    props: { articles }
+    props: { 'count': articlesResponseWithCount.count, 'articles': articles }
   }
 }
