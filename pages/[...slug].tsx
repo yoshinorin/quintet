@@ -22,7 +22,7 @@ export default function Article({content}) {
 }
 
 export async function getServerSideProps(ctx: any) {
-  const contentResponse: ContentResponse = await findByPath(ctx.params.slug.join("/"))
+  const contentResponse: ContentResponse = await findByPath(ctx.resolvedUrl)
   const content: Content = {
     title: contentResponse.title,
     content: contentResponse.content,
