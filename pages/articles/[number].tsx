@@ -2,11 +2,12 @@ import HeadMeta from '../../components/headmeta';
 import Header from '../../components/header';
 import Cover from '../../components/cover';
 import ArticlesComponent from '../../components/articles';
+import Pagination from '../../components/pagination';
 import { getArticles } from '../api/articles';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
 
-export default function Page({ count, articles }) {
+export default function Page({ current, count, articles }) {
   return (
     <div>
       <HeadMeta/>
@@ -15,6 +16,11 @@ export default function Page({ count, articles }) {
       <main>
         <ArticlesComponent
           articles={articles}
+        />
+        <Pagination
+          basePath='articles'
+          current={current}
+          total={count}
         />
       </main>
     </div>
@@ -34,6 +40,6 @@ export async function getServerSideProps(ctx: any) {
   });
 
   return {
-    props: { 'count': articlesResponseWithCount.count, 'articles': articles }
+    props: { 'current': ctx.params.number, 'count': articlesResponseWithCount.count, 'articles': articles }
   }
 }

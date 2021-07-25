@@ -2,6 +2,7 @@ import HeadMeta from '../components/headmeta'
 import Header from '../components/header'
 import Cover from '../components/cover';
 import ArticlesComponent from '../components/articles';
+import Pagination from '../components/pagination';
 import { getArticles } from './api/articles';
 import { convertUnixtimeToDate } from '../utils/time';
 import { Article, ArticleResponseWithCount } from '../types/article';
@@ -15,6 +16,11 @@ export default function Home({ count, articles}) {
       <main>
         <ArticlesComponent
           articles={articles}
+        />
+        <Pagination
+          basePath='articles'
+          current={1}
+          total={count}
         />
       </main>
     </div>
