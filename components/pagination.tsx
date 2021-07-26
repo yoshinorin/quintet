@@ -93,7 +93,6 @@ function createLastNumButton(basePath, current, last) {
 function createNextButton(basePath, current, last) {
   if (current !== last) {
     const path = `/${basePath}/${current + 1}`
-    console.log(path)
     return(
       <li><a href={path}>Next</a></li>
     )
