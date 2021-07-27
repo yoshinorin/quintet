@@ -1,7 +1,6 @@
 import ContentComponent from '../components/content';
 import Cover from '../components/cover';
 import HeadMeta from '../components/headmeta'
-import Header from '../components/header'
 import { convertUnixtimeToDate } from '../utils/time';
 import { ContentResponse, Content } from '../types/content';
 import { findByPath } from './api/content';
@@ -10,7 +9,6 @@ export default function Article({content}) {
   return (
     <>
       <HeadMeta />
-      <Header/>
       <Cover />
       <main>
         <ContentComponent

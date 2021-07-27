@@ -1,5 +1,4 @@
 import HeadMeta from '../components/headmeta'
-import Header from '../components/header'
 import Cover from '../components/cover';
 import ArticlesComponent from '../components/articles';
 import Pagination from '../components/pagination';
@@ -11,7 +10,6 @@ export default function Home({ count, articles}) {
   return (
     <>
       <HeadMeta/>
-      <Header/>
       <Cover />
       <main>
         <ArticlesComponent
