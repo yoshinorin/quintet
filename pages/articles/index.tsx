@@ -10,7 +10,7 @@ import { Article, ArticleResponseWithCount } from '../../types/article';
 
 export default function Page({ count, articles }) {
   return (
-    <div>
+    <>
       <HeadMeta/>
       <Header/>
       <Cover />
@@ -24,7 +24,7 @@ export default function Page({ count, articles }) {
           total={count}
         />
       </main>
-    </div>
+    </>
   )
 }
 

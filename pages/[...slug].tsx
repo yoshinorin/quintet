@@ -8,7 +8,7 @@ import { findByPath } from './api/content';
 
 export default function Article({content}) {
   return (
-    <div>
+    <>
       <HeadMeta />
       <Header/>
       <Cover />
@@ -17,7 +17,7 @@ export default function Article({content}) {
           content={content}
         />
       </main>
-    </div>
+    </>
   )
 }
 
