@@ -1,4 +1,5 @@
 // TODO: refactor
+import Error from 'next/error';
 import HeadMeta from '../../components/headmeta';
 import Cover from '../../components/cover';
 import ArticlesComponent from '../../components/articles';
@@ -7,7 +8,11 @@ import { getArticles } from '../api/articles';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
 
-export default function Page({ count, articles }) {
+export default function Page({ statusCode, count, articles }) {
+  if (statusCode !== 200) {
+    // TODO: Custom ErrorPage
+    return <Error statusCode={statusCode} />
+  }
   return (
     <>
       <HeadMeta/>
@@ -26,19 +31,30 @@ export default function Page({ count, articles }) {
   )
 }
 
-export async function getServerSideProps() {
-  const articlesResponseWithCount: ArticleResponseWithCount = await getArticles(1)
-  const articles = articlesResponseWithCount.articles.map(article => {
-    return {
-      path: article.path,
-      title: article.title,
-      content: `${article.content} ...`,
-      publishedAt: convertUnixtimeToDate(article.publishedAt).toLocaleString(),
-      updatedAt: convertUnixtimeToDate(article.updatedAt).toLocaleString()
-    } as Article
-  });
+export async function getServerSideProps(ctx: any) {
+  const response: Response = await getArticles(1)
+  ctx.res.statusCode = response.status;
+
+  let articlesResponseWithCount: ArticleResponseWithCount = null;
+  let articles: Array<Article> = [];
+  if (response.status === 200) {
+    articlesResponseWithCount = await response.json() as ArticleResponseWithCount;
+    articles = articlesResponseWithCount.articles.map(article => {
+      return {
+        path: article.path,
+        title: article.title,
+        content: `${article.content} ...`,
+        publishedAt: convertUnixtimeToDate(article.publishedAt).toLocaleString(),
+        updatedAt: convertUnixtimeToDate(article.updatedAt).toLocaleString()
+      } as Article
+    });
+  }
 
   return {
-    props: { 'count': articlesResponseWithCount.count, 'articles': articles }
+    props: {
+      statusCode: response.status,
+      count: articlesResponseWithCount.count,
+      articles: articles
+    }
   }
 }

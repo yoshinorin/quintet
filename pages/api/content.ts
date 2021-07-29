@@ -1,7 +1,6 @@
-import { ContentResponse } from '../../types/content'
 import { api } from '../../config'
 
-export async function findByPath(path: string): Promise<ContentResponse> {
+export async function findByPath(path: string): Promise<Response> {
   // TODO: move to util func and write tests code.
   if (path.startsWith("/")) {
     path = path.substr(1);
@@ -9,7 +8,7 @@ export async function findByPath(path: string): Promise<ContentResponse> {
   if (!path.endsWith("/")) {
     path = path + "/"
   }
-  const contentResponse: Promise<ContentResponse> = await fetch(
+  return fetch(
     `${api.url}/contents/${path}`,
     {
       method: 'GET',
@@ -18,13 +17,4 @@ export async function findByPath(path: string): Promise<ContentResponse> {
       }
     }
   )
-  .then((response) => {
-    return response.json()
-  })
-  .catch((error) => {
-    // TODO: error handling
-    console.log(error)
-  });
-
-  return contentResponse;
 }
