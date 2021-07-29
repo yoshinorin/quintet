@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from '../styles/navigation.module.scss'
 
 export default function Header({}) {
@@ -8,9 +9,9 @@ export default function Header({}) {
           <div className={styles['navbar-menu']}>
             <div className={styles['navbar-start']}>
               <div className={styles['navbar-item']}>
-                <a className={styles['nav-left-pictur']} title="Home" href="/">
-                  Home
-                </a>
+                <Link href="/">
+                  <a className={`${styles['nav-left-pictur']}`} title="Home">Home</a>
+                </Link>
               </div>
             </div>
           </div>
