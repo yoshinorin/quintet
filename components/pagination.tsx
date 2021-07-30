@@ -16,7 +16,7 @@ export default function Pagination({ basePath, current, total }) {
         <ul className={style['pagination']}>
           {
             (() => {
-              if (current === 1 || last === 1) {
+              if (current === 1) {
                 return (
                   <>
                     <li className={style['disabled']}>
@@ -36,6 +36,9 @@ export default function Pagination({ basePath, current, total }) {
                     <li>
                       <a href={`/${basePath}/${current - 1}`}>Prev</a>
                     </li>
+                    <li>
+                      <a href={`/${basePath}/1`}>1</a>
+                    </li>
                   </>
                 )
               }
@@ -46,29 +49,7 @@ export default function Pagination({ basePath, current, total }) {
               if (current > 2) {
                 return(
                   <li>
-                    <a href={`/${basePath}/1`}>1</a>
-                  </li>
-                )
-              }
-            })()
-          }
-          {
-            (() => {
-              if (current > 4) {
-                return(
-                  <li>
                     <a>...</a>
-                  </li>
-                )
-              }
-            })()
-          }
-          {
-            (() => {
-              if (current > 3) {
-                return(
-                  <li>
-                    <a href={`/${basePath}/${current - 2}`}>{current - 2}</a>
                   </li>
                 )
               }
@@ -77,53 +58,12 @@ export default function Pagination({ basePath, current, total }) {
           <li className={style['active']}><a href={`/${basePath}/${current}`}>{current}</a></li>
           {
             (() => {
-              if (current !== last && last - 2 > current) {
-                return(
-                  <li>
-                    <a href={`/${basePath}/${current + 1}`}>{current + 1}</a>
-                  </li>
-                )
-              }
-            })()
-          }
-          {
-            (() => {
-              if (current !== last && last - 3 > current) {
-                return(
-                  <li>
-                    <a href={`/${basePath}/${current + 2}`}>{current + 2}</a>
-                  </li>
-                )
-              }
-            })()
-          }
-          {
-            (() => {
-              if (current !== last && last - 4 > current) {
-                return(
-                  <li><a>...</a></li>
-                )
-              }
-            })()
-          }
-          {
-            (() => {
-              if (current !== last && last - 1 > current) {
-                return(
-                  <>
-                    <li>
-                      <a href={`/${basePath}/${last - 1}`}>{last - 1}</a>
-                    </li>
-                  </>
-                )
-              }
-            })()
-          }
-          {
-            (() => {
               if (current !== last) {
                 return(
                   <>
+                    <li>
+                      <a>...</a>
+                    </li>
                     <li>
                       <a href={`/${basePath}/${last}`}>{last}</a>
                     </li>
