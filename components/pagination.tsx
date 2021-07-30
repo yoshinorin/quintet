@@ -31,13 +31,13 @@ export default function Pagination({ basePath, current, total }) {
                 return(
                   <>
                     <li>
-                      <a href={`/${basePath}/1`}>First</a>
+                      <Link href={`/${basePath}/1`}>First</Link>
                     </li>
                     <li>
-                      <a href={`/${basePath}/${current - 1}`}>Prev</a>
+                      <Link href={`/${basePath}/${current - 1}`}>Prev</Link>
                     </li>
                     <li>
-                      <a href={`/${basePath}/1`}>1</a>
+                      <Link href={`/${basePath}/1`}>1</Link>
                     </li>
                   </>
                 )
@@ -55,7 +55,9 @@ export default function Pagination({ basePath, current, total }) {
               }
             })()
           }
-          <li className={style['active']}><a href={`/${basePath}/${current}`}>{current}</a></li>
+          <li className={style['active']}>
+            <a href={`/${basePath}/${current}`}>{current}</a>
+          </li>
           {
             (() => {
               if (current !== last) {
@@ -65,13 +67,16 @@ export default function Pagination({ basePath, current, total }) {
                       <a>...</a>
                     </li>
                     <li>
-                      <a href={`/${basePath}/${last}`}>{last}</a>
+                      {/* NOTE:
+                          need toString for deal with "Multiple children were passed to <Link> with `href` of ..."
+                      */}
+                      <Link href={`/${basePath}/${last}`}>{last.toString()}</Link>
                     </li>
                     <li>
-                      <a href={`/${basePath}/${current + 1}`}>Next</a>
+                      <Link href={`/${basePath}/${current + 1}`}>Next</Link>
                     </li>
                     <li>
-                      <a href={`/${basePath}/${last}`}>Last</a>
+                      <Link href={`/${basePath}/${last}`}>Last</Link>
                     </li>
                   </>
                 )
