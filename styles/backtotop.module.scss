@@ -1,0 +1,29 @@
+@import
+    '_variables';
+
+#back-to-top {
+  position:     fixed;
+  bottom:       20px;
+  right:        20px;
+  font-size:    77%;
+
+  a {
+    background:     map-get($colors, 'base');
+    border-radius:  50%;
+    bottom:         15px;
+    box-shadow:     0 2px 5px 0 rgba(0,0,0,.26);
+    color:        #fff;
+    cursor:         pointer;
+    display:        block;
+    width:          46px;
+    height:         46px;
+    position:       fixed;
+    right:          15px;
+    user-select:    none;
+    z-index:        100;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+}
