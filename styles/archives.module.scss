@@ -1,0 +1,15 @@
+@import
+    '_variables';
+
+#archives {
+  a {
+    color: map-get($colors, 'archives-link');
+  }
+
+  .title {
+    color: map-get($colors, 'base');
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
