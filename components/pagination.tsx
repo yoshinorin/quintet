@@ -8,8 +8,6 @@ export default function Pagination({ basePath, current, total }) {
   // TODO: refactor magic number
   const last = Math.floor(total / 10);
 
-  // TODO: a tag to Link component
-  //       Multiple children were passed to <Link> with `href` of ....
   return(
     <div className={style['pagination-bar']}>
       <nav aria-label="Page navigation">
