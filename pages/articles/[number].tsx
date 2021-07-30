@@ -1,4 +1,4 @@
-import Error from 'next/error'
+import Error from 'next/error';
 import HeadMeta from '../../components/headmeta';
 import Cover from '../../components/cover';
 import ArticlesComponent from '../../components/articles';

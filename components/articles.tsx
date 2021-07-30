@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import { Article } from '../types/article';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';

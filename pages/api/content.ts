@@ -1,4 +1,4 @@
-import { api } from '../../config'
+import { api } from '../../config';
 
 export async function findByPath(path: string): Promise<Response> {
   // TODO: move to util func and write tests code.

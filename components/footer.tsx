@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import styles from '../styles/footer.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import { footerItems, copyrights } from '../config';
