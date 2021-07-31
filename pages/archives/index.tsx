@@ -1,7 +1,7 @@
 // TODO: refactor
 import Error from 'next/error';
 import HeadMeta from '../../components/headmeta';
-import Cover from '../../components/cover';
+import CoverWithNavigation from '../../components/cover/withNavigation';
 import ArchivesComponent from '../../components/archives';
 import { getArchives } from '../api/archives';
 import { convertUnixtimeToDate } from '../../utils/time';
@@ -15,7 +15,7 @@ export default function Page({ statusCode, archives }) {
   return (
     <>
       <HeadMeta/>
-      <Cover />
+      <CoverWithNavigation />
       <main>
         {/* TODO: implement search conditions component */}
         <ArchivesComponent

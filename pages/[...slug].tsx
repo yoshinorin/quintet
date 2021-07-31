@@ -1,6 +1,6 @@
 import Error from 'next/error';
 import ContentComponent from '../components/content';
-import Cover from '../components/cover';
+import CoverWithNavigation from '../components/cover/withNavigation';
 import HeadMeta from '../components/headmeta';
 import { convertUnixtimeToDate } from '../utils/time';
 import { ContentResponse, Content } from '../types/content';
@@ -14,7 +14,7 @@ export default function Article({ statusCode, content }) {
   return (
     <>
       <HeadMeta />
-      <Cover />
+      <CoverWithNavigation />
       <main>
         <ContentComponent
           content={content}

@@ -1,7 +1,7 @@
 // TODO: refactor
 import Error from 'next/error';
 import HeadMeta from '../../components/headmeta';
-import Cover from '../../components/cover';
+import CoverWithNavigation from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
 import Pagination from '../../components/pagination';
 import { getArticles } from '../api/articles';
@@ -16,7 +16,7 @@ export default function Page({ statusCode, count, articles }) {
   return (
     <>
       <HeadMeta/>
-      <Cover />
+      <CoverWithNavigation />
       <main>
         <ArticlesComponent
           articles={articles}

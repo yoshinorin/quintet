@@ -11,6 +11,15 @@ export const headerItems = [
   }
 ]
 
+export const coverBottomItems = [
+  {
+    'url': '/',
+    'position': 'left', //left or right
+    'text': 'Home',
+    'content': 'Home'   // HTML support
+  }
+]
+
 // NOTE: HTML support
 export const copyrights = '&copy; jhon due'
 
