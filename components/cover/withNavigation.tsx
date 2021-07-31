@@ -1,17 +1,19 @@
-import Cover from './index';
-import Navigation from '../navigation';
+import CoverComponent from './index';
+import NavigationComponent from '../navigation';
 import { coverBottomItems } from '../../config';
 
-export default function CoverWithNavigation({}) {
+const CoverWithNavigationComponent: React.FunctionComponent<{}> = ({}) => {
   return(
     <>
-      <Cover />
+      <CoverComponent />
       {/* TODO: aboid inlins tyle */}
       <div style={{background: '#f7f7f7'}}>
-        <Navigation
+        <NavigationComponent
           items={coverBottomItems}
         />
       </div>
     </>
   )
 }
+
+export default CoverWithNavigationComponent;

@@ -1,26 +1,26 @@
 import Error from 'next/error';
-import HeadMeta from '../../components/headmeta';
-import CoverWithNavigation from '../../components/cover/withNavigation';
+import HeadMetaComponent from '../../components/headmeta';
+import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
-import Pagination from '../../components/pagination';
+import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
 
-export default function Page({ statusCode, current, count, articles }) {
+const Page: React.FunctionComponent<{ statusCode: number, current: number, count: number, articles: Array<Article> }> = ({ statusCode, current, count, articles }) => {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
   return (
     <>
-      <HeadMeta />
-      <CoverWithNavigation />
+      <HeadMetaComponent />
+      <CoverWithNavigationComponent />
       <main>
         <ArticlesComponent
           articles={articles}
         />
-        <Pagination
+        <PaginationComponent
           basePath='articles'
           current={current}
           total={count}
@@ -58,3 +58,5 @@ export async function getServerSideProps(ctx: any) {
     }
   }
 }
+
+export default Page;

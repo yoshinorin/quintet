@@ -2,9 +2,7 @@
 import Link from 'next/link';
 import style from '../styles/components/pagination.module.scss';
 
-export default function Pagination({ basePath, current, total }) {
-  // TODO: you are a number not a string...
-  current = parseInt(current);
+const PaginationComponent: React.FunctionComponent<{ basePath: string, current: number, total: number }> = ({ basePath, current, total} ) => {
   // TODO: refactor magic number
   const last = Math.floor(total / 10);
 
@@ -102,3 +100,5 @@ export default function Pagination({ basePath, current, total }) {
     </div>
   )
 }
+
+export default PaginationComponent;

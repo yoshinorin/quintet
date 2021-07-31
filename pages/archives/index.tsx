@@ -1,21 +1,21 @@
 // TODO: refactor
 import Error from 'next/error';
-import HeadMeta from '../../components/headmeta';
-import CoverWithNavigation from '../../components/cover/withNavigation';
+import HeadMetaComponent from '../../components/headmeta';
+import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArchivesComponent from '../../components/archives';
 import { getArchives } from '../api/archives';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Archive, ArchiveResponse } from '../../types/archive';
 
-export default function Page({ statusCode, archives }) {
+const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
-    return <Error statusCode={archives} />
+    return <Error statusCode={statusCode} />
   }
   return (
     <>
-      <HeadMeta/>
-      <CoverWithNavigation />
+      <HeadMetaComponent/>
+      <CoverWithNavigationComponent />
       <main>
         {/* TODO: implement search conditions component */}
         <ArchivesComponent
@@ -50,3 +50,5 @@ export async function getServerSideProps(ctx: any) {
     }
   }
 }
+
+export default Page;

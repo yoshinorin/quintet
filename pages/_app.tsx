@@ -1,16 +1,16 @@
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import BackToTop from '../components/backtotop';
+import HeaderComponent from '../components/header';
+import FooterComponent from '../components/footer';
+import BackToTopComponent from '../components/backtotop';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Header />
+      <HeaderComponent />
       <Component {...pageProps} />
-      <BackToTop />
-      <Footer />
+      <BackToTopComponent />
+      <FooterComponent />
     </>
   )
 }

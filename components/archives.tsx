@@ -4,7 +4,7 @@ import styles from '../styles/archives.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 
 // TODO: blush up
-export default function ArchivesComponent({ archives }) {
+const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
   return (
     <section className={`${containerStyles.container}`}>
       <div id={styles['archives']}>
@@ -23,3 +23,5 @@ export default function ArchivesComponent({ archives }) {
     </section>
   )
 }
+
+export default ArchivesComponent;

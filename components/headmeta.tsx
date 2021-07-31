@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export default function HeadMeta({}) {
+const HeadMetaComponent: React.FunctionComponent<{}> = () => {
   /* TODO:
       meta: author
       title: title
@@ -17,3 +17,5 @@ export default function HeadMeta({}) {
     </Head>
   )
 }
+
+export default HeadMetaComponent;

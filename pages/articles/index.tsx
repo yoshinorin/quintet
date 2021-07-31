@@ -1,9 +1,9 @@
 // TODO: refactor
 import Error from 'next/error';
-import HeadMeta from '../../components/headmeta';
-import CoverWithNavigation from '../../components/cover/withNavigation';
+import HeadMetaComponent from '../../components/headmeta';
+import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
-import Pagination from '../../components/pagination';
+import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
@@ -15,13 +15,13 @@ export default function Page({ statusCode, count, articles }) {
   }
   return (
     <>
-      <HeadMeta/>
-      <CoverWithNavigation />
+      <HeadMetaComponent/>
+      <CoverWithNavigationComponent />
       <main>
         <ArticlesComponent
           articles={articles}
         />
-        <Pagination
+        <PaginationComponent
           basePath='articles'
           current={1}
           total={count}

@@ -1,20 +1,20 @@
 import Error from 'next/error';
 import ContentComponent from '../components/content';
-import CoverWithNavigation from '../components/cover/withNavigation';
-import HeadMeta from '../components/headmeta';
+import CoverWithNavigationComponent from '../components/cover/withNavigation';
+import HeadMetaComponent from '../components/headmeta';
 import { convertUnixtimeToDate } from '../utils/time';
 import { ContentResponse, Content } from '../types/content';
 import { findByPath } from './api/content';
 
-export default function Article({ statusCode, content }) {
+const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
   return (
     <>
-      <HeadMeta />
-      <CoverWithNavigation />
+      <HeadMetaComponent />
+      <CoverWithNavigationComponent />
       <main>
         <ContentComponent
           content={content}
@@ -44,3 +44,5 @@ export async function getServerSideProps(ctx: any) {
     }
   }
 }
+
+export default Article;

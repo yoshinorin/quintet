@@ -4,7 +4,7 @@ import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import buttonStyles from '../styles/components/button.module.scss';
 
-export default function ArticlesComponent({ articles }) {
+const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
     <section className={`${containerStyles.container} ${styles['home-articles-group']}`}>
       {articles.map((article: Article) => {
@@ -39,3 +39,5 @@ export default function ArticlesComponent({ articles }) {
     </section>
   )
 }
+
+export default ArticlesComponent;

@@ -3,7 +3,7 @@ import styles from '../styles/footer.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import { footerItems, copyrights } from '../config';
 
-export default function Footer() {
+const FooterComponent: React.FunctionComponent<{}> = () => {
   return(
     <footer id={styles['footer']}>
       <div className={containerStyles['container']}>
@@ -22,3 +22,5 @@ export default function Footer() {
     </footer>
   )
 }
+
+export default FooterComponent;
