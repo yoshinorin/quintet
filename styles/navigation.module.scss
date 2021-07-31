@@ -17,16 +17,6 @@
   padding-right: map-get($main, padding-rl);
   padding-left:  map-get($main, padding-rl);
 }
-.nav-left-picture {
-  color:    map-get($header, color);
-  margin-top: 4px;
-  .nav-picture {
-      display:       block;
-      width:         30px;
-      height:        30px;
-      border-radius: 15px;
-  }
-}
 .nav-icon {
   padding-top: 6px;
   padding-left: 6px;

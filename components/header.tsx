@@ -13,7 +13,7 @@ export default function Header({}) {
                 {headerItems.filter(item => item.position == 'left').map((item) => {
                   return(
                     <Link href={item.url}>
-                      <a className={`${styles['nav-left-pictur']}`} title={item.title}
+                      <a className={`${styles['nav-icon']}`} title={item.title}
                         dangerouslySetInnerHTML={{ __html: item.content }}>
                       </a>
                     </Link>
