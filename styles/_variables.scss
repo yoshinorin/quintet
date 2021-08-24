@@ -39,9 +39,42 @@ $colors:(
 $line-height:      1.9em;
 $letter-spacing:   0.01em;
 
+// TODO: clean up
 $highlight: (
-  'background':  #faf9f6,
-  'font-size':   1.5rem,
-  'border':      1px solid,
-  'line-height': 1.3em
+  'base':                #4b4444,
+  'background':          #faf9f6,
+  'border-color':        #f1efea,
+  'border-light-color':  #dddad1,
+  'gutter-line-color':   #808080,
+  'font-size':             1.5rem,
+  'border':                1px solid,
+  'line-height':           1.3em
+);
+
+// TODO: clean up
+$highlight-colors: (
+  'night-rider':     #4c9244,
+  'bondi-blue':      #0086b3,
+  'persimmon':       #df5000,
+  'asparagus':       #63a35c,
+  'pewter':          #969896,
+  'cardinal':        #a71d5d,
+  'scampi':          #795da3,
+  'bahama-blue':     #1d3e81,
+  'egyptian-blue':   #183691,
+  'free-speech-red': #bd2c00,
+  'misty-rose':      #ffecec,
+  'limeade':         #55a532,
+  'honeydew':        #eaffea
+);
+
+// TODO: clean up
+$highlight-text-bg-colors: (
+  'red':     lighten(red, 45%),
+  'green':   lighten(green, 65%),
+  'blue':    lighten(blue, 45%),
+  'purple':  lighten(purple, 70%),
+  'orange':  lighten(orange, 40%),
+  'yellow':  lighten(yellow, 40%),
+  'cyan':    lighten(cyan, 40%)
 );

@@ -114,37 +114,12 @@ abbr {
 }
 
 // TODO: move somewhere?
-pre > code {
-  display:     block;
-  width:       100%;
-  box-sizing:  border-box;
-  padding:     1.4em;
-  font-family: $font-families-code;
-  border:      none;
-  margin:      0;
-  cursor:      text;
-  overflow-x:  auto;
-  line-height: map-get($highlight, line-height) + 0.4em;
-  font-size:   map-get($highlight, font-size);
-}
-
-// TODO: move somewhere?
-code {
-  font-size:        map-get($font-size, medium);
-  display:          inline-block;
-  font-family:      $font-families-code;
-  font-weight:      400;
-  background-color: map-get($highlight, 'background');
-  padding:          0 0.55em;
-}
-
-// TODO: move somewhere?
 blockquote {
-  border-left: 0.5em solid #86a5bd;
-  padding:     0 15px;
-  font-style:  italic;
-  margin: 1.7em 0 1.7em 1.7em;
-  opacity: 0.7;
+  border-left:   0.5em solid #86a5bd;
+  padding:       0 15px;
+  font-style:    italic;
+  margin:        1.7em 0 1.7em 1.7em;
+  opacity:       0.7;
 
   cite {
     &:before {
@@ -154,5 +129,346 @@ blockquote {
   }
   & > p:first-child {
     margin: 0;
+  }
+}
+
+pre > code {
+  background:        map-get($highlight, 'background');
+  color:             map-get($highlight-colors, 'night-rider');
+  display:           block;
+  width:             100%;
+  box-sizing:        border-box;
+  padding:           1.4em;
+  font-family:       $font-families-code;
+  border:            none;
+  border-radius:     4px;
+  margin:            0 4px;
+  cursor:            text;
+  overflow-x:        auto;
+  line-height:       map-get($highlight, line-height) + 0.4em;
+  font-size:         map-get($highlight, font-size);
+}
+
+code {
+  font-family:        $font-families-code;
+  font-size:          map-get($font-size, medium);
+  color:              map-get($highlight, 'base');
+  background-color:  #efefef;
+  border-radius:      2px;
+  display:            inline;
+  font-weight:        400;
+  margin:             0 0.25em;
+  padding:            0.25em 0.35em;
+}
+
+// TODO: some value move to _.valiables.scss
+figure.highlight,
+.codeblock {
+  font-family:      $font-families-code;
+  background:       map-get($highlight, 'background');
+  color:            map-get($highlight-colors, ''night-rider'');
+  border:           1.3px solid map-get($highlight, 'border-color');
+  border-radius:    2px;
+  color:            map-get($colors, 'base');
+
+  figcaption {
+    background:   map-get($highlight, 'background');
+    color:        map-get($colors, 'base');
+  }
+  .gutter {
+    background:          map-get($highlight, 'background');
+    border-right-color:  map-get($highlight, 'border-light-color');
+    .line {
+      color:  map-get($highlight, 'gutter-line-color');
+    }
+  }
+  .code {
+    background:  map-get($highlight, 'background');
+  }
+  // common
+  .comment,
+  .quote,
+  .variable {
+    color: map-get($highlight-colors, ''night-rider'');
+  }
+  .keyword,
+  .selector-tag,
+  .built_in,
+  .name,
+  .tag {
+    color: #099bc7;
+  }
+  .literal,
+  .number {
+    color: map-get($highlight-colors, 'bondi-blue');
+  }
+  .string,
+  .title,
+  .section,
+  .attribute,
+  .literal,
+  .template-tag,
+  .template-variable,
+  .type,
+  .addition {
+    color: map-get($highlight-colors, 'egyptian-blue');
+  }
+  .keyword {
+    color: map-get($highlight-colors, 'cardinal');
+  }
+  .deletion,
+  .selector-attr,
+  .selector-pseudo,
+  .meta {
+    color: #2b91af;
+  }
+  .doctag {
+    color: #808080;
+  }
+  .attr {
+    color: rgb(173, 50, 50);
+  }
+  .symbol,
+  .bullet,
+  .link {
+    color: #09a5d4;
+  }
+  .emphasis {
+    font-style: italic;
+  }
+  .strong {
+    font-weight: bold;
+  }
+  // by languages
+  // C/C++
+  &.cpp .code,
+  &.c .code {
+    .preprocessor {
+      color: map-get($highlight-colors, 'persimmon');
+    }
+    .meta-keyword {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .title  {
+      color: map-get($highlight-colors, 'scampi');
+    }
+  }
+  // C#
+  &.cs .code {
+    .preprocessor,
+    .preprocessor .keyword {
+      color: map-get($highlight-colors, 'night-rider');
+    }
+    .title {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .xmlDocTag,
+    .doctag {
+      color: map-get($highlight-colors, 'asparagus');
+    }
+  }
+  // CSS
+  &.css .code {
+    .at_rule,
+    .important,
+    .meta {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .attribute,
+    .hexcolor,
+    .function {
+      color: map-get($highlight-colors, 'bondi-blue');
+    }
+    .attr_selector,
+    .value {
+      color: map-get($highlight-colors, 'night-rider');
+    }
+    .id,
+    .class,
+    .pseudo,
+    .selector-pseudo {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .tag,
+    .selector-tag {
+      color: map-get($highlight-colors, 'asparagus');
+    }
+  }
+  // Diff
+  &.diff .code {
+    .chunk,
+    .meta {
+      color:       map-get($highlight-colors, 'scampi');
+      font-weight: bold;
+    }
+    .addition {
+      color:            map-get($highlight-colors, 'limeade');
+      background-color: map-get($highlight-colors, 'honeydew');
+    }
+    .deletion {
+      color:            map-get($highlight-colors, 'free-speech-red');
+      background-color: map-get($highlight-colors, 'misty-rose');
+    }
+  }
+  // Scala/Java
+  &.scala .code,
+  &.java .code {
+    .title {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .javadoc {
+      color: map-get($highlight-colors, 'pewter');
+    }
+    .meta,
+    .annotation,
+    .javadoctag {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .params {
+      color: map-get($highlight-colors, 'bahama-blue');
+    }
+  }
+  // JavaScript
+  &.js .code {
+    .built_in,
+    .title {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .javadoc {
+      color: map-get($highlight-colors, 'pewter');
+    }
+    .tag,
+    .javadoctag {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .tag .title {
+      color: map-get($highlight-colors, 'night-rider');
+    }
+    .regexp {
+      color: map-get($highlight-colors, 'persimmon');
+    }
+  }
+  // JSON
+  &.json .code {
+    .attribute {
+      color: map-get($highlight-colors, 'egyptian-blue');
+    }
+  }
+  // Nginx
+  &.nginx .code {
+    .title,
+    .attribute {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .built_in {
+      color: map-get($highlight-colors, 'bondi-blue');
+    }
+    .regexp {
+      color: map-get($highlight-colors, 'egyptian-blue');
+    }
+  }
+  // PHP
+  &.php .code {
+    .phpdoc,
+    .doctag {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .regexp {
+      color: map-get($highlight-colors, 'persimmon');
+    }
+    .title {
+      color: map-get($highlight-colors, 'scampi');
+    }
+  }
+  // Ruby
+  &.ruby .code {
+    .parent,
+    .title {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .prompt,
+    .constant,
+    .number,
+    .subst .keyword,
+    .symbol {
+      color: map-get($highlight-colors, 'bondi-blue');
+    }
+  }
+  // SQL
+  &.sql {
+    .built_in {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+  }
+  // XML, HTML
+  &.xml,
+  &.html {
+    .tag {
+      color: map-get($highlight-colors, 'night-rider');
+    }
+    .value {
+      color: map-get($highlight-colors, 'egyptian-blue');
+    }
+    .attribute,
+    .attr {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .title,
+    .name {
+      color: map-get($highlight-colors, 'asparagus');
+    }
+  }
+  // SCSS
+  &.scss {
+    .tag,
+    .at_rule,
+    .important {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .number,
+    .hexcolor,
+    .function,
+    .attribute {
+      color: map-get($highlight-colors, 'bondi-blue');
+    }
+    .built_in {
+      color: map-get($highlight-colors, 'persimmon');
+    }
+    .id,
+    .pseudo,
+    .class,
+    .preprocessor,
+    .selector-class,
+    .selector-id {
+      color: map-get($highlight-colors, 'scampi');
+    }
+    .tag,
+    .selector-tag {
+      color: map-get($highlight-colors, 'asparagus');
+    }
+  }
+  // Go
+  &.go {
+    .typename {
+      color: map-get($highlight-colors, 'cardinal');
+    }
+    .built_in,
+    .constant {
+      color: map-get($highlight-colors, 'bondi-blue');
+    }
+  }
+  // YAML
+  &.yml {
+    .line
+    .attr {
+      color: map-get($highlight-colors, 'asparagus');
+    }
+    .line,
+    .string,
+    .type,
+    .literal,
+    .meta {
+      color: map-get($highlight-colors, 'egyptian-blue');
+    }
   }
 }
