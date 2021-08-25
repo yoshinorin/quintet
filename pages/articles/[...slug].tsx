@@ -1,10 +1,10 @@
 import Error from 'next/error';
-import ContentComponent from '../components/content';
-import CoverWithNavigationComponent from '../components/cover/withNavigation';
-import HeadMetaComponent from '../components/headmeta';
-import { convertUnixtimeToDate } from '../utils/time';
-import { ContentResponse, Content } from '../types/content';
-import { findByPath } from './api/content';
+import ContentComponent from '../../components/content';
+import CoverWithNavigationComponent from '../../components/cover/withNavigation';
+import HeadMetaComponent from '../../components/headmeta';
+import { convertUnixtimeToDate } from '../../utils/time';
+import { ContentResponse, Content } from '../../types/content';
+import { findByPath } from '../api/content';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
   if (statusCode !== 200) {
@@ -26,15 +26,6 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
 
 export async function getServerSideProps(ctx: any) {
   const path = ctx.params.slug.join("/");
-  if (path.match(/^\/\d{4}\/\d{2}\/\d{2}\/*/)) {
-    return {
-      redirect: {
-        permanent: true,
-        destination: `/articles${path}`
-      }
-    }
-  }
-
   const response: Response = await findByPath(path);
   ctx.res.statusCode = response.status;
 
