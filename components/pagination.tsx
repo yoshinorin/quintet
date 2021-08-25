@@ -55,9 +55,17 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
               }
             })()
           }
-          <li className={style['active']}>
-            <a href={`/${basePath}/${current}`}>{current}</a>
-          </li>
+          {
+            (() => {
+              if (current !== 1 && current !== last) {
+                return(
+                  <li className={style['disabled']}>
+                    <a>{current}</a>
+                  </li>
+                )
+              }
+            })()
+          }
           {
             (() => {
               if (current !== last) {
