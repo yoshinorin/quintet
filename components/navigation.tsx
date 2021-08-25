@@ -8,9 +8,9 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
         <div className={styles['navbar-menu']}>
           <div className={styles['navbar-start']}>
             <div className={styles['navbar-item']}>
-              {items.filter(item => item.position == 'left').map((item) => {
+              {items.filter(item => item.position == 'left').map((item, idx) => {
                 return(
-                  <Link href={item.url}>
+                  <Link href={item.url} key={idx}>
                     <a className={`${styles['nav-icon']}`} title={item.title}
                       dangerouslySetInnerHTML={{ __html: item.content }}>
                     </a>
@@ -21,9 +21,9 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
           </div>
           <div className={styles['navbar-end']}>
             <div className={styles['navbar-item']}>
-              {items.filter(item => item.position == 'right').map((item) => {
+              {items.filter(item => item.position == 'right').map((item, idx) => {
                   return(
-                    <Link href={item.url}>
+                    <Link href={item.url} key={idx}>
                       <a className={`${styles['nav-icon']}`} title={item.title}
                         dangerouslySetInnerHTML={{ __html: item.content }}>
                       </a>

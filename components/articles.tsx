@@ -7,9 +7,9 @@ import buttonStyles from '../styles/components/button.module.scss';
 const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
     <section className={`${containerStyles.container} ${styles['home-articles-group']}`}>
-      {articles.map((article: Article) => {
+      {articles.map((article: Article, idx) => {
         return (
-          <article className={styles['home-articles']}>
+          <article className={styles['home-articles']} key={idx}>
             <div className={styles['home-articles-wrap']}>
               <div className={styles['home-articles-header']}>
                 <time dateTime={`${article.publishedAt}`} className={styles['home-articles-time']}>

@@ -8,9 +8,9 @@ const FooterComponent: React.FunctionComponent<{}> = () => {
     <footer id={styles['footer']}>
       <div className={containerStyles['container']}>
         <div className={styles['flex-container']}>
-          {footerItems.map((item) => {
+          {footerItems.map((item, idx) => {
             return(
-              <Link href={`${item.url}`}>
+              <Link href={`${item.url}`} key={idx}>
                 <a className={`${styles['footer-item']} unstyled`}>{`${item.text}`}</a>
               </Link>
             )

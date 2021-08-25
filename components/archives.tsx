@@ -8,9 +8,9 @@ const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> =
   return (
     <section className={`${containerStyles.container}`}>
       <div id={styles['archives']}>
-        {archives.map((archive: Archive) => {
+        {archives.map((archive: Archive, idx) => {
           return (
-            <li>
+            <li key={idx}>
               <span>
               </span>
               <Link href={`${archive.path}`}>
