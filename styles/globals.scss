@@ -189,7 +189,7 @@ figure.highlight,
   .comment,
   .quote,
   .variable {
-    color: map-get($highlight-colors, ''night-rider'');
+    color: map-get($highlight-colors, 'night-rider');
   }
   .keyword,
   .selector-tag,
