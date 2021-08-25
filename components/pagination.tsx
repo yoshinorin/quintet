@@ -5,6 +5,10 @@ import style from '../styles/components/pagination.module.scss';
 const PaginationComponent: React.FunctionComponent<{ basePath: string, current: number, total: number }> = ({ basePath, current, total} ) => {
   // TODO: refactor magic number
   const last = Math.floor(total / 10);
+  const prev = current - 1;
+  // YOU ARE A NOT STRING!!!!
+  // @ts-ignore
+  const next = parseInt(current)+ 1;
 
   return(
     <div className={style['pagination-bar']}>
@@ -30,7 +34,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
                       <Link href={`/${basePath}/1`}>First</Link>
                     </li>
                     <li>
-                      <Link href={`/${basePath}/${current - 1}`}>Prev</Link>
+                      <Link href={`/${basePath}/${prev}`}>Prev</Link>
                     </li>
                     <li>
                       <Link href={`/${basePath}/1`}>1</Link>
@@ -69,7 +73,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
                       <Link href={`/${basePath}/${last}`}>{last.toString()}</Link>
                     </li>
                     <li>
-                      <Link href={`/${basePath}/${current + 1}`}>Next</Link>
+                      <Link href={`/${basePath}/${next}`}>Next</Link>
                     </li>
                     <li>
                       <Link href={`/${basePath}/${last}`}>Last</Link>
