@@ -13,7 +13,9 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
   }
   return (
     <>
-      <HeadMetaComponent />
+      <HeadMetaComponent
+        robotsMeta={content.robotsAttributes}
+      />
       <CoverWithNavigationComponent />
       <main>
         <ContentComponent

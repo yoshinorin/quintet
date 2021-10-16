@@ -2,6 +2,8 @@ export const api = {
   'url': 'https://api.example.com'
 }
 
+export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex"
+
 export const headerItems = [
   {
     'url': '/',

@@ -14,7 +14,9 @@ const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archiv
   }
   return (
     <>
-      <HeadMetaComponent/>
+      <HeadMetaComponent
+        robotsMeta={"noarchive, nofollow, noimageindex, noindex"}
+      />
       <CoverWithNavigationComponent />
       <main>
         {/* TODO: implement search conditions component */}

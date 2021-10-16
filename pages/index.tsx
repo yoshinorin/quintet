@@ -14,7 +14,9 @@ const Home: React.FunctionComponent<{ statusCode: number, count: number, article
   }
   return (
     <>
-      <HeadMetaComponent/>
+      <HeadMetaComponent
+        robotsMeta={"noarchive, nofollow, noimageindex, noindex"}
+      />
       <CoverWithNavigationComponent />
       <main>
         <ArticlesComponent

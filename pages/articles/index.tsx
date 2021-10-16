@@ -15,7 +15,9 @@ export default function Page({ statusCode, count, articles }) {
   }
   return (
     <>
-      <HeadMetaComponent/>
+      <HeadMetaComponent
+        robotsMeta={"noarchive, nofollow, noimageindex, noindex"}
+      />
       <CoverWithNavigationComponent />
       <main>
         <ArticlesComponent
