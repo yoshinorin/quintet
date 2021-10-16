@@ -25,7 +25,10 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
 }
 
 export async function getServerSideProps(ctx: any) {
-  const path = ctx.params.slug.join("/");
+  let path = ctx.params.slug.join("/");
+  if (!path.startsWith("/")) {
+    path = "/" + path;
+  }
   if (path.match(/^\/\d{4}\/\d{2}\/\d{2}\/*/)) {
     return {
       redirect: {
