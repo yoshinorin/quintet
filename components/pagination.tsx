@@ -10,6 +10,8 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
   // @ts-ignore
   const next = parseInt(current)+ 1;
 
+  // TODO: set default number of articles in one page from config.
+  // TODO: disable pagination link if the one page articles less than settings value.
   return(
     <div className={style['pagination-bar']}>
       <nav aria-label="Page navigation">
