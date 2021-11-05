@@ -6,7 +6,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
   // TODO: refactor magic number
   const last = Math.floor(total / 10);
   const prev = current - 1;
-  // YOU ARE A NOT STRING!!!!
+  // YOU ARE NOT A STRING!!!!
   // @ts-ignore
   const next = parseInt(current)+ 1;
 
