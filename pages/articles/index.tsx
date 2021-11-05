@@ -7,6 +7,7 @@ import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
+import { defaultRobotsMeta } from '../../config';
 
 export default function Page({ statusCode, count, articles }) {
   if (statusCode !== 200) {
@@ -16,7 +17,7 @@ export default function Page({ statusCode, count, articles }) {
   return (
     <>
       <HeadMetaComponent
-        robotsMeta={"noarchive, nofollow, noimageindex, noindex"}
+        robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent />
       <main>

@@ -6,6 +6,7 @@ import ArchivesComponent from '../../components/archives';
 import { getArchives } from '../api/archives';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Archive, ArchiveResponse } from '../../types/archive';
+import { defaultRobotsMeta } from '../../config';
 
 const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
   if (statusCode !== 200) {
@@ -15,7 +16,7 @@ const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archiv
   return (
     <>
       <HeadMetaComponent
-        robotsMeta={"noarchive, nofollow, noimageindex, noindex"}
+        robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent />
       <main>

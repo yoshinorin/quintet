@@ -6,6 +6,7 @@ import PaginationComponent from '../components/pagination';
 import { getArticles } from './api/articles';
 import { convertUnixtimeToDate } from '../utils/time';
 import { Article, ArticleResponseWithCount } from '../types/article';
+import { defaultRobotsMeta } from '../config';
 
 const Home: React.FunctionComponent<{ statusCode: number, count: number, articles: Array<Article> }> = ({ statusCode, count, articles }) => {
   if (statusCode !== 200) {
@@ -15,7 +16,7 @@ const Home: React.FunctionComponent<{ statusCode: number, count: number, article
   return (
     <>
       <HeadMetaComponent
-        robotsMeta={"noarchive, nofollow, noimageindex, noindex"}
+        robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent />
       <main>
