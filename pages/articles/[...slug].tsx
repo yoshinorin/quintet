@@ -37,6 +37,7 @@ export async function getServerSideProps(ctx: any) {
     content = {
       title: contentResponse.title,
       robotsAttributes: contentResponse.robotsAttributes,
+      externalResources: contentResponse.externalResources,
       content: contentResponse.content,
       publishedAt: convertUnixtimeToDate(contentResponse.publishedAt).toLocaleString()
     } as Content

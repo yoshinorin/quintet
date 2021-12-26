@@ -15,6 +15,7 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     <>
       <HeadMetaComponent
         robotsMeta={content.robotsAttributes}
+        externalResources={content.externalResources}
       />
       <CoverWithNavigationComponent />
       <main>
@@ -48,6 +49,8 @@ export async function getServerSideProps(ctx: any) {
     const contentResponse: ContentResponse = await response.json() as ContentResponse;
     content = {
       title: contentResponse.title,
+      robotsAttributes: contentResponse.robotsAttributes,
+      externalResources: contentResponse.externalResources,
       content: contentResponse.content,
       publishedAt: convertUnixtimeToDate(contentResponse.publishedAt).toLocaleString()
     } as Content
