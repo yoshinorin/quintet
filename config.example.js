@@ -42,28 +42,46 @@ export const externalResources = [
   {
     'kind': 'js',
     'key': 'mermaid',
-    'inject': `
-      <script async src="https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js"></script>
-      <script>
-      window.onload = function () {
-        mermaid.initialize({startOnLoad:true});
-      };
-    </script>`
+    'inject': [
+      {
+        'async': false,
+        'type': "",
+        'src': "https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js",
+        'code': ""
+      },
+      {
+        'async': false,
+        'type': "text/javascript",
+        'src': "",
+        'code': `window.onload = function () {
+          mermaid.initialize({startOnLoad:true});
+        };`
+      }
+    ]
   },
   {
     'kind': 'js',
     'key': 'mathjax',
-    'inject': `
-      <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
-      <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
+    'inject': [
+      {
+        'async': false,
+        'type': "",
+        'src': "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML",
+        'code': ""
+      },
+      {
+        'async': false,
+        'type': "text/x-mathjax-config",
+        'src': "",
+        'code': `MathJax.Hub.Config({
           tex2jax: {
             inlineMath: [['$','$'], ['\\(','\\)']],
             skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
             processEscapes: true
           },
           CommonHTML: { matchFontHeight: false }
-        });
-      </script>`
+        });`
+      }
+    ]
   }
 ]
