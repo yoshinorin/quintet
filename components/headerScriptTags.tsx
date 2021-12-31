@@ -2,6 +2,10 @@
 import { ScriptTag } from '../types/scriptTag';
 
 const HeaderScriptTagsComponent: React.FunctionComponent<{ scriptTags: Array<ScriptTag> }> = ({ scriptTags }) => {
+  if (!scriptTags) {
+    return;
+  }
+
   return(
     <>
       {scriptTags.map((tag: ScriptTag, idx) => {
