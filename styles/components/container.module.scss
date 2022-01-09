@@ -8,3 +8,13 @@
   padding-right: map-get($main, padding-right-left);
   padding-left:  map-get($main, padding-right-left);
 }
+
+// TODO: I wanna delete this style.
+.flex-container {
+  display:       flex;
+  max-width:     map-get($main, max-width);
+  margin:        0 auto;
+  padding-right: map-get($main, padding-right-left);
+  padding-left:  map-get($main, padding-right-left);
+  flex-wrap:     wrap;
+}
