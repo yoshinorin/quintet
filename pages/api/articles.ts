@@ -11,3 +11,15 @@ export async function getArticles(p: number = 1, l: number = 10): Promise<Respon
     }
   )
 }
+
+export async function getArticlesByTagName(tagName: string, p: number = 1, l: number = 10): Promise<Response> {
+  return fetch(
+    `${api.url}/tags/${encodeURI(tagName)}?page=${p}&limit=${l}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+  )
+}
