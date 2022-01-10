@@ -1,6 +1,7 @@
 import { Sitemap } from '../types/sitemap';
 import { getSitemap } from './api/sitemap';
 import { generateSitemapString } from '../utils/sitemap';
+import { url } from '../config';
 
 const SitemapXml = () => null;
 
@@ -20,7 +21,7 @@ export async function getServerSideProps(ctx: any) {
     }
   }) as Array<Sitemap>;
 
-  const sitemapXmlString = await generateSitemapString(sitemap);
+  const sitemapXmlString = await generateSitemapString(url, sitemap);
   ctx.res.setHeader("Content-Type", "text/xml");
   ctx.res.write(sitemapXmlString);
   ctx.res.end();
