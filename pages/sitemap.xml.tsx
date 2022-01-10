@@ -21,7 +21,9 @@ export async function getServerSideProps(ctx: any) {
   }) as Array<Sitemap>;
 
   const sitemapXmlString = await generateSitemapString(sitemap);
-  ctx.res.end(sitemapXmlString);
+  ctx.res.setHeader("Content-Type", "text/xml");
+  ctx.res.write(sitemapXmlString);
+  ctx.res.end();
 
   return {
     props: {}
