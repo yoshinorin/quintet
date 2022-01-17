@@ -55,6 +55,7 @@ export async function getServerSideProps(ctx: any) {
     });
   }
 
+  // TODO: maybe can improve...
   if (articles.length < 1) {
     return {
       props: {
