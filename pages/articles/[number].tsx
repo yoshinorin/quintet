@@ -49,6 +49,17 @@ export async function getServerSideProps(ctx: any) {
     });
   }
 
+  if (articles.length < 1) {
+    return {
+      props: {
+        statusCode: 404,
+        current: ctx.params.number,
+        count: 0,
+        articles: articles
+      }
+    }
+  }
+
   return {
     props: {
       statusCode: response.status,
