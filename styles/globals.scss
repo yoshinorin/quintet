@@ -158,21 +158,24 @@ blockquote {
   }
 }
 
-pre > code {
-  background:        map-get($highlight, 'background');
-  color:             map-get($highlight-colors, 'night-rider');
-  display:           block;
-  width:             100%;
-  box-sizing:        border-box;
-  padding:           1.4em;
-  font-family:       $font-families-code;
-  border:            none;
-  border-radius:     4px;
-  margin:            0 4px;
-  cursor:            text;
-  overflow-x:        auto;
-  line-height:       map-get($highlight, line-height) + 0.4em;
-  font-size:         map-get($highlight, font-size);
+pre {
+  margin: 0;
+  code {
+    background:        map-get($highlight, 'background');
+    color:             map-get($highlight-colors, 'night-rider');
+    display:           block;
+    width:             100%;
+    box-sizing:        border-box;
+    padding:           1.4em;
+    font-family:       $font-families-code;
+    border:            none;
+    border-radius:     4px;
+    margin:            0 4px;
+    cursor:            text;
+    overflow-x:        auto;
+    line-height:       map-get($highlight, line-height) + 0.4em;
+    font-size:         map-get($highlight, font-size);
+  }
 }
 
 code {
@@ -187,19 +190,24 @@ code {
   padding:            0.25em 0.35em;
 }
 
-
 figure {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
   .highlight {
     overflow-x: auto;
     overflow-y: hidden;
   }
   .line {
-    line-height:      1rem;
-    font-size:        1.2rem;
+    font-size:        1.5rem;
+    letter-spacing:   0.015em;
+  }
+  table {
+    margin: 0;
   }
 }
 
 // TODO: some value move to _.valiables.scss
+// TODO: fix important
 figure.highlight,
 .codeblock {
   font-family:      $font-families-code;
@@ -211,8 +219,10 @@ figure.highlight,
   overflow-y:       hidden;
   display:          block;
   color:            map-get($colors, 'base');
+  line-height:      2.2rem !important;
 
   figcaption {
+    font-family:  $font-families-code;
     background:   map-get($highlight, 'background');
     color:        map-get($colors, 'base');
   }
@@ -220,9 +230,8 @@ figure.highlight,
     background:          map-get($highlight, 'background');
     border-right-color:  map-get($highlight, 'border-light-color');
     .line {
-      line-height: 1rem;
-      font-size: 1.2rem;
-      color:  map-get($highlight, 'gutter-line-color');
+      font-size:        1.5rem;
+      color:            map-get($highlight, 'gutter-line-color');
     }
   }
   .code {
