@@ -4,6 +4,10 @@ export const api = {
 
 export const url = 'http://localhost:3000'
 
+// NOTE: NTML support
+export const title = 'Your site title'
+export const subTitle = 'your site subtitle'
+
 export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex"
 
 export const headerItems = [

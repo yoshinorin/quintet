@@ -17,18 +17,21 @@
   z-index:                     map-get($z-indexes, 'cover');
 
   .content-header {
-    display:        table-cell;
-    vertical-align: middle;
-
+    display:         table-cell;
+    vertical-align:  middle;
+    text-align:      center;
     .content-title {
-      max-width:     map-get($main, 'max-width');
+      .site-title {
+        margin:        0 auto;
+        max-width:     12.5rem;
+      }
       margin:        0 auto;
       color:         #fff;
       margin-bottom: 8em;
     }
     .content-meta {
       max-width:      map-get($main, 'max-width');
-      font-size:      map-get($font-size, 'normal');
+      font-size:      1.3rem;
       color:          #fff !important;
       font-weight:    400;
       letter-spacing: 0.05em;
