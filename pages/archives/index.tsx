@@ -6,6 +6,7 @@ import ArchivesComponent from '../../components/archives';
 import { getArchives } from '../api/archives';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Archive, ArchiveResponse } from '../../types/archive';
+import { ContentCover } from '../types/content';
 import { defaultRobotsMeta } from '../../config';
 
 const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
@@ -13,12 +14,20 @@ const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archiv
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
+  const contentCover = {
+    title: "Archives",
+    tags: null,
+    publishedAt: null,
+  } as ContentCover;
+
   return (
     <>
       <HeadMetaComponent
         robotsMeta={defaultRobotsMeta}
       />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={contentCover}
+      />
       <main>
         {/* TODO: implement search conditions component */}
         <ArchivesComponent

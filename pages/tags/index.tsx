@@ -6,18 +6,27 @@ import TagsComponent from '../../components/tags';
 import { Tag } from '../../types/tag';
 import { defaultRobotsMeta } from '../../config';
 import { getTags } from '../api/tags';
+import { ContentCover } from '../../types/content';
 
 export default function Page({ statusCode, tags }) {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
+  const contentCover = {
+    title: "Tags",
+    tags: null,
+    publishedAt: null,
+  } as ContentCover;
+
   return (
     <>
       <HeadMetaComponent
         robotsMeta={defaultRobotsMeta}
       />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={contentCover}
+      />
       <main>
         <TagsComponent
           tags={tags}

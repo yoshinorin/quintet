@@ -15,3 +15,9 @@ export interface ContentResponse {
   content: string,
   publishedAt: number
 }
+
+export interface ContentCover {
+  title: string,
+  tags: Array<string> | null,
+  publishedAt: string,
+}

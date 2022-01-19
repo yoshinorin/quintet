@@ -12,10 +12,13 @@ const Page: React.FunctionComponent<{ statusCode: number, current: number, count
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
+
   return (
     <>
       <HeadMetaComponent />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={null}
+      />
       <main>
         <ArticlesComponent
           articles={articles}

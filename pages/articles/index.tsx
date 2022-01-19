@@ -19,7 +19,9 @@ export default function Page({ statusCode, count, articles }) {
       <HeadMetaComponent
         robotsMeta={defaultRobotsMeta}
       />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={null}
+      />
       <main>
         <ArticlesComponent
           articles={articles}

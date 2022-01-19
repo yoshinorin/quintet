@@ -7,6 +7,7 @@ import PaginationComponent from '../../components/pagination';
 import { getArticlesByTagName } from '../api/articles';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
+import { ContentCover } from '../../types/content';
 import { defaultRobotsMeta } from '../../config';
 
 export default function Page({ statusCode, tagName, currentPage, count, articles }) {
@@ -14,12 +15,20 @@ export default function Page({ statusCode, tagName, currentPage, count, articles
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
+  const contentCover = {
+    title: "Tags",
+    tags: null,
+    publishedAt: null,
+  } as ContentCover;
+
   return (
     <>
       <HeadMetaComponent
         robotsMeta={defaultRobotsMeta}
       />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={contentCover}
+      />
       <main>
         <ArticlesComponent
           articles={articles}

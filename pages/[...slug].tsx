@@ -1,4 +1,5 @@
 import Error from 'next/error';
+import { ContentCover } from '../types/content';
 import ContentComponent from '../components/content';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import HeadMetaComponent from '../components/headmeta';
@@ -11,13 +12,21 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
+  const contentCover = {
+    title: content.title,
+    tags: null,
+    publishedAt: content.publishedAt,
+  } as ContentCover;
+
   return (
     <>
       <HeadMetaComponent
         robotsMeta={content.robotsAttributes}
         externalResources={content.externalResources}
       />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={contentCover}
+      />
       <main>
         <ContentComponent
           content={content}

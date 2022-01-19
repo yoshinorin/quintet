@@ -4,6 +4,7 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import HeadMetaComponent from '../../components/headmeta';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { ContentResponse, Content } from '../../types/content';
+import { ContentCover } from '../types/content';
 import { findByPath } from '../api/content';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
@@ -11,12 +12,20 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
+  const contentCover = {
+    title: content.title,
+    tags: null,
+    publishedAt: content.publishedAt,
+  } as ContentCover;
+
   return (
     <>
       <HeadMetaComponent
         robotsMeta={content.robotsAttributes}
       />
-      <CoverWithNavigationComponent />
+      <CoverWithNavigationComponent
+        contentCover={contentCover}
+      />
       <main>
         <ContentComponent
           content={content}
