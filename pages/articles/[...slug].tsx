@@ -4,7 +4,7 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import HeadMetaComponent from '../../components/headmeta';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { ContentResponse, Content } from '../../types/content';
-import { ContentCover } from '../types/content';
+import { ContentCover } from '../../types/content';
 import { findByPath } from '../api/content';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
@@ -14,7 +14,7 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
   }
   const contentCover = {
     title: content.title,
-    tags: null,
+    tags: content.tags,
     publishedAt: content.publishedAt,
   } as ContentCover;
 
@@ -47,6 +47,7 @@ export async function getServerSideProps(ctx: any) {
       title: contentResponse.title,
       robotsAttributes: contentResponse.robotsAttributes,
       externalResources: contentResponse.externalResources,
+      tags: contentResponse.tags,
       content: contentResponse.content,
       publishedAt: convertUnixtimeToDate(contentResponse.publishedAt).toLocaleString()
     } as Content

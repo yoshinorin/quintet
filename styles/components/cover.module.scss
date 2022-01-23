@@ -38,16 +38,26 @@
       color:         #fff;
       font-size:     2.4rem;
       max-width:     map-get($main, 'max-width');
-      margin-bottom: 1em;
+      margin-bottom: 0.3em;
     }
     .content-meta {
       max-width:      map-get($main, 'max-width');
-      font-size:      1.3rem;
+      font-size:      1.6rem;
       color:          #fff !important;
       font-weight:    400;
       letter-spacing: 0.05em;
-      margin:         0 auto;
       opacity:        0.8;
+    }
+  }
+
+  .tags {
+    justify-content: center;
+    a {
+      color:        #fff;
+      font-size:      1.5rem;
+      opacity:        0.8;
+      padding-left:   0.5em;
+      padding-right:  0.5em;
     }
   }
 }
