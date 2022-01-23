@@ -12,12 +12,10 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
           (() => {
             if (contentCover) {
               return(
-                <div className={`${styles['content-title']}`}>
-                  <div>
-                    <Link href="/">
-                      <a>{contentCover.title}</a>
-                    </Link>
-                  </div>
+                <div>
+                  <h1 className={`${styles['content-title']}`}>
+                    {contentCover.title}
+                  </h1>
                   <span className={`${styles['content-meta']}`}>
                     {contentCover.publishedAt}
                   </span>
@@ -26,14 +24,14 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
               )
             } else {
               return (
-                <div className={`${styles['content-title']}`}>
+                <div>
                   <div className={`${styles['site-title']}`}>
                     <Link href="/">
                       <a dangerouslySetInnerHTML={{ __html: title }}>
                       </a>
                     </Link>
                   </div>
-                  <span className={`${styles['content-meta']}`}
+                  <span className={`${styles['site-meta']}`}
                     dangerouslySetInnerHTML={{ __html: subTitle }}>
                   </span>
                 </div>
