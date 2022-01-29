@@ -7,8 +7,13 @@ const PER_PAGE = 10;
 
 const PaginationComponent: React.FunctionComponent<{ basePath: string, current: number, total: number }> = ({ basePath, current, total} ) => {
   const last = Math.floor(total / PER_PAGE);
-  const l = [...Array(last)].map((_, i) => i + 1);
-  //l.shift();
+  const l = [...Array(last)].map((_, i) => i);
+  l.shift();
+
+  // YOU ARE NOT A STRING!!! THANK YOU TYPESCRIPT!!!
+  // @ts-ignore
+  current = parseInt(current);
+  current = 0 >= current ? 1 : current;
 
   let p = []
   if (1 > l.length) {
@@ -22,9 +27,10 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
     p = l;
   } else { // l.length >= 7
     const m = Math.floor(l.length / 2);
-    p.push(l[0], l[1], m, l[l.length -2], l[l.length -1]);
+    const ls = [l[0], l[1], m, current - 1, current, current + 1, l[l.length -2], l[l.length -1]]
+    // TODO: avoid scan array many times
+    p = Array.from(new Set(ls.sort((x, y) => {return x - y;}))).filter(x => last > x && x > 0);
   }
-  current = 0 >= current ? 1 : current;
 
   // TODO: add First, Prev, Next, Last
   // TODO: enable & disable
@@ -34,43 +40,25 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
         <ul className={style['pagination']}>
           {
             (() => {
-              if (7 > p[p.length - 1]) {
-                return(
-                  p.map(p => {
-                    return (
-                      <li>
-                        <Link href={`/${basePath}/${p}`}>{p.toString()}</Link>
-                      </li>
-                    )
-                  })
-                )
-              } else {
-                return(
-                  <>
-                    <li>
-                      <Link href={`/${basePath}/${p[0]}`}>{p[0].toString()}</Link>
-                    </li>
-                    <li>
-                      <Link href={`/${basePath}/${p[1]}`}>{p[1].toString()}</Link>
-                    </li>
+              let e = [];
+              for (let i = 0; i < p.length; i++) {
+                const prev = p[i - 1];
+                if (p[i] - 2 >= prev) {
+                  e.splice(e.length, 0,
                     <li>
                       <a>...</a>
                     </li>
-                    <li>
-                      <Link href={`/${basePath}/${p[2]}`}>{p[2].toString()}</Link>
-                    </li>
-                    <li>
-                      <a>...</a>
-                    </li>
-                    <li>
-                      <Link href={`/${basePath}/${p[3]}`}>{p[3].toString()}</Link>
-                    </li>
-                    <li>
-                      <Link href={`/${basePath}/${p[4]}`}>{p[4].toString()}</Link>
-                    </li>
-                  </>
+                  )
+                }
+                e.push(
+                  <li>
+                    <Link href={`/${basePath}/${p[i]}`}>{p[i].toString()}</Link>
+                  </li>
                 )
               }
+              return(
+                <>{e}</>
+              )
             })()
           }
         </ul>
