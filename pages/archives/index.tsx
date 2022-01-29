@@ -6,7 +6,7 @@ import ArchivesComponent from '../../components/archives';
 import { getArchives } from '../api/archives';
 import { convertUnixtimeToDate } from '../../utils/time';
 import { Archive, ArchiveResponse } from '../../types/archive';
-import { ContentCover } from '../types/content';
+import { ContentCover } from '../../types/content';
 import { defaultRobotsMeta } from '../../config';
 
 const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
