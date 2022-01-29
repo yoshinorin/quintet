@@ -1,22 +1,31 @@
 import { Feed } from '../types/feed';
+import { siteName, mainAuthor } from '../config';
+
+const FEED_URL = '/feeds/index.xml';
 
 export async function generateFeedsString(url: string, feeds: Array<Feed>): Promise<string> {
+
+  const latest = feeds[feeds.length - 1]
+
+  // TODO: format all of DateTime to `YYYY-MM-DDThh:mm:ss.000Z`
   // https://validator.w3.org/feed/docs/atom.html
   let atomFeedXml = `
   <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>TODO</title>
-    <link href="TODO" rel="self"/>
-    <link href="TODO"/>
-    <updated>TODO</updated>
-    <id>TODO</id>
+    <title>${siteName}</title>
+    <link href="${url}${FEED_URL}" rel="self"/>
+    <link href="${url}"/>
+    <updated>${latest.updated}</updated>
+    <id>${url}</id>
+    <author>
+      <name>${mainAuthor}</name>
+    </author>
   `
 
-  // TODO: format DateTime to `YYYY-MM-DDThh:mm:ss.000Z`
   feeds.forEach((f) => {
     const u = `${url}${f.link}/`;
     atomFeedXml += `
       <entry>
-        <title>${url}${f.title}</title>
+        <title>${f.title}</title>
         <link href="${u}" />
         <id>${u}</id>
         <published>${f.published}</published>

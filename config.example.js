@@ -2,6 +2,9 @@ export const api = {
   'url': 'https://api.example.com'
 }
 
+export const siteName = 'yourSiteName'
+export const mainAuthor = 'yourName'
+
 export const url = 'http://localhost:3000'
 
 // NOTE: NTML support
