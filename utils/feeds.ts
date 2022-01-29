@@ -8,7 +8,6 @@ export async function generateFeedsString(url: string, feeds: Array<Feed>): Prom
 
   const latest = feeds[feeds.length - 1]
 
-  // TODO: format all of DateTime to `YYYY-MM-DDThh:mm:ss.000Z`
   // https://validator.w3.org/feed/docs/atom.html
   let atomFeedXml = `
   <feed xmlns="http://www.w3.org/2005/Atom">
