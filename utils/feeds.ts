@@ -1,4 +1,5 @@
 import { Feed } from '../types/feed';
+import { convertUnixTimeToISODateSrting } from '../utils/time';
 import { siteName, mainAuthor } from '../config';
 
 const FEED_URL = '/feeds/index.xml';
@@ -14,7 +15,7 @@ export async function generateFeedsString(url: string, feeds: Array<Feed>): Prom
     <title>${siteName}</title>
     <link href="${url}${FEED_URL}" rel="self"/>
     <link href="${url}"/>
-    <updated>${latest.updated}</updated>
+    <updated>${convertUnixTimeToISODateSrting(latest.updated)}</updated>
     <id>${url}</id>
     <author>
       <name>${mainAuthor}</name>
@@ -28,8 +29,8 @@ export async function generateFeedsString(url: string, feeds: Array<Feed>): Prom
         <title>${f.title}</title>
         <link href="${u}" />
         <id>${u}</id>
-        <published>${f.published}</published>
-        <updated>${f.updated}</updated>
+        <published>${convertUnixTimeToISODateSrting(f.published)}</published>
+        <updated>${convertUnixTimeToISODateSrting(f.updated)}</updated>
       </entry>
     `
   });
