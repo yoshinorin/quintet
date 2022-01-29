@@ -2,10 +2,15 @@ export const api = {
   'url': 'https://api.example.com'
 }
 
-export const siteName = 'yourSiteName'
-export const mainAuthor = 'yourName'
-
-export const url = 'http://localhost:3000'
+export const siteName = 'yourSiteName';
+export const siteType = 'blog';
+export const mainAuthor = 'yourName';
+export const lang = "ja_JP";
+export const url = 'http://localhost:3000';
+export const favicon = {
+  "url": "your/favicon.ico",
+  "type": "img"
+};
 
 // NOTE: NTML support
 export const title = 'Your site title'
