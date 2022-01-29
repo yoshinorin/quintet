@@ -35,7 +35,7 @@ const HeadMetaComponent: React.FunctionComponent<{
   return(
     <Head>
       <meta charSet="UTF-8"/>
-      <title>${siteName}</title>
+      <title>{siteName}</title>
       <meta name="author" content={mainAuthor}/>
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
       <meta property="og:type" content={siteType}/>
