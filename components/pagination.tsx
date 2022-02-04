@@ -23,7 +23,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
     )
   } else if (1 == l.length) {
     p = l;
-  } else if (l.length >= 2 && 7 > l.length) {
+  } else if (l.length >= 2 && 7 > l.length[l.length]) {
     p = l;
   } else { // l.length >= 7
     const m = Math.floor(l.length / 2);
