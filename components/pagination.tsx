@@ -41,20 +41,23 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
           {
             (() => {
               let e = [];
+              let k = 0; // NOTE: just suppress warning
               for (let i = 0; i < p.length; i++) {
                 const prev = p[i - 1];
                 if (p[i] - 2 >= prev) {
                   e.splice(e.length, 0,
-                    <li>
+                    <li key={k}>
                       <a>...</a>
                     </li>
                   )
+                  k++;
                 }
                 e.push(
-                  <li>
+                  <li key={k}>
                     <Link href={`/${basePath}/${p[i]}`}>{p[i].toString()}</Link>
                   </li>
                 )
+                k++;
               }
               return(
                 <>{e}</>
