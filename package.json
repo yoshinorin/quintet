@@ -7,7 +7,8 @@
     "dev": "next dev",
     "server": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "next": "12.0.10",
@@ -16,6 +17,8 @@
     "sass": "1.49.7"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/react": "12.1.2",
     "@types/react": "17.0.39",
     "jest": "27.4.7",
     "typescript": "4.5.5"
