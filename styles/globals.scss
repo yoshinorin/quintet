@@ -47,6 +47,7 @@ h6 {
 }
 
 p {
+  font-size:  map-get($font-size, large);
   margin: 0 0.5em 0.5em 0;
 }
 
@@ -198,10 +199,11 @@ figure {
     overflow-y: hidden;
   }
   .line {
-    font-size:        1.5rem;
-    letter-spacing:   0.015em;
+    font-size:        1.6rem;
+    letter-spacing:   0.01em;
   }
   table {
+    width:  auto;
     margin: 0;
   }
 }
