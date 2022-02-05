@@ -14,6 +14,7 @@ import HeaderScriptTagsComponent from '../components/headerScriptTags';
 import { ScriptTag } from '../types/scriptTag';
 import { getScriptTags } from '../utils/scriptTags';
 import { Content } from '../types/content';
+import { useRouter } from "next/router";
 
 const HeadMetaComponent: React.FunctionComponent<{
   robotsMeta?: string
@@ -24,6 +25,9 @@ const HeadMetaComponent: React.FunctionComponent<{
   externalResources,
   content
 }) => {
+  const router = useRouter();
+  const currentUrl = new URL(router.asPath, url).href
+
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
   }
@@ -43,16 +47,16 @@ const HeadMetaComponent: React.FunctionComponent<{
       { hasContentMeta ? <title>{content.title}</title> : <title>{siteName}</title> }
       <meta name="author" content={mainAuthor}/>
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-      { hasContentMeta && <meta name="description" content="TODO: return description from api " /> }
+      { hasContentMeta && <meta name="description" content={content.description} /> }
       <meta property="og:type" content={siteType}/>
       { hasContentMeta ? <meta property="og:title" content={content.title} /> : <meta property="og:title" content={siteName} /> }
-      { hasContentMeta ? <meta property="og:url" content="TODO: URL" /> : <meta property="og:url" content={url} /> }
+      <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content={siteName}/>
-      { hasContentMeta && <meta property="og:description" content="TODO: return description from api " /> }
+      { hasContentMeta && <meta property="og:description" content={content.description} /> }
       <meta property="og:locale" content={lang}/>
       { hasContentMeta && <meta property="article:published_time" content="TODO: published_at" /> }
       { hasContentMeta && <meta property="article:modified_time" content="TODO: modified_time" /> }
-      { hasContentMeta ? <meta property="article:author" content="TODO: return author from api" /> : <meta property="article:author" content={mainAuthor}/> }
+      { hasContentMeta ? <meta property="article:author" content={content.authorName} /> : <meta property="article:author" content={mainAuthor}/> }
       {
         (() => {
           if (hasContentMeta && content.tags) {

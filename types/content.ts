@@ -6,8 +6,11 @@ export interface Content {
   robotsAttributes: string,
   externalResources: ExternalResources,
   tags: Array<Tag>,
+  description: string,
   content: string,
-  publishedAt: string
+  authorName: string,
+  publishedAt: number,
+  updatedAt: number
 }
 
 export interface ContentResponse {
@@ -15,8 +18,11 @@ export interface ContentResponse {
   robotsAttributes: string,
   externalResources: ExternalResources,
   tags: Array<Tag>,
+  description: string,
   content: string,
-  publishedAt: number
+  authorName: string,
+  publishedAt: number,
+  updatedAt: number
 }
 
 export interface ContentCover {
