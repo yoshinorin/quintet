@@ -1,5 +1,7 @@
 # [WIP] Quintet
 
+[![CI](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml/badge.svg)](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml)
+
 The front end for [Qualtet](https://github.com/yoshinorin/qualtet).
 
 # LICENSE
