@@ -8,6 +8,6 @@ export function convertUnixTimeToISODateSrting(unixTime: number): string {
 
 // TODO: refactor naming
 // 2022/2/8 22:59:10 -> 2022.2.8
-export function toDottedDateString(date: Date): string {
-  return date.toLocaleString().split(' ')[0].replace(/\//g,".");
+export function toJaJpDottedDateString(date: Date): string {
+  return date.toLocaleString('ja-JP').split(' ')[0].replace(/\//g,".");
 }
