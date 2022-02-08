@@ -52,10 +52,13 @@
 
   .tags {
     justify-content: center;
+    margin-top:      1.5em;
     a {
       color:        #fff;
+      border-bottom:  1px solid;
+      margin:         2px 2px 2px 2px;
       font-size:      1.5rem;
-      opacity:        0.8;
+      opacity:        0.6;
       padding-left:   0.5em;
       padding-right:  0.5em;
     }
