@@ -4,7 +4,7 @@ import { Tag } from './tag';
 export interface Content {
   title: string,
   robotsAttributes: string,
-  externalResources: ExternalResources,
+  externalResources: Array<ExternalResources>,
   tags: Array<Tag>,
   description: string,
   content: string,
@@ -16,7 +16,7 @@ export interface Content {
 export interface ContentResponse {
   title: string,
   robotsAttributes: string,
-  externalResources: ExternalResources,
+  externalResources: Array<ExternalResources>,
   tags: Array<Tag>,
   description: string,
   content: string,
