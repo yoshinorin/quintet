@@ -22,7 +22,7 @@ export async function generateFeedsString(url: string, feeds: Array<Feed>): Prom
   `
 
   feeds.forEach((f) => {
-    const u = `${url}${f.link}/`;
+    const u = `${url}${f.link}`;
     // TODO: fix trailing slash
     atomFeedXml += `
       <entry>
