@@ -28,5 +28,5 @@ export interface ContentResponse {
 export interface ContentCover {
   title: string,
   tags: Array<Tag> | null,
-  publishedAt: string,
+  publishedAt: number,
 }

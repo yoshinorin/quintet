@@ -2,8 +2,8 @@ export interface Article {
   path: string,
   title: string,
   content: string,
-  publishedAt: string,
-  updatedAt: string
+  publishedAt: number,
+  updatedAt: number
 }
 
 export interface ArticleResponse {

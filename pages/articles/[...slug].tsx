@@ -2,7 +2,6 @@ import Error from 'next/error';
 import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
-import { convertUnixtimeToDate } from '../../utils/time';
 import { ContentResponse, Content } from '../../types/content';
 import { ContentCover } from '../../types/content';
 import { findByPath } from '../api/content';
@@ -53,8 +52,8 @@ export async function getServerSideProps(ctx: any) {
       description: contentResponse.description,
       content: contentResponse.content,
       authorName: contentResponse.authorName,
-      publishedAt: convertUnixtimeToDate(contentResponse.publishedAt).toLocaleString(),
-      updatedAt: convertUnixtimeToDate(contentResponse.updatedAt).toLocaleString()
+      publishedAt: contentResponse.publishedAt,
+      updatedAt: contentResponse.updatedAt
     } as Content
   }
   return {

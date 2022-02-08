@@ -3,6 +3,7 @@ import { Article } from '../types/article';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import buttonStyles from '../styles/components/button.module.scss';
+import { convertUnixtimeToDate, toDottedDateString } from '../utils/time';
 
 const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
@@ -13,8 +14,7 @@ const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> =
             <div className={styles['home-articles-wrap']}>
               <div className={styles['home-articles-header']}>
                 <time dateTime={`${article.publishedAt}`} className={styles['home-articles-time']}>
-                  { /* TODO: to utility function */}
-                  {`${article.publishedAt.split(' ')[0].replace(/\//g,".")}`}
+                  {`${toDottedDateString(convertUnixtimeToDate(article.publishedAt))}`}
                 </time>
                 <h2 className={styles['home-articles-title']}>
                   <Link href={`${article.path}`}>

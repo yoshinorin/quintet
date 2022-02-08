@@ -5,6 +5,7 @@ import { Tag } from '../../types/tag';
 import styles from '../../styles/components/cover.module.scss';
 import contentStyles from '../../styles/components/content.module.scss';
 import { title, subTitle } from '../../config';
+import { convertUnixTimeToISODateSrting } from '../../utils/time';
 
 const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
   return(
@@ -19,7 +20,7 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
                     {contentCover.title}
                   </h1>
                   <span className={`${styles['content-meta']}`}>
-                    {contentCover.publishedAt}
+                    { convertUnixTimeToISODateSrting(contentCover.publishedAt) }
                   </span>
                   {
                     (() => {

@@ -4,7 +4,6 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import ArticlesComponent from '../../components/articles';
 import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
-import { convertUnixtimeToDate } from '../../utils/time';
 import { Article, ArticleResponseWithCount } from '../../types/article';
 
 const Page: React.FunctionComponent<{ statusCode: number, current: number, count: number, articles: Array<Article> }> = ({ statusCode, current, count, articles }) => {
@@ -46,8 +45,8 @@ export async function getServerSideProps(ctx: any) {
         path: article.path,
         title: article.title,
         content: `${article.content} ...`,
-        publishedAt: convertUnixtimeToDate(article.publishedAt).toLocaleString(),
-        updatedAt: convertUnixtimeToDate(article.updatedAt).toLocaleString()
+        publishedAt: article.publishedAt,
+        updatedAt: article.updatedAt
       } as Article
     });
   }

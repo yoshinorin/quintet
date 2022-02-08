@@ -3,7 +3,6 @@ import { ContentCover } from '../types/content';
 import ContentComponent from '../components/content';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import HeadMetaComponent from '../components/headmeta';
-import { convertUnixtimeToDate } from '../utils/time';
 import { ContentResponse, Content } from '../types/content';
 import { findByPath } from './api/content';
 
@@ -62,7 +61,7 @@ export async function getServerSideProps(ctx: any) {
       robotsAttributes: contentResponse.robotsAttributes,
       externalResources: contentResponse.externalResources,
       content: contentResponse.content,
-      publishedAt: convertUnixtimeToDate(contentResponse.publishedAt).toLocaleString()
+      publishedAt: contentResponse.publishedAt
     } as Content
   }
   return {

@@ -1,7 +1,7 @@
 export interface Archive {
   path: string,
   title: string,
-  publishedAt: string
+  publishedAt: number
 }
 
 export interface ArchiveResponse {
