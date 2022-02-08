@@ -15,6 +15,7 @@ import { ScriptTag } from '../types/scriptTag';
 import { getScriptTags } from '../utils/scriptTags';
 import { Content } from '../types/content';
 import { useRouter } from "next/router";
+import { convertUnixTimeToISODateSrting } from '../utils/time';
 
 const HeadMetaComponent: React.FunctionComponent<{
   robotsMeta?: string
@@ -54,8 +55,8 @@ const HeadMetaComponent: React.FunctionComponent<{
       <meta property="og:site_name" content={siteName}/>
       { hasContentMeta && <meta property="og:description" content={content.description} /> }
       <meta property="og:locale" content={lang}/>
-      { hasContentMeta && <meta property="article:published_time" content="TODO: published_at" /> }
-      { hasContentMeta && <meta property="article:modified_time" content="TODO: modified_time" /> }
+      { hasContentMeta && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} /> }
+      { hasContentMeta && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} /> }
       { hasContentMeta ? <meta property="article:author" content={content.authorName} /> : <meta property="article:author" content={mainAuthor}/> }
       {
         (() => {
