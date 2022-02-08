@@ -5,8 +5,10 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   typescript: {
-    // THANK YOU TYPESCRIPT!!!
     ignoreBuildErrors: true,
   },
 }
