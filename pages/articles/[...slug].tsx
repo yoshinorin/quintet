@@ -22,6 +22,7 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     <>
       <HeadMetaComponent
         robotsMeta={content.robotsAttributes}
+        externalResources={content.externalResources}
         content={content}
       />
       <CoverWithNavigationComponent
