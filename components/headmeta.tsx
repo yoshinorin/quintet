@@ -7,7 +7,8 @@ import {
   mainAuthor,
   lang,
   url,
-  favicon
+  favicon,
+  defaultImage
 } from '../config';
 import { ExternalResources } from '../types/externalResource';
 import HeaderScriptTagsComponent from '../components/headerScriptTags';
@@ -40,7 +41,7 @@ const HeadMetaComponent: React.FunctionComponent<{
   }
   const hasContentMeta = content ? true : false;
   /*
-    TODO: JSON+LD, og:image
+    TODO: JSON+LD
   */
   return(
     <Head>
@@ -72,6 +73,7 @@ const HeadMetaComponent: React.FunctionComponent<{
         })()
       }
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta property="og:image" content={defaultImage}/>
       <meta name="robots" content={robotsMeta}/>
       <HeaderScriptTagsComponent
         scriptTags={externalResourceMetas}

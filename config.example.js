@@ -11,6 +11,7 @@ export const favicon = {
   "url": "your/favicon.ico",
   "type": "img"
 };
+export const defaultImage = 'defaultImage.jpg';
 
 // NOTE: NTML support
 export const title = 'Your site title'
