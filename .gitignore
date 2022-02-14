@@ -47,3 +47,5 @@ config.js
 /public/**/*.svg
 /public/**/*.SVG
 /public/articles/
+/public/robots.txt
+/public/favicon.ico
