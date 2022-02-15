@@ -13,7 +13,10 @@ const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> =
             <li key={idx}>
               <span>
               </span>
-              <Link href={`${archive.path}`}>
+              <Link
+                href={`${archive.path}`}
+                prefetch={false}
+              >
                 {`${archive.title}`}
               </Link>
             </li>

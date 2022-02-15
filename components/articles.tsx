@@ -17,17 +17,26 @@ const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> =
                   {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`}
                 </time>
                 <h2 className={styles['home-articles-title']}>
-                  <Link href={`${article.path}`}>
+                  <Link
+                    href={`${article.path}`}
+                    prefetch={false}
+                  >
                     <a className='unstyled'>{`${article.title}`}</a>
                   </Link>
                 </h2>
               </div>
               <div className={styles['home-articles-excerpt']}>
-                <Link href={`${article.path}`}>
+                <Link
+                  href={`${article.path}`}
+                  prefetch={false}
+                >
                   <a className='unstyled'>{`${article.content}`}</a>
                 </Link>
                 <div className={`${buttonStyles['continue-read-button-wrap']}`}>
-                  <Link href={`${article.path}`}>
+                  <Link
+                    href={`${article.path}`}
+                    prefetch={false}
+                  >
                     <a className={`'unstyled' ${buttonStyles['menu-button']} ${buttonStyles['continue-read-button']}`}>続きを読む</a>
                   </Link>
                 </div>

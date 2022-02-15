@@ -54,7 +54,12 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
                 }
                 e.push(
                   <li key={k}>
-                    <Link href={`/${basePath}/${p[i]}`}>{p[i].toString()}</Link>
+                    <Link
+                      href={`/${basePath}/${p[i]}`}
+                      prefetch={false}
+                    >
+                      {p[i].toString()}
+                    </Link>
                   </li>
                 )
                 k++;

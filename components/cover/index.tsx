@@ -47,7 +47,10 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
               return (
                 <div>
                   <div className={`${styles['site-title']}`}>
-                    <Link href="/">
+                    <Link
+                      href="/"
+                      prefetch={false}
+                    >
                       <a dangerouslySetInnerHTML={{ __html: title }}>
                       </a>
                     </Link>

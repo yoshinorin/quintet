@@ -15,6 +15,7 @@ const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null
     return (
       <Link
         href={`/tags/${tag.name}`}
+        prefetch={false}
       >
         <a
           className={className ? className : null}

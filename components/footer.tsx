@@ -10,7 +10,10 @@ const FooterComponent: React.FunctionComponent<{}> = () => {
         <div className={styles['flex-container']}>
           {footerItems.map((item, idx) => {
             return(
-              <Link href={`${item.url}`} key={idx}>
+              <Link
+                href={`${item.url}`} key={idx}
+                prefetch={false}
+              >
                 <a className={`${styles['footer-item']} unstyled`}>{`${item.text}`}</a>
               </Link>
             )
