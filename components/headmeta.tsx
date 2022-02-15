@@ -5,7 +5,7 @@ import {
   siteName,
   siteType,
   mainAuthor,
-  lang,
+  locale,
   url,
   favicon,
   defaultImage
@@ -55,7 +55,7 @@ const HeadMetaComponent: React.FunctionComponent<{
       <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content={siteName}/>
       { hasContentMeta && <meta property="og:description" content={content.description} /> }
-      <meta property="og:locale" content={lang}/>
+      <meta property="og:locale" content={locale}/>
       { hasContentMeta && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} /> }
       { hasContentMeta && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} /> }
       { hasContentMeta ? <meta property="article:author" content={content.authorName} /> : <meta property="article:author" content={mainAuthor}/> }
