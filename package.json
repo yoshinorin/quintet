@@ -1,6 +1,6 @@
 {
   "name": "quintet",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-rc1",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
