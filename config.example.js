@@ -60,12 +60,14 @@ export const externalResources = [
     'key': 'mermaid',
     'inject': [
       {
+        'key': 'asdjfa', // must be unique
         'async': false,
         'type': "",
         'src': "https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js",
         'code': ""
       },
       {
+        'key': 'aalsdk93a', // must be unique
         'async': false,
         'type': "text/javascript",
         'src': "",
@@ -80,12 +82,14 @@ export const externalResources = [
     'key': 'mathjax',
     'inject': [
       {
+        'key': 'sadkl905j4w', // must be unique
         'async': false,
         'type': "",
         'src': "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML",
         'code': ""
       },
       {
+        'key': '854jio3os', // must be unique
         'async': false,
         'type': "text/x-mathjax-config",
         'src': "",

@@ -12,7 +12,7 @@ const HeaderScriptTagsComponent: React.FunctionComponent<{ scriptTags: Array<Scr
         if (tag.src) {
           return(
             <script
-              key={idx}
+              key={tag.key + idx}
               src={tag.src}
             >
               {tag.code}
@@ -23,7 +23,7 @@ const HeaderScriptTagsComponent: React.FunctionComponent<{ scriptTags: Array<Scr
             // TODO: should fix Prop `dangerouslySetInnerHTML` did not match
             // NOTE: if use <Script> compnents provid from Next.js, Can not render MathJax
             <script
-              key={idx}
+              key={tag.key + idx}
               type={tag.type}
               dangerouslySetInnerHTML={{
                 __html: tag.code,
