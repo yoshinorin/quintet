@@ -65,7 +65,7 @@ const HeadMetaComponent: React.FunctionComponent<{
             return(
               content.tags.map((t => {
                 return(
-                  <meta property="article:tag" content={t.name} />
+                  <meta property="article:tag" content={t.name} key={t.id} />
                 )
               }))
             )
