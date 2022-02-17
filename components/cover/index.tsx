@@ -15,7 +15,7 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
           (() => {
             if (contentCover) {
               return(
-                <div>
+                <>
                   <h1 className={`${styles['content-title']}`}>
                     {contentCover.title}
                   </h1>
@@ -41,11 +41,11 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
                       }
                     })()
                   }
-                </div>
+                </>
               )
             } else {
               return (
-                <div>
+                <>
                   <div className={`${styles['site-title']}`}>
                     <Link
                       href="/"
@@ -58,7 +58,7 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
                   <span className={`${styles['site-meta']}`}
                     dangerouslySetInnerHTML={{ __html: subTitle }}>
                   </span>
-                </div>
+                </>
               )
             }
           })()
