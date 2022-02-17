@@ -20,6 +20,7 @@
       word-break: initial;
       overflow:   hidden;
       font-weight: 400;
+      font-size:   2.2rem;
     }
   }
   .home-articles-meta {
@@ -31,7 +32,7 @@
   }
   .home-articles-meta,
   .home-articles-time {
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #939ba8;
   }
   .home-articles-meta {
@@ -42,6 +43,7 @@
     text-rendering: optimizelegibility;
     letter-spacing: 0.1em;
     color:          #7e7c8a;
+    font-size:      1.7rem;
     font-weight:    400;
     overflow:       hidden;
   }
