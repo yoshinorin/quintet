@@ -11,7 +11,7 @@ body {
   height:         100%;
   margin:         0;
   padding:        0;
-  font-size:      map-get($font-size, medium);
+  font-size:      map-get($font-size, xlarge);
   line-height:    $line-height;
   letter-spacing: $letter-spacing;
 }
@@ -53,7 +53,6 @@ h6 {
 }
 
 p {
-  //font-size:  map-get($font-size, large);
   margin: 0 0.5em 0.5em 0;
 }
 
