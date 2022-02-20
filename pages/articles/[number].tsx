@@ -5,6 +5,7 @@ import ArticlesComponent from '../../components/articles';
 import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
 import { Article, ArticleResponseWithCount } from '../../types/article';
+import { extractIp } from '../../utils/ip';
 
 const Page: React.FunctionComponent<{ statusCode: number, current: number, count: number, articles: Array<Article> }> = ({ statusCode, current, count, articles }) => {
   if (statusCode !== 200) {
@@ -33,7 +34,7 @@ const Page: React.FunctionComponent<{ statusCode: number, current: number, count
 }
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getArticles(ctx.params.number)
+  const response: Response = await getArticles(ctx.params.number, 10, extractIp(ctx.req))
   ctx.res.statusCode = response.status;
 
   let articlesResponseWithCount: ArticleResponseWithCount = null;

@@ -7,6 +7,7 @@ import { getArchives } from '../api/archives';
 import { Archive, ArchiveResponse } from '../../types/archive';
 import { ContentCover } from '../../types/content';
 import { defaultRobotsMeta } from '../../config';
+import { extractIp } from '../../utils/ip';
 
 const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
   if (statusCode !== 200) {
@@ -38,7 +39,7 @@ const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archiv
 }
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getArchives()
+  const response: Response = await getArchives(extractIp(ctx.req))
   ctx.res.statusCode = response.status;
 
   let archiveResponse: Array<ArchiveResponse> = null;

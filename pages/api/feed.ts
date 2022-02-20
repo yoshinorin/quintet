@@ -1,6 +1,6 @@
 import { api } from '../../config';
 
-export async function getFeed(): Promise<Response> {
+export async function getFeed(ip: string): Promise<Response> {
   // TODO: get feed dynamically
   return fetch(
     `${api.url}/feeds/index`,
@@ -8,6 +8,7 @@ export async function getFeed(): Promise<Response> {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'x-forwarded-for': ip
       }
     }
   )

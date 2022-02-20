@@ -6,6 +6,7 @@ import PaginationComponent from '../components/pagination';
 import { getArticles } from './api/articles';
 import { Article, ArticleResponseWithCount } from '../types/article';
 import { defaultRobotsMeta } from '../config';
+import { extractIp } from '../utils/ip';
 
 const Home: React.FunctionComponent<{ statusCode: number, count: number, articles: Array<Article> }> = ({ statusCode, count, articles }) => {
   if (statusCode !== 200) {
@@ -36,7 +37,7 @@ const Home: React.FunctionComponent<{ statusCode: number, count: number, article
 }
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getArticles()
+  const response: Response = await getArticles(1, 10, extractIp(ctx.req))
   ctx.res.statusCode = response.status;
 
   let articlesResponseWithCount: ArticleResponseWithCount = null;

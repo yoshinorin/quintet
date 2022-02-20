@@ -8,6 +8,7 @@ import { getArticlesByTagName } from '../api/articles';
 import { Article, ArticleResponseWithCount } from '../../types/article';
 import { ContentCover } from '../../types/content';
 import { defaultRobotsMeta } from '../../config';
+import { extractIp } from '../../utils/ip';
 
 export default function Page({ statusCode, tagName, currentPage, count, articles }) {
   if (statusCode !== 200) {
@@ -45,7 +46,7 @@ export default function Page({ statusCode, tagName, currentPage, count, articles
 export async function getServerSideProps(ctx: any) {
   const tagName = ctx.query.slug[0];
   const currentPage = ctx.query.slug[1] ? ctx.query.slug[1] : 1;
-  const response: Response = await getArticlesByTagName(tagName, currentPage)
+  const response: Response = await getArticlesByTagName(tagName, currentPage, 10, extractIp(ctx.req))
   ctx.res.statusCode = response.status;
 
   let articlesResponseWithCount: ArticleResponseWithCount = null;

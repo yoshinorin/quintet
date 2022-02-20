@@ -4,6 +4,7 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import HeadMetaComponent from '../../components/headmeta';
 import { ContentResponse, Content } from '../../types/content';
 import { ContentCover } from '../../types/content';
+import { extractIp } from '../../utils/ip';
 import { findByPath } from '../api/content';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
@@ -38,7 +39,8 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
 
 export async function getServerSideProps(ctx: any) {
   const path = ctx.params.slug.join("/");
-  const response: Response = await findByPath(path);
+
+  const response: Response = await findByPath(path, extractIp(ctx.req));
   ctx.res.statusCode = response.status;
 
   let content: Content = null;

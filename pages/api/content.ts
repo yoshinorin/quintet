@@ -1,6 +1,6 @@
 import { api } from '../../config';
 
-export async function findByPath(path: string): Promise<Response> {
+export async function findByPath(path: string, ip: string): Promise<Response> {
   if (path.startsWith("/")) {
     path = path.substr(1, path.length)
   }
@@ -17,6 +17,7 @@ export async function findByPath(path: string): Promise<Response> {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'x-forwarded-for': ip
       }
     }
   )
