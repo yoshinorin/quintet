@@ -26,8 +26,11 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
   } else if (l.length >= 2 && 7 > l.length[l.length]) {
     p = l;
   } else { // l.length >= 7
-    const m = Math.floor(l.length / 2);
-    const ls = [l[0], l[1], m, current - 1, current, current + 1, l[l.length -2], l[l.length -1]]
+
+    const ls = [l[0], l[1], current - 1, current, current + 1, l[l.length -2], l[l.length -1]];
+    if (5 > current || current >= last - 4) {
+      ls.push(Math.floor(l.length / 2));
+    }
     // TODO: avoid scan array many times
     p = Array.from(new Set(ls.sort((x, y) => {return x - y;}))).filter(x => last > x && x > 0);
   }
