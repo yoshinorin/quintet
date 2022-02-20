@@ -19,21 +19,19 @@
 .pagination li a,
 .pagination li span {
   position:            relative;
-  float:               left;
-  padding:             0.8rem 0.4rem;
-  line-height:         1.5;
   text-decoration:     none;
-  color:               map-get($colors, 'main');
+  color:               map-get($colors, 'base');
   background-color:    map-get($main, 'background-color');
   border:              0px;
-  margin-left:         1.4rem;
+  margin:              1rem;
+  padding:             0.8rem;
 }
 
 .pagination li a:hover,
 .pagination li span:hover,
 .pagination li a:focus,
 .pagination li span:focus {
-  color:              map-get($colors, 'main');
+  color:              map-get($colors, 'base');
   text-decoration:    underline;
 }
 .pagination .active a,
@@ -42,9 +40,9 @@
 .pagination .active span:hover,
 .pagination .active a:focus,
 .pagination .active span:focus {
-  color:              map-get($colors, 'main');
-  border-radius:      18px;
-  cursor:             default;
+  color:              #fff;
+  background-color:   map-get($colors, 'base');
+  border-radius:      12px;
 }
 .pagination .disabled span,
 .pagination .disabled span:hover,
@@ -52,7 +50,7 @@
 .pagination .disabled a,
 .pagination .disabled a:hover,
 .pagination .disabled a:focus {
-  color:              map-get($colors, 'main');
+  color:              map-get($colors, 'base');
   background-color:   map-get($main, 'background-color');
   opacity:            0.6;
   text-decoration:    none;

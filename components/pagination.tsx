@@ -56,7 +56,8 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
                   k++;
                 }
                 e.push(
-                  <li key={k}>
+                  <li key={k}
+                      className={p[i] !== current ? '' : style['active']}>
                     <Link
                       href={`/${basePath}/${p[i]}`}
                       prefetch={false}
