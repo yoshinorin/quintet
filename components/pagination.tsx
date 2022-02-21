@@ -6,7 +6,8 @@ import style from '../styles/components/pagination.module.scss';
 const PER_PAGE = 10;
 
 const PaginationComponent: React.FunctionComponent<{ basePath: string, current: number, total: number }> = ({ basePath, current, total} ) => {
-  const last = Math.floor(total / PER_PAGE) + ((total % PER_PAGE) == 0 ? 0 : 1);
+
+  const last = Math.ceil(total / PER_PAGE) + 1;
   const l = [...Array(last)].map((_, i) => i);
   l.shift();
 
