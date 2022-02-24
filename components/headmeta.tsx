@@ -46,19 +46,36 @@ const HeadMetaComponent: React.FunctionComponent<{
   return(
     <Head>
       <meta charSet="UTF-8"/>
-      { hasContentMeta ? <title>{content.title}</title> : <title>{siteName}</title> }
-      <meta name="author" content={mainAuthor}/>
+      { hasContentMeta ?
+        <title key="title">{content.title}</title>
+        :
+        <title key="title">{siteName}</title>
+      }
+      { hasContentMeta ?
+        <meta name="author" content={content.authorName}/>
+        :
+        <meta name="author" content={mainAuthor}/>
+      }
+
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-      { hasContentMeta && <meta name="description" content={content.description} /> }
+      { hasContentMeta && <meta name="description" content={content.description} key="description" /> }
       <meta property="og:type" content={siteType}/>
-      { hasContentMeta ? <meta property="og:title" content={content.title} /> : <meta property="og:title" content={siteName} /> }
-      <meta property="og:url" content={currentUrl} />
-      <meta property="og:site_name" content={siteName}/>
-      { hasContentMeta && <meta property="og:description" content={content.description} /> }
+      { hasContentMeta ?
+        <meta property="og:title" content={content.title} key="og:title" />
+        :
+        <meta property="og:title" content={siteName} key="og:title" />
+      }
+      <meta property="og:url" content={currentUrl} key="og:url" />
+      <meta property="og:site_name" content={siteName} key="og:site_name" />
+      { hasContentMeta && <meta property="og:description" content={content.description} key="og:description" /> }
       <meta property="og:locale" content={locale}/>
-      { hasContentMeta && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} /> }
-      { hasContentMeta && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} /> }
-      { hasContentMeta ? <meta property="article:author" content={content.authorName} /> : <meta property="article:author" content={mainAuthor}/> }
+      { hasContentMeta && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" /> }
+      { hasContentMeta && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" /> }
+      { hasContentMeta ?
+        <meta property="article:author" content={content.authorName} key="article:author" />
+        :
+        <meta property="article:author" content={mainAuthor} key="article:author" />
+      }
       {
         (() => {
           if (hasContentMeta && content.tags) {
@@ -73,8 +90,8 @@ const HeadMetaComponent: React.FunctionComponent<{
         })()
       }
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <meta property="og:image" content={defaultImage}/>
-      <meta name="robots" content={robotsMeta}/>
+      <meta property="og:image" content={defaultImage} key="og:image" />
+      <meta name="robots" content={robotsMeta} key="robots" />
       <HeaderScriptTagsComponent
         scriptTags={externalResourceMetas}
       />
