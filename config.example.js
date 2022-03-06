@@ -105,3 +105,11 @@ export const externalResources = [
     ]
   }
 ]
+
+// Should not send request list to API server
+export const filterRequestPaths = [
+  '**.svg',
+  '**.jpg',
+  '**.png',
+  '**.xml',
+]

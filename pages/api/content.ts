@@ -1,6 +1,14 @@
+import { NextApiRequest } from 'next';
 import { api } from '../../config';
+import { isIgnoreRequest } from '../../utils/filterRequests';
+import { extractIp } from '../../utils/ip';
 
-export async function findByPath(path: string, ip: string): Promise<Response> {
+export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
+
+  if (!path || (path && isIgnoreRequest(path))) {
+    return new Response(null, { "status" : 404 });
+  }
+
   if (path.startsWith("/")) {
     path = path.substr(1, path.length)
   }
@@ -11,6 +19,9 @@ export async function findByPath(path: string, ip: string): Promise<Response> {
   if (!path.endsWith("/")) {
     path = path + "/"
   }
+
+  const ip = extractIp(req);
+
   return fetch(
     `${api.url}/contents/${path}`,
     {

@@ -7,6 +7,7 @@ import { getArticles } from './api/articles';
 import { Article, ArticleResponseWithCount } from '../types/article';
 import { defaultRobotsMeta } from '../config';
 import { extractIp } from '../utils/ip';
+import { isIgnoreRequest } from '../utils/filterRequests';
 
 const Home: React.FunctionComponent<{ statusCode: number, count: number, articles: Array<Article> }> = ({ statusCode, count, articles }) => {
   if (statusCode !== 200) {

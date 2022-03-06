@@ -5,7 +5,6 @@ import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import HeadMetaComponent from '../components/headmeta';
 import { ContentResponse, Content } from '../types/content';
 import { findByPath } from './api/content';
-import { extractIp } from '../utils/ip';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
   if (statusCode !== 200) {
@@ -56,7 +55,7 @@ export async function getServerSideProps(ctx: any) {
     }
   }
 
-  const response: Response = await findByPath(path, extractIp(ctx.req));
+  const response: Response = await findByPath(ctx.req, path);
   ctx.res.statusCode = response.status;
 
   let content: Content = null;
