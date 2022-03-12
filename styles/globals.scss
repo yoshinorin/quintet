@@ -77,6 +77,9 @@ dl {
   p {
     font-size: map-get($font-size, ssmall);
   }
+  ol {
+    font-size: 0.9rem;
+  }
   opacity: 0.8;
 }
 
