@@ -2,10 +2,14 @@ import Error from 'next/error';
 import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
+import MainBottomCodesComponent from '../../components/mainBottomCodes';
 import { ContentResponse, Content } from '../../types/content';
 import { ContentCover } from '../../types/content';
+import { ScriptCode } from '../../types/script';
 import { isIgnoreRequest } from '../../utils/filterRequests';
 import { findByPath } from '../api/content';
+import { getScriptCodes } from '../../utils/scriptTags';
+import { externalResources as externalResourcesConfig } from '../../config';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
   if (statusCode !== 200) {
@@ -18,6 +22,11 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     publishedAt: content.publishedAt,
   } as ContentCover;
 
+  let externalResourceCodes: Array<ScriptCode> = [];
+  const hasExternalResources = (content.externalResources && externalResourcesConfig);
+  if (hasExternalResources) {
+    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig)
+  }
   return (
     <>
       <HeadMetaComponent
@@ -31,6 +40,9 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
       <main>
         <ContentComponent
           content={content}
+        />
+        <MainBottomCodesComponent
+          scriptCodes={externalResourceCodes}
         />
       </main>
     </>

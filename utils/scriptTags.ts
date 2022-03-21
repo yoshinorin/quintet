@@ -1,25 +1,48 @@
 import { ExternalResources } from '../types/externalResource';
-import { ScriptTag } from '../types/scriptTag';
+import { ScriptCode, ScriptSrc } from '../types/script';
 
 // TODO: write test code
-export function getScriptTags(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<ScriptTag> {
-  let scriptTags: Array<ScriptTag> = [];
+export function getScriptTags(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<ScriptSrc> {
+  let scriptTags: Array<ScriptSrc> = [];
 
   // TODO: fix nested loop
   externalResources.forEach(ers => {
     ers.values.forEach(er => {
-      const config = externalResourcesConfig.filter(x => x.key == er)[0];
+      const config = externalResourcesConfig.map(x => { return x['src'] }).filter(y => y.key == er);
       if (config) {
-        config.inject.forEach(i => {
+        config.forEach(i => {
           scriptTags.push({
+            key: i.key,
             async: i.async,
-            type: i.type,
-            src: i.src,
-            code: i.code
+            src: i.src
           });
         });
       };
     });
   });
   return scriptTags;
+}
+
+
+// TODO: write test code
+export function getScriptCodes(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<ScriptCode> {
+  let scriptCodes: Array<ScriptCode> = [];
+
+  // TODO: fix nested loop
+  externalResources.forEach(ers => {
+    ers.values.forEach(er => {
+      const config = externalResourcesConfig.map(x => { return x['code'] }).filter(y => y.key == er);
+      if (config) {
+        config.forEach(i => {
+          scriptCodes.push({
+            key: i.key,
+            async: i.async,
+            type: i.type,
+            code: i.code
+          });
+        });
+      };
+    });
+  });
+  return scriptCodes;
 }

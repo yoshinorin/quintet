@@ -11,8 +11,8 @@ import {
   defaultImage
 } from '../config';
 import { ExternalResources } from '../types/externalResource';
-import HeaderScriptTagsComponent from '../components/headerScriptTags';
-import { ScriptTag } from '../types/scriptTag';
+import HeaderScriptSrcsComponent from './headerScriptSrcs';
+import { ScriptSrc } from '../types/script';
 import { getScriptTags } from '../utils/scriptTags';
 import { Content } from '../types/content';
 import { useRouter } from "next/router";
@@ -34,7 +34,7 @@ const HeadMetaComponent: React.FunctionComponent<{
     robotsMeta = defaultRobotsMeta;
   }
   const hasExternalResources = (externalResources && externalResourcesConfig)
-  let externalResourceMetas: Array<ScriptTag> = [];
+  let externalResourceMetas: Array<ScriptSrc> = [];
   if(hasExternalResources) {
     // NOTE: currently support only <script> tag
     externalResourceMetas = getScriptTags(externalResources, externalResourcesConfig);
@@ -92,8 +92,8 @@ const HeadMetaComponent: React.FunctionComponent<{
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta property="og:image" content={defaultImage} key="og:image" />
       <meta name="robots" content={robotsMeta} key="robots" />
-      <HeaderScriptTagsComponent
-        scriptTags={externalResourceMetas}
+      <HeaderScriptSrcsComponent
+        scriptSrcs={externalResourceMetas}
       />
     </Head>
   )

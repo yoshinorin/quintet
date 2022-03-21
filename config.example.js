@@ -57,52 +57,40 @@ export const footerItems = [
 export const externalResources = [
   {
     'kind': 'js',
-    'key': 'mermaid',
-    'inject': [
-      {
-        'key': 'asdjfa', // must be unique
-        'async': false,
-        'type': "",
-        'src': "https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js",
-        'code': ""
-      },
-      {
-        'key': 'aalsdk93a', // must be unique
-        'async': false,
-        'type': "text/javascript",
-        'src': "",
-        'code': `window.onload = function () {
-          mermaid.initialize({startOnLoad:true});
-        };`
-      }
-    ]
+    'src': {
+      'key': 'mermaid', // must be same with registerd db record key
+      'async': false,
+      'src': "https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js",
+    },
+    'code': {
+      'key': 'mermaid', // must be same with registerd db record key
+      'async': false,
+      'type': "text/javascript",
+      'code': `window.onload = function () {
+        mermaid.initialize({startOnLoad:true});
+      };`
+     }
   },
   {
     'kind': 'js',
-    'key': 'mathjax',
-    'inject': [
-      {
-        'key': 'sadkl905j4w', // must be unique
-        'async': false,
-        'type': "",
-        'src': "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML",
-        'code': ""
-      },
-      {
-        'key': '854jio3os', // must be unique
-        'async': false,
-        'type': "text/x-mathjax-config",
-        'src': "",
-        'code': `MathJax.Hub.Config({
-          tex2jax: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-          },
-          CommonHTML: { matchFontHeight: false }
-        });`
-      }
-    ]
+    'src': {
+      'key': 'mathjax', // must be same with registerd db record key
+      'async': false,
+      'src': "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML",
+    },
+    'code': {
+      'key': 'mathjax', // must be same with registerd db record key
+      'async': false,
+      'type': "text/x-mathjax-config",
+      'code': `MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          processEscapes: true
+        },
+        CommonHTML: { matchFontHeight: false }
+      });`
+    }
   }
 ]
 
