@@ -50,7 +50,7 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
 }
 
 export async function getServerSideProps(ctx: any) {
-  const path = ctx.params.slug.join("/");
+  const path = "/articles/" + ctx.params.slug.join("/");
 
   // avoid send request of images
   if (isIgnoreRequest(path)) {

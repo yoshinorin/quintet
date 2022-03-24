@@ -12,10 +12,6 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
   if (path.startsWith("/")) {
     path = path.substr(1, path.length)
   }
-  // TODO
-  if (path.startsWith("articles")) {
-    path = path.substr(9, path.length)
-  }
   if (!path.endsWith("/")) {
     path = path + "/"
   }
