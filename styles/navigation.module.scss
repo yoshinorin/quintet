@@ -14,8 +14,8 @@
   display:       block;
   max-width:     map-get($main, max-width);
   margin:        0 auto;
-  padding-right: map-get($main, padding-rl);
-  padding-left:  map-get($main, padding-rl);
+  padding-right: map-get($main, padding-right-left);
+  padding-left:  map-get($main, padding-right-left);
 }
 .nav-icon {
   padding-top: 6px;

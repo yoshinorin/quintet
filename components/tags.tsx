@@ -5,16 +5,18 @@ import style from '../styles/tags.module.scss';
 
 const TagsComponent: React.FunctionComponent<{ tags: Array<Tag> }> = ({ tags }) => {
   return (
-    <section className={`${containerStyles['flex-container']}`}>
-      {tags.map((tag: Tag) => {
-        return(
-          <TagComponent
-            tag={tag}
-            className={`${style['tag']}`}
-            key={tag.id}
-          />
-        )
-      })}
+    <section className={`${containerStyles['container']}`}>
+      <div className={containerStyles['flex-container']}>
+        {tags.map((tag: Tag) => {
+          return(
+            <TagComponent
+              tag={tag}
+              className={`${style['tag']}`}
+              key={tag.id}
+            />
+          )
+        })}
+      </div>
     </section>
   )
 }

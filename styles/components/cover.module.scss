@@ -20,8 +20,8 @@
     display:         table-cell;
     vertical-align:  middle;
     text-align:      center;
-    padding-right:   map-get($main, padding-rl);
-    padding-left:    map-get($main, padding-rl);
+    padding-right:   map-get($main, padding-right-left);
+    padding-left:    map-get($main, padding-right-left);
     .site-title {
       margin:        0 auto;
       max-width:     12.5rem;

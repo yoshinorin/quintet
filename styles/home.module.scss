@@ -17,8 +17,6 @@
   .home-articles-header {
     .home-articles-title {
       margin:     0;
-      word-break: initial;
-      overflow:   hidden;
       font-weight: 400;
       font-size:   2.2rem;
     }
@@ -40,7 +38,6 @@
     font-weight: 400;
   }
   .home-articles-excerpt {
-    text-rendering: optimizelegibility;
     letter-spacing: 0.08em;
     color:          #7e7c8a;
     font-size:      1.65rem;
