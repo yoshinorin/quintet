@@ -1,55 +1,53 @@
 @import
     '_variables';
 
-.home-articles-group {
-  .home-articles {
+.group {
+  .articles {
     margin-top:     1em;
     margin-bottom:  0.2em;
   }
 }
 
-.home-articles {
+.articles {
   position:       relative;
   width:          100%;
   display:        inline-block;
   vertical-align: top;
 
-  .home-articles-header {
-    .home-articles-title {
+  .header {
+    .title {
       margin:     0;
       font-weight: 400;
       font-size:   2.2rem;
     }
   }
-  .home-articles-meta {
+  .meta {
     margin: 0.2em 0 0 0;
     line-height: 1.5em;
     a {
       color: #828d9e;
     }
   }
-  .home-articles-meta,
-  .home-articles-time {
+  .meta,
+  .time {
     font-size: 0.8em;
     color: #939ba8;
   }
-  .home-articles-meta {
+  .meta {
     font-size:   map-get($font-size, small);
     font-weight: 400;
   }
-  .home-articles-excerpt {
+  .excerpt {
+    margin-top: 0.8em;
     letter-spacing: 0.08em;
     color:          #7e7c8a;
     font-size:      1.65rem;
     font-weight:    400;
     overflow:       hidden;
   }
-  .home-articles-excerpt {
-      margin-top: 0.8em;
-  }
 }
 
-.home-articles-wrap {
+.wrap {
   margin-left: 0.2em;
   padding:     0.8em;
 }
