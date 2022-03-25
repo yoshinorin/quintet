@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Archive } from '../types/archive';
+import { convertUnixtimeToLocalDateSrting } from '../utils/time';
 import styles from '../styles/archives.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 
@@ -11,13 +12,13 @@ const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> =
         {archives.map((archive: Archive, idx) => {
           return (
             <li key={idx}>
-              <span>
-              </span>
               <Link
                 href={`${archive.path}`}
                 prefetch={false}
               >
-                {`${archive.title}`}
+                <a
+                  target="_blank"
+                > {`${convertUnixtimeToLocalDateSrting(archive.publishedAt)}`}: {`${archive.title}`}</a>
               </Link>
             </li>
           )

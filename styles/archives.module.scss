@@ -6,10 +6,7 @@
     color: map-get($colors, 'archives-link');
   }
 
-  .title {
-    color: map-get($colors, 'base');
-    &:hover {
-      text-decoration: underline;
-    }
+  li {
+    font-size: map-get($font-size, normal);
   }
 }

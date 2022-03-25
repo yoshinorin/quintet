@@ -6,6 +6,14 @@ export function convertUnixtimeToDate(unixTime: number): Date {
   }
 }
 
+export function convertUnixtimeToLocalDateSrting(unixTime: number): String {
+  try {
+    return new Date(unixTime * 1000).toLocaleDateString();
+  } catch {
+    return new Date().toLocaleDateString();
+  }
+}
+
 export function convertUnixTimeToISODateSrting(unixTime: number): string {
   try {
     return new Date(unixTime * 1000).toISOString();
