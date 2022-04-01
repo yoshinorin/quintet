@@ -20,6 +20,10 @@ export const subTitle = 'your site subtitle'
 
 export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex"
 
+export const archivesPage = {
+  'titlePlaceholder': 'filter by title'
+}
+
 export const headerItems = [
   {
     'url': '/',
