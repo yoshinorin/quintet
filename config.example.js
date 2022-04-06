@@ -23,6 +23,9 @@ export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex"
 export const archivesPage = {
   'titlePlaceholder': 'filter by title'
 }
+export const tagsPage = {
+  'titlePlaceholder': 'filter by tag name'
+}
 
 export const headerItems = [
   {
