@@ -21,10 +21,12 @@ export const subTitle = 'your site subtitle'
 export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex"
 
 export const archivesPage = {
-  'titlePlaceholder': 'filter by title'
+  'titlePlaceholder': 'filter by title',
+  'found': 'posts'
 }
 export const tagsPage = {
-  'titlePlaceholder': 'filter by tag name'
+  'titlePlaceholder': 'filter by tag name',
+  'found': 'tags'
 }
 
 export const headerItems = [

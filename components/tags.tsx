@@ -49,6 +49,9 @@ const TagsComponent: React.FunctionComponent<{ tags: Array<Tag> }> = ({ tags }) 
 const FilterdItems: React.FunctionComponent<{ tags: Array<Tag> }> = ({ tags }) => {
   return (
     <>
+      <div className={style['found']}>
+        {tags.length} {tagsPage.found}
+      </div>
       <div className={containerStyles['flex-container']}>
         {tags.map((tag: Tag) => {
           return(

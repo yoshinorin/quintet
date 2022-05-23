@@ -50,6 +50,9 @@ const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> =
 const FilterdItems: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
   return (
     <>
+      <div className={styles['found']}>
+        {archives.length} {archivesPage.found}
+      </div>
       <div id={styles['archives']}>
         {archives.map((archive: Archive, idx) => {
           return (

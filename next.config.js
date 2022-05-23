@@ -5,6 +5,9 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   },
+  experimental: {
+    scrollRestoration: true
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

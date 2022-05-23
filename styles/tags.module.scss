@@ -1,3 +1,6 @@
+@import
+    '_variables';
+
 .tag {
   background: #e8f5ff !important;
   color: #0c60a2 !important;
@@ -13,4 +16,11 @@
   background: #0c78ce !important;
   text-decoration: none !important;
   line-height: 1.8em !important;
+}
+
+.found {
+  font-size: map-get($font-size, xlarge);
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
