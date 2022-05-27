@@ -1,5 +1,6 @@
 @import
-    '_variables';
+    '_variables',
+    './components/alert.module';
 
 html {
   font-family: $font-families-base;
