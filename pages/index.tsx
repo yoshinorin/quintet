@@ -1,14 +1,27 @@
 import Error from 'next/error';
 import HeadMetaComponent from '../components/headmeta';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
-import ArticlesComponent from '../components/articles';
-import PaginationComponent from '../components/pagination';
+import RecentArticlesComponent from '../components/recentArticles';
+import RecentCommitsComponent from '../components/recentCommits';
+import styles from '../styles/home.module.scss';
+import containerStyles from '../styles/components/container.module.scss';
 import { getArticles } from './api/articles';
 import { Article, ArticleResponseWithCount } from '../types/article';
-import { defaultRobotsMeta } from '../config';
+import {
+  viewOnGithub,
+  defaultRobotsMeta
+} from '../config';
 import { extractIp } from '../utils/ip';
+import { getCommit } from './api/commit';
+import { Commit } from '../types/commit';
 
-const Home: React.FunctionComponent<{ statusCode: number, count: number, articles: Array<Article> }> = ({ statusCode, count, articles }) => {
+const Home: React.FunctionComponent<{
+  statusCode: number,
+  count: number,
+  articles: Array<Article>,
+  enableGitHubCommits: boolean,
+  commits: Array<Commit> | undefined
+}> = ({ statusCode, articles, enableGitHubCommits, commits }) => {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
@@ -23,21 +36,32 @@ const Home: React.FunctionComponent<{ statusCode: number, count: number, article
         contentCover={null}
       />
       <main>
-        <ArticlesComponent
-          articles={articles}
-        />
-        <PaginationComponent
-          basePath='articles'
-          current={1}
-          total={count}
-        />
+        <div className={`${containerStyles.container} ${styles.wrap}`} >
+          <RecentArticlesComponent
+            articles={articles}
+          />
+          {
+            (() => {
+              if(enableGitHubCommits) {
+                return(
+                  <>
+                    <hr></hr>
+                    <RecentCommitsComponent
+                      commits={commits}
+                    />
+                  </>
+                )
+              }
+            })()
+          }
+        </div>
       </main>
     </>
   )
 }
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getArticles(1, 10, extractIp(ctx.req))
+  const response: Response = await getArticles(1, 5, extractIp(ctx.req))
   ctx.res.statusCode = response.status;
 
   let articlesResponseWithCount: ArticleResponseWithCount = null;
@@ -55,11 +79,34 @@ export async function getServerSideProps(ctx: any) {
     });
   }
 
+  let enableGitHubCommits = false;
+  let commits = undefined;
+  if (viewOnGithub.enable) {
+    try {
+      // TOOD: impl cache or request to github with access token
+      const response: Response = await getCommit();
+      if (response.status === 200) {
+        const responseJson = await response.json();
+        commits = responseJson.map(commit => {
+          return {
+            sha: commit['sha'],
+            url: commit['html_url'],
+            message: commit['commit']['message']
+          } as Commit
+        });
+        enableGitHubCommits = true;
+      }
+    } catch {
+      // Nothing to do
+    }
+  }
+
   return {
     props: {
       statusCode: response.status,
-      count: articlesResponseWithCount.count,
-      articles: articles
+      articles: articles,
+      enableGitHubCommits,
+      commits
     }
   }
 }

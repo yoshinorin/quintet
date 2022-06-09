@@ -1,0 +1,21 @@
+.wrap {
+  margin-top:  6rem;
+  margin-bottom:  6rem;
+}
+
+.cat-title {
+  font-style: italic;
+  font-size: medium;
+}
+
+.external-link {
+  font-size: 1.4rem;
+}
+
+.read-more {
+  padding:  0.3rem 1.2rem 0.3rem 1.2rem;
+
+  &:hover {
+    background-color:  #e4e4e4;
+  }
+}

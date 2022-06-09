@@ -1,0 +1,30 @@
+@import
+    '_variables';
+
+.articles {
+  position:       relative;
+  width:          100%;
+  display:        inline-block;
+  vertical-align: top;
+
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: underline;
+  }
+  .title {
+    margin:     0;
+    font-weight: 400;
+    font-size: 1.7rem;
+  }
+  .time {
+    font-size: 0.8em;
+    color: #939ba8;
+  }
+}
+
+.wrap {
+  margin-left: 0.2em;
+  padding:     0.2em;
+}
