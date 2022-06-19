@@ -5,7 +5,7 @@ import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
 
 const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
-    <section>
+    <section className={styles['articles-wrap']}>
       {articles.map((article: Article, idx) => {
         return (
           <article className={styles['articles']} key={idx}>

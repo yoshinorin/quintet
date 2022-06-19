@@ -4,7 +4,7 @@ import styles from '../styles/commitLogs.module.scss';
 
 const CommitLogsComponent: React.FunctionComponent<{ commits: Array<Commit> }> = ({ commits }) => {
   return (
-    <section>
+    <section className={styles['articles-wrap']}>
       {commits.map((commit: Commit, idx) => {
         return(
           <article className={styles['articles']} key={idx}>

@@ -28,3 +28,12 @@
   margin-left: 0.2em;
   padding:     0.2em;
 }
+
+@media screen and (max-width: 900px) {
+  .articles-wrap {
+    margin-top: 1.5rem;
+  }
+  .articles {
+    font-size: 1.4rem;
+  }
+}
