@@ -16,12 +16,11 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "micromatch": "4.0.5",
     "next": "12.1.6",
+    "micromatch": "4.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sass": "1.52.3",
-    "swr": "1.3.0"
+    "sass": "1.52.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.16.2",

@@ -1,5 +1,4 @@
 import Error from 'next/error';
-import useSWR from 'swr';
 import HeadMetaComponent from '../components/headmeta';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import RecentArticlesComponent from '../components/recentArticles';
@@ -13,10 +12,8 @@ import {
   defaultRobotsMeta
 } from '../config';
 import { extractIp } from '../utils/ip';
-import { fetcher } from './api/fetcher';
+import { getCommit } from './api/commit';
 import { Commit } from '../types/commit';
-
-const GITHUB_COMMIT_URL = `${viewOnGithub.apiUrl}?per_page=5`
 
 const Home: React.FunctionComponent<{
   statusCode: number,
@@ -29,11 +26,6 @@ const Home: React.FunctionComponent<{
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
-
-  const { data, error } = useSWR(GITHUB_COMMIT_URL, fetcher, {
-    fallbackData: commits,
-    refreshInterval: 3600000
-  });
 
   return (
     <>
@@ -50,18 +42,12 @@ const Home: React.FunctionComponent<{
           />
           {
             (() => {
-              if(enableGitHubCommits && !error) {
+              if(enableGitHubCommits) {
                 return(
                   <>
                     <hr></hr>
                     <RecentCommitsComponent
-                      commits={data.map(commit => {
-                        return {
-                          sha: commit['sha'],
-                          url: commit['html_url'],
-                          message: commit['commit']['message']
-                        } as Commit
-                      })}
+                      commits={commits}
                     />
                   </>
                 )
@@ -94,14 +80,24 @@ export async function getServerSideProps(ctx: any) {
   }
 
   let enableGitHubCommits = false;
-  let commits = [];
+  let commits = undefined;
   if (viewOnGithub.enable) {
     try {
-      commits = await fetcher(GITHUB_COMMIT_URL);
+      // TOOD: impl cache or request to github with access token
+      const response: Response = await getCommit();
+      if (response.status === 200) {
+        const responseJson = await response.json();
+        commits = responseJson.map(commit => {
+          return {
+            sha: commit['sha'],
+            url: commit['html_url'],
+            message: commit['commit']['message']
+          } as Commit
+        });
+        enableGitHubCommits = true;
+      }
     } catch {
       // Nothing to do
-    } finally {
-      enableGitHubCommits = commits.length > 0;
     }
   }
 
