@@ -80,7 +80,7 @@ export async function getServerSideProps(ctx: any) {
   }
 
   let enableGitHubCommits = false;
-  let commits = undefined;
+  let commits = [];
   if (viewOnGithub.enable) {
     try {
       // TOOD: impl cache or request to github with access token
@@ -98,6 +98,8 @@ export async function getServerSideProps(ctx: any) {
       }
     } catch {
       // Nothing to do
+    } finally {
+      enableGitHubCommits = commits.length > 0;
     }
   }
 
