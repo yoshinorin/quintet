@@ -16,7 +16,7 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
     path = path + "/"
   }
 
-  const ip = getRequestContext(req);
+  const rq = getRequestContext(req);
 
   return fetch(
     `${api.url}/contents/${path}`,
@@ -24,7 +24,9 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'x-forwarded-for': ip
+        'x-forwarded-for': rq.ipAddress,
+        'user-agent': rq.ua,
+        'referer': rq.referer
       }
     }
   )
