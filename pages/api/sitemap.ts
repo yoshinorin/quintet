@@ -10,7 +10,7 @@ export async function getSitemap(rq: RequestContext): Promise<Response> {
         'Content-Type': 'application/json',
         'x-forwarded-for': rq.ipAddress,
         'user-agent': rq.ua,
-        'referer': rq.referrer
+        'referer': rq.referer
       }
     }
   )

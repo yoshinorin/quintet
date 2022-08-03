@@ -10,7 +10,7 @@ export async function getArticles(p: number = 1, l: number = 10, rq: RequestCont
         'Content-Type': 'application/json',
         'x-forwarded-for': rq.ipAddress,
         'user-agent': rq.ua,
-        'referer': rq.referrer
+        'referer': rq.referer
       }
     }
   )
@@ -25,7 +25,7 @@ export async function getArticlesByTagName(tagName: string, p: number = 1, l: nu
         'Content-Type': 'application/json',
         'x-forwarded-for': rq.ipAddress,
         'user-agent': rq.ua,
-        'referer': rq.referrer
+        'referer': rq.referer
       }
     }
   )
