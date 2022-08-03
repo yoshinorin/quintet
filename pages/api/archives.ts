@@ -1,13 +1,16 @@
 import { api } from '../../config';
+import { RequestContext } from '../../types/requestContext';
 
-export async function getArchives(ip: string): Promise<Response> {
+export async function getArchives(rq: RequestContext): Promise<Response> {
   return fetch(
     `${api.url}/archives`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'x-forwarded-for': ip
+        'x-forwarded-for': rq.ipAddress,
+        'user-agent': rq.ua,
+        'referer': rq.referrer
       }
     }
   )

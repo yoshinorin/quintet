@@ -1,7 +1,7 @@
 import { NextApiRequest } from 'next';
 import { api } from '../../config';
 import { isIgnoreRequest } from '../../utils/filterRequests';
-import { extractIp } from '../../utils/ip';
+import { getRequestContext } from '../../utils/requestContext';
 
 export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
 
@@ -16,7 +16,7 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
     path = path + "/"
   }
 
-  const ip = extractIp(req);
+  const ip = getRequestContext(req);
 
   return fetch(
     `${api.url}/contents/${path}`,

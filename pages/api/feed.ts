@@ -1,6 +1,7 @@
 import { api } from '../../config';
+import { RequestContext } from '../../types/requestContext';
 
-export async function getFeed(ip: string): Promise<Response> {
+export async function getFeed(rq: RequestContext): Promise<Response> {
   // TODO: get feed dynamically
   return fetch(
     `${api.url}/feeds/index`,
@@ -8,7 +9,9 @@ export async function getFeed(ip: string): Promise<Response> {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'x-forwarded-for': ip
+        'x-forwarded-for': rq.ipAddress,
+        'user-agent': rq.ua,
+        'referer': rq.referrer
       }
     }
   )

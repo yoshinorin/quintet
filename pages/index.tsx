@@ -11,7 +11,7 @@ import {
   viewOnGithub,
   defaultRobotsMeta
 } from '../config';
-import { extractIp } from '../utils/ip';
+import { getRequestContext } from '../utils/requestContext';
 import { getCommit } from './api/commit';
 import { Commit } from '../types/commit';
 
@@ -61,7 +61,7 @@ const Home: React.FunctionComponent<{
 }
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getArticles(1, 5, extractIp(ctx.req))
+  const response: Response = await getArticles(1, 5, getRequestContext(ctx.req))
   ctx.res.statusCode = response.status;
 
   let articlesResponseWithCount: ArticleResponseWithCount = null;

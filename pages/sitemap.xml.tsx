@@ -2,12 +2,12 @@ import { Sitemap } from '../types/sitemap';
 import { getSitemap } from './api/sitemap';
 import { generateSitemapString } from '../utils/sitemap';
 import { url } from '../config';
-import { extractIp } from '../utils/ip';
+import { getRequestContext } from '../utils/requestContext';
 
 const SitemapXml = () => null;
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getSitemap(extractIp(ctx.req))
+  const response: Response = await getSitemap(getRequestContext(ctx.req))
   ctx.res.statusCode = response.status;
 
   let sitemapResponse = null;

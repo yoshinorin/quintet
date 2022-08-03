@@ -2,12 +2,12 @@ import { Feed } from '../../types/feed';
 import { getFeed } from '../api/feed';
 import { generateFeedsString } from '../../utils/feeds';
 import { url } from '../../config';
-import { extractIp } from '../../utils/ip';
+import { getRequestContext } from '../../utils/requestContext';
 
 const SitemapXml = () => null;
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getFeed(extractIp(ctx.req))
+  const response: Response = await getFeed(getRequestContext(ctx.req))
   ctx.res.statusCode = response.status;
 
   let feedResponses = null;

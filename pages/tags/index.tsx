@@ -7,7 +7,7 @@ import { Tag } from '../../types/tag';
 import { defaultRobotsMeta } from '../../config';
 import { getTags } from '../api/tags';
 import { ContentCover } from '../../types/content';
-import { extractIp } from '../../utils/ip';
+import { getRequestContext } from '../../utils/requestContext';
 
 export default function Page({ statusCode, tags }) {
   if (statusCode !== 200) {
@@ -38,7 +38,7 @@ export default function Page({ statusCode, tags }) {
 }
 
 export async function getServerSideProps(ctx: any) {
-  const response: Response = await getTags(extractIp(ctx.req));
+  const response: Response = await getTags(getRequestContext(ctx.req));
   ctx.res.statusCode = response.status;
 
   let tags: Array<Tag> = [];
