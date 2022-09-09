@@ -6,7 +6,7 @@ const FEED_URL = '/feeds/index.xml';
 
 export async function generateFeedsString(url: string, feeds: Array<Feed>): Promise<string> {
 
-  const latest = feeds[feeds.length - 1]
+  const latest = feeds[0]
 
   // https://validator.w3.org/feed/docs/atom.html
   let atomFeedXml = `
