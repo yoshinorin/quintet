@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml/badge.svg)](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml)
 
-The front end for the [Qualtet](https://github.com/yoshinorin/qualtet).
+The front end for [Qualtet](https://github.com/yoshinorin/qualtet).
 
 > [Live](https://yoshinorin.net)
 
