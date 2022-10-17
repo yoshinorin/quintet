@@ -54,7 +54,11 @@ export async function getServerSideProps(ctx: any) {
 
   // avoid send request of images
   if (isIgnoreRequest(path)) {
-    return ctx.res = 404;
+    return {
+      props: {
+        statusCode: 404
+      }
+    }
   }
 
   const response: Response = await findByPath(ctx.req, path);

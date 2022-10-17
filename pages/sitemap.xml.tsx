@@ -12,7 +12,11 @@ export async function getServerSideProps(ctx: any) {
 
   let sitemapResponse = null;
   if (response.status !== 200) {
-    return ctx.res = 404;
+    return {
+      props: {
+        statusCode: 404
+      }
+    }
   }
   sitemapResponse = await response.json() as Array<Sitemap>;
   const sitemap = sitemapResponse.map(sitemap => {

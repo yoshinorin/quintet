@@ -12,7 +12,11 @@ export async function getServerSideProps(ctx: any) {
 
   let feedResponses = null;
   if (response.status !== 200) {
-    return ctx.res = 404;
+    return {
+      props: {
+        statusCode: 404
+      }
+    }
   }
   feedResponses = await response.json() as Array<Feed>;
   const feeds = feedResponses.map(feed => {
