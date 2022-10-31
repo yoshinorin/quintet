@@ -38,7 +38,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
 
   // TODO: add First, Prev, Next, Last
   // TODO: enable & disable
-  return(
+  return (
     <div className={style['pagination-bar']}>
       <nav aria-label="Page navigation">
         <ul className={style['pagination']}>
@@ -59,10 +59,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
                 e.push(
                   <li key={k}
                       className={p[i] !== current ? '' : style['active']}>
-                    <Link
-                      href={`/${basePath}/${p[i]}`}
-                      prefetch={false}
-                    >
+                    <Link href={`/${basePath}/${p[i]}`} prefetch={false}>
                       {p[i].toString()}
                     </Link>
                   </li>
@@ -77,7 +74,7 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
         </ul>
       </nav>
     </div>
-  )
+  );
 }
 
 export default PaginationComponent;

@@ -16,16 +16,12 @@ const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null
       <Link
         href={`/tags/${tag.name}`}
         prefetch={false}
-      >
-        <a
-          className={className ? className : null}
-          target="_blank"
-          data-tag={tag.name.toLowerCase()}
-        >
+        className={className ? className : null}
+        target="_blank"
+        data-tag={tag.name.toLowerCase()}>
           {`${tag.name}`}
-        </a>
       </Link>
-    )
+    );
 }
 
 export default TagComponent;

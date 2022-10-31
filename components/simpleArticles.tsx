@@ -14,19 +14,16 @@ const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article
                 <time dateTime={`${article.publishedAt}`} className={styles['time']}>
                   {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`} - &nbsp;
                 </time>
-                <Link
-                  href={`${article.path}`}
-                  prefetch={false}
-                >
-                  <a className='unstyled'>{`${article.title}`}</a>
+                <Link href={`${article.path}`} prefetch={false} className='unstyled'>
+                  {`${article.title}`}
                 </Link>
               </div>
             </div>
           </article>
-        )
+        );
       })}
     </section>
-  )
+  );
 }
 
 export default SimpleArticlesComponent;

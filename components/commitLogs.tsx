@@ -6,41 +6,33 @@ const CommitLogsComponent: React.FunctionComponent<{ commits: Array<Commit> }> =
   return (
     <section className={styles['articles-wrap']}>
       {commits.map((commit: Commit, idx) => {
-        return(
+        return (
           <article className={styles['articles']} key={idx}>
-          <div className={styles['wrap']}>
-            <div className={styles['timeline']}>
-              (
+            <div className={styles['wrap']}>
+              <div className={styles['timeline']}>
+                (
+                  <Link
+                    href={`${commit.url}`}
+                    prefetch={false}
+                    className={styles['hash']}
+                    target="_blank">
+                      {`${commit.sha.slice(0, 7)}`}
+                  </Link>
+                )&nbsp;
                 <Link
                   href={`${commit.url}`}
                   prefetch={false}
-                >
-                  <a
-                    className={styles['hash']}
-                    target="_blank"
-                  >
-                    {`${commit.sha.slice(0, 7)}`}
-                  </a>
-                </Link>
-              )&nbsp;
-              <Link
-                  href={`${commit.url}`}
-                  prefetch={false}
-                >
-                  <a
-                    className='unstyled'
-                    target="_blank"
-                  >
+                  className='unstyled'
+                  target="_blank">
                     {`${commit.message}`}
-                  </a>
-              </Link>
+                </Link>
+              </div>
             </div>
-          </div>
-        </article>
-        )
+          </article>
+        );
       })}
     </section>
-  )
+  );
 }
 
 export default CommitLogsComponent;

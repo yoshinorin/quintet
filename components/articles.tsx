@@ -17,36 +17,30 @@ const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> =
                   {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`}
                 </time>
                 <h2 className={styles['title']}>
-                  <Link
-                    href={`${article.path}`}
-                    prefetch={false}
-                  >
-                    <a className='unstyled'>{`${article.title}`}</a>
+                  <Link href={`${article.path}`} prefetch={false} className='unstyled'>
+                    {`${article.title}`}
                   </Link>
                 </h2>
               </div>
               <div className={styles['excerpt']}>
-                <Link
-                  href={`${article.path}`}
-                  prefetch={false}
-                >
-                  <a className='unstyled'>{`${article.content}`}</a>
+                <Link href={`${article.path}`} prefetch={false} className='unstyled'>
+                  {`${article.content}`}
                 </Link>
                 <div className={`${buttonStyles['continue-read-button-wrap']}`}>
                   <Link
                     href={`${article.path}`}
                     prefetch={false}
-                  >
-                    <a className={`'unstyled' ${buttonStyles['menu-button']} ${buttonStyles['continue-read-button']}`}>続きを読む</a>
+                    className={`'unstyled' ${buttonStyles['menu-button']} ${buttonStyles['continue-read-button']}`}>
+                      続きを読む
                   </Link>
                 </div>
               </div>
             </div>
           </article>
-        )
+        );
       })}
     </section>
-  )
+  );
 }
 
 export default ArticlesComponent;

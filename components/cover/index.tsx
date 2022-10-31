@@ -8,7 +8,7 @@ import { title, subTitle } from '../../config';
 import { convertUnixtimeToDate } from '../../utils/time';
 
 const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
-  return(
+  return (
     <div className={styles['cover']}>
       <div className={`${styles['content-header']} ${contentStyles['content-main']}`}>
         {
@@ -44,28 +44,21 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
                 </>
               )
             } else {
-              return (
-                <>
-                  <div className={`${styles['site-title']}`}>
-                    <Link
-                      href="/"
-                      prefetch={false}
-                    >
-                      <a dangerouslySetInnerHTML={{ __html: title }}>
-                      </a>
-                    </Link>
-                  </div>
-                  <span className={`${styles['site-meta']}`}
-                    dangerouslySetInnerHTML={{ __html: subTitle }}>
-                  </span>
-                </>
-              )
+              return <>
+                <div className={`${styles['site-title']}`}>
+                  <Link href="/" prefetch={false} dangerouslySetInnerHTML={{ __html: title }}>
+                  </Link>
+                </div>
+                <span className={`${styles['site-meta']}`}
+                  dangerouslySetInnerHTML={{ __html: subTitle }}>
+                </span>
+              </>;
             }
           })()
         }
       </div>
     </div>
-  )
+  );
 }
 
 export default CoverComponent;

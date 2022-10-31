@@ -4,26 +4,27 @@ import containerStyles from '../styles/components/container.module.scss';
 import { footerItems, copyrights } from '../config';
 
 const FooterComponent: React.FunctionComponent<{}> = () => {
-  return(
+  return (
     <footer id={styles['footer']}>
       <div className={containerStyles['container']}>
         <div className={styles['flex-container']}>
           {footerItems.map((item, idx) => {
-            return(
+            return (
               <Link
-                href={`${item.url}`} key={idx}
+                href={`${item.url}`}
+                key={idx}
                 prefetch={false}
-              >
-                <a className={`${styles['footer-item']} unstyled`}>{`${item.text}`}</a>
+                className={`${styles['footer-item']} unstyled`}>
+                  {`${item.text}`}
               </Link>
-            )
+            );
           })}
         </div>
       </div>
       <div className={styles['copyrights']} dangerouslySetInnerHTML={{ __html: copyrights }}>
       </div>
     </footer>
-  )
+  );
 }
 
 export default FooterComponent;

@@ -48,29 +48,22 @@ const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> =
 }
 
 const FilterdItems: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
-  return (
-    <>
-      <div className={styles['found']}>
-        {archives.length} {archivesPage.found}
-      </div>
-      <div id={styles['archives']}>
-        {archives.map((archive: Archive, idx) => {
-          return (
-            <li key={idx}>
-              <Link
-                href={`${archive.path}`}
-                prefetch={false}
-              >
-                <a
-                  target="_blank"
-                > {`${convertUnixtimeToLocalDateSrting(archive.publishedAt)}`}: {`${archive.title}`}</a>
-              </Link>
-            </li>
-          )
-        })}
-      </div>
-    </>
-  )
+  return <>
+    <div className={styles['found']}>
+      {archives.length} {archivesPage.found}
+    </div>
+    <div id={styles['archives']}>
+      {archives.map((archive: Archive, idx) => {
+        return (
+          <li key={idx}>
+            <Link href={`${archive.path}`} prefetch={false} target="_blank">
+               {`${convertUnixtimeToLocalDateSrting(archive.publishedAt)}`}:{`${archive.title}`}
+            </Link>
+          </li>
+        );
+      })}
+    </div>
+  </>;
 }
 
 export default ArchivesComponent;
