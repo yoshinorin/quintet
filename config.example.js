@@ -69,6 +69,13 @@ export const footerItems = [
   }
 ]
 
+// Inject <meta> to all pages. Only supports `name` and `content`.
+export const injectMetas = [
+  {
+    "name": "metaName",
+    "content": "metaContent"
+  }
+]
 
 // NOTE: inject external resource (perhaps from CDN) to under the <head>.
 export const externalResources = [

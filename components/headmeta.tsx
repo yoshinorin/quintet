@@ -8,7 +8,8 @@ import {
   locale,
   url,
   favicon,
-  defaultImage
+  defaultImage,
+  injectMetas
 } from '../config';
 import { ExternalResources } from '../types/externalResource';
 import HeaderScriptSrcsComponent from './headerScriptSrcs';
@@ -92,6 +93,19 @@ const HeadMetaComponent: React.FunctionComponent<{
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <meta property="og:image" content={defaultImage} key="og:image" />
       <meta name="robots" content={robotsMeta} key="robots" />
+      {
+        (() => {
+          if (injectMetas) {
+            return(
+              injectMetas.map((m => {
+                return(
+                  <meta name={m.name} content={m.content} />
+                )
+              }))
+            )
+          }
+        })()
+      }
       <HeaderScriptSrcsComponent
         scriptSrcs={externalResourceMetas}
       />
