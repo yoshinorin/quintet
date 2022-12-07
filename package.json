@@ -13,16 +13,18 @@
     "pm2:restart": "npm run rebuild && pm2 restart ecosystem.config.js",
     "pm2:status": "pm2 ls",
     "pm2:stop": "pm2 stop ecosystem.config.js",
+    "analyze:win": "set ANALYZE=true && next build",
     "test": "jest --coverage"
   },
   "dependencies": {
-    "next": "13.0.6",
     "micromatch": "4.0.5",
+    "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "1.56.1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.0.6",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/react": "18.0.26",

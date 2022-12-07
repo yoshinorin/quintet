@@ -1,6 +1,10 @@
 const path = require('path');
 
-module.exports = {
+const withBundleAnalyzer = process.env.ANALYZE.trim() === 'true'
+    ? require('@next/bundle-analyzer')({ enabled: true })
+    : (config) => config;
+
+module.exports = withBundleAnalyzer({
   trailingSlash: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
@@ -18,4 +22,4 @@ module.exports = {
     unoptimized: true,
   },
   swcMinify: true
-}
+});
