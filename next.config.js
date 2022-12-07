@@ -1,6 +1,6 @@
 const path = require('path');
 
-const withBundleAnalyzer = process.env.ANALYZE.trim() === 'true'
+const withBundleAnalyzer = process.env.ANALYZE ? process.env.ANALYZE.trim() === 'true' : false
     ? require('@next/bundle-analyzer')({ enabled: true })
     : (config) => config;
 
