@@ -18,13 +18,13 @@
   },
   "dependencies": {
     "micromatch": "4.0.5",
-    "next": "13.0.6",
+    "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.56.1"
+    "sass": "1.57.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.0.6",
+    "@next/bundle-analyzer": "13.1.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/react": "18.0.26",
