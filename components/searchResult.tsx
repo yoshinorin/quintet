@@ -23,15 +23,13 @@ const SearchResultComponent: React.FunctionComponent<{
                 <time dateTime={`${content.publishedAt}`} className={styles['time']}>
                   {`${toJaJpDottedDateString(convertUnixtimeToDate(content.publishedAt))}`}
                 </time>
-                <h3 className={styles['title']}>
-                  <Link href={`${content.path}`} prefetch={false} className='unstyled' target="_blank">
-                    {`${content.title}`}
-                  </Link>
-                </h3>
-              </div>
-              <div className={styles['excerpt']}>
                 <Link href={`${content.path}`} prefetch={false} className='unstyled' target="_blank">
-                  {`${content.content}`}
+                  <h3 className={styles['title']}>
+                    {`${content.title}`}
+                  </h3>
+                  <div className={styles['excerpt']}>
+                    {`${content.content}`}
+                  </div>
                 </Link>
               </div>
             </div>
