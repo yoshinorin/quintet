@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/articles.module.scss';
-import containerStyles from '../styles/components/container.module.scss';
-import buttonStyles from '../styles/components/button.module.scss';
 import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
 import { SearchResponse } from '../types/search';
 
@@ -35,13 +33,6 @@ const SearchResultComponent: React.FunctionComponent<{
                 <Link href={`${content.path}`} prefetch={false} className='unstyled' target="_blank">
                   {`${content.content}`}
                 </Link>
-                <div className={`${buttonStyles['continue-read-button-wrap']}`}>
-                  <Link
-                    href={`${content.path}`}
-                    prefetch={false}
-                    className={`'unstyled' ${buttonStyles['menu-button']} ${buttonStyles['continue-read-button']}`}>
-                  </Link>
-                </div>
               </div>
             </div>
           </article>
