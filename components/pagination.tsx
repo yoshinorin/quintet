@@ -11,18 +11,20 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
   const l = [...Array(last)].map((_, i) => i);
   l.shift();
 
+  if (1 > l.length) {
+    // No-need pagination
+    return(
+      <></>
+    )
+  }
+
   // YOU ARE NOT A STRING!!! THANK YOU TYPESCRIPT!!!
   // @ts-ignore
   current = parseInt(current);
   current = 0 >= current ? 1 : current;
 
   let p = []
-  if (1 > l.length) {
-    // No-need pagination
-    return(
-      <></>
-    )
-  } else if (1 == l.length) {
+  if (1 == l.length) {
     p = l;
   } else if (l.length >= 2 && 7 > l.length[l.length]) {
     p = l;
