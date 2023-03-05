@@ -1,4 +1,4 @@
-import { Feed } from '../../types/feed';
+import { Feed } from '../../models/feed';
 import { getFeed } from '../api/feed';
 import { generateFeedsString } from '../../utils/feeds';
 import { url } from '../../config';

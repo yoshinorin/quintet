@@ -3,10 +3,10 @@ import Error from 'next/error';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import TagsComponent from '../../components/tags';
-import { Tag } from '../../types/tag';
+import { Tag } from '../../models/tag';
 import { defaultRobotsMeta } from '../../config';
 import { getTags } from '../api/tags';
-import { ContentCover } from '../../types/content';
+import { ContentCover } from '../../models/content';
 import { getRequestContext } from '../../utils/requestContext';
 
 export default function Page({ statusCode, tags }) {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Tag } from '../types/tag';
+import { Tag } from '../models/tag';
 
 const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null }> = ({ tag, className }) => {
     {/*

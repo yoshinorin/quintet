@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/articles.module.scss';
 import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
-import { SearchResponse } from '../types/search';
+import { SearchResponse } from '../models/search';
 
 const SearchResultComponent: React.FunctionComponent<{
   hits: number,

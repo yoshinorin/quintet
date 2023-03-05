@@ -1,11 +1,11 @@
 import Error from 'next/error';
-import { ContentCover } from '../types/content';
+import { ContentCover } from '../models/content';
 import ContentComponent from '../components/content';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import HeadMetaComponent from '../components/headmeta';
 import MainBottomCodesComponent from '../components/mainBottomCodes';
-import { ContentResponse, Content } from '../types/content';
-import { ScriptCode } from '../types/script';
+import { ContentResponse, Content } from '../models/content';
+import { ScriptCode } from '../models/script';
 import { findByPath } from './api/content';
 import { getScriptCodes } from '../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../config';

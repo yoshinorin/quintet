@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Commit } from "../types/commit";
+import { Commit } from "../models/commit";
 import CommitLogsComponent from './commitLogs';
 import styles from '../styles/home.module.scss';
 import flexStyles from '../styles/components/flex.module.scss';

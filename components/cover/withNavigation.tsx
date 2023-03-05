@@ -1,5 +1,5 @@
 import CoverComponent from './index';
-import { ContentCover } from '../../types/content';
+import { ContentCover } from '../../models/content';
 import NavigationComponent from '../navigation';
 import { coverBottomItems } from '../../config';
 

@@ -5,7 +5,7 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import ArticlesComponent from '../../components/articles';
 import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
-import { Article, ArticleResponseWithCount } from '../../types/article';
+import { Article, ArticleResponseWithCount } from '../../models/article';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
 

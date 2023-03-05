@@ -11,11 +11,11 @@ import {
   defaultImage,
   injectMetas
 } from '../config';
-import { ExternalResources } from '../types/externalResource';
+import { ExternalResources } from '../models/externalResource';
 import HeaderScriptSrcsComponent from './headerScriptSrcs';
-import { ScriptSrc } from '../types/script';
+import { ScriptSrc } from '../models/script';
 import { getScriptTags } from '../utils/scriptTags';
-import { Content } from '../types/content';
+import { Content } from '../models/content';
 import { useRouter } from "next/router";
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 

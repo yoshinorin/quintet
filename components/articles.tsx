@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Article } from '../types/article';
+import { Article } from '../models/article';
 import styles from '../styles/articles.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import buttonStyles from '../styles/components/button.module.scss';

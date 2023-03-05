@@ -1,4 +1,4 @@
-import { Sitemap } from '../types/sitemap';
+import { Sitemap } from '../models/sitemap';
 
 export async function generateSitemapString(url: string, sitemap: Array<Sitemap>): Promise<string> {
   let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

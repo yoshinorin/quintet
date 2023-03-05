@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import TagComponent from '../tag';
-import { ContentCover } from '../../types/content';
-import { Tag } from '../../types/tag';
+import { ContentCover } from '../../models/content';
+import { Tag } from '../../models/tag';
 import styles from '../../styles/components/cover.module.scss';
 import contentStyles from '../../styles/components/content.module.scss';
 import { title, subTitle } from '../../config';

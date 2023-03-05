@@ -1,4 +1,4 @@
-import { Sitemap } from '../types/sitemap';
+import { Sitemap } from '../models/sitemap';
 import { getSitemap } from './api/sitemap';
 import { generateSitemapString } from '../utils/sitemap';
 import { url } from '../config';

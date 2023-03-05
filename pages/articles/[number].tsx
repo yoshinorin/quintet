@@ -4,7 +4,7 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import ArticlesComponent from '../../components/articles';
 import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../api/articles';
-import { Article, ArticleResponseWithCount } from '../../types/article';
+import { Article, ArticleResponseWithCount } from '../../models/article';
 import { getRequestContext } from '../../utils/requestContext';
 
 const Page: React.FunctionComponent<{ statusCode: number, current: number, count: number, articles: Array<Article> }> = ({ statusCode, current, count, articles }) => {

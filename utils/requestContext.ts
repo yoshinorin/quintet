@@ -1,5 +1,5 @@
 import type { NextApiRequest } from 'next'
-import { RequestContext } from '../types/requestContext'
+import { RequestContext } from '../models/requestContext'
 
 export function getRequestContext(request: NextApiRequest): RequestContext {
 

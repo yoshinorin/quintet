@@ -6,14 +6,14 @@ import RecentCommitsComponent from '../components/recentCommits';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import { getArticles } from './api/articles';
-import { Article, ArticleResponseWithCount } from '../types/article';
+import { Article, ArticleResponseWithCount } from '../models/article';
 import {
   viewOnGithub,
   defaultRobotsMeta
 } from '../config';
 import { getRequestContext } from '../utils/requestContext';
 import { getCommit } from './api/commit';
-import { Commit } from '../types/commit';
+import { Commit } from '../models/commit';
 
 const Home: React.FunctionComponent<{
   statusCode: number,

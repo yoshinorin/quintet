@@ -1,4 +1,4 @@
-import { Content } from '../types/content';
+import { Content } from '../models/content';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
 

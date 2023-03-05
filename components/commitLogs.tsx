@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Commit } from "../types/commit";
+import { Commit } from "../models/commit";
 import styles from '../styles/commitLogs.module.scss';
 
 const CommitLogsComponent: React.FunctionComponent<{ commits: Array<Commit> }> = ({ commits }) => {

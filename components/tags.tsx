@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TagComponent from './tag';
-import { Tag } from '../types/tag';
+import { Tag } from '../models/tag';
 import containerStyles from '../styles/components/container.module.scss';
 import style from '../styles/tags.module.scss';
 import inputStyles from '../styles/input.module.scss';

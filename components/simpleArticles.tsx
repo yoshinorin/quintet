@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Article } from '../types/article';
+import { Article } from '../models/article';
 import styles from '../styles/simpleArticles.module.scss';
 import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
 

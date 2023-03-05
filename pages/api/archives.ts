@@ -1,5 +1,5 @@
 import { api } from '../../config';
-import { RequestContext } from '../../types/requestContext';
+import { RequestContext } from '../../models/requestContext';
 
 export async function getArchives(rq: RequestContext): Promise<Response> {
   return fetch(

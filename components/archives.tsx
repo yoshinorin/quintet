@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Archive } from '../types/archive';
+import { Archive } from '../models/archive';
 import { convertUnixtimeToLocalDateSrting } from '../utils/time';
 import styles from '../styles/archives.module.scss';
 import inputStyles from '../styles/input.module.scss';

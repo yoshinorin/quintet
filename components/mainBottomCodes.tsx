@@ -1,5 +1,5 @@
 // import Script from 'next/script'
-import { ScriptCode } from '../types/script';
+import { ScriptCode } from '../models/script';
 
 const MainBottomCodesComponent: React.FunctionComponent<{ scriptCodes: Array<ScriptCode> }> = ({ scriptCodes }) => {
   if (!scriptCodes) {
