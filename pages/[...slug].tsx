@@ -6,7 +6,7 @@ import HeadMetaComponent from '../components/headmeta';
 import MainBottomCodesComponent from '../components/mainBottomCodes';
 import { ContentResponse, Content } from '../models/content';
 import { ScriptCode } from '../models/script';
-import { findByPath } from './api/content';
+import { findByPath } from '../api/content';
 import { getScriptCodes } from '../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../config';
 

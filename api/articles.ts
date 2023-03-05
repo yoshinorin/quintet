@@ -1,5 +1,5 @@
-import { api } from '../../config';
-import { RequestContext } from '../../models/requestContext';
+import { api } from '../config';
+import { RequestContext } from '../models/requestContext';
 
 export async function getArticles(p: number = 1, l: number = 10, rq: RequestContext): Promise<Response> {
   return fetch(

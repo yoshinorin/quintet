@@ -3,7 +3,7 @@ import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
 import PaginationComponent from '../../components/pagination';
-import { getArticles } from '../api/articles';
+import { getArticles } from '../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../models/article';
 import { getRequestContext } from '../../utils/requestContext';
 

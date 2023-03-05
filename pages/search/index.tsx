@@ -7,7 +7,7 @@ import { ContentCover } from '../../models/content';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
 import { SearchResponse, SearchResponseWithCount } from '../../models/search';
-import { search } from '../api/search';
+import { search } from '../../api/search';
 import inputStyles from '../../styles/input.module.scss';
 import containerStyles from '../../styles/components/container.module.scss';
 import SearchResultComponent from '../../components/searchResult';

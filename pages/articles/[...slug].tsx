@@ -7,7 +7,7 @@ import { ContentResponse, Content } from '../../models/content';
 import { ContentCover } from '../../models/content';
 import { ScriptCode } from '../../models/script';
 import { isIgnoreRequest } from '../../utils/filterRequests';
-import { findByPath } from '../api/content';
+import { findByPath } from '../../api/content';
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../config';
 

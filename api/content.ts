@@ -1,7 +1,7 @@
 import { NextApiRequest } from 'next';
-import { api } from '../../config';
-import { isIgnoreRequest } from '../../utils/filterRequests';
-import { getRequestContext } from '../../utils/requestContext';
+import { api } from '../config';
+import { isIgnoreRequest } from '../utils/filterRequests';
+import { getRequestContext } from '../utils/requestContext';
 
 export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
 

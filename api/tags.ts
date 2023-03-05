@@ -1,9 +1,9 @@
-import { api } from '../../config';
-import { RequestContext } from '../../models/requestContext';
+import { api } from '../config';
+import { RequestContext } from '../models/requestContext';
 
-export async function getArchives(rq: RequestContext): Promise<Response> {
+export async function getTags(rq: RequestContext): Promise<Response> {
   return fetch(
-    `${api.url}/archives`,
+    `${api.url}/tags/`,
     {
       method: 'GET',
       headers: {

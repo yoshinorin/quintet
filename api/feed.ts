@@ -1,5 +1,5 @@
-import { api } from '../../config';
-import { RequestContext } from '../../models/requestContext';
+import { api } from '../config';
+import { RequestContext } from '../models/requestContext';
 
 export async function getFeed(rq: RequestContext): Promise<Response> {
   // TODO: get feed dynamically

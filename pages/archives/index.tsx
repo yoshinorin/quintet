@@ -3,7 +3,7 @@ import Error from 'next/error';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArchivesComponent from '../../components/archives';
-import { getArchives } from '../api/archives';
+import { getArchives } from '../../api/archives';
 import { Archive, ArchiveResponse } from '../../models/archive';
 import { ContentCover } from '../../models/content';
 import { defaultRobotsMeta } from '../../config';

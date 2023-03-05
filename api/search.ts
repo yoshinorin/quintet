@@ -1,5 +1,5 @@
-import { api } from '../../config';
-import { RequestContext } from '../../models/requestContext';
+import { api } from '../config';
+import { RequestContext } from '../models/requestContext';
 
 export async function search(rq: RequestContext, query: Array<string>): Promise<Response> {
   const qs = query.map(q => `q=${q}`)
