@@ -3,7 +3,7 @@ import { PaginationNumbers } from '../../models/pagination';
 
 let x =
 
-test('calculate number of pagination', () => {
+test('calculate number of pagination: max pages 150 and current page is 10', () => {
   expect(calcNumberOfPages(150, 10))
   .toEqual(
     {
@@ -13,7 +13,7 @@ test('calculate number of pagination', () => {
   )
 });
 
-test('calculate number of pagination', () => {
+test('calculate number of pagination: max pages 151 and current page is 10', () => {
   expect(calcNumberOfPages(151, 10))
   .toEqual(
     {
@@ -23,7 +23,7 @@ test('calculate number of pagination', () => {
   )
 });
 
-test('calculate number of pagination', () => {
+test('calculate number of pagination: max pages 159 and current page is 10', () => {
   expect(calcNumberOfPages(159, 10))
   .toEqual(
     {
@@ -33,7 +33,7 @@ test('calculate number of pagination', () => {
   )
 });
 
-test('calculate number of pagination', () => {
+test('calculate number of pagination: max pages 1 and current page is 10', () => {
   expect(calcNumberOfPages(1, 10))
   .toEqual(
     {
@@ -43,7 +43,7 @@ test('calculate number of pagination', () => {
   )
 });
 
-test('calculate number of pagination', () => {
+test('calculate number of pagination: max pages 0 and current page is 10', () => {
   expect(calcNumberOfPages(0, 10))
   .toEqual(
     {
