@@ -29,25 +29,27 @@ $z-indexes: (
 
 $header:(
   'height': 1rem,
-  'border': 1px solid #eef2f8,
+  'border': 1px solid var(--header-border),
 );
 
 $main:(
   'padding-top':         0px,
-  'background-color':  #fcfcfc,
+  'background-color':    var(--background-color),
   'max-width':           900px,
   'padding-right-left':  2.5rem
 );
 
 $colors:(
-  'base':               #3e3c4a,
-  'light':              #35343f,
-  'link':               #1e90ff,
-  'headings':           #575663,
-  'archives-link':      #255c92,
-  'steel-gray':         #7a8a99,
-  'warning':            #f5aa0a,
-  'info':               #509dca,
+  'base':             var(--color-base),
+  'light':            var(--color-light),
+  'link':             var(--color-link),
+  'headings':         var(--color-headings),
+  'archives-link':    var(--color-archives-link),
+  'steel-gray':       var(--color-steel-gray),
+  'warning':          var(--color-warning),
+  'warning-op2':      var(--color-warning-op2),
+  'info':             var(--color-info),
+  'info-op2':         var(--color-info-op2),
 );
 
 $line-height:      1.9em;
@@ -55,29 +57,28 @@ $letter-spacing:   0.01em;
 
 // TODO: clean up
 $highlight: (
-  'base':                #4b4444,
-  'background':          #faf9f6,
-  'border-color':        #f1efea,
-  'border-light-color':  #dddad1,
-  'gutter-line-color':   #808080,
+  'base':                  var(--highlight-base),
+  'background':            var(--highlight-background),
+  'border-color':          var(--highlight-border),
+  'border-light':          var(--highlight-border-light),
   'font-size':             1.55rem,
   'border':                1px solid,
   'line-height':           1.3em
 );
 
 // TODO: clean up
-$highlight-colors: (
-  'night-rider':     #4c9244,
-  'bondi-blue':      #0086b3,
-  'persimmon':       #df5000,
-  'asparagus':       #63a35c,
-  'pewter':          #969896,
-  'cardinal':        #a71d5d,
-  'scampi':          #795da3,
-  'bahama-blue':     #1d3e81,
-  'egyptian-blue':   #183691,
-  'free-speech-red': #bd2c00,
-  'misty-rose':      #ffecec,
-  'limeade':         #55a532,
-  'honeydew':        #eaffea
+$highlight-font: (
+  'night-rider':     var(--highlight-font-night-rider),
+  'bondi-blue':      var(--highlight-font-bondi-blue),
+  'persimmon':       var(--highlight-font-persimmon),
+  'asparagus':       var(--highlight-font-asparagus),
+  'pewter':          var(--highlight-font-pewter),
+  'cardinal':        var(--highlight-font-cardinal),
+  'scampi':          var(--highlight-font-scampi),
+  'bahama-blue':     var(--highlight-font-bahama-blue),
+  'egyptian-blue':   var(--highlight-font-egyptian-blue),
+  'free-speech-red': var(--highlight-font-free-speech-red),
+  'misty-rose':      var(--highlight-font-misty-rose),
+  'limeade':         var(--highlight-font-limeade),
+  'honeydew':        var(--highlight-font-honeydew),
 );
