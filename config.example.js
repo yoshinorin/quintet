@@ -20,14 +20,6 @@ export const subTitle = 'your site subtitle'
 
 export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex"
 
-export const viewOnGithub = {
-  enable: true,
-  repoUrl: 'https://github.com/<yourName>/<repoName>',
-  apiUrl: 'https://api.github.com/repos/<yourName>/<repoName>/commits',
-  title: 'View on GitHub →'
-}
-
-
 export const archivesPage = {
   'titlePlaceholder': 'filter by title',
   'found': 'posts'

@@ -2,26 +2,18 @@ import Error from 'next/error';
 import HeadMetaComponent from '../components/headmeta';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import RecentArticlesComponent from '../components/recentArticles';
-import RecentCommitsComponent from '../components/recentCommits';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import { getArticles } from '../api/articles';
 import { Article, ArticleResponseWithCount } from '../models/article';
-import {
-  viewOnGithub,
-  defaultRobotsMeta
-} from '../config';
+import { defaultRobotsMeta } from '../config';
 import { getRequestContext } from '../utils/requestContext';
-import { getCommit } from '../api/commit';
-import { Commit } from '../models/commit';
 
 const Home: React.FunctionComponent<{
   statusCode: number,
   count: number,
-  articles: Array<Article>,
-  enableGitHubCommits: boolean,
-  commits: Array<Commit> | undefined
-}> = ({ statusCode, articles, enableGitHubCommits, commits }) => {
+  articles: Array<Article>
+}> = ({ statusCode, articles }) => {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
@@ -40,20 +32,6 @@ const Home: React.FunctionComponent<{
           <RecentArticlesComponent
             articles={articles}
           />
-          {
-            (() => {
-              if(enableGitHubCommits) {
-                return(
-                  <>
-                    <hr></hr>
-                    <RecentCommitsComponent
-                      commits={commits}
-                    />
-                  </>
-                )
-              }
-            })()
-          }
         </div>
       </main>
     </>
@@ -79,36 +57,10 @@ export async function getServerSideProps(ctx: any) {
     });
   }
 
-  let enableGitHubCommits = false;
-  let commits = [];
-  if (viewOnGithub.enable) {
-    try {
-      // TOOD: impl cache or request to github with access token
-      const response: Response = await getCommit();
-      if (response.status === 200) {
-        const responseJson = await response.json();
-        commits = responseJson.map(commit => {
-          return {
-            sha: commit['sha'],
-            url: commit['html_url'],
-            message: commit['commit']['message']
-          } as Commit
-        });
-        enableGitHubCommits = true;
-      }
-    } catch {
-      // Nothing to do
-    } finally {
-      enableGitHubCommits = commits.length > 0;
-    }
-  }
-
   return {
     props: {
       statusCode: response.status,
-      articles: articles,
-      enableGitHubCommits,
-      commits
+      articles: articles
     }
   }
 }
