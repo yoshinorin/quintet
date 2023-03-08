@@ -81,14 +81,3 @@ $highlight-colors: (
   'limeade':         #55a532,
   'honeydew':        #eaffea
 );
-
-// TODO: clean up
-$highlight-text-bg-colors: (
-  'red':     lighten(red, 45%),
-  'green':   lighten(green, 65%),
-  'blue':    lighten(blue, 45%),
-  'purple':  lighten(purple, 70%),
-  'orange':  lighten(orange, 40%),
-  'yellow':  lighten(yellow, 40%),
-  'cyan':    lighten(cyan, 40%)
-);
