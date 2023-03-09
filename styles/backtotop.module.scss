@@ -10,7 +10,7 @@
     background:     map-get($colors, 'base');
     border-radius:  50%;
     bottom:         15px;
-    color:        #fff;
+    color:          map-get($colors, 'white');
     cursor:         pointer;
     display:        block;
     width:          46px;

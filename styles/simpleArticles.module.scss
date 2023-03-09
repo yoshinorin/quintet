@@ -19,8 +19,8 @@
     font-size: 1.7rem;
   }
   .time {
-    font-size: 0.8em;
-    color: #939ba8;
+    font-size:  0.8em;
+    color:      map-get($articles-colors, 'time');
   }
 }
 

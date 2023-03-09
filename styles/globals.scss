@@ -33,7 +33,7 @@ h6 {
 
 h1 {
   margin: 2.7em 0 0.9em 0;
-  border-bottom: 0.02em solid #d6d6d6;
+  border-bottom: 0.02em solid map-get($border-colors, 'h1-border-bottom');
   line-height: 1.75em;
 }
 h2 {
@@ -132,15 +132,15 @@ table {
   th {
     padding:       0.1em 0.5em;
     font-weight:   bold;
-    border-bottom: 0.1em solid #909ba2;
+    border-bottom: 0.1em solid map-get($border-colors, 'th-border-bottom');
   }
   td {
     padding: 0.1em 0.5em;
   }
   tr {
-    background: #fff;
+    background:     map-get($table-colors, 'tr-background');
     &:nth-child(2n) {
-      background: #f3f1f2;
+      background:   map-get($table-colors, 'tr-background-secondary');
     }
   }
 }
@@ -149,7 +149,7 @@ hr {
   margin:     0.4em 0 0;
   outline:    none;
   border:     none;
-  border-top: 1px solid #ececec;
+  border-top: 1px solid map-get($border-colors, 'hr-border-top');
 }
 
 dl {
@@ -168,7 +168,7 @@ abbr {
 
 // TODO: move somewhere?
 blockquote {
-  border-left:   0.15em solid #86a5bd;
+  border-left:   0.15em solid map-get($border-colors, 'blockquote-border-left');
   padding:       0 1em;
   font-style:    italic;
   margin:        1.7em 0 1.7em 1.7em;
@@ -189,7 +189,7 @@ code {
   font-family:        $font-families-code;
   font-size:          map-get($font-size, small);
   color:              map-get($highlight, 'base');
-  background-color:  #efefef;
+  background-color:   map-get($code-basic-colors, 'background');
   border-radius:      2px;
   display:            inline;
   font-weight:        400;
@@ -284,7 +284,7 @@ figure.highlight,
   .built_in,
   .name,
   .tag {
-    color: #099bc7;
+    color: map-get($code-basic-colors, 'tag');
   }
   .literal,
   .number {
@@ -308,18 +308,18 @@ figure.highlight,
   .selector-attr,
   .selector-pseudo,
   .meta {
-    color: #2b91af;
+    color: map-get($code-basic-colors, 'meta');
   }
   .doctag {
-    color: #808080;
+    color: map-get($code-basic-colors, 'doctag');
   }
   .attr {
-    color: rgb(173, 50, 50);
+    color: map-get($code-basic-colors, 'attr');
   }
   .symbol,
   .bullet,
   .link {
-    color: #09a5d4;
+    color: map-get($code-basic-colors, 'link');
   }
   .emphasis {
     font-style: italic;

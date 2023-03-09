@@ -40,7 +40,7 @@
 .pagination .active span:hover,
 .pagination .active a:focus,
 .pagination .active span:focus {
-  color:              #fff;
+  color:              map-get($colors, 'white');
   background-color:   map-get($colors, 'base');
   border-radius:      12px;
 }

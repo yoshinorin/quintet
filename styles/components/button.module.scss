@@ -1,7 +1,10 @@
+@import
+    '../variables';
+
 .menu-button {
   border-radius:     0.2em;
   margin-right:      0.2em;
-  color:             rgb(73, 70, 84) !important;
+  color:             map-get($menu-button-colors, 'front') !important;
   display:           inline-block;
   font-size:         0.9em;
   font-weight:       400;
@@ -11,8 +14,8 @@
 }
 
 .menu-button:hover {
-  color:        #fff !important;
-  background:   rgb(214, 211, 211);
+  color:        map-get($menu-button-colors, 'front-hover') !important;
+  background:   map-get($menu-button-colors, 'background-hover');
 }
 
 .continue-read-button-wrap {

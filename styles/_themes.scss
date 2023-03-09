@@ -1,35 +1,76 @@
 // default color settings
 :root {
-  --background-color:        #fcfcfc;
-  --header-border:           #eef2f8;
+  --background-color:                       #fcfcfc;
+  --header-border:                          #eef2f8;
 
-  --color-base:              #3e3c4a;
-  --color-light:             #35343f;
-  --color-link:              #1e90ff;
-  --color-headings:          #575663;
-  --color-archives-link:     #255c92;
-  --color-steel-gray:        #7a8a99;
-  --color-warning:           #f5aa0a;
-  --color-warning-op2:       hsla(41, 92%, 50%, 0.2);
-  --color-info:              #509dca;
-  --color-info-op2:          hsla(202, 54%, 55%, 0.2);
+  --color-base:                             #3e3c4a;
+  --color-light:                            #35343f;
+  --color-link:                             #1e90ff;
+  --color-headings:                         #575663;
+  --color-archives-link:                    #255c92;
+  --color-steel-gray:                       #7a8a99;
+  --color-warning:                          #f5aa0a;
+  --color-warning-op2:                      hsla(41, 92%, 50%, 0.2);
+  --color-info:                             #509dca;
+  --color-info-op2:                         hsla(202, 54%, 55%, 0.2);
+  --color-white:                            #ffffff;
 
-  --highlight-base:          #4b4444;
-  --highlight-background:    #faf9f6;
-  --highlight-border:        #f1efea;
-  --highlight-border-light:  #dddad1;
+  --tr-background:                          #ffffff;
+  --tr-background-secondary:                #f3f1f2;
 
-  --highlight-font-night-rider:       #4c9244;
-  --highlight-font-bondi-blue:        #0086b3;
-  --highlight-font-persimmon:         #df5000;
-  --highlight-font-asparagus:         #63a35c;
-  --highlight-font-pewter:            #969896;
-  --highlight-font-cardinal:          #a71d5d;
-  --highlight-font-scampi:            #795da3;
-  --highlight-font-bahama-blue:       #1d3e81;
-  --highlight-font-egyptian-blue:     #183691;
-  --highlight-font-free-speech-red:   #bd2c00;
-  --highlight-font-misty-rose:        #ffecec;
-  --highlight-font-limeade:           #55a532;
-  --highlight-font-honeydew:          #eaffea;
+  --hr-border-top-color:                    #ececec;
+  --h1-border-bottom-color:                 #d6d6d6;
+  --th-border-bottom-color:                 #909ba2;
+  --text-box-border-bottom-color:           #bbbbbb;
+  --blockquote-border-left-color:           #86a5bd;
+
+  --home-background-color:                  #e4e4e4;
+
+  --cover-background-color:                 #070b19;
+  --cover-title-color:                      #ffffff;
+  --cover-meta-color:                       #ffffff;
+  --cover-tag-link-color:                   #ffffff;
+
+  --menu-button-color-front:                rgb(73, 70, 84);
+  --menu-button-color-front-hover:          #ffffff;
+  --menu-button-color-background-hover:     rgb(214, 211, 211);
+
+  --articles-meta-link-color:               #828d9e;
+  --articles-time-color:                    #939ba8;
+  --articles-excerpt-color:                 #7e7c8a;
+
+  --tag-front-color:                        #0c60a2;
+  --tag-front-hover-color:                  #ffffff;
+  --tag-background-color:                   #e8f5ff;
+  --tag-background-hover-color:             #0c78ce;
+
+  --footer-copyright-color:                 #bebec2;
+  --footer-copyright-link-color:            #ecebeb;
+  --footer-font-color:                      #ecebeb;
+
+  --code-basic-background-color:            #efefef;
+  --code-basic-tag-color:                   #099bc7;
+  --code-basic-meta-color:                  #2b91af;
+  --code-basic-doctag-color:                #808080;
+  --code-basic-attr-color:                  rgb(173, 50, 50);
+  --code-basic-link-color:                  #09a5d4;
+
+  --highlight-base:                         #4b4444;
+  --highlight-background:                   #faf9f6;
+  --highlight-border:                       #f1efea;
+  --highlight-border-light:                 #dddad1;
+
+  --highlight-font-night-rider:             #4c9244;
+  --highlight-font-bondi-blue:              #0086b3;
+  --highlight-font-persimmon:               #df5000;
+  --highlight-font-asparagus:               #63a35c;
+  --highlight-font-pewter:                  #969896;
+  --highlight-font-cardinal:                #a71d5d;
+  --highlight-font-scampi:                  #795da3;
+  --highlight-font-bahama-blue:             #1d3e81;
+  --highlight-font-egyptian-blue:           #183691;
+  --highlight-font-free-speech-red:         #bd2c00;
+  --highlight-font-misty-rose:              #ffecec;
+  --highlight-font-limeade:                 #55a532;
+  --highlight-font-honeydew:                #eaffea;
 }

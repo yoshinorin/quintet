@@ -25,22 +25,22 @@
     margin: 0.2em 0 0 0;
     line-height: 1.5em;
     a {
-      color: #828d9e;
+      color:     map-get($articles-colors, 'meta-link');
     }
   }
   .meta,
   .time {
-    font-size: 0.8em;
-    color: #939ba8;
+    font-size:   0.8em;
+    color:       map-get($articles-colors, 'time');
   }
   .meta {
     font-size:   map-get($font-size, small);
     font-weight: 400;
   }
   .excerpt {
-    margin-top: 0.8em;
+    margin-top:     0.8em;
     letter-spacing: 0.08em;
-    color:          #7e7c8a;
+    color:          map-get($articles-colors, 'excerpt');
     font-size:      1.65rem;
     font-weight:    400;
     overflow:       hidden;

@@ -27,6 +27,9 @@ $z-indexes: (
   'header': 100
 );
 
+$line-height:      1.9em;
+$letter-spacing:   0.01em;
+
 $header:(
   'height': 1rem,
   'border': 1px solid var(--header-border),
@@ -37,6 +40,11 @@ $main:(
   'background-color':    var(--background-color),
   'max-width':           900px,
   'padding-right-left':  2.5rem
+);
+
+$table-colors:(
+  'tr-background':              var(--tr-background),
+  'tr-background-secondary':    var(--tr-background-secondary),
 );
 
 $colors:(
@@ -50,10 +58,25 @@ $colors:(
   'warning-op2':      var(--color-warning-op2),
   'info':             var(--color-info),
   'info-op2':         var(--color-info-op2),
+  'white':            var(--color-white),
 );
 
-$line-height:      1.9em;
-$letter-spacing:   0.01em;
+$border-colors: (
+  'hr-border-top':             var(--hr-border-top-color),
+  'h1-border-bottom':          var(--h1-border-bottom-color),
+  'th-border-bottom':          var(--th-border-bottom-color),
+  'text-box-border-bottom':    var(--text-box-border-bottom-color),
+  'blockquote-border-left':    var(--blockquote-border-left-color),
+);
+
+$code-basic-colors:(
+  'background':                var(--code-basic-background-color),
+  'tag':                       var(--code-basic-tag-color),
+  'meta':                      var(--code-basic-meta-color),
+  'doctag':                    var(--code-basic-doctag-color),
+  'attr':                      var(--code-basic-attr-color),
+  'link':                      var(--code-basic-link-color),
+);
 
 // TODO: clean up
 $highlight: (
@@ -68,17 +91,53 @@ $highlight: (
 
 // TODO: clean up
 $highlight-font: (
-  'night-rider':     var(--highlight-font-night-rider),
-  'bondi-blue':      var(--highlight-font-bondi-blue),
-  'persimmon':       var(--highlight-font-persimmon),
-  'asparagus':       var(--highlight-font-asparagus),
-  'pewter':          var(--highlight-font-pewter),
-  'cardinal':        var(--highlight-font-cardinal),
-  'scampi':          var(--highlight-font-scampi),
-  'bahama-blue':     var(--highlight-font-bahama-blue),
-  'egyptian-blue':   var(--highlight-font-egyptian-blue),
-  'free-speech-red': var(--highlight-font-free-speech-red),
-  'misty-rose':      var(--highlight-font-misty-rose),
-  'limeade':         var(--highlight-font-limeade),
-  'honeydew':        var(--highlight-font-honeydew),
+  'night-rider':           var(--highlight-font-night-rider),
+  'bondi-blue':            var(--highlight-font-bondi-blue),
+  'persimmon':             var(--highlight-font-persimmon),
+  'asparagus':             var(--highlight-font-asparagus),
+  'pewter':                var(--highlight-font-pewter),
+  'cardinal':              var(--highlight-font-cardinal),
+  'scampi':                var(--highlight-font-scampi),
+  'bahama-blue':           var(--highlight-font-bahama-blue),
+  'egyptian-blue':         var(--highlight-font-egyptian-blue),
+  'free-speech-red':       var(--highlight-font-free-speech-red),
+  'misty-rose':            var(--highlight-font-misty-rose),
+  'limeade':               var(--highlight-font-limeade),
+  'honeydew':              var(--highlight-font-honeydew),
+);
+
+$home-colors: (
+  'background':            var(--home-background-color),
+);
+
+$cover-colors: (
+  'background':            var(--cover-background-color),
+  'title':                 var(--cover-title-color),
+  'meta':                  var(--cover-meta-color),
+  'tag-link':              var(--cover-tag-link-color),
+);
+
+$menu-button-colors: (
+  'front':                 var(--menu-button-color-front),
+  'front-hover':           var(--menu-button-color-front-hover),
+  'background-hover':      var(--menu-button-color-background-hover),
+);
+
+$articles-colors: (
+  'meta-link':             var(--articles-meta-link-color),
+  'time':                  var(--articles-time-color),
+  'excerpt':               var(--articles-excerpt-color),
+);
+
+$tag-colors: (
+  'front':                 var(--tag-front-color),
+  'front-hover':           var(--tag-front-hover-color),
+  'background':            var(--tag-background-color),
+  'background-hover':      var(--tag-background-hover-color),
+);
+
+$footer-colors: (
+  'copyright':              var(--footer-copyright-color),
+  'copyright-link':         var(--footer-copyright-link-color),
+  'font':                   var(--footer-font-color),
 );

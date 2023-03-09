@@ -12,10 +12,10 @@
   padding:    40px 5px 40px 5px;
 
   .copyrights {
-    padding-top: 65px;
-    color: #bebec2;
+    padding-top:  65px;
+    color:        map-get($footer-colors, 'copyright');
     a {
-      color: #ecebeb;
+      color:      map-get($footer-colors, 'copyright-link');
     }
   }
 }
@@ -27,7 +27,7 @@
 }
 
 .flex-container .footer-item {
-  color: #ecebeb !important;
-  font-size: 13px;
-  width: 33%;
+  color:       map-get($footer-colors, 'font') !important;
+  font-size:   13px;
+  width:       33%;
 }

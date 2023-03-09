@@ -6,7 +6,7 @@
   position:                    relative;
   top:                         0;
   left:                        0;
-  background:                  #070b19;
+  background:                  map-get($cover-colors, 'background');
   background-size:             cover;
   background-position:         center;
   background-repeat:           no-repeat;
@@ -29,7 +29,7 @@
     .site-meta {
       max-width:      map-get($main, 'max-width');
       font-size:      1.3rem;
-      color:          #fff !important;
+      color:          map-get($cover-colors, 'meta') !important;
       font-weight:    400;
       letter-spacing: 0.05em;
       margin:         0 auto;
@@ -37,7 +37,7 @@
     }
     .content-title {
       margin:        0 auto;
-      color:         #fff;
+      color:         map-get($cover-colors, 'title');
       font-size:     2.5rem;
       max-width:     map-get($main, 'max-width');
       margin-bottom: 0.3em;
@@ -46,7 +46,7 @@
     .content-meta {
       max-width:      map-get($main, 'max-width');
       font-size:      1.6rem;
-      color:          #fff !important;
+      color:          map-get($cover-colors, 'meta') !important;
       font-weight:    400;
       font-style:     italic;
       letter-spacing: 0.05em;
@@ -59,7 +59,7 @@
     margin-top:      1.5em;
     font-style:     italic;
     a {
-      color:        #fff;
+      color:          map-get($cover-colors, 'tag-link');
       margin:         2px 2px 2px 2px;
       font-size:      1.5rem;
       opacity:        0.6;
