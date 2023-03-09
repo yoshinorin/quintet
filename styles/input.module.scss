@@ -11,7 +11,7 @@
   width:           100%;
   border:          none;
   outline:         none;
-  color:           map-get($colors, base);
+  color:           map-get($basic-colors, base);
   font-size:       map-get($font-size, xxlarge);
   font-weight:     400;
 

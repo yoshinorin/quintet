@@ -23,16 +23,16 @@
     line-height: 1.5em;
     font-size:   map-get($font-size, small);
     font-weight: 400;
-    color:       map-get($colors, light);
+    color:       map-get($basic-colors, light);
 
     a {
-      color: map-get($colors, light);
+      color: map-get($basic-colors, light);
     }
   }
   .content-main {
     text-rendering: optimizelegibility;
     letter-spacing: 0.03em;
-    color:          map-get($colors, base);
+    color:          map-get($basic-colors, base);
     margin-top:     1em;
     font-weight:    400;
     overflow:       hidden;

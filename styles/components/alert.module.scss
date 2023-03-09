@@ -28,22 +28,22 @@
     }
   }
   &.info {
-    border-color:     map-get($colors, 'info');
-    background-color: map-get($colors, 'info-op2');
+    border-color:     map-get($basic-colors, 'info');
+    background-color: map-get($basic-colors, 'info-op2');
     &:not(.no-icon) {
       &:before {
         content: "◆";
-        color:   map-get($colors, 'info');
+        color:   map-get($basic-colors, 'info');
       }
     }
   }
   &.warning {
-    border-color:     map-get($colors, 'warning');
-    background-color: map-get($colors, 'warning-op2');
+    border-color:     map-get($basic-colors, 'warning');
+    background-color: map-get($basic-colors, 'warning-op2');
     &:not(.no-icon) {
       &:before {
         content: "▲";
-        color:   map-get($colors, 'warning');
+        color:   map-get($basic-colors, 'warning');
       }
     }
   }

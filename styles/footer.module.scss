@@ -2,8 +2,8 @@
     '_variables';
 
 #footer {
-  background: map-get($colors, base);
-  color:      map-get($colors, steel-gray);
+  background: map-get($basic-colors, base);
+  color:      map-get($basic-colors, steel-gray);
   font-size:  map-get($font-size, medium);
   text-align: center;
   margin-top: 40px;

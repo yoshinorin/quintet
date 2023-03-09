@@ -42,23 +42,23 @@ $main:(
   'padding-right-left':  2.5rem
 );
 
+$basic-colors:(
+  'base':             var(--color-basic-base),
+  'light':            var(--color-basic-light),
+  'link':             var(--color-basic-link),
+  'headings':         var(--color-basic-headings),
+  'archives-link':    var(--color-basic-archives-link),
+  'steel-gray':       var(--color-basic-steel-gray),
+  'warning':          var(--color-basic-warning),
+  'warning-op2':      var(--color-basic-warning-op2),
+  'info':             var(--color-basic-info),
+  'info-op2':         var(--color-basic-info-op2),
+  'white':            var(--color-basic-white),
+);
+
 $table-colors:(
   'tr-background':              var(--tr-background),
   'tr-background-secondary':    var(--tr-background-secondary),
-);
-
-$colors:(
-  'base':             var(--color-base),
-  'light':            var(--color-light),
-  'link':             var(--color-link),
-  'headings':         var(--color-headings),
-  'archives-link':    var(--color-archives-link),
-  'steel-gray':       var(--color-steel-gray),
-  'warning':          var(--color-warning),
-  'warning-op2':      var(--color-warning-op2),
-  'info':             var(--color-info),
-  'info-op2':         var(--color-info-op2),
-  'white':            var(--color-white),
 );
 
 $border-colors: (
@@ -78,19 +78,20 @@ $code-basic-colors:(
   'link':                      var(--code-basic-link-color),
 );
 
-// TODO: clean up
 $highlight: (
-  'base':                  var(--highlight-base),
-  'background':            var(--highlight-background),
-  'border-color':          var(--highlight-border),
-  'border-light':          var(--highlight-border-light),
   'font-size':             1.55rem,
   'border':                1px solid,
   'line-height':           1.3em
 );
 
-// TODO: clean up
-$highlight-font: (
+$highlight-colors:(
+  'base':                  var(--highlight-base),
+  'background':            var(--highlight-background),
+  'border-color':          var(--highlight-border),
+  'border-light':          var(--highlight-border-light),
+);
+
+$highlight-font-colors: (
   'night-rider':           var(--highlight-font-night-rider),
   'bondi-blue':            var(--highlight-font-bondi-blue),
   'persimmon':             var(--highlight-font-persimmon),
