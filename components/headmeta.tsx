@@ -34,9 +34,8 @@ const HeadMetaComponent: React.FunctionComponent<{
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
   }
-  const hasExternalResources = (externalResources && externalResourcesConfig)
   let externalResourceMetas: Array<ScriptSrc> = [];
-  if(hasExternalResources) {
+  if(externalResources && externalResourcesConfig) {
     // NOTE: currently support only <script> tag
     externalResourceMetas = getScriptTags(externalResources, externalResourcesConfig);
   }
