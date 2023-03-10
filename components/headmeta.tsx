@@ -46,36 +46,37 @@ const HeadMetaComponent: React.FunctionComponent<{
   return(
     <Head>
       <meta charSet="UTF-8"/>
-      { hasContent ?
-        <title key="title">{content.title}</title>
-        :
-        <title key="title">{siteName}</title>
+      {
+        (() => {
+          if (hasContent) {
+            return(
+              <>
+                <title key="title">{content.title}</title>
+                <meta name="author" content={content.authorName}/>
+                <meta property="article:author" content={content.authorName} key="article:author" />
+                <meta name="description" content={content.description} key="description" />
+                <meta property="og:description" content={content.description} key="og:description" />
+                <meta property="og:title" content={content.title} key="og:title" />
+                <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" />
+                <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" />
+              </>
+            );
+          } else {
+            return(
+              <>
+                <title key="title">{siteName}</title>
+                <meta name="author" content={mainAuthor}/>
+                <meta property="article:author" content={mainAuthor} key="article:author" />
+                <meta property="og:title" content={siteName} key="og:title" />
+              </>
+            );
+          }
+        })()
       }
-      { hasContent ?
-        <meta name="author" content={content.authorName}/>
-        :
-        <meta name="author" content={mainAuthor}/>
-      }
-
-      <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-      { hasContent && <meta name="description" content={content.description} key="description" /> }
       <meta property="og:type" content={siteType}/>
-      { hasContent ?
-        <meta property="og:title" content={content.title} key="og:title" />
-        :
-        <meta property="og:title" content={siteName} key="og:title" />
-      }
       <meta property="og:url" content={currentUrl} key="og:url" />
       <meta property="og:site_name" content={siteName} key="og:site_name" />
-      { hasContent && <meta property="og:description" content={content.description} key="og:description" /> }
       <meta property="og:locale" content={locale}/>
-      { hasContent && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" /> }
-      { hasContent && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" /> }
-      { hasContent ?
-        <meta property="article:author" content={content.authorName} key="article:author" />
-        :
-        <meta property="article:author" content={mainAuthor} key="article:author" />
-      }
       {
         (() => {
           if (hasContent && content.tags) {
@@ -105,6 +106,7 @@ const HeadMetaComponent: React.FunctionComponent<{
           }
         })()
       }
+      <link href={favicon['url']} rel="icon" type={favicon['type']}/>
       <HeaderScriptSrcsComponent
         scriptSrcs={externalResourceMetas}
       />
