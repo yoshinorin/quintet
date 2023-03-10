@@ -19,9 +19,17 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
                   <h1 className={`${styles['content-title']}`}>
                     {contentCover.title}
                   </h1>
-                  <span className={`${styles['content-meta']}`}>
-                    { convertUnixtimeToDate(contentCover.publishedAt).toUTCString() }
-                  </span>
+                  {
+                    (() => {
+                      if (contentCover.publishedAt) {
+                        return(
+                          <span className={`${styles['content-meta']}`}>
+                            { convertUnixtimeToDate(contentCover.publishedAt).toUTCString() }
+                          </span>
+                        )
+                      }
+                    })()
+                  }
                   {
                     (() => {
                       if (contentCover.tags) {
