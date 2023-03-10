@@ -6,7 +6,6 @@ import ArticlesComponent from '../../components/articles';
 import PaginationComponent from '../../components/pagination';
 import { getArticlesByTagName } from '../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../models/article';
-import { ContentCover } from '../../models/content';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
 
@@ -15,19 +14,17 @@ export default function Page({ statusCode, tagName, currentPage, count, articles
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
-  const contentCover = {
-    title: "Tags",
-    tags: null,
-    publishedAt: null,
-  } as ContentCover;
-
   return (
     <>
       <HeadMetaComponent
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent
-        contentCover={contentCover}
+        contentCover={{
+          title: "Tags",
+          tags: null,
+          publishedAt: null,
+        }}
       />
       <main>
         <ArticlesComponent

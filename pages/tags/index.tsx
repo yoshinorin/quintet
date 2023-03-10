@@ -6,7 +6,6 @@ import TagsComponent from '../../components/tags';
 import { Tag } from '../../models/tag';
 import { defaultRobotsMeta } from '../../config';
 import { getTags } from '../../api/tags';
-import { ContentCover } from '../../models/content';
 import { getRequestContext } from '../../utils/requestContext';
 
 export default function Page({ statusCode, tags }) {
@@ -14,11 +13,6 @@ export default function Page({ statusCode, tags }) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
-  const contentCover = {
-    title: "Tags",
-    tags: null,
-    publishedAt: null,
-  } as ContentCover;
 
   return (
     <>
@@ -26,7 +20,11 @@ export default function Page({ statusCode, tags }) {
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent
-        contentCover={contentCover}
+        contentCover={{
+          title: "Tags",
+          tags: null,
+          publishedAt: null,
+        }}
       />
       <main>
         <TagsComponent

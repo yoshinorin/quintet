@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
-import { ContentCover } from '../../models/content';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
 import { SearchResponse, SearchResponseWithCount } from '../../models/search';
@@ -24,12 +23,6 @@ const Page: React.FunctionComponent<{
   contents: Array<SearchResponse>,
   queryStrings: Array<string>
 }> = ({ statusCode, hits, count, contents, queryStrings }) => {
-  const contentCover = {
-    title: "Search (β)",
-    tags: null,
-    publishedAt: null,
-  } as ContentCover;
-
   let contentsWithCount: SearchResponseWithCount = emptyResult;
   const router = useRouter();
   const [searchWord, setSearchWord] = useState(queryStrings.join(' '));
@@ -55,7 +48,11 @@ const Page: React.FunctionComponent<{
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent
-        contentCover={contentCover}
+        contentCover={{
+          title: "Search (β)",
+          tags: null,
+          publishedAt: null,
+        }}
       />
       <main>
         <section className={`${containerStyles.container}`}>

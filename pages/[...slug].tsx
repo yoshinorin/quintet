@@ -1,5 +1,4 @@
 import Error from 'next/error';
-import { ContentCover } from '../models/content';
 import ContentComponent from '../components/content';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import HeadMetaComponent from '../components/headmeta';
@@ -15,11 +14,6 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
-  const contentCover = {
-    title: content.title,
-    tags: null,
-    publishedAt: content.publishedAt,
-  } as ContentCover;
 
   let externalResourceCodes: Array<ScriptCode> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
@@ -34,7 +28,11 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
         content={content}
       />
       <CoverWithNavigationComponent
-        contentCover={contentCover}
+        contentCover={{
+          title: content.title,
+          tags: null,
+          publishedAt: content.publishedAt,
+        }}
       />
       <main>
         <ContentComponent

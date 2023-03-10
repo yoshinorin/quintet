@@ -4,7 +4,6 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import HeadMetaComponent from '../../components/headmeta';
 import MainBottomCodesComponent from '../../components/mainBottomCodes';
 import { ContentResponse, Content } from '../../models/content';
-import { ContentCover } from '../../models/content';
 import { ScriptCode } from '../../models/script';
 import { isIgnoreRequest } from '../../utils/filterRequests';
 import { findByPath } from '../../api/content';
@@ -16,11 +15,6 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
-  const contentCover = {
-    title: content.title,
-    tags: content.tags,
-    publishedAt: content.publishedAt,
-  } as ContentCover;
 
   let externalResourceCodes: Array<ScriptCode> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
@@ -35,7 +29,11 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
         content={content}
       />
       <CoverWithNavigationComponent
-        contentCover={contentCover}
+        contentCover={{
+          title: content.title,
+          tags: content.tags,
+          publishedAt: content.publishedAt,
+        }}
       />
       <main>
         <ContentComponent

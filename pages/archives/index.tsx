@@ -5,7 +5,6 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import ArchivesComponent from '../../components/archives';
 import { getArchives } from '../../api/archives';
 import { Archive, ArchiveResponse } from '../../models/archive';
-import { ContentCover } from '../../models/content';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
 
@@ -14,11 +13,6 @@ const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archiv
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
   }
-  const contentCover = {
-    title: "Archives",
-    tags: null,
-    publishedAt: null,
-  } as ContentCover;
 
   return (
     <>
@@ -26,7 +20,11 @@ const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archiv
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent
-        contentCover={contentCover}
+        contentCover={{
+          title: "Archives",
+          tags: null,
+          publishedAt: null,
+        }}
       />
       <main>
         {/* TODO: implement search conditions component */}
