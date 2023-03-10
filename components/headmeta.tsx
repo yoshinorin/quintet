@@ -39,46 +39,46 @@ const HeadMetaComponent: React.FunctionComponent<{
     // NOTE: currently support only <script> tag
     externalResourceMetas = getScriptTags(externalResources, externalResourcesConfig);
   }
-  const hasContentMeta = content ? true : false;
+  const hasContent = content ? true : false;
   /*
     TODO: JSON+LD
   */
   return(
     <Head>
       <meta charSet="UTF-8"/>
-      { hasContentMeta ?
+      { hasContent ?
         <title key="title">{content.title}</title>
         :
         <title key="title">{siteName}</title>
       }
-      { hasContentMeta ?
+      { hasContent ?
         <meta name="author" content={content.authorName}/>
         :
         <meta name="author" content={mainAuthor}/>
       }
 
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-      { hasContentMeta && <meta name="description" content={content.description} key="description" /> }
+      { hasContent && <meta name="description" content={content.description} key="description" /> }
       <meta property="og:type" content={siteType}/>
-      { hasContentMeta ?
+      { hasContent ?
         <meta property="og:title" content={content.title} key="og:title" />
         :
         <meta property="og:title" content={siteName} key="og:title" />
       }
       <meta property="og:url" content={currentUrl} key="og:url" />
       <meta property="og:site_name" content={siteName} key="og:site_name" />
-      { hasContentMeta && <meta property="og:description" content={content.description} key="og:description" /> }
+      { hasContent && <meta property="og:description" content={content.description} key="og:description" /> }
       <meta property="og:locale" content={locale}/>
-      { hasContentMeta && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" /> }
-      { hasContentMeta && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" /> }
-      { hasContentMeta ?
+      { hasContent && <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" /> }
+      { hasContent && <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" /> }
+      { hasContent ?
         <meta property="article:author" content={content.authorName} key="article:author" />
         :
         <meta property="article:author" content={mainAuthor} key="article:author" />
       }
       {
         (() => {
-          if (hasContentMeta && content.tags) {
+          if (hasContent && content.tags) {
             return(
               content.tags.map((t => {
                 return(
