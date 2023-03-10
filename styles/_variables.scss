@@ -118,6 +118,10 @@ $cover-colors: (
   'tag-link':              var(--cover-tag-link-color),
 );
 
+$navigation-colors: (
+  'background':            var(--navigation-background-color),
+);
+
 $menu-button-colors: (
   'front':                 var(--menu-button-color-front),
   'front-hover':           var(--menu-button-color-front-hover),

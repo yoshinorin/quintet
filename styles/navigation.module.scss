@@ -63,3 +63,7 @@
   justify-content: flex-end;
   margin-left: auto;
 }
+
+.cover-bottom-nav {
+  background:   map-get($navigation-colors, 'background');
+}

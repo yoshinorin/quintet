@@ -1,6 +1,7 @@
 import CoverComponent from './index';
 import { ContentCover } from '../../models/content';
 import NavigationComponent from '../navigation';
+import styles from '../../styles/navigation.module.scss';
 import { coverBottomItems } from '../../config';
 
 const CoverWithNavigationComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
@@ -9,8 +10,7 @@ const CoverWithNavigationComponent: React.FunctionComponent<{ contentCover: Cont
       <CoverComponent
         contentCover={contentCover}
       />
-      {/* TODO: aboid inlins tyle */}
-      <div style={{background: '#f7f7f7'}}>
+      <div className={styles['cover-bottom-nav']}>
         <NavigationComponent
           items={coverBottomItems}
         />
