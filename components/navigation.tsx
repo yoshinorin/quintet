@@ -9,15 +9,11 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
           <div className={styles['navbar-start']}>
             <div className={styles['navbar-item']}>
               {items.filter(item => item.position == 'left').map((item, idx) => {
-                return (
-                  <Link
-                    prefetch={false}
-                    href={item.url}
-                    key={idx}
-                    className={`${styles['nav-icon']}`}
-                    title={item.title}
-                    dangerouslySetInnerHTML={{ __html: item.content }}>
-                  </Link>
+                return(
+                  <NavbarItem
+                    item = {item}
+                    idx = {idx}
+                  />
                 );
               })}
             </div>
@@ -25,22 +21,33 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
           <div className={styles['navbar-end']}>
             <div className={styles['navbar-item']}>
               {items.filter(item => item.position == 'right').map((item, idx) => {
-                  return (
-                    <Link
-                      href={item.url}
-                      prefetch={false}
-                      key={idx}
-                      className={`${styles['nav-icon']}`}
-                      title={item.title}
-                      dangerouslySetInnerHTML={{ __html: item.content }}>
-                    </Link>
-                  );
-                })}
+                return(
+                  <NavbarItem
+                    item = {item}
+                    idx = {idx}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
       </nav>
     </div>
+  );
+}
+
+const NavbarItem: React.FunctionComponent<{ item, idx }> = ({ item, idx }) => {
+  return (
+    <>
+      <Link
+        href={item.url}
+        prefetch={false}
+        key={idx}
+        className={`${styles['nav-icon']}`}
+        title={item.title}
+        dangerouslySetInnerHTML={{ __html: item.content }}>
+      </Link>
+    </>
   );
 }
 
