@@ -46,6 +46,7 @@ $basic-colors:(
   'base':             var(--color-basic-base),
   'light':            var(--color-basic-light),
   'link':             var(--color-basic-link),
+  'unstyled-link':    var(--color-basic-unstyled-link),
   'headings':         var(--color-basic-headings),
   'archives-link':    var(--color-basic-archives-link),
   'steel-gray':       var(--color-basic-steel-gray),
@@ -142,6 +143,7 @@ $tag-colors: (
 );
 
 $footer-colors: (
+  'background':             var(--footer-backgrount-color),
   'copyright':              var(--footer-copyright-color),
   'copyright-link':         var(--footer-copyright-link-color),
   'font':                   var(--footer-font-color),

@@ -16,6 +16,7 @@ body {
   font-size:      map-get($font-size, xlarge);
   line-height:    $line-height;
   letter-spacing: $letter-spacing;
+  color:            map-get($basic-colors, 'base');
   background-color: map-get($main, background-color);
 }
 
@@ -95,11 +96,11 @@ a {
   &:active,
   &:visited {
       cursor:          pointer;
-      color:           map-get($basic-colors, link);
+      color:           map-get($basic-colors, 'unstyled-link');
       text-decoration: none;
   }
   &:hover {
-      color:           map-get($basic-colors, link);
+      color:           map-get($basic-colors, 'unstyled-link');
       text-decoration: underline;
   }
 }
