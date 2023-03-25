@@ -1,4 +1,4 @@
-// default color settings
+// default color settings (light)
 :root {
   --background-color:                       #fcfcfc;
   --header-border:                          #eef2f8;
@@ -77,4 +77,49 @@
   --highlight-font-misty-rose:              #ffecec;
   --highlight-font-limeade:                 #55a532;
   --highlight-font-honeydew:                #eaffea;
+}
+
+:root [data-theme=dark] {
+  --color-basic-base:                     #aab2b9;
+  --color-basic-headings:                 #989da1;
+  --color-basic-link:                     #b44b30;
+  --color-basic-unstyled-link:            #b44b30;
+  --code-basic-background-color:          #494949;
+  --code-basic-tag-color:                 #099bc7;
+  --code-basic-meta-color:                #4c6e79;
+  --code-basic-doctag-color:              #808080;
+  --code-basic-attr-color:                rgb(173, 50, 50);
+  --code-basic-link-color:                #09a5d4;
+
+  --tr-background:                        #54535a62;
+  --tr-background-secondary:              #565161;
+
+  --cover-title-color:                    #dbdbdb;
+  --cover-meta-color:                     #d4d4d4;
+  --cover-tag-link-color:                 #d4d4d4;
+
+  --footer-backgrount-color:              #140f16;
+
+  --highlight-base:                       #cacaca;
+  --highlight-background:                 #242424;
+  --highlight-border:                     #505050;
+  --highlight-border-light:               #636363;
+
+  --highlight-font-night-rider:           #4c9244;
+  --highlight-font-bondi-blue:            #0086b3;
+  --highlight-font-persimmon:             #df5000;
+  --highlight-font-asparagus:             #63a35c;
+  --highlight-font-pewter:                #969896;
+  --highlight-font-cardinal:              #a71d5d;
+  --highlight-font-scampi:                #795da3;
+  --highlight-font-bahama-blue:           #718bbe;
+  --highlight-font-egyptian-blue:         #a1957b;
+  --highlight-font-free-speech-red:       #bd2c00;
+  --highlight-font-misty-rose:            #ffecec;
+  --highlight-font-limeade:               #315c1f;
+  --highlight-font-honeydew:              #eaffea;
+
+  --navigation-background-color:          #21262d;
+  --menu-button-color-front:              #d4d4d4;
+  --background-color:                     #161b22;
 }
