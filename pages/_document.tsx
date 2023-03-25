@@ -3,10 +3,16 @@ import { lang } from '../config';
 
 class MyDocument extends Document {
   render() {
+    let theme = 'light';
+    try {
+      theme = localStorage.getItem('theme');
+    } catch(e) {
+      // Nothing to do
+    };
     return (
       <Html lang={lang}>
         <Head />
-        <body>
+        <body data-theme={`${theme}`}>
           <Main />
           <NextScript />
         </body>
