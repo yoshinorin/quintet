@@ -32,6 +32,8 @@ const Page: React.FunctionComponent<{ }> = ({ }) => {
       />
       <main>
         <section className={`${containerStyles['container']}`}>
+          <h2>Theme preferences</h2>
+          <hr/>
           <form className={`${inputStyles['form']}`}>
             <DropdownComponent
               list={['light', 'dark']}

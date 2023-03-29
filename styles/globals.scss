@@ -162,6 +162,15 @@ dl {
   }
 }
 
+select {
+  font-size:      map-get($font-size, xxlarge);
+  color:          map-get($basic-colors, 'base');
+  background:     transparent;
+  border:         0.1em solid map-get($basic-colors, 'base');
+  border-radius:  0.5rem;
+  padding:        0.4rem 2.7rem 0.4rem 0.7rem;
+}
+
 acronym,
 abbr {
   border-bottom: 0.1em dotted map-get($basic-colors, 'base');
