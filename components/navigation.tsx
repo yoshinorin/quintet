@@ -38,16 +38,14 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
 
 const NavbarItem: React.FunctionComponent<{ item, idx }> = ({ item, idx }) => {
   return (
-    <>
-      <Link
-        href={item.url}
-        prefetch={false}
-        key={idx}
-        className={`${styles['nav-icon']}`}
-        title={item.title}
-        dangerouslySetInnerHTML={{ __html: item.content }}>
-      </Link>
-    </>
+    <Link
+      href={item.url}
+      prefetch={false}
+      key={idx}
+      className={`${styles['nav-icon']}`}
+      title={item.title}
+      dangerouslySetInnerHTML={{ __html: item.content }}>
+    </Link>
   );
 }
 
