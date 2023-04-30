@@ -52,7 +52,7 @@ const HeadMetaComponent: React.FunctionComponent<{
             return(
               <>
                 <title key="title">{content.title}</title>
-                <meta name="author" content={content.authorName}/>
+                <meta name="author" content={content.authorName} key="author" />
                 <meta property="article:author" content={content.authorName} key="article:author" />
                 <meta name="description" content={content.description} key="description" />
                 <meta property="og:description" content={content.description} key="og:description" />
@@ -65,7 +65,7 @@ const HeadMetaComponent: React.FunctionComponent<{
             return(
               <>
                 <title key="title">{siteName}</title>
-                <meta name="author" content={mainAuthor}/>
+                <meta name="author" content={mainAuthor} key="author" />
                 <meta property="article:author" content={mainAuthor} key="article:author" />
                 <meta property="og:title" content={siteName} key="og:title" />
               </>
@@ -73,10 +73,10 @@ const HeadMetaComponent: React.FunctionComponent<{
           }
         })()
       }
-      <meta property="og:type" content={siteType}/>
+      <meta property="og:type" content={siteType} key="og:type" />
       <meta property="og:url" content={currentUrl} key="og:url" />
       <meta property="og:site_name" content={siteName} key="og:site_name" />
-      <meta property="og:locale" content={locale}/>
+      <meta property="og:locale" content={locale} key="og:locale" />
       {
         (() => {
           if (hasContent && content.tags) {
@@ -90,7 +90,7 @@ const HeadMetaComponent: React.FunctionComponent<{
           }
         })()
       }
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
       <meta property="og:image" content={defaultImage} key="og:image" />
       <meta name="robots" content={robotsMeta} key="robots" />
       {
@@ -99,7 +99,7 @@ const HeadMetaComponent: React.FunctionComponent<{
             return(
               injectMetas.map((m => {
                 return(
-                  <meta name={m.name} content={m.content} />
+                  <meta name={m.name} content={m.content} key={m.name} />
                 )
               }))
             )
