@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: ['18.x']
+        node-version: ['18.x', '20.x']
     steps:
       - name: Cache node modules
         uses: actions/cache@v2
@@ -37,7 +37,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: ['18.x']
+        node-version: ['18.x', '20.x']
     steps:
       - name: Cache node modules
         uses: actions/cache@v2
