@@ -4,8 +4,4 @@ export interface Archive {
   publishedAt: number
 }
 
-export interface ArchiveResponse {
-  path: string,
-  title: string,
-  publishedAt: number
-}
+export type ArchiveResponse = Archive

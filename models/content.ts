@@ -13,17 +13,7 @@ export interface Content {
   updatedAt: number
 }
 
-export interface ContentResponse {
-  title: string,
-  robotsAttributes: string,
-  externalResources: Array<ExternalResources>,
-  tags: Array<Tag>,
-  description: string,
-  content: string,
-  authorName: string,
-  publishedAt: number,
-  updatedAt: number
-}
+export type ContentResponse = Content
 
 export interface ContentCover {
   title: string,
