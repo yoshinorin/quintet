@@ -1,0 +1,57 @@
+@import
+    '_variables';
+
+#series {
+  margin-top: 4rem;
+  a {
+    color: map-get($basic-colors, 'series-link');
+  }
+
+  li {
+    font-size: map-get($font-size, normal);
+  }
+
+  blockquote {
+    margin: 0.2em 0 0.2em 0;
+    opacity: 0.8;
+  }
+
+  .description {
+    margin: 0 0 2em 0;
+  }
+
+  .group {
+    .articles {
+      margin-top:     1em;
+      margin-bottom:  0.2em;
+    }
+  }
+
+  .articles {
+    position:       relative;
+    width:          100%;
+    display:        inline-block;
+    vertical-align: top;
+
+    .header {
+      .title {
+        margin:     0;
+        font-weight: 400;
+        font-size:   2.2rem;
+      }
+    }
+    .excerpt {
+      margin:         0.2em 0 0 1.2em;
+      letter-spacing: 0.04em;
+      font-size:      1.4rem;
+      font-weight:    400;
+      opacity:        0.6;
+      overflow:       hidden;
+    }
+  }
+
+  .wrap {
+    margin-left: 0.2em;
+    padding:     0.8em;
+  }
+}
