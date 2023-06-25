@@ -1,15 +1,15 @@
 import { Article } from "./article"
 
-export interface SeriesResponse {
+export interface Series {
   id: string,
   name: string,
   title: number,
   description: string
 }
 
-export type Series = SeriesResponse
+export type SeriesResponse = Series
 
-export interface SeriresWithArticlesResponse {
+export interface SeriresWithArticles {
   id: string,
   name: string,
   title: number,
@@ -17,4 +17,5 @@ export interface SeriresWithArticlesResponse {
   articles: Array<Article>
 }
 
-export type SeriresWithArticles = SeriresWithArticlesResponse
+export type SeriresWithArticlesResponse = SeriresWithArticles
+
