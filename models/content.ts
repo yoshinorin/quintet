@@ -20,3 +20,12 @@ export interface ContentCover {
   tags: Array<Tag> | null,
   publishedAt: number,
 }
+
+export interface ContentMeta {
+  robots: string,
+  shouldInjectResources: Array<ExternalResources> | string,
+  tags: Array<Tag>,
+  authorName: string,
+  publishedAt: number,
+  updatedAt: number
+}
