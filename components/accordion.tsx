@@ -11,7 +11,7 @@ const Accordion: React.FunctionComponent<{ title, content: any }> = ({title, con
   const json = JSON.stringify(content, null, 2);
   return (
     <div className={styles.accordion} >
-      <div className={`'unstyled' ${styles['menu-button']} ${styles['content-meta-button-wrap']}`} onClick={toggle}>
+      <div className={`'unstyled' ${styles['menu-button']}`} onClick={toggle}>
         {title}
       </div>
       {isOpen && (
