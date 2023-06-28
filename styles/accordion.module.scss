@@ -2,13 +2,13 @@
     '_variables';
 
 .menu-button {
-  font-size:         1.5rem;
+  font-size:         1.45rem;
   display:           inline-block;
   color:             map-get($basic-colors, 'base');
   background:        transparent;
   border:            0.1em solid map-get($basic-colors, 'base');
   border-radius:     0.5rem;
-  padding:           0.25rem 1.5rem 0.25rem 1.5rem;
+  padding:           0.25rem 1.3rem 0.25rem 1.3rem;
   &:hover {
     cursor:          pointer;
     text-decoration: underline;
@@ -16,7 +16,6 @@
 }
 
 .accordion {
-  text-overflow:      wrap;
   pre {
     border:             0.1em solid map-get($highlight-colors, 'border-color');
     font-family:        $font-families-code;
@@ -25,7 +24,7 @@
     background-color:   map-get($code-basic-colors, 'background');
     line-height:        2.4rem;
     border-radius:      2px;
-    margin:             0.25em 0.25em;
+    margin:             0.5em 0.25em;
     padding:            0.5em 0.5em;
     overflow-x:         auto;
     overflow-y:         hidden;
