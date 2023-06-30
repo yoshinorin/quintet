@@ -3,14 +3,13 @@ import TagComponent from '../tag';
 import { ContentCover } from '../../models/content';
 import { Tag } from '../../models/tag';
 import styles from '../../styles/components/cover.module.scss';
-import contentStyles from '../../styles/components/content.module.scss';
 import { title, subTitle } from '../../config';
 import { convertUnixtimeToDate } from '../../utils/time';
 
 const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
   return (
     <div className={styles['cover']}>
-      <div className={`${styles['content-header']} ${contentStyles['content-main']}`}>
+      <div className={`${styles['content-header']}`}>
         {
           (() => {
             if (contentCover) {
