@@ -11,9 +11,10 @@ const Accordion: React.FunctionComponent<{ title, content: any }> = ({title, con
   const json = JSON.stringify(content, null, 2);
   return (
     <div className={styles.accordion} >
-      <div className={`'unstyled' ${styles['menu-button']}`} onClick={toggle}>
-        {title}
-      </div>
+      <span className={`'unstyled' ${styles['menu-button']}`}
+            onClick={toggle}
+            dangerouslySetInnerHTML={{ __html: title }} >
+      </span>
       {isOpen && (
         <pre className="accordion-content">
           {json}
