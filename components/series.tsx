@@ -13,18 +13,16 @@ const SeriesComponent: React.FunctionComponent<{ series: Array<Series> }> = ({ s
             <article className={styles['articles']} key={idx}>
               <div className={styles['wrap']}>
                 <blockquote key={idx}>
-                  <div className={styles['header']}>
-                    <h2 className={styles['title']}>
-                      <Link href={`/series/${s.name}`} prefetch={false} className='unstyled'>
-                        {`${s.title}`}
-                      </Link>
-                    </h2>
-                  </div>
-                  <div className={styles['excerpt']}>
+                  <p className={styles['header']}>
                     <Link href={`/series/${s.name}`} prefetch={false} className='unstyled'>
-                      {`${s.description}`}
+                      {`${s.title}`}
                     </Link>
-                  </div>
+                  </p>
+                  <Link href={`/series/${s.name}`}
+                        prefetch={false}
+                        className={`${styles['excerpt']} unstyled`}>
+                    {`${s.description}`}
+                  </Link>
                 </blockquote>
               </div>
             </article>

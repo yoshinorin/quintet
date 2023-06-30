@@ -6,7 +6,7 @@ import containerStyles from '../styles/components/container.module.scss';
 
 const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithArticles: SeriresWithArticles }> = ({ seriresWithArticles }) => {
   return (
-    <section className={`${containerStyles.container} ${styles['group']}`}>
+    <section className={`${containerStyles.container}`}>
       <div id={styles['series']}>
         <div className={styles['description']}>
           { seriresWithArticles.description }
@@ -16,18 +16,14 @@ const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithArticles
             <article className={styles['articles']} key={idx}>
               <div className={styles['wrap']}>
                 <blockquote>
-                  <div className={styles['header']}>
-                    <h2 className={styles['title']}>
-                      <Link href={`${article.path}`} prefetch={false} className='unstyled'>
-                        {`${article.title}`}
-                      </Link>
-                    </h2>
-                  </div>
-                  <div className={styles['excerpt']}>
+                  <p className={styles['header']}>
                     <Link href={`${article.path}`} prefetch={false} className='unstyled'>
-                      {`${article.content}`}
+                      {`${article.title}`}
                     </Link>
-                  </div>
+                  </p>
+                  <Link href={`${article.path}`} prefetch={false} className={`${styles['excerpt']} unstyled`}>
+                    {`${article.content}`}
+                  </Link>
                 </blockquote>
               </div>
             </article>
