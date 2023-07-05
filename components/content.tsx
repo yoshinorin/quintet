@@ -6,6 +6,7 @@ import Accordion from './accordion';
 const ContentComponent: React.FunctionComponent<{ content: Content }> = ({content}) => {
 
   const meta: ContentMeta = {
+    id: content.id,
     robots: content.robotsAttributes,
     tags: content.tags,
     shouldInjectResources: content.externalResources,

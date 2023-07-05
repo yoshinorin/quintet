@@ -66,6 +66,7 @@ export async function getServerSideProps(ctx: any) {
   if (response.status === 200) {
     const contentResponse: ContentResponse = await response.json() as ContentResponse;
     content = {
+      id: contentResponse.id,
       title: contentResponse.title,
       robotsAttributes: contentResponse.robotsAttributes,
       externalResources: contentResponse.externalResources,

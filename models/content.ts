@@ -2,6 +2,7 @@ import { ExternalResources } from './externalResource';
 import { Tag } from './tag';
 
 export interface Content {
+  id: string,
   title: string,
   robotsAttributes: string,
   externalResources: Array<ExternalResources>,
@@ -22,6 +23,7 @@ export interface ContentCover {
 }
 
 export interface ContentMeta {
+  id: string,
   robots: string,
   shouldInjectResources: Array<ExternalResources> | string,
   tags: Array<Tag>,
