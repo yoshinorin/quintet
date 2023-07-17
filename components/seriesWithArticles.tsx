@@ -17,11 +17,11 @@ const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithArticles
               <div className={styles['wrap']}>
                 <blockquote>
                   <p className={styles['header']}>
-                    <Link href={`${article.path}`} prefetch={false} className='unstyled'>
+                    <Link href={`${article.path}`} target="_blank" prefetch={false} className='unstyled'>
                       {`${article.title}`}
                     </Link>
                   </p>
-                  <Link href={`${article.path}`} prefetch={false} className={`${styles['excerpt']} unstyled`}>
+                  <Link href={`${article.path}`} target="_blank" prefetch={false} className={`${styles['excerpt']} unstyled`}>
                     {`${article.content}`}
                   </Link>
                 </blockquote>
