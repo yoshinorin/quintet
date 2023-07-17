@@ -13,8 +13,8 @@
     "pm2:restart": "npm run rebuild && pm2 kill && pm2 restart ecosystem.config.js && pm2 save",
     "pm2:status": "pm2 ls",
     "pm2:stop": "pm2 stop ecosystem.config.js",
-    "analyze:win": "set ANALYZE=true && next build",
-    "analyze:linux": "export ANALYZE=true && next build",
+    "analyze:win": "set NEXT_ANALYZE=true && next build",
+    "analyze:linux": "export NEXT_ANALYZE=true && next build",
     "test": "jest --coverage"
   },
   "dependencies": {
