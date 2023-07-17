@@ -15,16 +15,16 @@ const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithArticles
           return (
             <article className={styles['articles']} key={idx}>
               <div className={styles['wrap']}>
-                <blockquote>
-                  <p className={styles['header']}>
-                    <Link href={`${article.path}`} target="_blank" prefetch={false} className='unstyled'>
+                <Link href={`${article.path}`} target="_blank" prefetch={false} className='unstyled'>
+                  <blockquote>
+                    <p className={styles['header']}>
                       {`${article.title}`}
-                    </Link>
-                  </p>
-                  <Link href={`${article.path}`} target="_blank" prefetch={false} className={`${styles['excerpt']} unstyled`}>
-                    {`${article.content}`}
-                  </Link>
-                </blockquote>
+                    </p>
+                    <p className={`${styles['excerpt']}`}>
+                      {`${article.content}`}
+                    </p>
+                  </blockquote>
+                </Link>
               </div>
             </article>
           );
