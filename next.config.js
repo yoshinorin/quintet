@@ -1,8 +1,8 @@
 const path = require('path');
 
-const withBundleAnalyzer = () => process.env.NEXT_ANALYZE ? process.env.NEXT_ANALYZE.trim() === 'true' : false
-    ? require('@next/bundle-analyzer')({ enabled: true })
-    : (config) => config;
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.NEXT_ANALYZE.trim() === 'true',
+});
 
 module.exports = withBundleAnalyzer({
   trailingSlash: true,
