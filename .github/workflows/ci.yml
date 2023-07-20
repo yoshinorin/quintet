@@ -61,5 +61,3 @@ jobs:
         run: cp config.example.js config.js
       - name: Build
         run: npm run build
-      - name: Analyze
-        run: npm run analyze:linux
