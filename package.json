@@ -5,10 +5,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "next dev",
-    "server": "next dev",
-    "build": "next build",
+    "server": "set NEXT_ANALYZE=false && next dev",
+    "build": "set NEXT_ANALYZE=false && next build",
     "rebuild": "npm install && next build",
-    "start": "next start",
+    "start": "set NEXT_ANALYZE=false && next start",
     "pm2:start": "pm2 kill && pm2 start ecosystem.config.js && pm2 save",
     "pm2:restart": "npm run rebuild && pm2 kill && pm2 restart ecosystem.config.js && pm2 save",
     "pm2:status": "pm2 ls",
