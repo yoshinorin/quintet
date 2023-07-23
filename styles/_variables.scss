@@ -130,10 +130,10 @@ $menu-button-colors: (
   'background-hover':      var(--menu-button-color-background-hover),
 );
 
-$articles-colors: (
-  'meta-link':             var(--articles-meta-link-color),
-  'time':                  var(--articles-time-color),
-  'excerpt':               var(--articles-excerpt-color),
+$article-color: (
+  'meta-link':             var(--article-meta-link-color),
+  'time':                  var(--article-time-color),
+  'excerpt':               var(--article-excerpt-color),
 );
 
 $tag-colors: (

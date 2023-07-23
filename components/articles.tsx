@@ -10,7 +10,7 @@ const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> =
     <section className={`${containerStyles.container} ${styles['group']}`}>
       {articles.map((article: Article, idx) => {
         return (
-          <article className={styles['articles']} key={idx}>
+          <article className={styles['article']} key={idx}>
             <div className={styles['wrap']}>
               <div className={styles['header']}>
                 <time dateTime={`${article.publishedAt}`} className={styles['time']}>

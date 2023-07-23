@@ -13,7 +13,7 @@ const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithArticles
         </div>
         {seriresWithArticles.articles.map((article: Article, idx) => {
           return (
-            <article className={styles['articles']} key={idx}>
+            <article className={styles['article']} key={idx}>
               <div className={styles['wrap']}>
                 <Link href={`${article.path}`} target="_blank" prefetch={false} className='unstyled'>
                   <blockquote>

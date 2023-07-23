@@ -2,13 +2,13 @@
     '_variables';
 
 .group {
-  .articles {
+  .article {
     margin-top:     1em;
     margin-bottom:  0.2em;
   }
 }
 
-.articles {
+.article {
   position:       relative;
   width:          100%;
   display:        inline-block;
@@ -25,13 +25,13 @@
     margin: 0.2em 0 0 0;
     line-height: 1.5em;
     a {
-      color:     map-get($articles-colors, 'meta-link');
+      color:     map-get($article-color, 'meta-link');
     }
   }
   .meta,
   .time {
     font-size:   0.8em;
-    color:       map-get($articles-colors, 'time');
+    color:       map-get($article-color, 'time');
   }
   .meta {
     font-size:   map-get($font-size, small);
@@ -40,7 +40,7 @@
   .excerpt {
     margin-top:     0.8em;
     letter-spacing: 0.08em;
-    color:          map-get($articles-colors, 'excerpt');
+    color:          map-get($article-color, 'excerpt');
     font-size:      1.65rem;
     font-weight:    400;
     overflow:       hidden;

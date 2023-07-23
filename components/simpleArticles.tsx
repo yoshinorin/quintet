@@ -8,7 +8,7 @@ const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article
     <section className={styles['articles-wrap']}>
       {articles.map((article: Article, idx) => {
         return (
-          <article className={styles['articles']} key={idx}>
+          <article className={styles['article']} key={idx}>
             <div className={styles['wrap']}>
               <div className={styles['title']}>
                 <time dateTime={`${article.publishedAt}`} className={styles['time']}>

@@ -10,7 +10,7 @@ const SeriesComponent: React.FunctionComponent<{ series: Array<Series> }> = ({ s
       <div id={styles['series']}>
         {series.map((s: Series, idx) => {
           return (
-            <article className={styles['articles']} key={idx}>
+            <article className={styles['article']} key={idx}>
               <div className={styles['wrap']}>
                 <blockquote key={idx}>
                   <p className={styles['header']}>

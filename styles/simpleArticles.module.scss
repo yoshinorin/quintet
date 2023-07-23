@@ -1,7 +1,7 @@
 @import
     '_variables';
 
-.articles {
+.article {
   position:       relative;
   width:          100%;
   display:        inline-block;
@@ -20,7 +20,7 @@
   }
   .time {
     font-size:  0.8em;
-    color:      map-get($articles-colors, 'time');
+    color:      map-get($article-color, 'time');
   }
 }
 
@@ -33,7 +33,7 @@
   .articles-wrap {
     margin-top: 1.5rem;
   }
-  .articles {
+  .article {
     font-size: 1.4rem;
   }
 }
