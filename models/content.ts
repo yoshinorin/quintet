@@ -26,7 +26,7 @@ export interface ContentCover {
 export interface ContentMeta {
   id: string,
   robots: string,
-  wordCount: number,
+  words: number,
   shouldInjectResources: Array<ExternalResources> | string,
   tags: Array<Tag>,
   authorName: string,
