@@ -1,9 +1,11 @@
-import { Content, ContentMeta } from '../models/content';
+import { Content, ContentMeta, Attributes } from '../models/content';
+import { Insight } from '../models/insight';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
+import flexStyles from '../styles/components/flex.module.scss';
 import Accordion from './accordion';
 
-const ContentComponent: React.FunctionComponent<{ content: Content }> = ({content}) => {
+const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 
   const meta: ContentMeta = {
     id: content.id,
@@ -16,13 +18,18 @@ const ContentComponent: React.FunctionComponent<{ content: Content }> = ({conten
     updatedAt: content.updatedAt
   }
 
+  const attr: Attributes = {
+    attributes: meta,
+    insight: insight
+  }
+
   return(
     <article className={contentStyles.content}>
       <div className={containerStyles.container} >
         <div className={`${contentStyles['accordion-wrap']}`} >
           <Accordion
-            title="Attributes ▼"
-            content={meta}
+            title="Attributes / Insight ▼"
+            content={attr}
           />
         </div>
       </div>

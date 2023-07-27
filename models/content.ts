@@ -1,4 +1,5 @@
 import { ExternalResources } from './externalResource';
+import { Insight } from './insight';
 import { Tag } from './tag';
 
 export interface Content {
@@ -32,4 +33,9 @@ export interface ContentMeta {
   authorName: string,
   publishedAt: number,
   updatedAt: number
+}
+
+export interface Attributes {
+  attributes: ContentMeta,
+  insight: Insight
 }

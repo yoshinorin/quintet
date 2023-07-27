@@ -4,13 +4,14 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import HeadMetaComponent from '../../components/headmeta';
 import MainBottomCodesComponent from '../../components/mainBottomCodes';
 import { ContentResponse, Content } from '../../models/content';
+import { Insight } from '../../models/insight';
 import { ScriptCode } from '../../models/script';
 import { isIgnoreRequest } from '../../utils/filterRequests';
 import { findByPath } from '../../api/content';
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../config';
 
-const Article: React.FunctionComponent<{ statusCode: number, content: Content }> = ({ statusCode, content }) => {
+const Article: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
   if (statusCode !== 200) {
     // TODO: Custom ErrorPage
     return <Error statusCode={statusCode} />
@@ -38,6 +39,7 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content }>
       <main>
         <ContentComponent
           content={content}
+          insight={insight}
         />
         <MainBottomCodesComponent
           scriptCodes={externalResourceCodes}
@@ -82,7 +84,10 @@ export async function getServerSideProps(ctx: any) {
   return {
     props: {
       statusCode: response.status,
-      content: content
+      content: content,
+      insight: {
+        apiResponseTime: `${response.headers.get("x-response-time")} ms`
+      } as Insight
     }
   }
 }
