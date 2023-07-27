@@ -2,7 +2,6 @@ import { Content, ContentMeta, Attributes } from '../models/content';
 import { Insight } from '../models/insight';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
-import flexStyles from '../styles/components/flex.module.scss';
 import Accordion from './accordion';
 
 const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
