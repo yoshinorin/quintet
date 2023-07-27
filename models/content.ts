@@ -27,7 +27,7 @@ export interface ContentMeta {
   id: string,
   robots: string,
   words: number,
-  shouldInjectResources: Array<ExternalResources> | string,
+  shouldInjectResources: Array<ExternalResources>,
   tags: Array<Tag>,
   authorName: string,
   publishedAt: number,
