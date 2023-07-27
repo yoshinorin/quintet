@@ -12,29 +12,22 @@ const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> =
         return (
           <article className={styles['article']} key={idx}>
             <div className={styles['wrap']}>
-              <div className={styles['header']}>
-                <time dateTime={`${article.publishedAt}`} className={styles['time']}>
-                  {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`}
-                </time>
-                <h2 className={styles['title']}>
-                  <Link href={`${article.path}`} prefetch={false} className='unstyled'>
-                    {`${article.title}`}
-                  </Link>
+              <time dateTime={`${article.publishedAt}`} className={`${styles['time']}`}>
+                {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`}
+              </time>
+              <Link href={`${article.path}`} prefetch={false} className='unstyled' >
+                <h2 className={`${styles['header']} ${styles['title']}`}>
+                  {`${article.title}`}
                 </h2>
-              </div>
-              <div className={styles['excerpt']}>
-                <Link href={`${article.path}`} prefetch={false} className='unstyled'>
+                <p className={styles['excerpt']}>
                   {`${article.content}`}
-                </Link>
+                </p>
                 <div className={`${buttonStyles['continue-read-button-wrap']}`}>
-                  <Link
-                    href={`${article.path}`}
-                    prefetch={false}
-                    className={`'unstyled' ${buttonStyles['menu-button']} ${buttonStyles['continue-read-button']}`}>
-                      続きを読む
-                  </Link>
+                  <div className={`'unstyled' ${buttonStyles['menu-button']} ${buttonStyles['continue-read-button']}`}>
+                    続きを読む
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </article>
         );
