@@ -20,7 +20,7 @@ const ContentComponent: React.FunctionComponent<{ content: Content }> = ({conten
       <div className={containerStyles.container} >
         <div className={`${contentStyles['accordion-wrap']}`} >
           <Accordion
-            title="Expand ▼"
+            title="Attributes ▼"
             content={meta}
           />
         </div>
