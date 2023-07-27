@@ -76,6 +76,7 @@ export async function getServerSideProps(ctx: any) {
       robotsAttributes: contentResponse.robotsAttributes,
       externalResources: contentResponse.externalResources,
       content: contentResponse.content,
+      length: contentResponse.length,
       publishedAt: contentResponse.publishedAt
     } as Content
   }

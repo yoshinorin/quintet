@@ -9,6 +9,7 @@ const ContentComponent: React.FunctionComponent<{ content: Content }> = ({conten
     id: content.id,
     robots: content.robotsAttributes,
     tags: content.tags,
+    wordCount: content.length,
     shouldInjectResources: content.externalResources,
     authorName: content.authorName,
     publishedAt: content.publishedAt,

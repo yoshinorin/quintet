@@ -9,6 +9,7 @@ export interface Content {
   tags: Array<Tag>,
   description: string,
   content: string,
+  length: number,
   authorName: string,
   publishedAt: number,
   updatedAt: number
@@ -25,6 +26,7 @@ export interface ContentCover {
 export interface ContentMeta {
   id: string,
   robots: string,
+  wordCount: number,
   shouldInjectResources: Array<ExternalResources> | string,
   tags: Array<Tag>,
   authorName: string,

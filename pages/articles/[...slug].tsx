@@ -73,6 +73,7 @@ export async function getServerSideProps(ctx: any) {
       tags: contentResponse.tags,
       description: contentResponse.description,
       content: contentResponse.content,
+      length: contentResponse.length,
       authorName: contentResponse.authorName,
       publishedAt: contentResponse.publishedAt,
       updatedAt: contentResponse.updatedAt
