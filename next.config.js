@@ -23,4 +23,5 @@ module.exports = withBundleAnalyzer({
   },
   swcMinify: true,
   poweredByHeader: false,
+  compress: false,         // already gzipped with the `HTTP server`. No need with `Next.js`.
 });
