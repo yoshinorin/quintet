@@ -21,5 +21,6 @@ module.exports = withBundleAnalyzer({
   images: {
     unoptimized: true,
   },
-  swcMinify: true
+  swcMinify: true,
+  poweredByHeader: false,
 });
