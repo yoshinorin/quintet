@@ -19,7 +19,7 @@ const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null
         className={className ? className : null}
         target="_blank"
         data-tag={tag.name.toLowerCase()}>
-          {`${tag.name} (${tag.count})`}
+          {`${tag.name} ${tag.count ? `(${tag.count})` : ""}`}
       </Link>
     );
 }
