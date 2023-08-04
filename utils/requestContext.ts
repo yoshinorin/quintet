@@ -13,12 +13,10 @@ export function getRequestContext(request: NextApiRequest): RequestContext {
     } as RequestContext
   }
   let xff = request.headers['x-forwarded-for'];
-  let referer = request.headers['referer'];
-  let ua = request.headers['user-agent'];
   return {
     ipAddress: xff ? (Array.isArray(xff) ? xff[0] : xff.split(',')[0]) : '127.0.0.1',
-    referer: referer,
-    ua: ua,
+    referer: request.headers['referer'],
+    ua: request.headers['user-agent'],
     requestId: uuid4()
   } as RequestContext
 }
