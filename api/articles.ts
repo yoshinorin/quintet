@@ -1,6 +1,6 @@
 import { api } from '../config';
 import { RequestContext } from '../models/requestContext';
-import { generateRequestHeaderObject } from './header';
+import { generateRequestHeaderObject } from './utils/header';
 
 export async function getArticles(p: number = 1, l: number = 10, rq: RequestContext): Promise<Response> {
   return fetch(

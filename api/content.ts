@@ -2,7 +2,7 @@ import { NextApiRequest } from 'next';
 import { api } from '../config';
 import { isIgnoreRequest } from '../utils/filterRequests';
 import { getRequestContext } from '../utils/requestContext';
-import { generateRequestHeaderObject } from './header';
+import { generateRequestHeaderObject } from './utils/header';
 
 export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
 
