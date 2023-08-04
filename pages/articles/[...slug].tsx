@@ -10,6 +10,7 @@ import { isIgnoreRequest } from '../../utils/filterRequests';
 import { findByPath } from '../../api/content';
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../config';
+import { asInsight } from '../../utils/converters';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
   if (statusCode !== 200) {
@@ -85,10 +86,7 @@ export async function getServerSideProps(ctx: any) {
     props: {
       statusCode: response.status,
       content: content,
-      insight: {
-        requestId: response.headers.get("x-request-id"),
-        apiResponseTime: `${response.headers.get("x-response-time")} ms`
-      } as Insight
+      insight: asInsight(response)
     }
   }
 }
