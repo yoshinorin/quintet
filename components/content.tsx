@@ -31,6 +31,9 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
             content={attr}
           />
         </div>
+        <div className={`${contentStyles['words']}`}>
+          {content.length.toLocaleString()} words
+        </div>
       </div>
       <div className={`${contentStyles['content-main']}`}>
         <div className={containerStyles.container} dangerouslySetInnerHTML={{ __html: content.content }} />
