@@ -1,5 +1,6 @@
 import { api } from '../config';
 import { RequestContext } from '../models/requestContext';
+import { generateRequestHeaderObject } from './header';
 
 export async function getFeed(rq: RequestContext): Promise<Response> {
   // TODO: get feed dynamically
@@ -7,12 +8,7 @@ export async function getFeed(rq: RequestContext): Promise<Response> {
     `${api.url}/feeds/index`,
     {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-forwarded-for': rq.ipAddress,
-        'user-agent': rq.ua,
-        'referer': rq.referer
-      }
+      headers: generateRequestHeaderObject(rq) as any
     }
   )
 }

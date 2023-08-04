@@ -2,6 +2,7 @@ import { NextApiRequest } from 'next';
 import { api } from '../config';
 import { isIgnoreRequest } from '../utils/filterRequests';
 import { getRequestContext } from '../utils/requestContext';
+import { generateRequestHeaderObject } from './header';
 
 export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
 
@@ -22,12 +23,7 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
     `${api.url}/contents/${path}`,
     {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-forwarded-for': rq.ipAddress,
-        'user-agent': rq.ua,
-        'referer': rq.referer
-      }
+      headers: generateRequestHeaderObject(rq) as any
     }
   )
 }
