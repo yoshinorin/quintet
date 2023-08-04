@@ -5,8 +5,11 @@ export function asInsight(response: Response): Insight {
   const resTime = response.headers.get("x-response-time")
 
   return {
-    requestId: reqId ? reqId : "N/A",
-    apiResponseTime: resTime ? `${resTime} ms` : "N/A"
+    backend: {
+      requestId: reqId ? reqId : "N/A",
+      apiResponseTime: resTime ? `${resTime} ms` : "N/A"
+    },
+    frontend: "Unavailable"
   } as Insight
 }
 

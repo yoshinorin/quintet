@@ -1,4 +1,7 @@
 export interface Insight {
-  requestId: string,
-  apiResponseTime: string
+  backend: {
+    requestId: string,
+    apiResponseTime: string
+  }
+  frontend: string,
 }
