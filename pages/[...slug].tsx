@@ -87,6 +87,7 @@ export async function getServerSideProps(ctx: any) {
       statusCode: response.status,
       content: content,
       insight: {
+        requestId: response.headers.get("x-request-id"),
         apiResponseTime: `${response.headers.get("x-response-time")} ms`
       } as Insight
     }
