@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { Content, ContentMeta } from '../models/content';
 import { Insight } from '../models/insight';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
-import Accordion from './accordion';
+import Accordion from './contentAccordion';
 
 const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 
@@ -22,11 +23,19 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
     insight: insight
   }, null, 2);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return(
     <article className={contentStyles.content}>
       <div className={containerStyles.container} >
         <div className={`${contentStyles['accordion-wrap']}`} >
           <Accordion
+            open={isOpen}
+            onclick={toggle}
             title="Attributes / Insight ▼"
             content={json}
           />
