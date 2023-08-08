@@ -34,8 +34,3 @@ export interface ContentMeta {
   publishedAt: number,
   updatedAt: number
 }
-
-export interface Attributes {
-  attributes: ContentMeta,
-  insight: Insight
-}

@@ -1,4 +1,4 @@
-import { Content, ContentMeta, Attributes } from '../models/content';
+import { Content, ContentMeta } from '../models/content';
 import { Insight } from '../models/insight';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
@@ -17,10 +17,10 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
     updatedAt: content.updatedAt
   }
 
-  const attr: Attributes = {
+  const json = JSON.stringify({
     attributes: meta,
     insight: insight
-  }
+  }, null, 2);
 
   return(
     <article className={contentStyles.content}>
@@ -28,7 +28,7 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
         <div className={`${contentStyles['accordion-wrap']}`} >
           <Accordion
             title="Attributes / Insight ▼"
-            content={attr}
+            content={json}
           />
         </div>
         <div className={`${contentStyles['words']}`}>
