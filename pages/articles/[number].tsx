@@ -1,4 +1,3 @@
-import Error from 'next/error';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
@@ -6,11 +5,14 @@ import PaginationComponent from '../../components/pagination';
 import { getArticles } from '../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../models/article';
 import { getRequestContext } from '../../utils/requestContext';
+import PlanePage from '../../components/planePage';
 
 const Page: React.FunctionComponent<{ statusCode: number, current: number, count: number, articles: Array<Article> }> = ({ statusCode, current, count, articles }) => {
   if (statusCode !== 200) {
-    // TODO: Custom ErrorPage
-    return <Error statusCode={statusCode} />
+    return <PlanePage
+      title={statusCode.toString()}
+      content="Something went to wrong..."
+    />
   }
 
   return (

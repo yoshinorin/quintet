@@ -1,4 +1,3 @@
-import Error from 'next/error';
 import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
@@ -11,11 +10,14 @@ import { findByPath } from '../../api/content';
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../config';
 import { asInsight } from '../../utils/converters';
+import PlanePage from '../../components/planePage';
 
 const Article: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
   if (statusCode !== 200) {
-    // TODO: Custom ErrorPage
-    return <Error statusCode={statusCode} />
+    return <PlanePage
+      title={statusCode.toString()}
+      content="Something went to wrong..."
+    />
   }
 
   let externalResourceCodes: Array<ScriptCode> = [];

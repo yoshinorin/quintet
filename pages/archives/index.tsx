@@ -1,5 +1,3 @@
-// TODO: refactor
-import Error from 'next/error';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArchivesComponent from '../../components/archives';
@@ -7,11 +5,14 @@ import { getArchives } from '../../api/archives';
 import { Archive, ArchiveResponse } from '../../models/archive';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
+import PlanePage from '../../components/planePage';
 
 const Page: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
   if (statusCode !== 200) {
-    // TODO: Custom ErrorPage
-    return <Error statusCode={statusCode} />
+    return <PlanePage
+      title={statusCode.toString()}
+      content="Something went to wrong..."
+    />
   }
 
   return (

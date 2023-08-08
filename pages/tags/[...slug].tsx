@@ -1,5 +1,3 @@
-// TODO: refactor
-import Error from 'next/error';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
@@ -8,12 +6,16 @@ import { getArticlesByTagName } from '../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../models/article';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
+import PlanePage from '../../components/planePage';
 
 export default function Page({ statusCode, tagName, currentPage, count, articles }) {
   if (statusCode !== 200) {
-    // TODO: Custom ErrorPage
-    return <Error statusCode={statusCode} />
+    return <PlanePage
+      title={statusCode.toString()}
+      content="Something went to wrong..."
+    />
   }
+
   return (
     <>
       <HeadMetaComponent

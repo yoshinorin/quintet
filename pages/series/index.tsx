@@ -1,5 +1,3 @@
-// TODO: refactor
-import Error from 'next/error';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import SeriesComponent from '../../components/series';
@@ -7,11 +5,14 @@ import { getSeries } from '../../api/series';
 import { Series, SeriesResponse } from '../../models/series';
 import { defaultRobotsMeta } from '../../config';
 import { getRequestContext } from '../../utils/requestContext';
+import PlanePage from '../../components/planePage';
 
 const Page: React.FunctionComponent<{ statusCode: number, series: Array<Series> }> = ({ statusCode, series }) => {
   if (statusCode !== 200) {
-    // TODO: Custom ErrorPage
-    return <Error statusCode={statusCode} />
+    return <PlanePage
+      title={statusCode.toString()}
+      content="Something went to wrong..."
+    />
   }
 
   return (
