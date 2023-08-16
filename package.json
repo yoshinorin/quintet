@@ -3,6 +3,7 @@
   "version": "2.8.0",
   "private": true,
   "license": "UNLICENSED",
+  "repository": "https://github.com/yoshinorin/quintet",
   "scripts": {
     "dev": "next dev",
     "server": "set NEXT_ANALYZE=false && next dev",
