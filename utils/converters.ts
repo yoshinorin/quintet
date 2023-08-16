@@ -1,7 +1,4 @@
-import getConfig from "next/config";
 import { Insight } from "../models/insight";
-
-const { serverRuntimeConfig } = getConfig();
 
 export function asInsight(response: Response): Insight {
   const reqId = response.headers.get("x-request-id")
@@ -13,9 +10,9 @@ export function asInsight(response: Response): Insight {
       apiResponseTime: resTime ? `${resTime} ms` : "N/A"
     },
     frontend: {
-      runtime: serverRuntimeConfig.runtime ? `Node.js ${serverRuntimeConfig.runtime}` : "N/A",
+      runtime: process.env.QUINTET_RUNTIME,
       build: {
-        commitHash: process.env.commitHash ? process.env.commitHash : "N/A"
+        commitHash: process.env.QUINTET_COMMIT_HASH
       }
     }
   } as Insight

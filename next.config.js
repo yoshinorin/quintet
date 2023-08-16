@@ -14,11 +14,14 @@ try {
 
 module.exports = withBundleAnalyzer({
   env: {
-    commitHash: commitHash
+    QUINTET_COMMIT_HASH: commitHash,
+    QUINTET_RUNTIME: process.version ? process.version : "N/A",
   },
+  /*
   serverRuntimeConfig: {
     runtime: process.version,
   },
+  */
   trailingSlash: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
