@@ -4,6 +4,9 @@ export interface Insight {
     apiResponseTime: string
   }
   frontend: {
-    runtime: string
+    runtime: string,
+    build: {
+      commitHash: string
+    }
   },
 }

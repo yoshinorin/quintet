@@ -1,12 +1,23 @@
 const path = require('path');
+const { execSync } = require('child_process');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.NEXT_ANALYZE ? process.env.NEXT_ANALYZE === 'true' : 'false',
 });
 
+let commitHash = "N/A"
+try {
+  commitHash = execSync("git show --format='%h' --no-patch").toString().trim().replaceAll("'","");
+} catch {
+  // Nothing todo
+}
+
 module.exports = withBundleAnalyzer({
+  env: {
+    commitHash: commitHash
+  },
   serverRuntimeConfig: {
-    runtime: process.version
+    runtime: process.version,
   },
   trailingSlash: true,
   sassOptions: {

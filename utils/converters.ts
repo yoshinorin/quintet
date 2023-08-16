@@ -13,7 +13,10 @@ export function asInsight(response: Response): Insight {
       apiResponseTime: resTime ? `${resTime} ms` : "N/A"
     },
     frontend: {
-      runtime: serverRuntimeConfig.runtime ? `Node.js ${serverRuntimeConfig.runtime}` : "N/A"
+      runtime: serverRuntimeConfig.runtime ? `Node.js ${serverRuntimeConfig.runtime}` : "N/A",
+      build: {
+        commitHash: process.env.commitHash ? process.env.commitHash : "N/A"
+      }
     }
   } as Insight
 }
