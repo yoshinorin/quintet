@@ -6,14 +6,6 @@ The front end for [Qualtet](https://github.com/yoshinorin/qualtet).
 
 > [Live](https://yoshinorin.net)
 
-# Requirements
-
-Install pm2 globally if you want to execute all of `npm scripts`.
-
-```sh
-$ npm install -g pm2
-```
-
 # LICENSE
 
 © yoshinorin
