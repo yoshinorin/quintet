@@ -5,6 +5,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 module.exports = withBundleAnalyzer({
+  serverRuntimeConfig: {
+    runtime: process.version
+  },
   trailingSlash: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]

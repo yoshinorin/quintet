@@ -3,5 +3,7 @@ export interface Insight {
     requestId: string,
     apiResponseTime: string
   }
-  frontend: string,
+  frontend: {
+    runtime: string
+  },
 }
