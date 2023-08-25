@@ -4,7 +4,7 @@ import { generateRequestHeaderObject } from './utils/header';
 
 export async function getStatus(rq: RequestContext): Promise<Response> {
   return fetch(
-    `${api.url}/status`,
+    `${api.url}/system/health`,
     {
       method: 'GET',
       headers: generateRequestHeaderObject(rq) as any
