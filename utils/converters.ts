@@ -1,3 +1,4 @@
+import { BackendMeta } from "../models/backendMeta";
 import { Insight } from "../models/insight";
 
 export function asInsight(response: Response): Insight {
@@ -6,8 +7,26 @@ export function asInsight(response: Response): Insight {
 
   return {
     backend: {
-      requestId: reqId ? reqId : "N/A",
-      apiResponseTime: resTime ? `${resTime} ms` : "N/A"
+      response: {
+        id: reqId ? reqId : "N/A",
+        time: resTime ? `${resTime} ms` : "N/A"
+      },
+      runtime: {
+        type: "N/A",
+        vendor: "N/A",
+        version: "N/A",
+      },
+      product: {
+        name: "N/A",
+        version: "N/A",
+        repo: "N/A",
+        build: {
+          commit: "N/A",
+          url: "N/A",
+          scalaVersion: "N/A",
+          sbtVersion: "N/A"
+        }
+      }
     },
     frontend: {
       runtime: {
@@ -27,5 +46,35 @@ export function asInsight(response: Response): Insight {
 
     }
   } as Insight
+}
+
+export function appendBackendMeta(currentInsight: Insight, backendMetaResponse: BackendMeta): Insight {
+  return Object.assign(
+    currentInsight,
+    {
+      backend: {
+        response: {
+          id: currentInsight.backend.response.id,
+          time: currentInsight.backend.response.time
+        },
+        runtime: {
+          type: backendMetaResponse.runtime.name,
+          vendor: backendMetaResponse.runtime.vendor,
+          version: backendMetaResponse.runtime.version,
+        },
+        product: {
+          name: backendMetaResponse.name,
+          version: backendMetaResponse.version,
+          repo: backendMetaResponse.repository,
+          build: {
+            commit: backendMetaResponse.build.commit,
+            url: backendMetaResponse.build.url,
+            scalaVersion: backendMetaResponse.build.scalaVersion,
+            sbtVersion: backendMetaResponse.build.sbtVersion
+          }
+        }
+      }
+    }
+  )
 }
 
