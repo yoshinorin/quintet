@@ -2,7 +2,7 @@ import {
   convertUnixtimeToDate,
   convertUnixTimeToISODateSrting,
   toJaJpDottedDateString
-} from '../../utils/time';
+} from '../../src/utils/time';
 
 test('Unixtime should be convert to Date', () => {
   expect(convertUnixtimeToDate(1644075206).toISOString())

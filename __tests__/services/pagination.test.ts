@@ -1,5 +1,5 @@
-import { calcNumberOfPages, getNumbersForDisplay } from '../../services/pagination';
-import { PaginationNumbers } from '../../models/pagination';
+import { calcNumberOfPages, getNumbersForDisplay } from '../../src/services/pagination';
+import { PaginationNumbers } from '../../src/models/pagination';
 
 let x =
 
