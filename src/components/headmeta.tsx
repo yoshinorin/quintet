@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import {
   defaultRobotsMeta,
   externalResources as externalResourcesConfig,
@@ -12,8 +11,11 @@ import {
   injectMetas
 } from '../../config';
 import { ExternalResources } from '../models/externalResource';
+import HeaderScriptSrcsComponent from './headerScriptSrcs';
+import { ScriptSrc } from '../models/script';
+import { getScriptTags } from '../utils/scriptTags';
 import { Content } from '../models/content';
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 
 const HeadMetaComponent: React.FunctionComponent<{
@@ -25,18 +27,22 @@ const HeadMetaComponent: React.FunctionComponent<{
   externalResources,
   content
 }) => {
-  const router = useRouter();
-  const currentUrl = new URL(router.asPath, url).href
+  const currentUrl = new URL(usePathname(), url).href
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
+  }
+  let externalResourceMetas: Array<ScriptSrc> = [];
+  if(externalResources && externalResourcesConfig) {
+    // NOTE: currently support only <script> tag
+    externalResourceMetas = getScriptTags(externalResources, externalResourcesConfig);
   }
   const hasContent = content ? true : false;
   /*
     TODO: JSON+LD
   */
   return(
-    <Head>
+    <head>
       <meta charSet="UTF-8"/>
       {
         (() => {
@@ -99,7 +105,10 @@ const HeadMetaComponent: React.FunctionComponent<{
         })()
       }
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-    </Head>
+      <HeaderScriptSrcsComponent
+        scriptSrcs={externalResourceMetas}
+      />
+    </head>
   )
 }
 

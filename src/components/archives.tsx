@@ -1,3 +1,5 @@
+'use client';  // TODO: fix
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Archive } from '../models/archive';
