@@ -1,9 +1,9 @@
-import HeadMetaComponent from '../../../components/headmeta';
-import CoverWithNavigationComponent from '../../../components/cover/withNavigation';
-import ArchivesComponent from '../../../components/archives';
-import { Archive } from '../../../models/archive';
-import { defaultRobotsMeta } from '../../../../config';
-import PlanePage from '../../../components/planePage';
+import HeadMetaComponent from '../../components/headmeta';
+import CoverWithNavigationComponent from '../../components/cover/withNavigation';
+import ArchivesComponent from '../../components/archives';
+import { Archive } from '../../models/archive';
+import { defaultRobotsMeta } from '../../../config';
+import PlanePage from '../../components/planePage';
 
 const Renderer: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
   if (statusCode !== 200) {

@@ -15,7 +15,7 @@ import HeaderScriptSrcsComponent from './headerScriptSrcs';
 import { ScriptSrc } from '../models/script';
 import { getScriptTags } from '../utils/scriptTags';
 import { Content } from '../models/content';
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 
 const HeadMetaComponent: React.FunctionComponent<{
@@ -27,7 +27,7 @@ const HeadMetaComponent: React.FunctionComponent<{
   externalResources,
   content
 }) => {
-  const currentUrl = new URL(usePathname(), url).href
+  const currentUrl = new URL('TODO', url).href
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
