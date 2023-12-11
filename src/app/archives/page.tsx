@@ -1,9 +1,9 @@
 import { headers } from 'next/headers'
 
 import Renderer from './render';
-import { getArchives } from '../../../api/archives';
-import { Archive, ArchiveResponse } from '../../../models/archive';
-import { getRequestContext } from '../../../utils/requestContext';
+import { getArchives } from '../../api/archives';
+import { Archive, ArchiveResponse } from '../../models/archive';
+import { getRequestContext } from '../../utils/requestContext';
 
 export default async function Page() {
   const { props } = await get();
