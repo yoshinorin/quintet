@@ -1,7 +1,6 @@
+import { expect, test } from 'vitest'
 import { calcNumberOfPages, getNumbersForDisplay } from '../../src/services/pagination';
 import { PaginationNumbers } from '../../src/models/pagination';
-
-let x =
 
 test('calculate number of pagination: max pages 150 and current page is 10', () => {
   expect(calcNumberOfPages(150, 10))
