@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { isIgnoreRequest } from '../../src/utils/filterRequests';
+import { isIgnoreRequest } from '../../../src/utils/filterRequests';
 
 test('isIgnoreRequest should be return true', () => {
   expect(isIgnoreRequest('favicon.svg')).toBeTruthy();
