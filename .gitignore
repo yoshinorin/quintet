@@ -52,3 +52,7 @@ config.js
 /public/articles/
 /public/robots.txt
 /public/favicon.ico
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
