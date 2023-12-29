@@ -4,7 +4,7 @@ import { generateRequestHeaderObject } from './utils/header';
 
 export async function getSeries(rq: RequestContext): Promise<Response> {
   return fetch(
-    `${api.url}/series`,
+    `${api.url}/series/`,
     {
       method: 'GET',
       headers: generateRequestHeaderObject(rq) as any
