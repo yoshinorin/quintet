@@ -1,0 +1,9 @@
+version: '3'
+services:
+  qualtet_local_db:
+    image: ghcr.io/yoshinorin/docker-qualtet-mock:v2.11.0.0-rc1
+    expose:
+      - "9002"
+    ports:
+      - "9002:9002"
+    restart: unless-stopped

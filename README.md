@@ -6,6 +6,12 @@ The front end for [Qualtet](https://github.com/yoshinorin/qualtet).
 
 > [Live](https://yoshinorin.net)
 
+# Run qualtet mock server
+
+```sh
+$ docker compose -f docker-compose.local.yml up
+```
+
 # LICENSE
 
 © yoshinorin
