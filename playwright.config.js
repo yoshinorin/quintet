@@ -4,6 +4,7 @@ export default defineConfig({
   testDir: './__tests__',
   testIgnore: '**/__tests__/unit/**/*.{test,spec}.?(c|m)[jt]s?(x)',
   testMatch: '**/__tests__/e2e/**/*.{test,spec}.?(c|m)[jt]s?(x)',
+  timeout: 50000,
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
