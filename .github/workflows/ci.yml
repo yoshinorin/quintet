@@ -36,6 +36,13 @@ jobs:
         run: npm run test
       - name: E2E test
         run: npm run test:setup:e2e && npm run test:e2e
+      # NOTE: upload playwright report
+      #- uses: actions/upload-artifact@v3
+      #  if: always()
+      #  with:
+      #    name: playwright-report
+      #    path: playwright-report/
+      #    retention-days: 30
   build:
     runs-on: ${{ matrix.os }}
     strategy:
