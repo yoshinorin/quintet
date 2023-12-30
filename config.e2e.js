@@ -57,11 +57,11 @@ export const copyrights = '&copy; jhon due'
 export const footerItems = [
   {
     'url': '/',
-    'text': 'home'
+    'text': 'FooterHome'
   },
   {
     'url': '/about',
-    'text': 'about'
+    'text': 'FooterAbout'
   }
 ]
 
