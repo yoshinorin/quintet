@@ -6,10 +6,29 @@ The front end for [Qualtet](https://github.com/yoshinorin/qualtet).
 
 > [Live](https://yoshinorin.net)
 
+## Run locally
+
+1. create `config.local.js`
+2. `npm run server`
+
 ## Run qualtet mock server
 
 ```sh
 $ docker compose -f docker-compose.mock.yml up
+```
+
+## Test
+
+Unit test
+
+```
+$ npm run test
+```
+
+E2E test (require docker)
+
+```
+$ npm run test:e2e
 ```
 
 # LICENSE

@@ -5,8 +5,10 @@
   "license": "UNLICENSED",
   "repository": "https://github.com/yoshinorin/quintet",
   "scripts": {
+    "copy:localconfig": "node -e \"require('fs').copyFileSync('config.local.js', 'config.js')\"",
+    "copy:e2econfig": "node -e \"require('fs').copyFileSync('config.e2e.js', 'config.js')\"",
     "dev": "next dev",
-    "server": "set NEXT_ANALYZE=false && next dev",
+    "server": "set NEXT_ANALYZE=false && npm run copy:localconfig && next dev",
     "build": "set NEXT_ANALYZE=false && next build",
     "rebuild": "npm install && next build",
     "start": "set NEXT_ANALYZE=false && next start",
@@ -14,10 +16,13 @@
     "pm2:restart": "npm run rebuild && pm2 kill && pm2 restart ecosystem.config.js && pm2 save",
     "pm2:status": "pm2 ls",
     "pm2:stop": "pm2 stop ecosystem.config.js",
-    "analyze:win": "set NEXT_ANALYZE=true && next build",
+    "mock": "docker compose -f docker-compose.mock.yml up -d",
     "test": "vitest run --coverage",
     "test:hr": "vitest --coverage",
-    "test:e2e": "playwright test"
+    "test:setup:e2e": "npm run copy:e2econfig && npm run mock",
+    "test:e2e": "playwright test",
+    "test:teardown:e2e": "docker compose -f docker-compose.mock.yml down",
+    "analyze:win": "set NEXT_ANALYZE=true && next build"
   },
   "dependencies": {
     "micromatch": "4.0.5",

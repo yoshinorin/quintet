@@ -38,6 +38,7 @@ analyze/
 
 # application
 config.js
+config.local.js
 
 # images
 # can i use case-insensitive?
