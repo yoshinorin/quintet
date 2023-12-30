@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:3000/');
 });
 
-test.describe('Display Home', () => {
+test.describe('Home', () => {
   /* FIXME: this test case always passes.
   test('navbar-items are exists', async ({ page }) => {
     await expect(page.getByTitle('Home')).toBeVisible;
