@@ -12,7 +12,7 @@ test.describe('Home', () => {
   });
   */
 
-  test('should exists and set collect values in head meta', async ({ page }) => {
+  test('should exists and set collect values in head meta - with screenshot', async ({ page }, testInfo ) => {
     await expect(page.locator('meta[name="author"]')).toHaveAttribute('content', 'john doe');
     await expect(page.locator('meta[property="article:author"]')).toHaveAttribute('content', 'john doe');
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'E2E Test Site');
@@ -23,5 +23,12 @@ test.describe('Home', () => {
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'defaultImage.jpg');
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noarchive, nofollow, noimageindex, noindex');
     await expect(page.locator('meta[name="injectedMetaName"]')).toHaveAttribute('content', 'injectedMetaContent');
+
+    // TODO: move somewhere
+    const screenshot = await page.screenshot({ fullPage: true });
+    await testInfo.attach('screenshot', {
+        body: screenshot,
+        contentType: 'image/png',
+    });
   });
 });

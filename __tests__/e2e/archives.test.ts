@@ -22,7 +22,7 @@ test.describe('Archives', () => {
     await expect(page.getByText('posts')).toHaveText('10 posts');
   });
 
-  test('should display filterd articles when input text field', async ({ page }) => {
+  test('should display filterd articles when input text field - with screenshot', async ({ page }, testInfo) => {
     await page.getByRole('textbox').fill('With');
 
     await expect(page.getByText('posts')).toHaveText('3 posts');
@@ -32,13 +32,25 @@ test.describe('Archives', () => {
     await expect(archives).toContainText('Without tags');
     await expect(archives).toContainText('Without robots');
     await expect(archives).not.toContainText('Standard nested post');
+
+    const screenshot = await page.screenshot({ fullPage: true });
+    await testInfo.attach('screenshot', {
+        body: screenshot,
+        contentType: 'image/png',
+    });
   });
 
-  test('should display all articles after clear text field', async ({ page }) => {
+  test('should display all articles after clear text field - with screenshot', async ({ page }, testInfo) => {
     await page.getByRole('textbox').fill('Empty');
     await expect(page.getByText('posts')).toHaveText('2 posts');
 
     await page.getByRole('textbox').clear();
     await expect(page.getByText('posts')).toHaveText('10 posts');
+
+    const screenshot = await page.screenshot({ fullPage: true });
+    await testInfo.attach('screenshot', {
+        body: screenshot,
+        contentType: 'image/png',
+    });
   });
 });

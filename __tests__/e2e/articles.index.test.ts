@@ -19,7 +19,7 @@ test.describe('Articles', () => {
     await expect(page.locator('meta[name="injectedMetaName"]')).toHaveAttribute('content', 'injectedMetaContent');
   });
 
-  test('should display 10 articles', async ({ page }) => {
+  test('should display 10 articles - with screenshot', async ({ page }, testInfo ) => {
     const articles = await page.locator('main>section>article').all();
 
     await assert(articles.length === 10);
@@ -39,5 +39,11 @@ test.describe('Articles', () => {
     // await expect(articles[9].getAttribute('datetime')).toBe('1701948427');
     // const lastArticleLink = await articles[9].locator('div>a');
     // await expect(lastArticleLink.getAttribute('href')).toBe('/articles/2023/12/07/vestibulum/');
+
+    const screenshot = await page.screenshot({ fullPage: true });
+    await testInfo.attach('screenshot', {
+        body: screenshot,
+        contentType: 'image/png',
+    });
   });
 });
