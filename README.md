@@ -1,6 +1,6 @@
 # Quintet
 
-[![CI](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml/badge.svg)](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml)
+[![CI](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml/badge.svg)](https://github.com/yoshinorin/quintet/actions/workflows/ci.yml) | [E2E Test Report](https://yoshinorin.github.io/quintet/)
 
 The front end for [Qualtet](https://github.com/yoshinorin/qualtet).
 
