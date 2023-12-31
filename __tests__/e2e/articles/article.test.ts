@@ -19,6 +19,17 @@ test.describe('Article', () => {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noarchive, nofollow, noimageindex, noindex');
     await expect(page.locator('meta[name="injectedMetaName"]')).toHaveAttribute('content', 'injectedMetaContent');
 
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Proin tellus nibh, pretium vitae bibendum in, tempus nec odio...');
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', 'Proin tellus nibh, pretium vitae bibendum in, tempus nec odio...');
+
+    // TODO: assert content value
+    await expect(page.locator('meta[property="article:published_time"]')).toHaveAttribute('content');
+    await expect(page.locator('meta[property="article:modified_time"]')).toHaveAttribute('content');
+
+    const tags = await page.locator('meta[property="article:tag"]').all();
+    await expect(tags[0]).toHaveAttribute('content', 'Scala');
+    await expect(tags[1]).toHaveAttribute('content', 'Cats');
+
     const screenshot = await page.screenshot({ fullPage: true });
     await testInfo.attach('screenshot', {
         body: screenshot,
