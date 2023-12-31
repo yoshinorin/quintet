@@ -9,6 +9,7 @@
     "copy:e2econfig": "node -e \"require('fs').copyFileSync('config.e2e.js', 'config.js')\"",
     "dev": "next dev",
     "server": "set NEXT_ANALYZE=false && npm run copy:localconfig && next dev",
+    "server:mock": "set NEXT_ANALYZE=false && npm run copy:e2econfig && next dev",
     "build": "set NEXT_ANALYZE=false && next build",
     "rebuild": "npm install && next build",
     "start": "set NEXT_ANALYZE=false && next start",
