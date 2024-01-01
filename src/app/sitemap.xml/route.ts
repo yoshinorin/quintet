@@ -5,22 +5,24 @@ import { getSitemap } from '../../api/sitemap';
 import { generateSitemapString } from '../../services/sitemap';
 import { url } from '../../../config';
 import { getRequestContext } from '../../utils/requestContext';
+import { NextApiResponse } from 'next';
 
-export async function GET() {
+export async function GET(res: NextApiResponse) {
   const response: Response = await getSitemap(getRequestContext(headers()));
 
-  /* TODO
-  ctx.res.statusCode = response.status;
-
-  let sitemapResponse = null;
   if (response.status !== 200) {
-    return {
-      props: {
-        statusCode: 404
-      }
-    }
+    /* NOTE:
+    res.statusCode = response.status;
+    res.send;
+    */
+    return new Response('', {
+      status: 404 ,
+      headers: {
+        "Content-Type": "text/xml",
+      },
+    });
   }
-  */
+
   let sitemapResponse = await response.json() as Array<Sitemap>;
   const sitemap = sitemapResponse.map(sitemap => {
     return {
