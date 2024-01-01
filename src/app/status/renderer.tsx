@@ -1,10 +1,8 @@
 import HeadMetaComponent from '../../components/headmeta';
 import PlanePage from '../../components/planePage';
-import { getStatus } from '../../api/status';
-import { getRequestContext } from '../../utils/requestContext';
 import { defaultRobotsMeta } from '../../../config';
 
-const Page: React.FunctionComponent<{ statusCode: number }> = ({ statusCode }) => {
+const Renderer: React.FunctionComponent<{ statusCode: number }> = ({ statusCode }) => {
   // TODO: improvement (add bc-color, style, statusCode, etc)
   return(
     <>
@@ -34,15 +32,4 @@ const Page: React.FunctionComponent<{ statusCode: number }> = ({ statusCode }) =
   );
 }
 
-export async function getServerSideProps(ctx: any) {
-  const response: Response = await getStatus(getRequestContext(ctx.req))
-  ctx.res.statusCode = response.status;
-
-  return {
-    props: {
-      statusCode: response.status
-    }
-  }
-}
-
-export default Page;
+export default Renderer;
