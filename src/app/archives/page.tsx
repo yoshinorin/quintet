@@ -1,6 +1,6 @@
 import { headers } from 'next/headers'
 
-import Renderer from './render';
+import Renderer from './renderer';
 import { getArchives } from '../../api/archives';
 import { Archive, ArchiveResponse } from '../../models/archive';
 import { getRequestContext } from '../../utils/requestContext';
