@@ -1,0 +1,53 @@
+
+import ContentComponent from '../../components/content';
+import CoverWithNavigationComponent from '../../components/cover/withNavigation';
+import HeadMetaComponent from '../../components/headmeta';
+import MainBottomCodesComponent from '../../components/mainBottomCodes';
+import { Content } from '../../models/content';
+import { ScriptCode } from '../../models/script';
+import { getScriptCodes } from '../../utils/scriptTags';
+import { externalResources as externalResourcesConfig } from '../../../config';
+import { Insight } from '../../models/insight';
+import PlanePage from '../../components/planePage';
+
+const Renderer: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
+  if (statusCode !== 200) {
+    return <PlanePage
+      title={statusCode.toString()}
+      content="Something went to wrong..."
+    />
+  }
+
+  let externalResourceCodes: Array<ScriptCode> = [];
+  const hasExternalResources = (content.externalResources && externalResourcesConfig);
+  if (hasExternalResources) {
+    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig)
+  }
+  return (
+    <>
+      <HeadMetaComponent
+        robotsMeta={content.robotsAttributes}
+        externalResources={content.externalResources}
+        content={content}
+      />
+      <CoverWithNavigationComponent
+        contentCover={{
+          title: content.title,
+          tags: null,
+          publishedAt: content.publishedAt,
+        }}
+      />
+      <main>
+        <ContentComponent
+          content={content}
+          insight={insight}
+        />
+        <MainBottomCodesComponent
+          scriptCodes={externalResourceCodes}
+        />
+      </main>
+    </>
+  )
+}
+
+export default Renderer;
