@@ -9,11 +9,20 @@ import { getRequestContext } from '../../../utils/requestContext';
 //export async function get(ctx: any) {
 export async function GET() {
   const response: Response = await getFeed(getRequestContext(headers()));
-  // ctx.res.statusCode = response.status;  // TODO
 
   if (response.status !== 200) {
-    return new Response(new Blob(), { status: 404 });
+    /* NOTE:
+    res.statusCode = response.status;
+    res.send;
+    */
+    return new Response('', {
+      status: 404 ,
+      headers: {
+        "Content-Type": "text/xml",
+      },
+    });
   }
+
   let feedResponses = await response.json() as Array<Feed>;
   const feeds = feedResponses.map(feed => {
     return {
