@@ -15,10 +15,9 @@ export default async function Page() {
   const response: Response = await getArticles(1, 5, getRequestContext(headers()));
   // ctx.res.statusCode = response.status;
 
-  let articlesResponseWithCount: ArticleResponseWithCount = null;
   let articles: Array<Article> = [];
   if (response.status === 200) {
-    articlesResponseWithCount = await response.json() as ArticleResponseWithCount;
+    let articlesResponseWithCount: ArticleResponseWithCount = await response.json() as ArticleResponseWithCount;
     articles = articlesResponseWithCount.articles.map(article => {
       return {
         path: article.path,

@@ -1,10 +1,12 @@
+'use client';
+
 import { useState } from 'react';
 import { Content, ContentMeta } from '../models/content';
 import { Insight } from '../models/insight';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
 import Accordion from './contentAccordion';
-import handler from '../pages/api/qualtet/system/metadata';
+import handler from '../api/metadata';
 import { appendBackendMeta } from '../utils/converters';
 import { BackendMeta } from '../models/backendMeta';
 
