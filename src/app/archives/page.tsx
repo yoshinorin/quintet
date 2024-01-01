@@ -1,4 +1,4 @@
-import { headers } from 'next/headers'
+import { headers } from 'next/headers';
 
 import Renderer from './renderer';
 import { getArchives } from '../../api/archives';
