@@ -1,14 +1,16 @@
+'use server';
+
 import { ContentResponse, Content } from '../../models/content';
 import { findByPath } from '../../api/content';
 import { asInsight } from '../../utils/converters';
-import Renderer from './renderer';
+import { Renderer } from './renderer';
 
-export default async function SlugizedPage(req: any) {
+export default async function Page(req: any) {
   const { props } = await get(req);
   return <Renderer {...props} />;
 }
 
-export async function get(req: any) {
+async function get(req: any) {
   let path = req.params.slug.join("/");
   // TODO move utils & write testcode
   if (!path.startsWith("/")) {

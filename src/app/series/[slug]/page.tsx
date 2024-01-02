@@ -1,3 +1,5 @@
+'use server';
+
 // TODO: refactor
 import { getSeriesBySeriesName } from '../../../api/series';
 import { SeriresWithArticlesResponse, SeriresWithArticles } from '../../../models/series';
@@ -10,7 +12,7 @@ export default async function Page(ctx: any) {
   return <Renderer {...props} />;
 }
 
-export async function get(ctx: any) {
+async function get(ctx: any) {
   const seriesName = ctx.params.slug;
   const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext(ctx));
   // ctx.res.statusCode = response.status;

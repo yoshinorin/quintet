@@ -9,7 +9,7 @@ import { getScriptCodes } from '../../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../../config';
 import PlanePage from '../../../components/planePage';
 
-const Renderer: React.FunctionComponent<{
+export const Renderer: React.FunctionComponent<{
   statusCode: number,
   content: Content,
   insight: Insight
@@ -52,5 +52,3 @@ const Renderer: React.FunctionComponent<{
     </>
   )
 }
-
-export default Renderer;

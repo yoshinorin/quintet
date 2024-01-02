@@ -12,7 +12,6 @@ import inputStyles from '../../styles/input.module.scss';
 import containerStyles from '../../styles/components/container.module.scss';
 import SearchResultComponent from '../../components/searchResult';
 
-
 export const Renderer: React.FunctionComponent<{
   statusCode: number,
   hits: number,

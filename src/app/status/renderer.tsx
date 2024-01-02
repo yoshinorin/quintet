@@ -2,7 +2,7 @@ import HeadMetaComponent from '../../components/headmeta';
 import PlanePage from '../../components/planePage';
 import { defaultRobotsMeta } from '../../../config';
 
-const Renderer: React.FunctionComponent<{ statusCode: number }> = ({ statusCode }) => {
+export const Renderer: React.FunctionComponent<{ statusCode: number }> = ({ statusCode }) => {
   // TODO: improvement (add bc-color, style, statusCode, etc)
   return(
     <>
@@ -31,5 +31,3 @@ const Renderer: React.FunctionComponent<{ statusCode: number }> = ({ statusCode 
     </>
   );
 }
-
-export default Renderer;

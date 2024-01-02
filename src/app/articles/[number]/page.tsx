@@ -1,3 +1,5 @@
+'use server';
+
 import { headers } from 'next/headers';
 
 import { getArticles } from '../../../api/articles';
@@ -10,7 +12,7 @@ export default async function Page(req: any) {
   return <Renderer {...props} />;
 }
 
-export async function get(req: any) {
+async function get(req: any) {
   const response: Response = await getArticles(req.params.number, 10, getRequestContext(headers()));
   //ctx.res.statusCode = response.status;
 

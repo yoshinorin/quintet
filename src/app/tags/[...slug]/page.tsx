@@ -1,3 +1,5 @@
+'use server';
+
 import { getArticlesByTagName } from '../../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../../models/article';
 import { getRequestContext } from '../../../utils/requestContext';
@@ -8,7 +10,7 @@ export default async function Page(ctx: any) {
   return <Renderer {...props} />;
 }
 
-export async function get(ctx: any) {
+async function get(ctx: any) {
   const tagName = decodeURI(ctx.params.slug[0]);
   const currentPage = ctx.params.slug[1] ? ctx.params.slug[1] : 1;
   const response: Response = await getArticlesByTagName(tagName, currentPage, 10, getRequestContext(ctx));
