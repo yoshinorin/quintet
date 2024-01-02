@@ -1,29 +1,29 @@
+// TODO: migrate to react-server-component
+'use client';
+
 // TODO: refactor
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import { defaultRobotsMeta } from '../../../config';
-import { getRequestContext } from '../../utils/requestContext';
 import { SearchResponse, SearchResponseWithCount } from '../../models/search';
-import { search } from '../../api/search';
 import inputStyles from '../../styles/input.module.scss';
 import containerStyles from '../../styles/components/container.module.scss';
 import SearchResultComponent from '../../components/searchResult';
 
-const emptyResult = {
-  count: 0,
-  contents: []
-} as SearchResponseWithCount;
 
-const Page: React.FunctionComponent<{
+export const Renderer: React.FunctionComponent<{
   statusCode: number,
   hits: number,
   count:number,
   contents: Array<SearchResponse>,
   queryStrings: Array<string>
 }> = ({ statusCode, hits, count, contents, queryStrings }) => {
-  let contentsWithCount: SearchResponseWithCount = emptyResult;
+  let contentsWithCount: SearchResponseWithCount = {
+    count: 0,
+    contents: []
+  };
   const router = useRouter();
   const [searchWord, setSearchWord] = useState(queryStrings.join(' '));
   const [searchResults, setSearchResults] = useState(contents);
@@ -80,10 +80,10 @@ const Page: React.FunctionComponent<{
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  router.push({
-                    pathname:"/search",
-                    query: {q :searchWord.split(' ')}
-                  });
+                  // query: {q :searchWord.split(' ')}
+                  // router.push("/search", { query: {q: searchWord.split(' ')} });
+                  // router.push("/search", { searchParams: {q: searchWord.split(' ')} });
+                  router.push("/search?q=test");
                 };
               }}
             />
@@ -98,83 +98,3 @@ const Page: React.FunctionComponent<{
     </>
   )
 }
-
-export async function getServerSideProps(ctx: any) {
-  // TODO: refactor
-  // TODO: assert query params
-  try {
-    if (ctx.query['q'] === undefined) {
-      return {
-        props: {
-          statusCode: ctx.res.statusCode,
-          hits: 0,
-          count: 0,
-          contents: [],
-          queryStrings: [],
-        }
-      }
-    }
-    const qs = ctx.query['q'] instanceof Array ? ctx.query['q'] : [ctx.query['q']]
-    if (qs.length > 0) {
-      const result = await execute(ctx, qs);
-      return {
-        props: {
-          statusCode: ctx.res.statusCode,
-          hits: result.count,
-          count: result.contents.length,
-          contents: result.contents,
-          queryStrings: qs,
-        }
-      }
-    } else {
-      return {
-        props: {
-          statusCode: ctx.res.statusCode,
-          hits: 0,
-          count: 0,
-          contents: [],
-          queryStrings: qs,
-        }
-      }
-    }
-  } catch {
-    return {
-      props: {
-        statusCode: ctx.res.statusCode,
-        hits: 0,
-        count: 0,
-        contents: [],
-        queryStrings: [],
-      }
-    }
-  }
-
-}
-
-async function execute(ctx, words: Array<string>) {
-  const response = await search(getRequestContext(ctx.req), words);
-  ctx.res.statusCode = response.status;
-  if (response.status !== 200) {
-    return emptyResult;
-  }
-  const sr = await response.json() as SearchResponseWithCount;
-  if (sr.count === 0) {
-    return emptyResult;
-  }
-  let contents = [];
-  contents = sr.contents.map(content => {
-    return {
-      path: content.path,
-      title: content.title,
-      content: content.content,
-      publishedAt: content.publishedAt
-    } as SearchResponse});
-
-  return {
-    count: sr.count,
-    contents: contents
-  } as SearchResponseWithCount
-  // TODO: Error handling
-}
-
-export default Page;
