@@ -1,4 +1,3 @@
-
 import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
@@ -10,7 +9,7 @@ import { externalResources as externalResourcesConfig } from '../../../config';
 import { Insight } from '../../models/insight';
 import PlanePage from '../../components/planePage';
 
-const Renderer: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
+export const Renderer: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
   if (statusCode !== 200) {
     return <PlanePage
       title={statusCode.toString()}
@@ -49,5 +48,3 @@ const Renderer: React.FunctionComponent<{ statusCode: number, content: Content, 
     </>
   )
 }
-
-export default Renderer;

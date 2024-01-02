@@ -16,7 +16,7 @@ export default async function Page(ctx: any) {
 }
 
 // TODO: fix (can't fetch and redirect )
-export async function get(ctx: any) {
+async function get(ctx: any) {
   // TODO: refactor
   // TODO: assert query params
   try {

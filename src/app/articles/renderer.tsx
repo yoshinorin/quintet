@@ -6,7 +6,7 @@ import PaginationComponent from '../../components/pagination';
 import { defaultRobotsMeta } from '../../../config';
 import PlanePage from '../../components/planePage';
 
-const Renderer: React.FunctionComponent<{
+export const Renderer: React.FunctionComponent<{
   statusCode,
   count,
   articles
@@ -38,5 +38,3 @@ const Renderer: React.FunctionComponent<{
     </>
   )
 }
-
-export default Renderer;

@@ -1,8 +1,10 @@
+'use server';
+
 import { ContentResponse, Content } from '../../../models/content';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
 import { asInsight } from '../../../utils/converters';
-import Renderer from './renderer';
+import { Renderer } from './renderer';
 
 export default async function Page(req: any) {
   const { props } = await get(req);
@@ -10,7 +12,7 @@ export default async function Page(req: any) {
   return <Renderer {...props} />;
 }
 
-export async function get(req: any) {
+async function get(req: any) {
   const path = "/articles/" + req.params.slug.join("/");
 
   // avoid send request of images

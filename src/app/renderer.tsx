@@ -7,7 +7,7 @@ import containerStyles from '../styles/components/container.module.scss';
 import { defaultRobotsMeta } from '../../config';
 import PlanePage from '../components/planePage';
 
-const Renderer: React.FunctionComponent<{
+export const Renderer: React.FunctionComponent<{
   statusCode: number,
   articles: Array<Article>
 }> = ({ statusCode, articles }) => {
@@ -36,5 +36,3 @@ const Renderer: React.FunctionComponent<{
     </>
   )
 }
-
-export default Renderer;

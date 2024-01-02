@@ -1,3 +1,5 @@
+'use server';
+
 import { Tag } from '../../models/tag';
 import { getTags } from '../../api/tags';
 import { getRequestContext } from '../../utils/requestContext';
@@ -8,7 +10,7 @@ export default async function Page(ctx: any) {
   return <Renderer {...props} />;
 }
 
-export async function get(ctx: any) {
+async function get(ctx: any) {
   const response: Response = await getTags(getRequestContext(ctx));
   // ctx.res.statusCode = response.status;
 

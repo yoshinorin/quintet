@@ -1,3 +1,5 @@
+'use server';
+
 import { getSeries } from '../../api/series';
 import { Series, SeriesResponse } from '../../models/series';
 import { getRequestContext } from '../../utils/requestContext';
@@ -8,7 +10,7 @@ export default async function Page(req: any) {
   return <Renderer {...props} />;
 }
 
-export async function get(req: any) {
+async function get(req: any) {
   const response: Response = await getSeries(getRequestContext(req))
   // ctx.res.statusCode = response.status;
 
