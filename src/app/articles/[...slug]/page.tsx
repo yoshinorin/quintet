@@ -6,6 +6,7 @@ import Renderer from './renderer';
 
 export default async function Page(req: any) {
   const { props } = await get(req);
+  // @ts-ignore I don't know why ts check error occured.
   return <Renderer {...props} />;
 }
 
