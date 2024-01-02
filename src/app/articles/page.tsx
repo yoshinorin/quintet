@@ -1,23 +1,23 @@
 import { headers } from 'next/headers'
 
+// TODO: refactor
+import { getArticles } from '../../api/articles';
+import { Article, ArticleResponseWithCount } from '../../models/article';
+import { getRequestContext } from '../../utils/requestContext';
 import Renderer from './renderer';
-import { getArticles } from '../api/articles';
-import { Article, ArticleResponseWithCount } from '../models/article';
-import { getRequestContext } from '../utils/requestContext';
 
 export default async function Page() {
   const { props } = await get();
   return <Renderer {...props} />;
 }
 
-// export async function get(ctx: any) {
 export async function get() {
-  const response: Response = await getArticles(1, 5, getRequestContext(headers()));
-  // ctx.res.statusCode = response.status;
+  const response: Response = await getArticles(1, 10, getRequestContext(headers()));
 
+  let articlesResponseWithCount: ArticleResponseWithCount = null;
   let articles: Array<Article> = [];
   if (response.status === 200) {
-    let articlesResponseWithCount: ArticleResponseWithCount = await response.json() as ArticleResponseWithCount;
+    articlesResponseWithCount = await response.json() as ArticleResponseWithCount;
     articles = articlesResponseWithCount.articles.map(article => {
       return {
         path: article.path,
@@ -32,6 +32,7 @@ export async function get() {
   return {
     props: {
       statusCode: response.status,
+      count: articlesResponseWithCount.count,
       articles: articles
     }
   }
