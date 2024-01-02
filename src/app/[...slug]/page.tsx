@@ -1,5 +1,7 @@
 'use server';
 
+import { permanentRedirect } from "next/navigation";
+
 import { ContentResponse, Content } from '../../models/content';
 import { findByPath } from '../../api/content';
 import { asInsight } from '../../utils/converters';
@@ -21,12 +23,8 @@ async function get(req: any) {
     if (!path.endsWith("/")) {
       path = `${path}/`
     }
-    return {
-      redirect: {
-        permanent: true,
-        destination: `/articles${path}`
-      }
-    }
+    // https://nextjs.org/docs/app/api-reference/functions/permanentRedirect
+    return permanentRedirect(`/articles${path}`);
   }
 
   const response: Response = await findByPath(path);
