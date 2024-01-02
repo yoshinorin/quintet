@@ -7,16 +7,8 @@ import { ScriptCode } from '../../models/script';
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../config';
 import { Insight } from '../../models/insight';
-import PlanePage from '../../components/planePage';
 
-export const Renderer: React.FunctionComponent<{ statusCode: number, content: Content, insight: Insight }> = ({ statusCode, content, insight }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
-
+export const Renderer: React.FunctionComponent<{ content: Content, insight: Insight }> = ({ content, insight }) => {
   let externalResourceCodes: Array<ScriptCode> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
   if (hasExternalResources) {

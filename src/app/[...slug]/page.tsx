@@ -1,6 +1,6 @@
 'use server';
 
-import { permanentRedirect } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 
 import { ContentResponse, Content } from '../../models/content';
 import { findByPath } from '../../api/content';
@@ -8,8 +8,18 @@ import { asInsight } from '../../utils/converters';
 import { Renderer } from './renderer';
 
 export default async function Page(req: any) {
-  const { props } = await get(req);
-  return <Renderer {...props} />;
+  try {
+    const { props } = await get(req);
+    return <Renderer {...props} />;
+  } catch(e) {
+    // @ts-ignore
+    if (e.cause === 404) {
+      return notFound();
+    }
+    // FIXME: I don't want to re-throw
+    // @ts-ignore
+    throw new Error(response.statusText, { cause: response.status });
+  }
 }
 
 async function get(req: any) {
@@ -28,23 +38,24 @@ async function get(req: any) {
   }
 
   const response: Response = await findByPath(path);
-  // ctx.res.statusCode = response.status;
 
-  let content: Content = null;
-  if (response.status === 200) {
-    const contentResponse: ContentResponse = await response.json() as ContentResponse;
-    content = {
-      title: contentResponse.title,
-      robotsAttributes: contentResponse.robotsAttributes,
-      externalResources: contentResponse.externalResources,
-      content: contentResponse.content,
-      length: contentResponse.length,
-      publishedAt: contentResponse.publishedAt
-    } as Content
+  if (response.status !== 200) {
+    // TODO: use custom Error class
+    throw new Error(response.statusText, { cause: response.status });
   }
+
+  const contentResponse: ContentResponse = await response.json() as ContentResponse;
+  const content: Content = {
+    title: contentResponse.title,
+    robotsAttributes: contentResponse.robotsAttributes,
+    externalResources: contentResponse.externalResources,
+    content: contentResponse.content,
+    length: contentResponse.length,
+    publishedAt: contentResponse.publishedAt
+  } as Content
+
   return {
     props: {
-      statusCode: response.status,
       content: content,
       insight: asInsight(response)
     }

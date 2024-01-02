@@ -3,22 +3,13 @@ import CoverWithNavigationComponent from '../../../components/cover/withNavigati
 import ArticlesComponent from '../../../components/articles';
 import PaginationComponent from '../../../components/pagination';
 import { defaultRobotsMeta } from '../../../../config';
-import PlanePage from '../../../components/planePage';
 
 export const Renderer: React.FunctionComponent<{
-  statusCode,
   tagName,
   currentPage,
   count,
   articles
-}> = ({ statusCode, tagName, currentPage, count, articles }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
-
+}> = ({ tagName, currentPage, count, articles }) => {
   return (
     <>
       <HeadMetaComponent
