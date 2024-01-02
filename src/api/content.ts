@@ -4,8 +4,9 @@ import { isIgnoreRequest } from '../utils/filterRequests';
 import { getRequestContext } from '../utils/requestContext';
 import { generateRequestHeaderObject } from './utils/header';
 
+// TODO:
 // export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
-  export async function findByPath(path: string): Promise<Response> {
+export async function findByPath(path: string): Promise<Response> {
 
   if (!path || (path && isIgnoreRequest(path))) {
     return new Response(null, { "status" : 404 });
