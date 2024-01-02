@@ -30,7 +30,7 @@ export default function Error({
   return (
     <>
       <div style={pageStyles}>
-        <h1>{error.message}</h1>
+        <h1>Something went wrong...</h1>
         <div style={noteStyles}>
           <p>This web site returns a 500 error if the backend-server returns any status code other than 404.</p>
           <h5>Reasons</h5>

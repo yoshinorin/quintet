@@ -1,22 +1,14 @@
 'use client';
 
+import { Tag } from '../../models/tag';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import TagsComponent from '../../components/tags';
 import { defaultRobotsMeta } from '../../../config';
-import PlanePage from '../../components/planePage';
 
 export const Renderer: React.FunctionComponent<{
-  statusCode,
-  tags
-}> = ({ statusCode, tags }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
-
+  tags: Array<Tag>
+}> = ({ tags }) => {
   return (
     <>
       <HeadMetaComponent
