@@ -71,7 +71,7 @@ async function get(ctx: any) {
 
 async function execute(ctx, words: Array<string>) {
   console.log(words);
-  const response = await search(getRequestContext(ctx.req), words);
+  const response = await search(getRequestContext(), words);
   if (response.status !== 200) {
     return emptyResult;
   }

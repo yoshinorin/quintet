@@ -21,7 +21,7 @@ async function run(req: any): Promise<any> {
 }
 async function get(ctx: any) {
   const seriesName = ctx.params.slug;
-  const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext(ctx));
+  const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext());
   throwIfError(response);
 
   const seriresWithArticlesResponse: SeriresWithArticlesResponse = await response.json() as SeriresWithArticlesResponse;

@@ -17,7 +17,7 @@ async function run(req: any): Promise<any> {
 
 
 async function get(req: any) {
-  const response: Response = await getSeries(getRequestContext(req))
+  const response: Response = await getSeries(getRequestContext())
   throwIfError(response);
 
   const seriesResponse: Array<SeriesResponse> = await response.json() as Array<SeriesResponse>;

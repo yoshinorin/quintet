@@ -1,7 +1,5 @@
 'use server';
 
-import { headers } from 'next/headers';
-
 import { getStatus } from '../../api/status';
 import { getRequestContext } from '../../utils/requestContext';
 import { Renderer } from './renderer';
@@ -12,7 +10,7 @@ export default async function Page() {
 }
 
 async function get() {
-  const response: Response = await getStatus(getRequestContext(headers()));
+  const response: Response = await getStatus(getRequestContext());
 
   return {
     props: {
