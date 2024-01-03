@@ -2,7 +2,7 @@ import HeadMetaComponent from '../../../components/headmeta';
 import CoverWithNavigationComponent from '../../../components/cover/withNavigation';
 import ArticlesComponent from '../../../components/articles';
 import PaginationComponent from '../../../components/pagination';
-import { Article } from '../../../models/article';
+import { Article } from '../../../models/models';
 
 export const Renderer: React.FunctionComponent<{
   current: number,

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import { defaultRobotsMeta } from '../../../config';
-import { SearchResponse, SearchResponseWithCount } from '../../models/search';
+import { SearchResponse, SearchResponseWithCount } from '../../models/models';
 import inputStyles from '../../styles/input.module.scss';
 import containerStyles from '../../styles/components/container.module.scss';
 import SearchResultComponent from '../../components/searchResult';

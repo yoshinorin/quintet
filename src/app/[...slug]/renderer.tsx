@@ -2,11 +2,13 @@ import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
 import MainBottomCodesComponent from '../../components/mainBottomCodes';
-import { Content } from '../../models/content';
-import { ScriptCode } from '../../models/script';
+import {
+  Content,
+  ScriptCode,
+  Insight
+} from '../../models/models';
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../config';
-import { Insight } from '../../models/insight';
 
 export const Renderer: React.FunctionComponent<{ content: Content, insight: Insight }> = ({ content, insight }) => {
   let externalResourceCodes: Array<ScriptCode> = [];

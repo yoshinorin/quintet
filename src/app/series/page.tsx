@@ -1,7 +1,7 @@
 'use server';
 
 import { getSeries } from '../../api/series';
-import { Series, SeriesResponse } from '../../models/series';
+import { Series, SeriesResponse } from '../../models/models';
 import { getRequestContext } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../handler";

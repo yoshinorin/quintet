@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 
-import { Sitemap } from '../../models/sitemap';
+import { Sitemap } from '../../models/models';
 import { getSitemap } from '../../api/sitemap';
 import { generateSitemapString } from '../../services/sitemap';
 import { url } from '../../../config';

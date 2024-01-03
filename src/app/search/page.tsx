@@ -1,7 +1,7 @@
 'use server';
 
 import { getRequestContext } from '../../utils/requestContext';
-import { SearchResponse, SearchResponseWithCount } from '../../models/search';
+import { SearchResponse, SearchResponseWithCount } from '../../models/models';
 import { search } from '../../api/search';
 import { Renderer } from './renderer';
 

@@ -1,4 +1,4 @@
-import { Feed } from '../models/feed';
+import { Feed } from '../models/models';
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 import { siteName, mainAuthor } from '../../config';
 

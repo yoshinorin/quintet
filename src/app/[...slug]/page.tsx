@@ -2,7 +2,7 @@
 
 import { permanentRedirect } from "next/navigation";
 
-import { ContentResponse, Content } from '../../models/content';
+import { ContentResponse, Content } from '../../models/models';
 import { findByPath } from '../../api/content';
 import { asInsight } from '../../utils/converters';
 import { Renderer } from './renderer';

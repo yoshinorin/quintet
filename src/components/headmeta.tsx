@@ -10,11 +10,13 @@ import {
   defaultImage,
   injectMetas
 } from '../../config';
-import { ExternalResources } from '../models/externalResource';
+import {
+  ExternalResources,
+  ScriptSrc,
+  Content
+} from '../models/models';
 import HeaderScriptSrcsComponent from './headerScriptSrcs';
-import { ScriptSrc } from '../models/script';
 import { getScriptTags } from '../utils/scriptTags';
-import { Content } from '../models/content';
 // import { usePathname } from "next/navigation";
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 

@@ -1,4 +1,4 @@
-import { RequestContext } from '../models/requestContext'
+import { RequestContext } from '../models/models';
 import { uuid4 } from './uuid';
 
 // FIXME: fix types

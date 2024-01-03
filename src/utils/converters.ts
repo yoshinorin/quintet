@@ -1,5 +1,4 @@
-import { BackendMeta } from "../models/backendMeta";
-import { Insight } from "../models/insight";
+import { BackendMeta, Insight } from "../models/models";
 
 export function asInsight(response: Response): Insight {
   const reqId = response.headers.get("x-request-id")

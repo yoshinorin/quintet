@@ -1,6 +1,6 @@
 'use server';
 
-import { ContentResponse, Content } from '../../../models/content';
+import { ContentResponse, Content } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
 import { asInsight } from '../../../utils/converters';

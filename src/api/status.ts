@@ -1,5 +1,5 @@
 import { api } from '../../config';
-import { RequestContext } from '../models/requestContext';
+import { RequestContext } from '../models/models';
 import { generateRequestHeaderObject } from './utils/header';
 
 export async function getStatus(rq: RequestContext): Promise<Response> {

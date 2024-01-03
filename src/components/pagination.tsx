@@ -1,5 +1,5 @@
 // TODO: refactor all
-import { PaginationNumbers } from '../models/pagination';
+import { PaginationNumbers } from '../models/models';
 import { calcNumberOfPages, getNumbersForDisplay } from '../services/pagination';
 import Link from 'next/link';
 import style from '../styles/components/pagination.module.scss';
