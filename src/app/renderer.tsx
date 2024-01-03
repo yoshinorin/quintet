@@ -5,18 +5,10 @@ import RecentArticlesComponent from '../components/recentArticles';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import { defaultRobotsMeta } from '../../config';
-import PlanePage from '../components/planePage';
 
 export const Renderer: React.FunctionComponent<{
-  statusCode: number,
   articles: Array<Article>
-}> = ({ statusCode, articles }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
+}> = ({ articles }) => {
 
   return (
     <>

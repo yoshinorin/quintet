@@ -3,19 +3,10 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import SeriesComponent from '../../components/series';
 import { Series } from '../../models/series';
 import { defaultRobotsMeta } from '../../../config';
-import PlanePage from '../../components/planePage';
 
 export const Renderer: React.FunctionComponent<{
-  statusCode: number,
   series: Array<Series>
-}> = ({ statusCode, series }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
-
+}> = ({ series }) => {
   return (
     <>
       <HeadMetaComponent
