@@ -3,21 +3,12 @@ import CoverWithNavigationComponent from '../../../components/cover/withNavigati
 import ArticlesComponent from '../../../components/articles';
 import PaginationComponent from '../../../components/pagination';
 import { Article } from '../../../models/article';
-import PlanePage from '../../../components/planePage';
 
 export const Renderer: React.FunctionComponent<{
-  statusCode: number,
   current: number,
   count: number,
   articles: Array<Article>
-}> = ({ statusCode, current, count, articles }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
-
+}> = ({ current, count, articles }) => {
   return (
     <>
       <HeadMetaComponent />
