@@ -11,10 +11,6 @@ export async function GET(res: NextApiResponse) {
   const response: Response = await getSitemap(getRequestContext(headers()));
 
   if (response.status !== 200) {
-    /* NOTE:
-    res.statusCode = response.status;
-    res.send;
-    */
     return new Response('', {
       status: 404 ,
       headers: {

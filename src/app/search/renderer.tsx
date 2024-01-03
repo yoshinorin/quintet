@@ -13,12 +13,11 @@ import containerStyles from '../../styles/components/container.module.scss';
 import SearchResultComponent from '../../components/searchResult';
 
 export const Renderer: React.FunctionComponent<{
-  statusCode: number,
   hits: number,
   count:number,
   contents: Array<SearchResponse>,
   queryStrings: Array<string>
-}> = ({ statusCode, hits, count, contents, queryStrings }) => {
+}> = ({ hits, count, contents, queryStrings }) => {
   let contentsWithCount: SearchResponseWithCount = {
     count: 0,
     contents: []
