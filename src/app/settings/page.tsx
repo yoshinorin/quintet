@@ -9,7 +9,8 @@ import DropdownComponent from '../../components/dropdown';
 import containerStyles from '../../styles/components/container.module.scss';
 import inputStyles from '../../styles/input.module.scss';
 
-export const Page: React.FunctionComponent<{ }> = ({ }) => {
+export default function Page(){
+
   const theme = getThemeSetting();
 
   const [selectedOption, setSelectedOption] = useState('');
@@ -47,4 +48,4 @@ export const Page: React.FunctionComponent<{ }> = ({ }) => {
       </main>
     </>
   )
-}
+};

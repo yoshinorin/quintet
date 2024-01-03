@@ -20,7 +20,6 @@ async function get(ctx: any) {
   // TODO: refactor
   // TODO: assert query params
   try {
-    console.log(ctx.searchParams['q'])
     if (ctx.searchParams['q'] === undefined) {
       return {
         props: {
@@ -70,7 +69,6 @@ async function get(ctx: any) {
 }
 
 async function execute(ctx, words: Array<string>) {
-  console.log(words);
   const response = await search(getRequestContext(), words);
   if (response.status !== 200) {
     return emptyResult;
