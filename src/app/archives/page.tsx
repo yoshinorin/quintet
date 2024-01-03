@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 
 import { getArchives } from '../../api/archives';
-import { Archive, ArchiveResponse } from '../../models/archive';
+import { Archive, ArchiveResponse } from '../../models/models';
 import { getRequestContext } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../handler";

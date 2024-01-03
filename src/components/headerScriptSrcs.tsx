@@ -1,5 +1,5 @@
 // import Script from 'next/script'
-import { ScriptSrc } from '../models/script';
+import { ScriptSrc } from '../models/models';
 
 const HeaderScriptSrcsComponent: React.FunctionComponent<{ scriptSrcs: Array<ScriptSrc> }> = ({ scriptSrcs }) => {
   if (!scriptSrcs) {

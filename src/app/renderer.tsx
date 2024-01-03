@@ -1,4 +1,4 @@
-import { Article } from '../models/article';
+import { Article } from '../models/models';
 import HeadMetaComponent from '../components/headmeta';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import RecentArticlesComponent from '../components/recentArticles';

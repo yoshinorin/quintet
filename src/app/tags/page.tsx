@@ -1,6 +1,6 @@
 'use server';
 
-import { Tag } from '../../models/tag';
+import { Tag } from '../../models/models';
 import { getTags } from '../../api/tags';
 import { getRequestContext } from '../../utils/requestContext';
 import { Renderer } from './renderer';

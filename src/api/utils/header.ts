@@ -1,4 +1,4 @@
-import { RequestContext } from '../../models/requestContext';
+import { RequestContext } from '../../models/models';
 
 export function generateRequestHeaderObject(rq: RequestContext): Object {
   return {

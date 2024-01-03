@@ -1,6 +1,6 @@
 'use client';
 
-import { Tag } from '../../models/tag';
+import { Tag } from '../../models/models';
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import TagsComponent from '../../components/tags';

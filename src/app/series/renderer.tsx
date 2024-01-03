@@ -1,7 +1,7 @@
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import SeriesComponent from '../../components/series';
-import { Series } from '../../models/series';
+import { Series } from '../../models/models';
 import { defaultRobotsMeta } from '../../../config';
 
 export const Renderer: React.FunctionComponent<{

@@ -1,5 +1,8 @@
-import { ExternalResources } from '../models/externalResource';
-import { ScriptCode, ScriptSrc } from '../models/script';
+import {
+  ExternalResources,
+  ScriptCode,
+  ScriptSrc
+} from '../models/models';
 
 // TODO: write test code
 export function getScriptTags(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<ScriptSrc> {

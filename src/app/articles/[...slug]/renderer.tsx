@@ -2,9 +2,11 @@ import ContentComponent from '../../../components/content';
 import CoverWithNavigationComponent from '../../../components/cover/withNavigation';
 import HeadMetaComponent from '../../../components/headmeta';
 import MainBottomCodesComponent from '../../../components/mainBottomCodes';
-import { Content } from '../../../models/content';
-import { Insight } from '../../../models/insight';
-import { ScriptCode } from '../../../models/script';
+import {
+  Content,
+  Insight,
+  ScriptCode
+} from '../../../models/models';
 import { getScriptCodes } from '../../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../../config';
 

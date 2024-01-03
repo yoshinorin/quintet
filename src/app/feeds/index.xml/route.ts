@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 
-import { Feed } from '../../../models/feed';
+import { Feed } from '../../../models/models';
 import { getFeed } from '../../../api/feed';
 import { generateFeedsString } from '../../../services/feeds';
 import { url } from '../../../../config';
