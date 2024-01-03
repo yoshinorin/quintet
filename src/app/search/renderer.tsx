@@ -1,7 +1,6 @@
 // TODO: migrate to react-server-component
 'use client';
 
-// TODO: refactor
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import HeadMetaComponent from '../../components/headmeta';

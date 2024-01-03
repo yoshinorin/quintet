@@ -1,6 +1,5 @@
 'use server';
 
-// TODO: refactor
 import { getSeriesBySeriesName } from '../../../api/series';
 import {
   Article,

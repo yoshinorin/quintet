@@ -15,10 +15,9 @@ export default async function Page(ctx: any) {
   return <Renderer {...props} />;
 }
 
-// TODO: fix (can't fetch and redirect )
 async function get(ctx: any) {
   // TODO: refactor
-  // TODO: assert query params
+  // TODO: assert query params before POST to server
   try {
     if (ctx.searchParams['q'] === undefined) {
       return {
