@@ -5,50 +5,46 @@ import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
 import { asInsight } from '../../../utils/converters';
 import { Renderer } from './renderer';
+import { runOrHandleErrorIf, throwIfError } from "../../handler";
 
 export default async function Page(req: any) {
+  return runOrHandleErrorIf(await run(req));
+}
+
+async function run(req: any): Promise<any> {
   const { props } = await get(req);
-  // @ts-ignore I don't know why ts check error occured.
   return <Renderer {...props} />;
 }
 
 async function get(req: any) {
   const path = "/articles/" + req.params.slug.join("/");
 
-  // avoid send request of images
-  // TODO
+  // NOTE: avoid send request of images
   if (isIgnoreRequest(path)) {
-    return {
-      props: {
-        statusCode: 404
-      }
-    }
+    throw new Error('Not found', { cause: 404 });
   }
 
   // const response: Response = await findByPath(ctx.req, path);
   const response: Response = await findByPath(path);
-  // ctx.res.statusCode = response.status;
+  throwIfError(response);
 
-  let content: Content = null;
-  if (response.status === 200) {
-    const contentResponse: ContentResponse = await response.json() as ContentResponse;
-    content = {
-      id: contentResponse.id,
-      title: contentResponse.title,
-      robotsAttributes: contentResponse.robotsAttributes,
-      externalResources: contentResponse.externalResources,
-      tags: contentResponse.tags,
-      description: contentResponse.description,
-      content: contentResponse.content,
-      length: contentResponse.length,
-      authorName: contentResponse.authorName,
-      publishedAt: contentResponse.publishedAt,
-      updatedAt: contentResponse.updatedAt
-    } as Content
-  }
+  const contentResponse: ContentResponse = await response.json() as ContentResponse;
+  const content: Content = {
+    id: contentResponse.id,
+    title: contentResponse.title,
+    robotsAttributes: contentResponse.robotsAttributes,
+    externalResources: contentResponse.externalResources,
+    tags: contentResponse.tags,
+    description: contentResponse.description,
+    content: contentResponse.content,
+    length: contentResponse.length,
+    authorName: contentResponse.authorName,
+    publishedAt: contentResponse.publishedAt,
+    updatedAt: contentResponse.updatedAt
+  } as Content
+
   return {
     props: {
-      statusCode: response.status,
       content: content,
       insight: asInsight(response)
     }

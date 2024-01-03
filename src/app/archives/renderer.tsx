@@ -3,16 +3,8 @@ import CoverWithNavigationComponent from '../../components/cover/withNavigation'
 import ArchivesComponent from '../../components/archives';
 import { Archive } from '../../models/archive';
 import { defaultRobotsMeta } from '../../../config';
-import PlanePage from '../../components/planePage';
 
-const Renderer: React.FunctionComponent<{ statusCode: number, archives: Array<Archive> }> = ({ statusCode, archives }) => {
-  if (statusCode !== 200) {
-    return <PlanePage
-      title={statusCode.toString()}
-      content="Something went to wrong..."
-    />
-  }
-
+export const Renderer: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
   return (
     <>
       <HeadMetaComponent
@@ -34,5 +26,3 @@ const Renderer: React.FunctionComponent<{ statusCode: number, archives: Array<Ar
     </>
   )
 }
-
-export default Renderer;
