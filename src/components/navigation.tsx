@@ -11,6 +11,7 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
               {items.filter(item => item.position == 'left').map((item, idx) => {
                 return(
                   <NavbarItem
+                    key = {idx}
                     item = {item}
                     idx = {idx}
                   />
@@ -23,6 +24,7 @@ const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ i
               {items.filter(item => item.position == 'right').map((item, idx) => {
                 return(
                   <NavbarItem
+                    key= {idx}
                     item = {item}
                     idx = {idx}
                   />
