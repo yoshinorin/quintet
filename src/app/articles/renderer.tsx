@@ -1,4 +1,3 @@
-// TODO: refactor
 import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import ArticlesComponent from '../../components/articles';
