@@ -16,8 +16,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function get(req: any) {
-  // TODO: check ctx is collect or not
-  const response: Response = await getTags(getRequestContext(req));
+  const response: Response = await getTags(getRequestContext());
   throwIfError(response);
 
   return {

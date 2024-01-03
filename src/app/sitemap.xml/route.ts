@@ -1,5 +1,3 @@
-import { headers } from 'next/headers';
-
 import { Sitemap } from '../../models/models';
 import { getSitemap } from '../../api/sitemap';
 import { generateSitemapString } from '../../services/sitemap';
@@ -8,7 +6,7 @@ import { getRequestContext } from '../../utils/requestContext';
 import { NextApiResponse } from 'next';
 
 export async function GET(res: NextApiResponse) {
-  const response: Response = await getSitemap(getRequestContext(headers()));
+  const response: Response = await getSitemap(getRequestContext());
 
   if (response.status !== 200) {
     return new Response('', {

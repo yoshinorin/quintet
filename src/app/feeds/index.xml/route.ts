@@ -1,5 +1,3 @@
-import { headers } from 'next/headers';
-
 import { Feed } from '../../../models/models';
 import { getFeed } from '../../../api/feed';
 import { generateFeedsString } from '../../../services/feeds';
@@ -8,7 +6,7 @@ import { getRequestContext } from '../../../utils/requestContext';
 
 //export async function get(ctx: any) {
 export async function GET() {
-  const response: Response = await getFeed(getRequestContext(headers()));
+  const response: Response = await getFeed(getRequestContext());
 
   if (response.status !== 200) {
     /* NOTE:

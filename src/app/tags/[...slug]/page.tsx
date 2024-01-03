@@ -18,7 +18,7 @@ async function run(req: any): Promise<any> {
 async function get(ctx: any) {
   const tagName = decodeURI(ctx.params.slug[0]);
   const currentPage = ctx.params.slug[1] ? ctx.params.slug[1] : 1;
-  const response: Response = await getArticlesByTagName(tagName, currentPage, 10, getRequestContext(ctx));
+  const response: Response = await getArticlesByTagName(tagName, currentPage, 10, getRequestContext());
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json();
