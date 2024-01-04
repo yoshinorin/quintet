@@ -33,7 +33,8 @@ const HeadMetaComponent: React.FunctionComponent<{
 }) => {
   // TODO: I want to get trailingSlash settings from `next.config.js`
   // const { trailingSlash } = getConfig();
-  const currentUrl = new URL(slug + "/" , url).href
+  const currentSlug = slug === undefined ? '' : slug + "/"
+  const currentUrl = new URL(currentSlug, url).href
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;

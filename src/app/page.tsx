@@ -32,7 +32,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug.join('/'),
+      slug: undefined,
       articles: articles
     }
   }
