@@ -36,7 +36,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug,
+      slug: req.params.slug.join('/'),
       current: req.params.number,
       count: articlesResponseWithCount.count,
       articles: articles

@@ -22,7 +22,7 @@ async function get(req: any) {
     if (req.searchParams['q'] === undefined) {
       return {
         props: {
-          slug: req.params.slug,
+          slug: req.params.slug.join('/'),
           statusCode: req.res.statusCode,
           hits: 0,
           count: 0,
@@ -36,7 +36,7 @@ async function get(req: any) {
       const result = await execute(req, qs);
       return {
         props: {
-          slug: req.params.slug,
+          slug: req.params.slug.join('/'),
           statusCode: 422,  // TODO
           hits: result.count,
           count: result.contents.length,
@@ -47,7 +47,7 @@ async function get(req: any) {
     } else {
       return {
         props: {
-          slug: req.params.slug,
+          slug: req.params.slug.join('/'),
           statusCode: 422,  // TODO
           hits: 0,
           count: 0,
@@ -59,7 +59,7 @@ async function get(req: any) {
   } catch {
     return {
       props: {
-        slug: req.params.slug,
+        slug: req.params.slug.join('/'),
         statusCode: 422,  // TODO
         hits: 0,
         count: 0,
