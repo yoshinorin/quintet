@@ -5,10 +5,11 @@ import MainBottomCodesComponent from '../../../components/mainBottomCodes';
 import {
   Content,
   Insight,
-  ScriptCode
+  InjectScript
 } from '../../../models/models';
-import { getScriptCodes } from '../../../utils/scriptTags';
+import { getScripts } from '../../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../../config';
+import { InjectScriptComponent } from '../../../components/injectScriptComponent';
 
 export const Renderer: React.FunctionComponent<{
   slug: string,
@@ -16,10 +17,10 @@ export const Renderer: React.FunctionComponent<{
   insight: Insight
 }> = ({ slug, content, insight }) => {
 
-  let externalResourceCodes: Array<ScriptCode> = [];
+  let externalResourceSrc: Array<InjectScript> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
   if (hasExternalResources) {
-    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig)
+    externalResourceSrc = getScripts(content.externalResources, externalResourcesConfig);
   }
   return (
     <>
@@ -41,9 +42,20 @@ export const Renderer: React.FunctionComponent<{
           content={content}
           insight={insight}
         />
-        <MainBottomCodesComponent
-          scriptCodes={externalResourceCodes}
-        />
+        {
+          (() => {
+            // TODO: DRY with (`/articles/[...slug]/renderer.tsx`)
+            if (hasExternalResources) {
+              return(
+                <>
+                  <InjectScriptComponent
+                    injectScript={externalResourceSrc}
+                  />
+                </>
+              );
+            }
+          })()
+        }
       </main>
     </>
   )

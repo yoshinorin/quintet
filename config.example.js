@@ -77,31 +77,26 @@ export const injectMetas = [
 export const externalResources = [
   {
     'kind': 'js',
-    'src': {
-      'key': 'mermaid', // must be same with registerd db record key
-      'async': false,
-      'src': "https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js",
-    },
+    'key': 'mermaid',  // must be same with registerd db record key
+    'async': false,
+    'src': "https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js",
     'code': {
-      'key': 'mermaid', // must be same with registerd db record key
-      'async': false,
       'type': "text/javascript",
-      'code': `window.onload = function () {
-        mermaid.initialize({startOnLoad:true});
-      };`
+      'onLoad': true,
+      'code': `mermaid.initialize({startOnLoad:true});
+        mermaid.contentLoaded();
+      `
      }
   },
   {
     'kind': 'js',
-    'src': {
-      'key': 'mathjax', // must be same with registerd db record key
-      'async': false,
-      'src': "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML",
-    },
+    'key': 'mathjax',  // must be same with registerd db record key
+    'async': false,
+    'src': "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML",
     'code': {
-      'key': 'mathjax', // must be same with registerd db record key
       'async': false,
       'type': "text/x-mathjax-config",
+      'onLoad': true,
       'code': `MathJax.Hub.Config({
         tex2jax: {
           inlineMath: [['$','$'], ['\\(','\\)']],

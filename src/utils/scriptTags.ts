@@ -1,51 +1,32 @@
 import {
   ExternalResources,
-  ScriptCode,
-  ScriptSrc
+  InjectScript
 } from '../models/models';
 
 // TODO: write test code
-export function getScriptTags(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<ScriptSrc> {
-  let scriptTags: Array<ScriptSrc> = [];
+export function getScripts(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<InjectScript> {
+  let scriptTags: Array<InjectScript> = [];
 
   // TODO: fix nested loop
-  externalResources.forEach(ers => {
+  externalResources.filter(x => { return x.kind === 'js' }).forEach(ers => {
     ers.values.forEach(er => {
-      const config = externalResourcesConfig.map(x => { return x['src'] }).filter(y => y.key == er);
+      const config = externalResourcesConfig.filter(y => { return y.key == er });
       if (config) {
         config.forEach(i => {
+          // @ts-ignore
           scriptTags.push({
             key: i.key,
             async: i.async,
-            src: i.src
+            src: i.src,
+            code: {
+              type: i['code'].type,
+              onLoad: i['code'].onLoad,
+              code: i['code'].code
+            }
           });
         });
       };
     });
   });
   return scriptTags;
-}
-
-
-// TODO: write test code
-export function getScriptCodes(externalResources: Array<ExternalResources>, externalResourcesConfig: Array<any>): Array<ScriptCode> {
-  let scriptCodes: Array<ScriptCode> = [];
-
-  // TODO: fix nested loop
-  externalResources.forEach(ers => {
-    ers.values.forEach(er => {
-      const config = externalResourcesConfig.map(x => { return x['code'] }).filter(y => y.key == er);
-      if (config) {
-        config.forEach(i => {
-          scriptCodes.push({
-            key: i.key,
-            async: i.async,
-            type: i.type,
-            code: i.code
-          });
-        });
-      };
-    });
-  });
-  return scriptCodes;
 }
