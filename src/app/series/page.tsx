@@ -3,6 +3,7 @@
 import { getSeries } from '../../api/series';
 import { Series, SeriesResponse } from '../../models/models';
 import { getRequestContext } from '../../utils/requestContext';
+import { sluggize } from "../../utils/slug";
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../handler";
 
@@ -32,7 +33,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug.join('/'),
+      slug: sluggize(req.params.slug),
       series: series
     }
   }

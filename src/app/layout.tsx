@@ -11,7 +11,6 @@ export default function RootLayout({
   const theme = getThemeSetting();
   return (
     <html lang={lang}>
-      <head />
       <body data-theme={`${theme}`}>
         <ClientLayout>
           { children }

@@ -4,6 +4,7 @@ import { ContentResponse, Content } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
 import { asInsight } from '../../../utils/converters';
+import { sluggize } from "../../../utils/slug";
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
 
@@ -45,7 +46,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: 'articles/' + req.params.slug.join('/'),
+      slug: sluggize(req.params.slug, 'articles'),
       content: content,
       insight: asInsight(response)
     }

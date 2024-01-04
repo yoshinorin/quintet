@@ -3,6 +3,7 @@
 import { Tag } from '../../models/models';
 import { getTags } from '../../api/tags';
 import { getRequestContext } from '../../utils/requestContext';
+import { sluggize } from "../../utils/slug";
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../handler";
 
@@ -21,7 +22,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug.join('/'),
+      slug: sluggize(req.params.slug),
       tags: await response.json() as Array<Tag>
     }
   }
