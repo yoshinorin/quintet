@@ -14,7 +14,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug,
+      slug: req.params.slug.join('/'),
       statusCode: response.status
     }
   }

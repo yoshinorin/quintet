@@ -21,7 +21,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug,
+      slug: req.params.slug.join('/'),
       tags: await response.json() as Array<Tag>
     }
   }
