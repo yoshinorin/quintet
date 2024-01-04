@@ -32,7 +32,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug.join('/'),
+      slug: 'articles',
       count: articlesResponseWithCount.count,
       articles: articles
     }
