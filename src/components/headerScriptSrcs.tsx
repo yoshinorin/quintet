@@ -1,4 +1,5 @@
 // import Script from 'next/script'
+import Script from 'next/script'
 import { ScriptSrc } from '../models/models';
 
 const HeaderScriptSrcsComponent: React.FunctionComponent<{ scriptSrcs: Array<ScriptSrc> }> = ({ scriptSrcs }) => {
@@ -10,11 +11,12 @@ const HeaderScriptSrcsComponent: React.FunctionComponent<{ scriptSrcs: Array<Scr
     <>
       {scriptSrcs.map((tag: ScriptSrc, idx) => {
         return(
-          <script
+          <Script
             key={tag.key + idx}
             src={tag.src}
+            strategy='lazyOnload'
           >
-          </script>
+          </Script>
         )
       })}
     </>

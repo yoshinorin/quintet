@@ -1,3 +1,4 @@
+
 import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
@@ -5,10 +6,12 @@ import MainBottomCodesComponent from '../../components/mainBottomCodes';
 import {
   Content,
   ScriptCode,
-  Insight
+  Insight,
+  ScriptSrc
 } from '../../models/models';
-import { getScriptCodes } from '../../utils/scriptTags';
+import { getScriptCodes, getScriptTags } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../config';
+import HeaderScriptSrcsComponent from '../../components/headerScriptSrcs';
 
 export const Renderer: React.FunctionComponent<{
   slug: string,
@@ -16,9 +19,11 @@ export const Renderer: React.FunctionComponent<{
   insight: Insight
 }> = ({ slug, content, insight }) => {
   let externalResourceCodes: Array<ScriptCode> = [];
+  let externalResourceSrc: Array<ScriptSrc> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
   if (hasExternalResources) {
-    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig)
+    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig);
+    externalResourceSrc = getScriptTags(content.externalResources, externalResourcesConfig);
   }
   return (
     <>
@@ -40,9 +45,23 @@ export const Renderer: React.FunctionComponent<{
           content={content}
           insight={insight}
         />
-        <MainBottomCodesComponent
-          scriptCodes={externalResourceCodes}
-        />
+        {
+          (() => {
+            // TODO: DRY with (`/articles/[...slug]/renderer.tsx`)
+            if (hasExternalResources) {
+              return(
+                <>
+                  <MainBottomCodesComponent
+                    scriptCodes={externalResourceCodes}
+                  />
+                  <HeaderScriptSrcsComponent
+                    scriptSrcs={externalResourceSrc}
+                  />
+                </>
+              );
+            }
+          })()
+        }
       </main>
     </>
   )
