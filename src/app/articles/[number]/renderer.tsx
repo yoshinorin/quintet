@@ -5,13 +5,16 @@ import PaginationComponent from '../../../components/pagination';
 import { Article } from '../../../models/models';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   current: number,
   count: number,
   articles: Array<Article>
-}> = ({ current, count, articles }) => {
+}> = ({ slug, current, count, articles }) => {
   return (
     <>
-      <HeadMetaComponent />
+      <HeadMetaComponent
+        slug={slug}
+      />
       <CoverWithNavigationComponent
         contentCover={null}
       />

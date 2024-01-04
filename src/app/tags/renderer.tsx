@@ -7,11 +7,13 @@ import TagsComponent from '../../components/tags';
 import { defaultRobotsMeta } from '../../../config';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   tags: Array<Tag>
-}> = ({ tags }) => {
+}> = ({ slug, tags }) => {
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

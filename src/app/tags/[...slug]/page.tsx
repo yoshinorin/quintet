@@ -15,9 +15,9 @@ async function run(req: any): Promise<any> {
   return <Renderer {...props} />;
 }
 
-async function get(ctx: any) {
-  const tagName = decodeURI(ctx.params.slug[0]);
-  const currentPage = ctx.params.slug[1] ? ctx.params.slug[1] : 1;
+async function get(req: any) {
+  const tagName = decodeURI(req.params.slug[0]);
+  const currentPage = req.params.slug[1] ? req.params.slug[1] : 1;
   const response: Response = await getArticlesByTagName(tagName, currentPage, 10, getRequestContext());
   throwIfError(response);
 
@@ -38,6 +38,7 @@ async function get(ctx: any) {
 
   return {
     props: {
+      slug: req.params.slug,
       tagName: tagName,
       currentPage: currentPage,
       count: articlesResponseWithCount.count,

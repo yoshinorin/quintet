@@ -11,9 +11,10 @@ import { getScriptCodes } from '../../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../../config';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   content: Content,
   insight: Insight
-}> = ({ content, insight }) => {
+}> = ({ slug, content, insight }) => {
 
   let externalResourceCodes: Array<ScriptCode> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
@@ -23,6 +24,7 @@ export const Renderer: React.FunctionComponent<{
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={content.robotsAttributes}
         externalResources={content.externalResources}
         content={content}

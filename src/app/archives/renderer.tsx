@@ -4,10 +4,14 @@ import ArchivesComponent from '../../components/archives';
 import { Archive } from '../../models/models';
 import { defaultRobotsMeta } from '../../../config';
 
-export const Renderer: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
+export const Renderer: React.FunctionComponent<{
+  slug: string,
+  archives: Array<Archive>
+}> = ({ slug, archives }) => {
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

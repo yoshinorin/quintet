@@ -7,12 +7,14 @@ import containerStyles from '../styles/components/container.module.scss';
 import { defaultRobotsMeta } from '../../config';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   articles: Array<Article>
-}> = ({ articles }) => {
+}> = ({ slug, articles }) => {
 
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

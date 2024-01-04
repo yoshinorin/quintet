@@ -1,3 +1,4 @@
+// import getConfig from 'next/config'
 import {
   defaultRobotsMeta,
   externalResources as externalResourcesConfig,
@@ -17,19 +18,22 @@ import {
 } from '../models/models';
 import HeaderScriptSrcsComponent from './headerScriptSrcs';
 import { getScriptTags } from '../utils/scriptTags';
-// import { usePathname } from "next/navigation";
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 
 const HeadMetaComponent: React.FunctionComponent<{
   robotsMeta?: string
   externalResources?: Array<ExternalResources>
-  content?: Content
+  content?: Content,
+  slug: string
 }> = ({
   robotsMeta,
   externalResources,
-  content
+  content,
+  slug
 }) => {
-  const currentUrl = new URL('TODO', url).href
+  // TODO: I want to get trailingSlash settings from `next.config.js`
+  // const { trailingSlash } = getConfig();
+  const currentUrl = new URL(slug + "/" , url).href
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;

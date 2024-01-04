@@ -45,6 +45,7 @@ async function get(req: any) {
 
   return {
     props: {
+      slug: req.params.slug,
       content: content,
       insight: asInsight(response)
     }
