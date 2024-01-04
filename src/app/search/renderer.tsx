@@ -79,10 +79,7 @@ export const Renderer: React.FunctionComponent<{
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  // query: {q :searchWord.split(' ')}
-                  // router.push("/search", { query: {q: searchWord.split(' ')} });
-                  // router.push("/search", { searchParams: {q: searchWord.split(' ')} });
-                  router.push("/search?q=test");
+                  router.push(`/search?q=${searchWord.split(' ').join('&q=')}`);
                 };
               }}
             />
