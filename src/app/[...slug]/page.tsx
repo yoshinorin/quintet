@@ -5,6 +5,7 @@ import { permanentRedirect } from "next/navigation";
 import { ContentResponse, Content } from '../../models/models';
 import { findByPath } from '../../api/content';
 import { asInsight } from '../../utils/converters';
+import { sluggize } from "../../utils/slug";
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../handler";
 
@@ -47,7 +48,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: req.params.slug.join('/'),
+      slug: sluggize(req.params.slug),
       content: content,
       insight: asInsight(response)
     }

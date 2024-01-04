@@ -4,7 +4,6 @@ export function sluggize(
     fallback: string | undefined = undefined
   ) {
     try {
-      console.log()
       if (slug instanceof Array) {
         const p = prefix === undefined ? undefined : '/' + prefix;
         const s = slug as Array<string>;
