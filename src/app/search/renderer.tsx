@@ -12,11 +12,12 @@ import containerStyles from '../../styles/components/container.module.scss';
 import SearchResultComponent from '../../components/searchResult';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   hits: number,
   count:number,
   contents: Array<SearchResponse>,
   queryStrings: Array<string>
-}> = ({ hits, count, contents, queryStrings }) => {
+}> = ({ slug, hits, count, contents, queryStrings }) => {
   let contentsWithCount: SearchResponseWithCount = {
     count: 0,
     contents: []
@@ -42,6 +43,7 @@ export const Renderer: React.FunctionComponent<{
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

@@ -32,6 +32,7 @@ async function get(req: any) {
 
   return {
     props: {
+      slug: req.params.slug,
       series: series
     }
   }

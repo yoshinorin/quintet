@@ -10,7 +10,11 @@ import {
 import { getScriptCodes } from '../../utils/scriptTags';
 import { externalResources as externalResourcesConfig } from '../../../config';
 
-export const Renderer: React.FunctionComponent<{ content: Content, insight: Insight }> = ({ content, insight }) => {
+export const Renderer: React.FunctionComponent<{
+  slug: string,
+  content: Content,
+  insight: Insight
+}> = ({ slug, content, insight }) => {
   let externalResourceCodes: Array<ScriptCode> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
   if (hasExternalResources) {
@@ -19,6 +23,7 @@ export const Renderer: React.FunctionComponent<{ content: Content, insight: Insi
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={content.robotsAttributes}
         externalResources={content.externalResources}
         content={content}

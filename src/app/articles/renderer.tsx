@@ -5,12 +5,14 @@ import PaginationComponent from '../../components/pagination';
 import { defaultRobotsMeta } from '../../../config';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   count,
   articles
-}> = ({ count, articles }) => {
+}> = ({ slug, count, articles }) => {
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

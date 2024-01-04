@@ -4,11 +4,13 @@ import SeriesWithArticlesComponent from '../../../components/seriesWithArticles'
 import { defaultRobotsMeta } from '../../../../config';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   seriresWithArticles
-}> = ({ seriresWithArticles }) => {
+}> = ({ slug, seriresWithArticles }) => {
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

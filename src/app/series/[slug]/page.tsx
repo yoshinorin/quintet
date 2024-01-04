@@ -18,8 +18,8 @@ async function run(req: any): Promise<any> {
   const { props } = await get(req);
   return <Renderer {...props} />;
 }
-async function get(ctx: any) {
-  const seriesName = ctx.params.slug;
+async function get(req: any) {
+  const seriesName = req.params.slug;
   const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext());
   throwIfError(response);
 
@@ -42,6 +42,7 @@ async function get(ctx: any) {
 
   return {
     props: {
+      slug: req.params.slug,
       seriresWithArticles: seriresWithArticles
     }
   }

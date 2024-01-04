@@ -5,11 +5,13 @@ import { Series } from '../../models/models';
 import { defaultRobotsMeta } from '../../../config';
 
 export const Renderer: React.FunctionComponent<{
+  slug: string,
   series: Array<Series>
-}> = ({ series }) => {
+}> = ({ slug, series }) => {
   return (
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

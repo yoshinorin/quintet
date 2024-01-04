@@ -2,11 +2,15 @@ import HeadMetaComponent from '../../components/headmeta';
 import PlanePage from '../../components/planePage';
 import { defaultRobotsMeta } from '../../../config';
 
-export const Renderer: React.FunctionComponent<{ statusCode: number }> = ({ statusCode }) => {
+export const Renderer: React.FunctionComponent<{
+  slug: string,
+  statusCode: number
+}> = ({ slug, statusCode }) => {
   // TODO: improvement (add bc-color, style, statusCode, etc)
   return(
     <>
       <HeadMetaComponent
+        slug={slug}
         robotsMeta={defaultRobotsMeta}
       />
         {

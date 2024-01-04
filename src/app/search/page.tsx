@@ -10,19 +10,20 @@ const emptyResult = {
   contents: []
 } as SearchResponseWithCount;
 
-export default async function Page(ctx: any) {
-  const { props } = await get(ctx);
+export default async function Page(req: any) {
+  const { props } = await get(req);
   return <Renderer {...props} />;
 }
 
-async function get(ctx: any) {
+async function get(req: any) {
   // TODO: refactor
   // TODO: assert query params before POST to server
   try {
-    if (ctx.searchParams['q'] === undefined) {
+    if (req.searchParams['q'] === undefined) {
       return {
         props: {
-          statusCode: ctx.res.statusCode,
+          slug: req.params.slug,
+          statusCode: req.res.statusCode,
           hits: 0,
           count: 0,
           contents: [],
@@ -30,11 +31,12 @@ async function get(ctx: any) {
         }
       }
     }
-    const qs = ctx.searchParams['q'] instanceof Array ? ctx.searchParams['q'] : [ctx.searchParams['q']]
+    const qs = req.searchParams['q'] instanceof Array ? req.searchParams['q'] : [req.searchParams['q']]
     if (qs.length > 0) {
-      const result = await execute(ctx, qs);
+      const result = await execute(req, qs);
       return {
         props: {
+          slug: req.params.slug,
           statusCode: 422,  // TODO
           hits: result.count,
           count: result.contents.length,
@@ -45,6 +47,7 @@ async function get(ctx: any) {
     } else {
       return {
         props: {
+          slug: req.params.slug,
           statusCode: 422,  // TODO
           hits: 0,
           count: 0,
@@ -56,6 +59,7 @@ async function get(ctx: any) {
   } catch {
     return {
       props: {
+        slug: req.params.slug,
         statusCode: 422,  // TODO
         hits: 0,
         count: 0,
