@@ -9,6 +9,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const theme = getThemeSetting();
+  // https://github.com/vercel/next.js/discussions/44506#discussioncomment-7901181
   return (
     <html lang={lang}>
       <body data-theme={`${theme}`}>
