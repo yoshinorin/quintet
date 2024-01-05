@@ -24,7 +24,7 @@ export default function Page(){
   return (
     <>
       <HeadMetaComponent
-        slug="TODO"
+        slug="settings"
         robotsMeta={defaultRobotsMeta}
       />
       <CoverWithNavigationComponent

@@ -1,7 +1,7 @@
 // import getConfig from 'next/config'
+import dynamic from 'next/dynamic';
 import {
   defaultRobotsMeta,
-  externalResources as externalResourcesConfig,
   siteName,
   siteType,
   mainAuthor,
@@ -11,23 +11,17 @@ import {
   defaultImage,
   injectMetas
 } from '../../config';
-import {
-  ExternalResources,
-  ScriptSrc,
-  Content
-} from '../models/models';
-import HeaderScriptSrcsComponent from './headerScriptSrcs';
-import { getScriptTags } from '../utils/scriptTags';
+import { Content } from '../models/models';
+// https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading
+// const HeaderScriptSrcsComponent = dynamic(() => import('./headerScriptSrcs'), { ssr: false })
 import { convertUnixTimeToISODateSrting } from '../utils/time';
 
 const HeadMetaComponent: React.FunctionComponent<{
   robotsMeta?: string
-  externalResources?: Array<ExternalResources>
   content?: Content,
   slug: string
 }> = ({
   robotsMeta,
-  externalResources,
   content,
   slug
 }) => {
@@ -38,11 +32,6 @@ const HeadMetaComponent: React.FunctionComponent<{
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
-  }
-  let externalResourceMetas: Array<ScriptSrc> = [];
-  if(externalResources && externalResourcesConfig) {
-    // NOTE: currently support only <script> tag
-    externalResourceMetas = getScriptTags(externalResources, externalResourcesConfig);
   }
   const hasContent = content ? true : false;
   /*
@@ -112,9 +101,6 @@ const HeadMetaComponent: React.FunctionComponent<{
         })()
       }
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-      <HeaderScriptSrcsComponent
-        scriptSrcs={externalResourceMetas}
-      />
     </head>
   )
 }
