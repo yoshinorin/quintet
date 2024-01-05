@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import HeadMetaComponent from '../../components/headmeta';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import { getThemeSetting } from '../../services/theme';
-import { defaultRobotsMeta } from '../../../config';
 import DropdownComponent from '../../components/dropdown';
 import containerStyles from '../../styles/components/container.module.scss';
 import inputStyles from '../../styles/input.module.scss';
@@ -23,10 +21,6 @@ export default function Page(){
 
   return (
     <>
-      <HeadMetaComponent
-        slug="settings"
-        robotsMeta={defaultRobotsMeta}
-      />
       <CoverWithNavigationComponent
         contentCover={{
           title: "Settings",
