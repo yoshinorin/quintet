@@ -1,7 +1,6 @@
 import ContentComponent from '../../../components/content';
 import CoverWithNavigationComponent from '../../../components/cover/withNavigation';
 import HeadMetaComponent from '../../../components/headmeta';
-import MainBottomCodesComponent from '../../../components/mainBottomCodes';
 import {
   Content,
   Insight,
@@ -27,7 +26,6 @@ export const Renderer: React.FunctionComponent<{
       <HeadMetaComponent
         slug={slug}
         robotsMeta={content.robotsAttributes}
-        externalResources={content.externalResources}
         content={content}
       />
       <CoverWithNavigationComponent

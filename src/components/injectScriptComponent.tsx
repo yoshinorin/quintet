@@ -7,14 +7,13 @@ import { InjectScript } from '../models/models';
 export const InjectScriptComponent: React.FunctionComponent<{
   injectScript: Array<InjectScript>
 }> = ({ injectScript }) => {
-  if (!injectScript) {
+  if (injectScript.length === 0) {
     return;
   }
 
   return(
     <>
       {injectScript.map((tag: InjectScript) => {
-        console.log(tag)
         return(
           <>
             <Script
