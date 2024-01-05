@@ -2,7 +2,6 @@
 
 import { getStatus } from '../../api/status';
 import { getRequestContext } from '../../utils/requestContext';
-import { sluggize } from "../../utils/slug";
 import { Renderer } from './renderer';
 
 export default async function Page(req: any) {
@@ -15,7 +14,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: sluggize(req.params.slug),
+      // slug: sluggize(req.params.slug),
       statusCode: response.status
     }
   }

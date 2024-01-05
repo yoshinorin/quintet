@@ -11,10 +11,9 @@ import { externalResources as externalResourcesConfig } from '../../../config';
 import { InjectScriptComponent } from '../../components/injectScriptComponent';
 
 export const Renderer: React.FunctionComponent<{
-  slug: string,
   content: Content,
   insight: Insight
-}> = ({ slug, content, insight }) => {
+}> = ({ content, insight }) => {
   let externalResourceSrc: Array<InjectScript> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
   if (hasExternalResources) {

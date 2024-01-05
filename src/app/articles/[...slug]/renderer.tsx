@@ -1,6 +1,5 @@
 import ContentComponent from '../../../components/content';
 import CoverWithNavigationComponent from '../../../components/cover/withNavigation';
-import HeadMetaComponent from '../../../components/headmeta';
 import {
   Content,
   Insight,
@@ -11,10 +10,9 @@ import { externalResources as externalResourcesConfig } from '../../../../config
 import { InjectScriptComponent } from '../../../components/injectScriptComponent';
 
 export const Renderer: React.FunctionComponent<{
-  slug: string,
   content: Content,
   insight: Insight
-}> = ({ slug, content, insight }) => {
+}> = ({ content, insight }) => {
 
   let externalResourceSrc: Array<InjectScript> = [];
   const hasExternalResources = (content.externalResources && externalResourcesConfig);
@@ -23,11 +21,6 @@ export const Renderer: React.FunctionComponent<{
   }
   return (
     <>
-      <HeadMetaComponent
-        slug={slug}
-        robotsMeta={content.robotsAttributes}
-        content={content}
-      />
       <CoverWithNavigationComponent
         contentCover={{
           title: content.title,

@@ -32,7 +32,7 @@ async function get(req: any) {
 
   return {
     props: {
-      slug: undefined,
+      // slug: undefined,
       articles: articles
     }
   }

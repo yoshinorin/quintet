@@ -1,21 +1,105 @@
 // import getConfig from 'next/config'
-import dynamic from 'next/dynamic';
 import {
-  defaultRobotsMeta,
-  siteName,
-  siteType,
-  mainAuthor,
-  locale,
-  url,
   favicon,
-  defaultImage,
   injectMetas
 } from '../../config';
-import { Content } from '../models/models';
-// https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading
-// const HeaderScriptSrcsComponent = dynamic(() => import('./headerScriptSrcs'), { ssr: false })
-import { convertUnixTimeToISODateSrting } from '../utils/time';
 
+const HeadMetaComponent: React.FunctionComponent<{}> = ({}) => {
+  // TODO: JSON + LD
+  return(
+    <head>
+      {/*
+      {
+        (() => {
+          if (hasContent) {
+            return(
+              <>
+                - Dynamic fields should be inserted by Next.js (excludes og:<abc>)
+                <title key="title">{content.title}</title>
+                <meta name="author" content={content.authorName} key="author" />
+                <meta property="article:author" content={content.authorName} key="article:author" />
+                <meta name="description" content={content.description} key="description" />
+
+                - Dynamic og should not be inserted to head.
+                <meta property="og:description" content={content.description} key="og:description" />
+                <meta property="og:title" content={content.title} key="og:title" />
+                <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" />
+                <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" />
+
+              </>
+            );
+          } else {
+            return(
+              <>
+                - Dynamic fields should be inserted by Next.js (excludes og:<abc>)
+                <title key="title">{siteName}</title>
+
+                - Generate by Next.js Metadata
+                <meta name="author" content={mainAuthor} key="author" />
+                <meta property="article:author" content={mainAuthor} key="article:author" />
+
+                - Dynamic og should not be inserted to head.
+                <meta property="og:title" content={siteName} key="og:title" />
+              </>
+            );
+          }
+        })()
+      }
+      */}
+      {/*
+      - Dynamic og should not be inserted to head.
+      <meta property="og:type" content={siteType} key="og:type" />
+      <meta property="og:url" content={currentUrl} key="og:url" />
+      <meta property="og:site_name" content={siteName} key="og:site_name" />
+      <meta property="og:locale" content={locale} key="og:locale" />
+      <meta property="og:type" content={siteType} key="og:type" />
+      <meta property="og:site_name" content={siteName} key="og:site_name" />
+      <meta property="og:locale" content={locale} key="og:locale" />
+      */}
+      {/*
+      {
+        (() => {
+          if (hasContent && content.tags) {
+            return(
+              content.tags.map((t => {
+                return(
+                  <meta property="article:tag" content={t.name} key={t.id} />
+                )
+              }))
+            )
+          }
+        })()
+      }
+      */}
+      {/*
+      - Generate by Next.js Metadata
+      <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
+
+      - Dynamic fields should be inserted by Next.js (excludes og:<abc>)
+      <meta name="robots" content={robotsMeta} key="robots" />
+      <meta property="og:image" content={defaultImage} key="og:image" />
+      */}
+      {
+        (() => {
+          if (injectMetas) {
+            return(
+              injectMetas.map((m => {
+                return(
+                  <meta name={m.name} content={m.content} key={m.name} />
+                )
+              }))
+            )
+          }
+        })()
+      }
+      <link href={favicon['url']} rel="icon" type={favicon['type']}/>
+    </head>
+  )
+}
+
+export default HeadMetaComponent;
+
+/* NOTE: Before migrate to AppRouter's head metas
 const HeadMetaComponent: React.FunctionComponent<{
   robotsMeta?: string
   content?: Content,
@@ -34,9 +118,8 @@ const HeadMetaComponent: React.FunctionComponent<{
     robotsMeta = defaultRobotsMeta;
   }
   const hasContent = content ? true : false;
-  /*
-    TODO: JSON+LD
-  */
+
+  // TODO: JSON + LD
   return(
     <head>
       <meta charSet="UTF-8"/>
@@ -106,3 +189,4 @@ const HeadMetaComponent: React.FunctionComponent<{
 }
 
 export default HeadMetaComponent;
+*/
