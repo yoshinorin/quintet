@@ -9,15 +9,14 @@ import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
 import { defaultRobotsMeta } from '../../../../config';
 
-export async function generateMetadata (content?: Content): Promise<Metadata> {
-  const c = content;
-  const robotsAttributes = content.robotsAttributes === undefined ? defaultRobotsMeta : content.robotsAttributes;
+export async function generateMetadata({ params }): Promise<Metadata> {
+  //const robotsAttributes = content.robotsAttributes === undefined ? defaultRobotsMeta : content.robotsAttributes;
+  const robotsAttributes = 'noarchive'
   return {
     /*
-     NOT WORK???
-    title: c.title,
-    authors: [{ name: c.authorName }],
-    description: c.description,
+    title: content.title,
+    authors: [{ name: content.authorName }],
+    description: content.description,
     */
     robots: {
       noarchive: robotsAttributes.includes('noarchive'),
@@ -41,9 +40,10 @@ export default async function Page(req: any) {
 
 async function run(req: any): Promise<any> {
   const { props } = await get(req);
+  const c = props.content
   await generateMetadata(
     // sluggize(req.params.slug, 'articles'),
-    props.content
+    { c }
   )
   return <Renderer {...props} />;
 }
@@ -56,7 +56,6 @@ async function get(req: any) {
     throw new Error('Not found', { cause: 404 });
   }
 
-  // const response: Response = await findByPath(ctx.req, path);
   const response: Response = await findByPath(path);
   throwIfError(response);
 
