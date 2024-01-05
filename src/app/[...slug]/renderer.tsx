@@ -41,7 +41,7 @@ export const Renderer: React.FunctionComponent<{
               return(
                 <>
                   <InjectScriptComponent
-                    injectScript={externalResourceSrc}
+                    injectScripts={externalResourceSrc}
                   />
                 </>
               );
