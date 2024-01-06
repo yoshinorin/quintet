@@ -7,6 +7,7 @@ export async function getTags(rq: RequestContext): Promise<Response> {
     `${api.url}/tags/`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )

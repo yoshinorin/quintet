@@ -7,6 +7,7 @@ export async function getSitemap(rq: RequestContext): Promise<Response> {
     `${api.url}/sitemaps/`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )

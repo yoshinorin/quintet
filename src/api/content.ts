@@ -23,6 +23,7 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
     `${api.url}/contents/${path}`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )

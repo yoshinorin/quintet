@@ -7,6 +7,7 @@ export async function getArchives(rq: RequestContext): Promise<Response> {
     `${api.url}/archives/`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )

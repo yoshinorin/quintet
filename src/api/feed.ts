@@ -8,6 +8,7 @@ export async function getFeed(rq: RequestContext): Promise<Response> {
     `${api.url}/feeds/index`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )

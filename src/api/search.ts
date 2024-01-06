@@ -8,6 +8,7 @@ export async function search(rq: RequestContext, query: Array<string>): Promise<
     `${api.url}/search?${qs.join('&')}`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )

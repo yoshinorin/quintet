@@ -7,6 +7,7 @@ export async function getStatus(rq: RequestContext): Promise<Response> {
     `${api.url}/system/health`,
     {
       method: 'GET',
+      cache: 'no-cache',
       headers: generateRequestHeaderObject(rq) as any
     }
   )
