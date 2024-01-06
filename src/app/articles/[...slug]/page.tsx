@@ -9,15 +9,17 @@ import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
 import { defaultRobotsMeta } from '../../../../config';
 
-export async function generateMetadata({ params }): Promise<Metadata> {
-  //const robotsAttributes = content.robotsAttributes === undefined ? defaultRobotsMeta : content.robotsAttributes;
-  const robotsAttributes = 'noarchive'
+// TODO: use cache
+// https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
+export async function generateMetadata({ params: { slug }}: { params: { slug: Array<string> }}): Promise<Metadata> {
+  const response: Response = await findByPath("/articles/" + slug.join("/"));
+  const content = await response.json() as ContentResponse;
+
+  const robotsAttributes = content.robotsAttributes === undefined ? defaultRobotsMeta : content.robotsAttributes;
   return {
-    /*
     title: content.title,
     authors: [{ name: content.authorName }],
     description: content.description,
-    */
     robots: {
       noarchive: robotsAttributes.includes('noarchive'),
       follow: !robotsAttributes.includes('nofollow'),
@@ -41,10 +43,6 @@ export default async function Page(req: any) {
 async function run(req: any): Promise<any> {
   const { props } = await get(req);
   const c = props.content
-  await generateMetadata(
-    // sluggize(req.params.slug, 'articles'),
-    { c }
-  )
   return <Renderer {...props} />;
 }
 
