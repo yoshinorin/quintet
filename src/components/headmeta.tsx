@@ -12,9 +12,6 @@ import {
   injectMetas
 } from '../../config';
 import { ExternalResources } from '../models/externalResource';
-import HeaderScriptSrcsComponent from './headerScriptSrcs';
-import { ScriptSrc } from '../models/script';
-import { getScriptTags } from '../utils/scriptTags';
 import { Content } from '../models/content';
 import { useRouter } from "next/router";
 import { convertUnixTimeToISODateSrting } from '../utils/time';
@@ -33,11 +30,6 @@ const HeadMetaComponent: React.FunctionComponent<{
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
-  }
-  let externalResourceMetas: Array<ScriptSrc> = [];
-  if(externalResources && externalResourcesConfig) {
-    // NOTE: currently support only <script> tag
-    externalResourceMetas = getScriptTags(externalResources, externalResourcesConfig);
   }
   const hasContent = content ? true : false;
   /*
@@ -107,9 +99,6 @@ const HeadMetaComponent: React.FunctionComponent<{
         })()
       }
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-      <HeaderScriptSrcsComponent
-        scriptSrcs={externalResourceMetas}
-      />
     </Head>
   )
 }

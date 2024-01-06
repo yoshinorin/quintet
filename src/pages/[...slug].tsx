@@ -1,11 +1,11 @@
 import ContentComponent from '../components/content';
 import CoverWithNavigationComponent from '../components/cover/withNavigation';
 import HeadMetaComponent from '../components/headmeta';
-import MainBottomCodesComponent from '../components/mainBottomCodes';
+import { InjectScriptComponent } from '../components/injectScripts';
 import { ContentResponse, Content } from '../models/content';
-import { ScriptCode } from '../models/script';
+import { InjectScript } from '../models/script';
 import { findByPath } from '../api/content';
-import { getScriptCodes } from '../utils/scriptTags';
+import { getScripts } from '../utils/injectScript';
 import { externalResources as externalResourcesConfig } from '../../config';
 import { Insight } from '../models/insight';
 import { asInsight } from '../utils/converters';
@@ -17,12 +17,6 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content, i
       title={statusCode.toString()}
       content="Something went to wrong..."
     />
-  }
-
-  let externalResourceCodes: Array<ScriptCode> = [];
-  const hasExternalResources = (content.externalResources && externalResourcesConfig);
-  if (hasExternalResources) {
-    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig)
   }
   return (
     <>
@@ -43,9 +37,21 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content, i
           content={content}
           insight={insight}
         />
-        <MainBottomCodesComponent
-          scriptCodes={externalResourceCodes}
-        />
+        {
+          // TODO: DRY with (`/articles/[...slug]/renderer.tsx`)
+          (() => {
+            if (content.externalResources && externalResourcesConfig) {
+              const externalResourceSrc: Array<InjectScript> = getScripts(content.externalResources, externalResourcesConfig);
+              return(
+                <>
+                  <InjectScriptComponent
+                    injectScripts={externalResourceSrc}
+                  />
+                </>
+              );
+            }
+          })()
+        }
       </main>
     </>
   )

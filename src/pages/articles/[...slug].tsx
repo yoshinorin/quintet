@@ -1,13 +1,13 @@
 import ContentComponent from '../../components/content';
 import CoverWithNavigationComponent from '../../components/cover/withNavigation';
 import HeadMetaComponent from '../../components/headmeta';
-import MainBottomCodesComponent from '../../components/mainBottomCodes';
+import { InjectScriptComponent } from '../../components/injectScripts';
 import { ContentResponse, Content } from '../../models/content';
 import { Insight } from '../../models/insight';
-import { ScriptCode } from '../../models/script';
+import { InjectScript } from '../../models/script';
 import { isIgnoreRequest } from '../../utils/filterRequests';
 import { findByPath } from '../../api/content';
-import { getScriptCodes } from '../../utils/scriptTags';
+import { getScripts } from '../../utils/injectScript';
 import { externalResources as externalResourcesConfig } from '../../../config';
 import { asInsight } from '../../utils/converters';
 import PlanePage from '../../components/planePage';
@@ -20,11 +20,6 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content, i
     />
   }
 
-  let externalResourceCodes: Array<ScriptCode> = [];
-  const hasExternalResources = (content.externalResources && externalResourcesConfig);
-  if (hasExternalResources) {
-    externalResourceCodes = getScriptCodes(content.externalResources, externalResourcesConfig)
-  }
   return (
     <>
       <HeadMetaComponent
@@ -44,9 +39,21 @@ const Article: React.FunctionComponent<{ statusCode: number, content: Content, i
           content={content}
           insight={insight}
         />
-        <MainBottomCodesComponent
-          scriptCodes={externalResourceCodes}
-        />
+        {
+          // TODO: DRY with (`/articles/[...slug]/renderer.tsx`)
+          (() => {
+            if (content.externalResources && externalResourcesConfig) {
+              const externalResourceSrc: Array<InjectScript> = getScripts(content.externalResources, externalResourcesConfig);
+              return(
+                <>
+                  <InjectScriptComponent
+                    injectScripts={externalResourceSrc}
+                  />
+                </>
+              );
+            }
+          })()
+        }
       </main>
     </>
   )
