@@ -19,7 +19,7 @@ export default defineConfig({
     {
       command: 'set NEXT_ANALYZE=false && npm run copy:e2econfig && next dev',
       url: 'http://127.0.0.1:3000',
-      timeout: 120 * 1000,
+      timeout: 20000,
       reuseExistingServer: !process.env.CI,
     }
   ],
