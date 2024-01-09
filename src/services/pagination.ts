@@ -1,4 +1,4 @@
-import { PaginationNumbers } from '../models/pagination';
+import { PaginationNumbers } from '../models/models';
 
 export function calcNumberOfPages(total: number, perPage: number): PaginationNumbers {
   // FIX: do not add +1 to last page

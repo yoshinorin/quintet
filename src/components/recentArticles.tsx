@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Article } from '../models/article';
+import { Article } from '../models/models';
 import SimpleArticlesComponent from '../components/simpleArticles';
 import styles from '../styles/home.module.scss';
 import flexStyles from '../styles/components/flex.module.scss';

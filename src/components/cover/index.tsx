@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import TagComponent from '../tag';
-import { ContentCover } from '../../models/content';
-import { Tag } from '../../models/tag';
+import { ContentCover, Tag } from '../../models/models';
 import styles from '../../styles/components/cover.module.scss';
 import { title, subTitle } from '../../../config';
 import { convertUnixtimeToDate } from '../../utils/time';
