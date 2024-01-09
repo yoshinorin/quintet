@@ -6,7 +6,7 @@ import {
   Insight,
   InjectScript
 } from '../../models/models';
-import { getScripts } from '../../utils/scriptTags';
+import { getScripts } from '../../utils/injectScript';
 import { externalResources as externalResourcesConfig } from '../../../config';
 import { InjectScriptComponent } from '../../components/injectScriptComponent';
 
