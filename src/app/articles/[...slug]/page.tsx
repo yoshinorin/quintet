@@ -1,5 +1,6 @@
 'use server';
 
+import { cache } from 'react'
 import { Metadata } from 'next'
 import { ContentResponse, Content } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
@@ -9,11 +10,18 @@ import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
 import { defaultRobotsMeta } from '../../../../config';
 
+const cachedFindByPath = cache(async (path: string) => {
+  const response = await findByPath(path);
+  throwIfError(response);
+  return response;
+});
+
 // TODO: use cache
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
 export async function generateMetadata({ params: { slug }}: { params: { slug: Array<string> }}): Promise<Metadata> {
-  const response: Response = await findByPath("/articles/" + slug.join("/"));
-  const content = await response.json() as ContentResponse;
+  const response = await cachedFindByPath("/articles/" + slug.join("/"));
+  // @ts-ignore
+  const content = response.json as ContentResponse;
 
   const robotsAttributes = content.robotsAttributes === undefined ? defaultRobotsMeta : content.robotsAttributes;
   return {
@@ -42,21 +50,18 @@ export default async function Page(req: any) {
 
 async function run(req: any): Promise<any> {
   const { props } = await get(req);
-  const c = props.content
   return <Renderer {...props} />;
 }
 
 async function get(req: any) {
-  const path = "/articles/" + req.params.slug.join("/");
-
   // NOTE: avoid send request of images
-  if (isIgnoreRequest(path)) {
+  if (isIgnoreRequest(req.params.slug.join("/"))) {
     throw new Error('Not found', { cause: 404 });
   }
+  const path = "/articles/" + req.params.slug.join("/");
+  const response: Response = await cachedFindByPath(path);
 
-  const response: Response = await findByPath(path);
-  throwIfError(response);
-
+  // @ts-ignore
   const contentResponse: ContentResponse = await response.json() as ContentResponse;
   const content: Content = {
     id: contentResponse.id,
