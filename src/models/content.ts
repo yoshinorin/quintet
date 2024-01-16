@@ -1,5 +1,4 @@
 import { ExternalResources } from './externalResource';
-import { Insight } from './insight';
 import { Tag } from './tag';
 
 export interface Content {
