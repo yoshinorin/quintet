@@ -45,7 +45,7 @@ test('generate sitemap.xml', async () => {
   const result = await generateFeedsString('https://example.com', data);
   expect(result.replace(/\s/g,"")).toEqual(
     `<feed xmlns="http://www.w3.org/2005/Atom">
-    <title>E2E Test Site</title>
+    <title>yourSiteName</title>
     <link href="https://example.com/feeds/index.xml" rel="self"/>
     <link href="https://example.com"/>
     <updated>2024-01-17T12:03:03.000Z</updated>
