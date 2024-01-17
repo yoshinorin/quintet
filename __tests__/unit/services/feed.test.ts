@@ -51,7 +51,7 @@ test('generate sitemap.xml', async () => {
     <updated>2024-01-17T12:03:03.000Z</updated>
     <id>https://example.com</id>
     <author>
-    <name>john doe</name>
+    <name>yourName</name>
     </author>
     <entry>
     <title>Standard nested post</title>
