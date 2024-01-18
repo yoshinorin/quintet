@@ -42,7 +42,7 @@ test('generate sitemap.xml', async () => {
     }
   ]
 
-  const result = await generateFeedsString('https://example.com', data);
+  const result = await generateFeedsString('https://example.com', 'yourSiteName', 'yourName', data);
   expect(result.replace(/\s/g,"")).toEqual(
     `<feed xmlns="http://www.w3.org/2005/Atom">
     <title>yourSiteName</title>

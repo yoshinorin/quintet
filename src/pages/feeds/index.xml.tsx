@@ -3,6 +3,7 @@ import { getFeed } from '../../api/feed';
 import { generateFeedsString } from '../../services/feeds';
 import { url } from '../../../config';
 import { getRequestContext } from '../../utils/requestContext';
+import { siteName, mainAuthor } from '../../../config';
 
 const SitemapXml = () => null;
 
@@ -29,7 +30,7 @@ export async function getServerSideProps(ctx: any) {
     }
   }) as Array<Feed>;
 
-  const feedXmlString = await generateFeedsString(url, feeds);
+  const feedXmlString = await generateFeedsString(url, siteName, mainAuthor, feeds);
   ctx.res.setHeader("Content-Type", "text/xml");
   ctx.res.write(feedXmlString);
   ctx.res.end();

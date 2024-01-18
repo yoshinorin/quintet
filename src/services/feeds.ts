@@ -1,10 +1,9 @@
 import { Feed } from '../models/feed';
 import { convertUnixTimeToISODateSrting } from '../utils/time';
-import { siteName, mainAuthor } from '../../config';
 
 const FEED_URL = '/feeds/index.xml';
 
-export async function generateFeedsString(url: string, feeds: Array<Feed>): Promise<string> {
+export async function generateFeedsString(url: string, siteName: string, mainAuthor: string, feeds: Array<Feed>): Promise<string> {
 
   const latest = feeds[0]
 
