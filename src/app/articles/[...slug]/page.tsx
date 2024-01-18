@@ -68,7 +68,7 @@ async function get(req: any) {
     title: contentResponse.title,
     robotsAttributes: contentResponse.robotsAttributes,
     externalResources: contentResponse.externalResources,
-    tags: contentResponse.tags,
+    tags: contentResponse.tags?? [],
     description: contentResponse.description,
     content: contentResponse.content,
     length: contentResponse.length,

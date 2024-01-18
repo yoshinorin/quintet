@@ -1,7 +1,7 @@
 import { Feed } from '../../../models/models';
 import { getFeed } from '../../../api/feed';
 import { generateFeedsString } from '../../../services/feeds';
-import { url } from '../../../../config';
+import { url, siteName, mainAuthor, } from '../../../../config';
 import { getRequestContext } from '../../../utils/requestContext';
 
 //export async function get(ctx: any) {
@@ -32,7 +32,7 @@ export async function GET() {
     }
   }) as Array<Feed>;
 
-  const feedXmlString = await generateFeedsString(url, feeds);
+  const feedXmlString = await generateFeedsString(url, siteName, mainAuthor, feeds);
   return new Response(feedXmlString, {
     headers: {
       "Content-Type": "text/xml",
