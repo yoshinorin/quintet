@@ -56,7 +56,7 @@ async function run(req: any): Promise<any> {
 async function get(req: any) {
   // NOTE: avoid send request of images
   if (isIgnoreRequest(req.params.slug.join("/"))) {
-    throw new Error('Not found', { cause: 404 });
+    return notFound();
   }
   const path = "/articles/" + req.params.slug.join("/");
   const response: Response = await cachedFindByPath(path);

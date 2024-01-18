@@ -16,6 +16,9 @@ export async function runOrHandleErrorIf(fn: (arg: any) => React.FunctionCompone
 
 export function throwIfError(response: Response) {
   if (response.status !== 200) {
+    if (response.status === 404) {
+      return notFound();
+    }
     // TODO: use custom Error class
     throw new Error(response.statusText, { cause: response.status });
   }
