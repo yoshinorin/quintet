@@ -17,17 +17,16 @@ export const metadata: Metadata = {
     follow: false,
     noimageindex: true,
     index: false
-  }
-  /* NOTE: Not supports OpenGraph
-    Reasons:
-      - If enable openGraph, `twitter:<field>` will be generate automatically.
-      - I don't want insert `twitter:<field>` to head.
-
+  },
+  /* NOTE:
+    I don't want insert `twitter:<field>` to head. But how to...???
+    If enable openGraph, `twitter:<field>` will be generate automatically.
+  */
   openGraph: {
     title: siteName,
   },
-  twitter: {}  // Twitter og will be generate automatically, evenif I set empty object.
-  */
+  // Twitter og will be generate automatically, evenif I set empty object.
+  // twitter: {}
 }
 
 export default function RootLayout({
