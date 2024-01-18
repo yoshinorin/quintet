@@ -2,46 +2,36 @@
 
 import { cache } from 'react'
 import { Metadata } from 'next'
+import { notFound } from "next/navigation";
 import { ContentResponse, Content } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
 import { asInsight } from '../../../utils/converters';
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
-import { defaultRobotsMeta } from '../../../../config';
+import { generateForArticleOrPage } from '../../metadata';
 
+// TOOD: rename & move somewhere
+interface Resp {
+  res: Response,
+  body: ContentResponse
+}
+
+// TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
   const response = await findByPath(path);
   throwIfError(response);
-  return response;
+  const content = await response.json() as ContentResponse;
+  return {
+    res: response,
+    body: content
+  }
 });
 
-// TODO: use cache
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
 export async function generateMetadata({ params: { slug }}: { params: { slug: Array<string> }}): Promise<Metadata> {
-  const response = await cachedFindByPath("/articles/" + slug.join("/"));
-  // @ts-ignore
-  const content = response.json as ContentResponse;
-
-  const robotsAttributes = content.robotsAttributes === undefined ? defaultRobotsMeta : content.robotsAttributes;
-  return {
-    title: content.title,
-    authors: [{ name: content.authorName }],
-    description: content.description,
-    robots: {
-      noarchive: robotsAttributes.includes('noarchive'),
-      follow: !robotsAttributes.includes('nofollow'),
-      noimageindex: robotsAttributes.includes('noimageindex'),
-      index: !robotsAttributes.includes('noindex'),
-    }
-    /*
-    openGraph: {
-      type: 'article',
-      publishedTime: convertUnixTimeToISODateSrting(content.publishedAt),
-      modifiedTime: convertUnixTimeToISODateSrting(content.updatedAt)
-    },
-    */
-  };
+  const content = await cachedFindByPath("/articles/" + slug.join("/"));
+  return generateForArticleOrPage(content.body);
 }
 
 export default async function Page(req: any) {
@@ -59,28 +49,26 @@ async function get(req: any) {
     return notFound();
   }
   const path = "/articles/" + req.params.slug.join("/");
-  const response: Response = await cachedFindByPath(path);
+  const response: Resp = await cachedFindByPath(path);
 
-  // @ts-ignore
-  const contentResponse: ContentResponse = await response.json() as ContentResponse;
   const content: Content = {
-    id: contentResponse.id,
-    title: contentResponse.title,
-    robotsAttributes: contentResponse.robotsAttributes,
-    externalResources: contentResponse.externalResources,
-    tags: contentResponse.tags?? [],
-    description: contentResponse.description,
-    content: contentResponse.content,
-    length: contentResponse.length,
-    authorName: contentResponse.authorName,
-    publishedAt: contentResponse.publishedAt,
-    updatedAt: contentResponse.updatedAt
+    id: response.body.id,
+    title: response.body.title,
+    robotsAttributes: response.body.robotsAttributes,
+    externalResources: response.body.externalResources,
+    tags: response.body.tags?? [],
+    description: response.body.description,
+    content: response.body.content,
+    length: response.body.length,
+    authorName: response.body.authorName,
+    publishedAt: response.body.publishedAt,
+    updatedAt: response.body.updatedAt
   } as Content
 
   return {
     props: {
       content: content,
-      insight: asInsight(response)
+      insight: asInsight(response.res)
     }
   }
 }

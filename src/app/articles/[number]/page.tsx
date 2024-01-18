@@ -6,6 +6,8 @@ import { getRequestContext } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
 
+// TODO: add generateMetadata func
+
 export default async function Page(req: any) {
   return runOrHandleErrorIf(await run(req));
 }
