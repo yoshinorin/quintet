@@ -10,6 +10,9 @@ import { asInsight } from '../../../utils/converters';
 import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../../handler";
 import { generateForArticleOrPage } from '../../metadata';
+import { sluggize } from '../../../utils/slug';
+
+const PREFIX_URL = 'articles';
 
 // TOOD: rename & move somewhere
 interface Resp {
@@ -30,8 +33,9 @@ const cachedFindByPath = cache(async (path: string) => {
 
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
 export async function generateMetadata({ params: { slug }}: { params: { slug: Array<string> }}): Promise<Metadata> {
-  const content = await cachedFindByPath("/articles/" + slug.join("/"));
-  return generateForArticleOrPage(content.body);
+  const sluggized = await sluggize(slug, PREFIX_URL);
+  const content = await cachedFindByPath(sluggized);
+  return generateForArticleOrPage(sluggized ,content.body);
 }
 
 export default async function Page(req: any) {
@@ -48,8 +52,8 @@ async function get(req: any) {
   if (isIgnoreRequest(req.params.slug.join("/"))) {
     return notFound();
   }
-  const path = "/articles/" + req.params.slug.join("/");
-  const response: Resp = await cachedFindByPath(path);
+  const sluggized = await sluggize(req.params.slug, PREFIX_URL);
+  const response: Resp = await cachedFindByPath(sluggized);
 
   const content: Content = {
     id: response.body.id,

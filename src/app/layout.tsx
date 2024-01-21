@@ -6,8 +6,12 @@ import {
   siteName,
   mainAuthor,
   lang,
+  url,
+  locale,
+  defaultImage,
 } from '../../config';
 import HeadMetaComponent from '../components/headmeta';
+import { fullUrl, fullUrlWithoutTrailingSlash } from '../utils/url';
 
 export const metadata: Metadata = {
   title: siteName,
@@ -24,6 +28,11 @@ export const metadata: Metadata = {
   */
   openGraph: {
     title: siteName,
+    type: 'website',
+    url: fullUrl(url),
+    siteName: siteName,
+    locale: locale,
+    images: fullUrlWithoutTrailingSlash(defaultImage)
   },
   // Twitter og will be generate automatically, evenif I set empty object.
   // twitter: {}
