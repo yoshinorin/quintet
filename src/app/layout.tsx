@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     If enable openGraph, `twitter:<field>` will be generate automatically.
   */
   openGraph: {
+    siteName: siteName,
+    locale: locale,
     title: siteName,
     type: 'website',
     url: fullUrl(url),
-    siteName: siteName,
-    locale: locale,
     images: fullUrlWithoutTrailingSlash(defaultImage)
   },
   // Twitter og will be generate automatically, evenif I set empty object.

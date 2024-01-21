@@ -6,6 +6,8 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Article - Partially Robots', () => {
   test('should not overwrite by default robots in head', async ({ page } ) => {
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noarchive, nofollow');
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    const sortedRobots = robots.split(',').sort().map(r => r.trim());
+    expect(sortedRobots.join(', ')).toBe('noarchive, nofollow');
   });
 });
