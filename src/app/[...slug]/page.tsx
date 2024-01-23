@@ -2,7 +2,7 @@
 
 import { cache } from 'react'
 import { permanentRedirect } from "next/navigation";
-import { ContentResponse, Content } from '../../models/models';
+import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../models/models';
 import { findByPath } from '../../api/content';
 import { asInsight } from '../../utils/converters';
 import { Renderer } from './renderer';
@@ -10,12 +10,6 @@ import { runOrHandleErrorIf, throwIfError } from "../handler";
 import { sluggize } from '../../utils/slug';
 import { generateForArticleOrPage } from '../metadata';
 import { Metadata } from 'next';
-
-// TOOD: rename & move somewhere
-interface Resp {
-  res: Response,
-  body: ContentResponse
-}
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
@@ -59,7 +53,7 @@ async function get(req: any) {
     return permanentRedirect(`/articles${path}`);
   }
 
-  const response: Resp = await cachedFindByPath(path);
+  const response: ContentResponseWithFetchResponse = await cachedFindByPath(path);
   const content: Content = {
     title: response.body.title,
     robotsAttributes: response.body.robotsAttributes,

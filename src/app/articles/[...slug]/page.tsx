@@ -3,7 +3,7 @@
 import { cache } from 'react'
 import { Metadata } from 'next'
 import { notFound } from "next/navigation";
-import { ContentResponse, Content } from '../../../models/models';
+import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
 import { asInsight } from '../../../utils/converters';
@@ -13,12 +13,6 @@ import { generateForArticleOrPage } from '../../metadata';
 import { sluggize } from '../../../utils/slug';
 
 const PREFIX_URL = 'articles';
-
-// TOOD: rename & move somewhere
-interface Resp {
-  res: Response,
-  body: ContentResponse
-}
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
@@ -53,7 +47,7 @@ async function get(req: any) {
     return notFound();
   }
   const sluggized = await sluggize(req.params.slug, PREFIX_URL);
-  const response: Resp = await cachedFindByPath(sluggized);
+  const response: ContentResponseWithFetchResponse = await cachedFindByPath(sluggized);
 
   const content: Content = {
     id: response.body.id,

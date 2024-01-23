@@ -36,7 +36,6 @@ async function get(req: any) {
 
   return {
     props: {
-      // slug: sluggize(req.params.slug),
       current: req.params.number,
       count: articlesResponseWithCount.count,
       articles: articles
