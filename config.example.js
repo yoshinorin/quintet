@@ -2,10 +2,6 @@ export const api = {
   'url': 'https://api.example.com'
 }
 
-export const publicApi = {
-  'url': 'https://api.example.com'
-}
-
 export const siteName = 'yourSiteName';
 export const siteType = 'blog';
 export const mainAuthor = 'yourName';
