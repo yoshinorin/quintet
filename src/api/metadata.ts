@@ -1,7 +1,7 @@
-import { publicApi } from '../../config';
+import { url } from '../../config';
 
 export default async function GET() {
-  return fetch(`${publicApi.url}/system/metadata`, {
+  return fetch(`${url}/system/metadata`, {
     method: 'GET'
   });
 }
