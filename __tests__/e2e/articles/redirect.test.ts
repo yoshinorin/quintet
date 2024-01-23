@@ -13,8 +13,8 @@ test.describe('Article - Redirect', () => {
     await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'http://localhost:3000/articles/2024/01/01/standard/');
     await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute('content', 'E2E Test Site');
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'ja_JP');
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'defaultImage.jpg');
-    await expect(page.locator('meta[name="injectedMetaName"]')).toHaveAttribute('content', 'http://localhost:3000/defaultImage.jpg');
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'http://localhost:3000/defaultImage.jpg');
+    await expect(page.locator('meta[name="injectedMetaName"]')).toHaveAttribute('content', 'injectedMetaContent');
 
     await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Proin tellus nibh, pretium vitae bibendum in, tempus nec odio...');
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', 'Proin tellus nibh, pretium vitae bibendum in, tempus nec odio...');
