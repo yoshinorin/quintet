@@ -9,6 +9,7 @@ import { Renderer } from './renderer';
 import { runOrHandleErrorIf, throwIfError } from "../handler";
 import { sluggize } from '../../utils/slug';
 import { generateForArticleOrPage } from '../metadata';
+import { Metadata } from 'next';
 
 // TOOD: rename & move somewhere
 interface Resp {
