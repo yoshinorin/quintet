@@ -1,5 +1,7 @@
+
+// FIXME: messy code (I'm tired to fight wiht TS type)
 export function sluggize(
-    slug: any,  // NOTE: Next.js request context is any.
+    slug: Array<string> | string,  // NOTE: Next.js request context seems <any>.
     prefix: string | undefined = undefined,
     fallback: string | undefined = undefined
   ) {
@@ -9,8 +11,8 @@ export function sluggize(
         const s = slug as Array<string>;
         const arr = [p].concat(s);
         return arr.join('/');
-       } else {
-        return fallback;
+      } else {
+        return slug;
       }
     } catch {
       return fallback;
