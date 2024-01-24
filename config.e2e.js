@@ -2,6 +2,10 @@ export const api = {
   'url': 'http://localhost:9002'
 }
 
+export const publicApi = {
+  'url': 'http://localhost:9002'
+}
+
 export const siteName = 'E2E Test Site';
 export const mainAuthor = 'john doe';
 export const lang = "ja";
