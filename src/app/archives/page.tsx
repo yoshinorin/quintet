@@ -30,7 +30,6 @@ async function get(req: any) {
 
   return {
     props: {
-      // slug: 'archives',
       archives: archives
     }
   }

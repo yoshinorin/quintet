@@ -32,7 +32,6 @@ async function get(req: any) {
 
   return {
     props: {
-      // slug: undefined,
       articles: articles
     }
   }

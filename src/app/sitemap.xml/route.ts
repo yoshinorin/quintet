@@ -3,9 +3,8 @@ import { getSitemap } from '../../api/sitemap';
 import { generateSitemapString } from '../../services/sitemap';
 import { url } from '../../../config';
 import { getRequestContext } from '../../utils/requestContext';
-import { NextApiResponse } from 'next';
 
-export async function GET(res: NextApiResponse) {
+export async function GET() {
   const response: Response = await getSitemap(getRequestContext());
 
   if (response.status !== 200) {

@@ -1,7 +1,7 @@
 import { Feed } from '../../../models/models';
 import { getFeed } from '../../../api/feed';
 import { generateFeedsString } from '../../../services/feeds';
-import { url, siteName, mainAuthor, } from '../../../../config';
+import { url, siteName, mainAuthor } from '../../../../config';
 import { getRequestContext } from '../../../utils/requestContext';
 
 //export async function get(ctx: any) {
