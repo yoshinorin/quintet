@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Content } from '../models/content';
 import { defaultImage, defaultRobotsMeta, locale, siteName } from '../../config';
-import { convertUnixTimeToISODateSrting } from '../utils/time';
+import { toISODateSrting } from '../utils/time';
 import { fullUrl } from '../utils/url';
 
 // TODO: write test code
@@ -38,8 +38,8 @@ export async function generateForArticleOrPage(url: string, content: Content): P
       images: fullUrl(defaultImage, false),
       authors: [content.authorName],
       tags: tags.length !== 0 ? content.tags.map(t => t.name) : [],
-      publishedTime: convertUnixTimeToISODateSrting(content.publishedAt),
-      modifiedTime: convertUnixTimeToISODateSrting(content.updatedAt)
+      publishedTime: toISODateSrting(content.publishedAt),
+      modifiedTime: toISODateSrting(content.updatedAt)
     }
   };
 }

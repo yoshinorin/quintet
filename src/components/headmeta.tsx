@@ -58,8 +58,8 @@ const HeadMetaComponent: React.FunctionComponent<{
                 <meta name="description" content={content.description} key="description" />
                 <meta property="og:description" content={content.description} key="og:description" />
                 <meta property="og:title" content={content.title} key="og:title" />
-                <meta property="article:published_time" content={convertUnixTimeToISODateSrting(content.publishedAt)} key="article:published_time" />
-                <meta property="article:modified_time" content={convertUnixTimeToISODateSrting(content.updatedAt)} key="article:modified_time" />
+                <meta property="article:published_time" content={toISODateSrting(content.publishedAt)} key="article:published_time" />
+                <meta property="article:modified_time" content={toISODateSrting(content.updatedAt)} key="article:modified_time" />
               </>
             );
           } else {

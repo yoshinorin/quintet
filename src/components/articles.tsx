@@ -6,7 +6,7 @@ import homeStyles from '../styles/home.module.scss';
 import flexStyles from '../styles/components/flex.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import buttonStyles from '../styles/components/button.module.scss';
-import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
+import { toDate, toJaJpDottedDateString } from '../utils/time';
 
 export const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
@@ -16,7 +16,7 @@ export const ArticlesComponent: React.FunctionComponent<{ articles: Array<Articl
           <article className={styles['article']} key={idx}>
             <div className={styles['wrap']}>
               <time dateTime={`${article.publishedAt}`} className={`${styles['time']}`}>
-                {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`}
+                {`${toJaJpDottedDateString(toDate(article.publishedAt))}`}
               </time>
               <Link href={`${article.path}`} prefetch={false} className='unstyled' >
                 <h2 className={`${styles['header']} ${styles['title']}`}>
@@ -83,7 +83,7 @@ const ArticlesSection: React.FunctionComponent<{ articles: Array<Article> }> = (
             <div className={articlesInSection['wrap']}>
               <div className={articlesInSection['title']}>
                 <time dateTime={`${article.publishedAt}`} className={articlesInSection['time']}>
-                  {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`} - &nbsp;
+                  {`${toJaJpDottedDateString(toDate(article.publishedAt))}`} - &nbsp;
                 </time>
                 <Link href={`${article.path}`} prefetch={false} className='unstyled'>
                   {`${article.title}`}

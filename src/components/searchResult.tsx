@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '../styles/articles.module.scss';
-import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
+import { toDate, toJaJpDottedDateString } from '../utils/time';
 import { SearchResponse } from '../models/models';
 
 export const SearchResultComponent: React.FunctionComponent<{
@@ -21,7 +21,7 @@ export const SearchResultComponent: React.FunctionComponent<{
             <div className={styles['wrap']}>
               <div className={styles['header']}>
                 <time dateTime={`${content.publishedAt}`} className={styles['time']}>
-                  {`${toJaJpDottedDateString(convertUnixtimeToDate(content.publishedAt))}`}
+                  {`${toJaJpDottedDateString(toDate(content.publishedAt))}`}
                 </time>
                 <Link href={`${content.path}`} prefetch={false} className='unstyled' target="_blank">
                   <h3 className={styles['title']}>

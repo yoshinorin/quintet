@@ -11,7 +11,7 @@ import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
 import { Accordion } from './accordion';
 import { getSystemMetadata } from '../api/metadata';
-import { appendBackendMeta } from '../utils/converters';
+import { appendBackendMeta } from '../utils/insight';
 
 export const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 

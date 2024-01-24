@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next'
 import ClientLayout from './clientLayout';
-import { getThemeSetting } from '../services/theme';
+import { getTheme } from '../services/theme';
 import {
   siteName,
   mainAuthor,
@@ -45,7 +45,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const theme = getThemeSetting();
+  const theme = getTheme();
   // https://github.com/vercel/next.js/discussions/44506#discussioncomment-7901181
   return (
     <html lang={lang}>

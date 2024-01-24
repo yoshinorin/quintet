@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import { CoverWithNavigationComponent, DropdownComponent } from '../../components/components';
-import { getThemeSetting } from '../../services/theme';
+import { getTheme } from '../../services/theme';
 import containerStyles from '../../styles/components/container.module.scss';
 import inputStyles from '../../styles/input.module.scss';
 
 export default function Page(){
 
-  const theme = getThemeSetting();
+  const theme = getTheme();
 
   const [selectedOption, setSelectedOption] = useState('');
   function onChange(event) {

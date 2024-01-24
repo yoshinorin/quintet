@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Archive } from '../models/models';
-import { convertUnixtimeToLocalDateSrting } from '../utils/time';
+import { toLocalDateSrting } from '../utils/time';
 import styles from '../styles/archives.module.scss';
 import inputStyles from '../styles/input.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
@@ -59,7 +59,7 @@ const FilterdItems: React.FunctionComponent<{ archives: Array<Archive> }> = ({ a
         return (
           <li key={idx}>
             <Link href={`${archive.path}`} prefetch={false} target="_blank">
-               {`${convertUnixtimeToLocalDateSrting(archive.publishedAt)}`}:{`${archive.title}`}
+               {`${toLocalDateSrting(archive.publishedAt)}`}:{`${archive.title}`}
             </Link>
           </li>
         );

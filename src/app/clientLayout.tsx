@@ -2,7 +2,7 @@
 
 import '../styles/globals.scss';
 import React, { useEffect } from 'react';
-import { getThemeSetting } from '../services/theme';
+import { getTheme } from '../services/theme';
 import {
   BackToTopComponent,
   FooterComponent,
@@ -20,7 +20,7 @@ export default function ClientLayout({
   children: React.ReactNode
 }) {
   useEffect(() => {
-    let theme = getThemeSetting();
+    let theme = getTheme();
     const body = document.body;
     body.setAttribute('data-theme', theme);
   });

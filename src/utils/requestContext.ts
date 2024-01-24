@@ -13,7 +13,7 @@ export function getRequestContext(h: Headers = headers()): RequestContext {
       requestId: uuid4()
     } as RequestContext
   }
-  let xff = h['x-forwarded-for'];
+  const xff = h['x-forwarded-for'];
   // @ts-ignore
   return {
     // @ts-ignore

@@ -1,4 +1,4 @@
-export function getThemeSetting(): string {
+export function getTheme(): string {
   let theme = 'light';
   try {
     theme = localStorage.getItem('theme');

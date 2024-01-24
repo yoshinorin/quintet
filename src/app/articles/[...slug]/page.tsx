@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
 import { findByPath } from '../../../api/content';
-import { asInsight } from '../../../utils/converters';
+import { asInsight } from '../../../utils/insight';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { generateForArticleOrPage } from '../../metadata';

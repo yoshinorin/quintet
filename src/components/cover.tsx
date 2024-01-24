@@ -3,7 +3,7 @@ import { TagComponent } from './tag';
 import { NavigationComponent } from './navigation';
 import { ContentCover, Tag } from '../models/models';
 import styles from '../styles/components/cover.module.scss';
-import { convertUnixtimeToDate } from '../utils/time';
+import { toDate } from '../utils/time';
 import { title, subTitle, coverBottomItems } from '../../config';
 
 export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
@@ -23,7 +23,7 @@ export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCove
                       if (contentCover.publishedAt) {
                         return(
                           <span className={`${styles['content-meta']}`}>
-                            { convertUnixtimeToDate(contentCover.publishedAt).toUTCString() }
+                            { toDate(contentCover.publishedAt).toUTCString() }
                           </span>
                         )
                       }
