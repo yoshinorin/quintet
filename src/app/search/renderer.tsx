@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { CoverWithNavigationComponent } from '../../components/cover';
+import {
+  CoverWithNavigationComponent,
+  SearchResultComponent
+} from '../../components/components';
 import { SearchResponse, SearchResponseWithCount } from '../../models/models';
 import inputStyles from '../../styles/input.module.scss';
 import containerStyles from '../../styles/components/container.module.scss';
-import { SearchResultComponent } from '../../components/searchResult';
 
 export const Renderer: React.FunctionComponent<{
   hits: number,

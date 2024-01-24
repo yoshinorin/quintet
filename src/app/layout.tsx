@@ -10,7 +10,7 @@ import {
   locale,
   defaultImage,
 } from '../../config';
-import { HeadMetaComponent } from '../components/headmeta';
+import { HeadMetaComponent } from '../components/components';
 import { fullUrl } from '../utils/url';
 
 export const metadata: Metadata = {

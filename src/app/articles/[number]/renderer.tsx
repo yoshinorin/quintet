@@ -1,6 +1,8 @@
-import { CoverWithNavigationComponent } from '../../../components/cover';
-import { ArticlesComponent } from '../../../components/articles';
-import { PaginationComponent } from '../../../components/pagination';
+import {
+  ArticlesComponent,
+  CoverWithNavigationComponent,
+  PaginationComponent
+} from '../../../components/components';
 import { Article } from '../../../models/models';
 
 export const Renderer: React.FunctionComponent<{

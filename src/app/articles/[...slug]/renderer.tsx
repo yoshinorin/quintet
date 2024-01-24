@@ -1,5 +1,8 @@
-import { ContentComponent } from '../../../components/content';
-import { CoverWithNavigationComponent } from '../../../components/cover';
+import {
+  ContentComponent,
+  CoverWithNavigationComponent,
+  InjectScriptComponent
+} from '../../../components/components';
 import {
   Content,
   Insight,
@@ -7,7 +10,6 @@ import {
 } from '../../../models/models';
 import { getScripts } from '../../../utils/injectScript';
 import { externalResources as externalResourcesConfig } from '../../../../config';
-import { InjectScriptComponent } from '../../../components/injectScript';
 
 export const Renderer: React.FunctionComponent<{
   content: Content,

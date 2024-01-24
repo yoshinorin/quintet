@@ -1,5 +1,4 @@
-import { CoverWithNavigationComponent } from '../../../components/cover';
-import { SeriesWithArticlesComponent } from '../../../components/series';
+import { CoverWithNavigationComponent, SeriesWithArticlesComponent } from '../../../components/components';
 
 export const Renderer: React.FunctionComponent<{
   seriresWithArticles

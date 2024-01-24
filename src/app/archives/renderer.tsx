@@ -1,5 +1,4 @@
-import { CoverWithNavigationComponent } from '../../components/cover';
-import { ArchivesComponent } from '../../components/archives';
+import { ArchivesComponent, CoverWithNavigationComponent } from '../../components/components';
 import { Archive } from '../../models/models';
 
 export const Renderer: React.FunctionComponent<{

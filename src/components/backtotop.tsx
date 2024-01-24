@@ -1,6 +1,6 @@
 import styles from '../styles/backtotop.module.scss';
 
-const BackToTopComponent: React.FunctionComponent<{}> = () => {
+export const BackToTopComponent: React.FunctionComponent<{}> = () => {
   return (
     <p id={styles['back-to-top']}>
       <a href="#">
@@ -11,5 +11,3 @@ const BackToTopComponent: React.FunctionComponent<{}> = () => {
     </p>
   )
 }
-
-export default BackToTopComponent;
