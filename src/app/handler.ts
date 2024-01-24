@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-export async function runOrHandleErrorIf(fn: (arg: any) => React.FunctionComponent): Promise<any> {
+export async function runWithHandleErrorIf(fn: (arg: any) => React.FunctionComponent): Promise<any> {
   try {
     return fn;
   } catch(e) {

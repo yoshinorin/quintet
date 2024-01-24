@@ -6,7 +6,7 @@ import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../.
 import { findByPath } from '../../api/content';
 import { asInsight } from '../../utils/converters';
 import { Renderer } from './renderer';
-import { runOrHandleErrorIf, throwIfError } from "../handler";
+import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { sluggize } from '../../utils/slug';
 import { generateForArticleOrPage } from '../metadata';
 import { Metadata } from 'next';
@@ -30,7 +30,7 @@ export async function generateMetadata({ params: { slug }}: { params: { slug: Ar
 }
 
 export default async function Page(req: any) {
-  return runOrHandleErrorIf(await run(req));
+  return runWithHandleErrorIf(await run(req));
 }
 
 async function run(req: any): Promise<any> {

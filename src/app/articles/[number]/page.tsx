@@ -4,10 +4,10 @@ import { getArticles } from '../../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../../models/models';
 import { getRequestContext } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
-import { runOrHandleErrorIf, throwIfError } from "../../handler";
+import { runWithHandleErrorIf, throwIfError } from "../../handler";
 
 export default async function Page(req: any) {
-  return runOrHandleErrorIf(await run(req));
+  return runWithHandleErrorIf(await run(req));
 }
 
 async function run(req: any): Promise<any> {

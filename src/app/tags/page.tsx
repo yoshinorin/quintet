@@ -4,10 +4,10 @@ import { Tag } from '../../models/models';
 import { getTags } from '../../api/tags';
 import { getRequestContext } from '../../utils/requestContext';
 import { Renderer } from './renderer';
-import { runOrHandleErrorIf, throwIfError } from "../handler";
+import { runWithHandleErrorIf, throwIfError } from "../handler";
 
 export default async function Page(req: any) {
-  return runOrHandleErrorIf(await run(req));
+  return runWithHandleErrorIf(await run(req));
 }
 
 async function run(req: any): Promise<any> {
