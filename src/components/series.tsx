@@ -3,7 +3,7 @@ import { Series } from '../models/models';
 import styles from '../styles/series.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 
-const SeriesComponent: React.FunctionComponent<{ series: Array<Series> }> = ({ series }) => {
+export const SeriesComponent: React.FunctionComponent<{ series: Array<Series> }> = ({ series }) => {
 
   return (
     <section className={`${containerStyles.container}`}>
@@ -32,5 +32,3 @@ const SeriesComponent: React.FunctionComponent<{ series: Array<Series> }> = ({ s
     </section>
   );
 }
-
-export default SeriesComponent;

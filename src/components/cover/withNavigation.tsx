@@ -1,10 +1,10 @@
-import CoverComponent from './index';
+import { CoverComponent } from './index';
 import { ContentCover } from '../../models/models';
-import NavigationComponent from '../navigation';
+import { NavigationComponent } from '../navigation';
 import styles from '../../styles/navigation.module.scss';
 import { coverBottomItems } from '../../../config';
 
-const CoverWithNavigationComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
+export const CoverWithNavigationComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
   return(
     <>
       <CoverComponent
@@ -18,5 +18,3 @@ const CoverWithNavigationComponent: React.FunctionComponent<{ contentCover: Cont
     </>
   )
 }
-
-export default CoverWithNavigationComponent;

@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import TagComponent from '../tag';
+import { TagComponent } from '../tag';
 import { ContentCover, Tag } from '../../models/models';
 import styles from '../../styles/components/cover.module.scss';
 import { title, subTitle } from '../../../config';
 import { convertUnixtimeToDate } from '../../utils/time';
 
-const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
+export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
   return (
     <div className={styles['cover']}>
       <div className={`${styles['content-header']}`}>
@@ -66,5 +66,3 @@ const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | nul
     </div>
   );
 }
-
-export default CoverComponent;

@@ -1,5 +1,5 @@
-import ContentComponent from '../../../components/content';
-import CoverWithNavigationComponent from '../../../components/cover/withNavigation';
+import { ContentComponent } from '../../../components/content';
+import { CoverWithNavigationComponent } from '../../../components/cover/withNavigation';
 import {
   Content,
   Insight,

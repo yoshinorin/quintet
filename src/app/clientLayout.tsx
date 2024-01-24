@@ -3,8 +3,8 @@
 import '../styles/globals.scss';
 import React, { useEffect } from 'react';
 import { getThemeSetting } from '../services/theme';
-import HeaderComponent from '../components/header';
-import FooterComponent from '../components/footer';
+import { HeaderComponent } from '../components/header';
+import { FooterComponent } from '../components/footer';
 import BackToTopComponent from '../components/backtotop';
 
 export default function ClientLayout({

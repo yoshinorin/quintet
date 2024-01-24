@@ -1,8 +1,8 @@
 'use client';
 
 import { Tag } from '../../models/models';
-import CoverWithNavigationComponent from '../../components/cover/withNavigation';
-import TagsComponent from '../../components/tags';
+import { CoverWithNavigationComponent } from '../../components/cover/withNavigation';
+import { TagsComponent } from '../../components/tags';
 
 export const Renderer: React.FunctionComponent<{
   tags: Array<Tag>

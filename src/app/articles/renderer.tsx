@@ -1,6 +1,6 @@
-import CoverWithNavigationComponent from '../../components/cover/withNavigation';
-import ArticlesComponent from '../../components/articles';
-import PaginationComponent from '../../components/pagination';
+import { CoverWithNavigationComponent } from '../../components/cover/withNavigation';
+import { ArticlesComponent } from '../../components/articles';
+import { PaginationComponent } from '../../components/pagination';
 
 export const Renderer: React.FunctionComponent<{
   count,

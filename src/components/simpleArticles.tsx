@@ -3,7 +3,7 @@ import { Article } from '../models/models';
 import styles from '../styles/simpleArticles.module.scss';
 import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
 
-const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
+export const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
     <section className={styles['articles-wrap']}>
       {articles.map((article: Article, idx) => {
@@ -25,5 +25,3 @@ const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article
     </section>
   );
 }
-
-export default SimpleArticlesComponent;

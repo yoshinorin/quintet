@@ -3,7 +3,7 @@ import {
   injectMetas
 } from '../../config';
 
-const HeadMetaComponent: React.FunctionComponent<{}> = ({}) => {
+export const HeadMetaComponent: React.FunctionComponent<{}> = ({}) => {
   // TODO: JSON + LD
   return(
     <head>
@@ -24,8 +24,6 @@ const HeadMetaComponent: React.FunctionComponent<{}> = ({}) => {
     </head>
   )
 }
-
-export default HeadMetaComponent;
 
 /* NOTE: Before migrate to AppRouter's head metas
 const HeadMetaComponent: React.FunctionComponent<{

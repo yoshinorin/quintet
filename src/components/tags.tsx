@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TagComponent from './tag';
+import { TagComponent } from './tag';
 import { Tag } from '../models/models';
 import containerStyles from '../styles/components/container.module.scss';
 import style from '../styles/tags.module.scss';
@@ -8,7 +8,7 @@ import {
   tagsPage
 } from '../../config';
 
-const TagsComponent: React.FunctionComponent<{ tags: Array<Tag> }> = ({ tags }) => {
+export const TagsComponent: React.FunctionComponent<{ tags: Array<Tag> }> = ({ tags }) => {
 
   const [keyword, setKeyword] = useState("");
   const [filteredTags, setFilteredTags] = useState(tags);
@@ -66,5 +66,3 @@ const FilterdItems: React.FunctionComponent<{ tags: Array<Tag> }> = ({ tags }) =
     </>
   )
 }
-
-export default TagsComponent;

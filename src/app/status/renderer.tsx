@@ -1,4 +1,4 @@
-import PlanePage from '../../components/planePage';
+import { PlanePage } from '../../components/planePage';
 
 export const Renderer: React.FunctionComponent<{
   statusCode: number

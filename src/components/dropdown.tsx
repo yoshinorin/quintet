@@ -1,4 +1,4 @@
-const DropdownComponent: React.FunctionComponent<{
+export const DropdownComponent: React.FunctionComponent<{
   list: Array<string>,
   defaultValue: string | null,
   onChange: any
@@ -14,5 +14,3 @@ const DropdownComponent: React.FunctionComponent<{
     </select>
   );
 }
-
-export default DropdownComponent;

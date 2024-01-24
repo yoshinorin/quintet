@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Article } from '../models/models';
-import SimpleArticlesComponent from '../components/simpleArticles';
+import { SimpleArticlesComponent } from '../components/simpleArticles';
 import styles from '../styles/home.module.scss';
 import flexStyles from '../styles/components/flex.module.scss';
 
-const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
+export const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return <>
     <div className={flexStyles['flex-row']}>
       <div className={flexStyles['col-35']}>
@@ -38,5 +38,3 @@ const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<Article
     </div>
   </>;
 }
-
-export default RecentArticlesComponent;

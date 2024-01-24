@@ -7,7 +7,7 @@ import style from '../styles/components/pagination.module.scss';
 // TODO: set default number of articles in one page from config.
 const PER_PAGE = 10;
 
-const PaginationComponent: React.FunctionComponent<{ basePath: string, current: number, total: number }> = ({ basePath, current, total} ) => {
+export const PaginationComponent: React.FunctionComponent<{ basePath: string, current: number, total: number }> = ({ basePath, current, total} ) => {
 
   const paginationNumbers: PaginationNumbers = calcNumberOfPages(total, PER_PAGE);
 
@@ -64,5 +64,3 @@ const PaginationComponent: React.FunctionComponent<{ basePath: string, current: 
     </div>
   );
 }
-
-export default PaginationComponent;

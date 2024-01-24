@@ -9,11 +9,11 @@ import {
 } from '../models/models';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
-import Accordion from './contentAccordion';
+import { Accordion } from './contentAccordion';
 import { getSystemMetadata } from '../api/metadata';
 import { appendBackendMeta } from '../utils/converters';
 
-const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
+export const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isFetchedBackendMeta, setIsFetchedBackendMeta] = useState(false);
@@ -89,5 +89,3 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
     </article>
   )
 }
-
-export default ContentComponent;

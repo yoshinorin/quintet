@@ -5,7 +5,7 @@ import containerStyles from '../styles/components/container.module.scss';
 import buttonStyles from '../styles/components/button.module.scss';
 import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
 
-const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
+export const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
     <section className={`${containerStyles.container} ${styles['group']}`}>
       {articles.map((article: Article, idx) => {
@@ -35,5 +35,3 @@ const ArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> =
     </section>
   );
 }
-
-export default ArticlesComponent;

@@ -1,8 +1,8 @@
-import NavigationComponent from './navigation';
+import { NavigationComponent } from './navigation';
 import styles from '../styles/navigation.module.scss';
 import { headerItems } from '../../config';
 
-const HeaderComponent: React.FunctionComponent<{}> = () => {
+export const HeaderComponent: React.FunctionComponent<{}> = () => {
   return(
     <header className={styles['nav-root']}>
       <NavigationComponent
@@ -11,5 +11,3 @@ const HeaderComponent: React.FunctionComponent<{}> = () => {
     </header>
   )
 }
-
-export default HeaderComponent;

@@ -11,7 +11,7 @@ import {
   archivesPage
 } from '../../config';
 
-const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
+export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
 
   const [keyword, setKeyword] = useState("");
   const [filteredArticles, setFilteredArticles] = useState(archives);
@@ -67,5 +67,3 @@ const FilterdItems: React.FunctionComponent<{ archives: Array<Archive> }> = ({ a
     </div>
   </>;
 }
-
-export default ArchivesComponent;

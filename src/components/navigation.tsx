@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../styles/navigation.module.scss';
 
-const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ items} ) => {
+export const NavigationComponent: React.FunctionComponent<{ items: Array<any> }> = ({ items} ) => {
   return (
     <div className={styles['nav-wrap']}>
       <nav className={styles['navbar']} role="navigation" aria-label="main navigation">
@@ -50,5 +50,3 @@ const NavbarItem: React.FunctionComponent<{ item, idx }> = ({ item, idx }) => {
     </Link>
   );
 }
-
-export default NavigationComponent;

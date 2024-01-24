@@ -4,7 +4,7 @@ import styles from '../styles/articles.module.scss';
 import { convertUnixtimeToDate, toJaJpDottedDateString } from '../utils/time';
 import { SearchResponse } from '../models/models';
 
-const SearchResultComponent: React.FunctionComponent<{
+export const SearchResultComponent: React.FunctionComponent<{
   hits: number,
   count:number,
   contents: Array<SearchResponse>
@@ -39,5 +39,3 @@ const SearchResultComponent: React.FunctionComponent<{
     </div>
   </>;
 }
-
-export default SearchResultComponent;

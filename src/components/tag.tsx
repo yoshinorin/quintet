@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Tag } from '../models/models';
 
-const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null }> = ({ tag, className }) => {
+export const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null }> = ({ tag, className }) => {
     {/*
     NOTE:
       The Next.js can not pass custom argument with <Link> component.
@@ -23,5 +23,3 @@ const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null
       </Link>
     );
 }
-
-export default TagComponent;

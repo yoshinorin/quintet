@@ -1,6 +1,6 @@
 import styles from '../styles/accordion.module.scss';
 
-const Accordion: React.FunctionComponent<{ open: boolean, onclick: () => void, title: string, content: string }> = ({open, onclick, title, content}) => {
+export const Accordion: React.FunctionComponent<{ open: boolean, onclick: () => void, title: string, content: string }> = ({open, onclick, title, content}) => {
   return (
     <div className={styles.accordion} >
       <span className={`'unstyled' ${styles['menu-button']}`}
@@ -15,5 +15,3 @@ const Accordion: React.FunctionComponent<{ open: boolean, onclick: () => void, t
     </div>
   );
 }
-
-export default Accordion;

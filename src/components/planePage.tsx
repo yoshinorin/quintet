@@ -1,4 +1,4 @@
-const PlanePage: React.FunctionComponent<{ title: string, content: string }> = ({ title, content }) => {
+export const PlanePage: React.FunctionComponent<{ title: string, content: string }> = ({ title, content }) => {
 
   const pageStyles: React.CSSProperties = {
     display: 'flex',
@@ -18,5 +18,3 @@ const PlanePage: React.FunctionComponent<{ title: string, content: string }> = (
     </>
   );
 };
-
-export default PlanePage;
