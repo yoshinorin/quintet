@@ -1,6 +1,6 @@
 
 import { ContentComponent } from '../../components/content';
-import { CoverWithNavigationComponent } from '../../components/cover/withNavigation';
+import { CoverWithNavigationComponent } from '../../components/cover';
 import {
   Content,
   Insight,

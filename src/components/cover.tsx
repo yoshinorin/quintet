@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { TagComponent } from '../tag';
-import { ContentCover, Tag } from '../../models/models';
-import styles from '../../styles/components/cover.module.scss';
-import { title, subTitle } from '../../../config';
-import { convertUnixtimeToDate } from '../../utils/time';
+import { TagComponent } from './tag';
+import { NavigationComponent } from './navigation';
+import { ContentCover, Tag } from '../models/models';
+import styles from '../styles/components/cover.module.scss';
+import { convertUnixtimeToDate } from '../utils/time';
+import { title, subTitle, coverBottomItems } from '../../config';
 
 export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
   return (
@@ -65,4 +66,19 @@ export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCove
       </div>
     </div>
   );
+}
+
+export const CoverWithNavigationComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
+  return(
+    <>
+      <CoverComponent
+        contentCover={contentCover}
+      />
+      <div className={styles['cover-bottom-nav']}>
+        <NavigationComponent
+          items={coverBottomItems}
+        />
+      </div>
+    </>
+  )
 }

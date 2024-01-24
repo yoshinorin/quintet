@@ -1,4 +1,4 @@
-import { CoverWithNavigationComponent } from '../../components/cover/withNavigation';
+import { CoverWithNavigationComponent } from '../../components/cover';
 import { ArticlesComponent } from '../../components/articles';
 import { PaginationComponent } from '../../components/pagination';
 

@@ -6,7 +6,7 @@ import { SearchResponse } from '../models/models';
 
 export const SearchResultComponent: React.FunctionComponent<{
   hits: number,
-  count:number,
+  count: number,
   contents: Array<SearchResponse>
 }> = ({ hits, count, contents }) => {
 

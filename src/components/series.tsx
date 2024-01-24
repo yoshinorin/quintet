@@ -1,5 +1,9 @@
 import Link from 'next/link';
-import { Series } from '../models/models';
+import {
+  Article,
+  Series,
+  SeriresWithArticles
+} from '../models/models';
 import styles from '../styles/series.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 
@@ -24,6 +28,36 @@ export const SeriesComponent: React.FunctionComponent<{ series: Array<Series> }>
                     {`${s.description}`}
                   </Link>
                 </blockquote>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+export const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithArticles: SeriresWithArticles }> = ({ seriresWithArticles }) => {
+  return (
+    <section className={`${containerStyles.container}`}>
+      <div id={styles['series']}>
+        <div className={styles['description']}>
+          { seriresWithArticles.description }
+        </div>
+        {seriresWithArticles.articles.map((article: Article, idx) => {
+          return (
+            <article className={styles['article']} key={idx}>
+              <div className={styles['wrap']}>
+                <Link href={`${article.path}`} target="_blank" prefetch={false} className='unstyled'>
+                  <blockquote>
+                    <p className={styles['header']}>
+                      {`${article.title}`}
+                    </p>
+                    <p className={`${styles['excerpt']}`}>
+                      {`${article.content}`}
+                    </p>
+                  </blockquote>
+                </Link>
               </div>
             </article>
           );

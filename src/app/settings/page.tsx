@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CoverWithNavigationComponent } from '../../components/cover/withNavigation';
+import { CoverWithNavigationComponent } from '../../components/cover';
 import { getThemeSetting } from '../../services/theme';
 import { DropdownComponent } from '../../components/dropdown';
 import containerStyles from '../../styles/components/container.module.scss';

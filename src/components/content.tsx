@@ -9,7 +9,7 @@ import {
 } from '../models/models';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
-import { Accordion } from './contentAccordion';
+import { Accordion } from './accordion';
 import { getSystemMetadata } from '../api/metadata';
 import { appendBackendMeta } from '../utils/converters';
 
