@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Article } from '../models/models';
 import styles from '../styles/articles.module.scss';
-import simpleArticlesStyles from '../styles/simpleArticles.module.scss';
+import articlesInSection from '../styles/articlesInSection.module.scss';
 import homeStyles from '../styles/home.module.scss';
 import flexStyles from '../styles/components/flex.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
@@ -58,7 +58,7 @@ export const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<
         </span>
       </div>
       <div className={flexStyles['col-65']}>
-        <SimpleArticlesComponent
+        <ArticlesSection
             articles={articles}
           />
       </div>
@@ -74,15 +74,15 @@ export const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<
   </>;
 }
 
-const SimpleArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
+const ArticlesSection: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return (
-    <section className={simpleArticlesStyles['articles-wrap']}>
+    <section className={articlesInSection['articles-wrap']}>
       {articles.map((article: Article, idx) => {
         return (
-          <article className={simpleArticlesStyles['article']} key={idx}>
-            <div className={simpleArticlesStyles['wrap']}>
-              <div className={simpleArticlesStyles['title']}>
-                <time dateTime={`${article.publishedAt}`} className={simpleArticlesStyles['time']}>
+          <article className={articlesInSection['article']} key={idx}>
+            <div className={articlesInSection['wrap']}>
+              <div className={articlesInSection['title']}>
+                <time dateTime={`${article.publishedAt}`} className={articlesInSection['time']}>
                   {`${toJaJpDottedDateString(convertUnixtimeToDate(article.publishedAt))}`} - &nbsp;
                 </time>
                 <Link href={`${article.path}`} prefetch={false} className='unstyled'>
