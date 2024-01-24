@@ -10,7 +10,7 @@ import {
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
 import Accordion from './contentAccordion';
-import handler from '../api/metadata';
+import { getSystemMetadata } from '../api/metadata';
 import { appendBackendMeta } from '../utils/converters';
 
 const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
@@ -20,7 +20,7 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
   const [metaAndInsight, setData] = useState(null);
 
   const fetchBackendMetaData = async () => {
-    const response: Response = await handler();
+    const response: Response = await getSystemMetadata();
     let ins = insight;
     if (response.status === 200) {
       const bm = await response.json() as BackendMeta;

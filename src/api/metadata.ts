@@ -1,6 +1,6 @@
 import { publicApi } from '../../config';
 
-export default async function GET() {
+export async function getSystemMetadata() {
   return fetch(`${publicApi.url}/system/metadata`, {
     method: 'GET'
   });
