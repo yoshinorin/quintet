@@ -1,42 +1,55 @@
-import Head from 'next/head';
 import {
-  defaultRobotsMeta,
-  externalResources as externalResourcesConfig,
-  siteName,
-  siteType,
-  mainAuthor,
-  locale,
-  url,
   favicon,
-  defaultImage,
   injectMetas
 } from '../../config';
-import { ExternalResources } from '../models/externalResource';
-import { Content } from '../models/content';
-import { useRouter } from "next/router";
-import { convertUnixTimeToISODateSrting } from '../utils/time';
 
+const HeadMetaComponent: React.FunctionComponent<{}> = ({}) => {
+  // TODO: JSON + LD
+  return(
+    <head>
+      {
+        (() => {
+          if (injectMetas) {
+            return(
+              injectMetas.map((m => {
+                return(
+                  <meta name={m.name} content={m.content} key={m.name} />
+                )
+              }))
+            )
+          }
+        })()
+      }
+      <link href={favicon['url']} rel="icon" type={favicon['type']}/>
+    </head>
+  )
+}
+
+export default HeadMetaComponent;
+
+/* NOTE: Before migrate to AppRouter's head metas
 const HeadMetaComponent: React.FunctionComponent<{
   robotsMeta?: string
-  externalResources?: Array<ExternalResources>
-  content?: Content
+  content?: Content,
+  slug: string
 }> = ({
   robotsMeta,
-  externalResources,
-  content
+  content,
+  slug
 }) => {
-  const router = useRouter();
-  const currentUrl = new URL(router.asPath, url).href
+  // TODO: I want to get trailingSlash settings from `next.config.js`
+  // const { trailingSlash } = getConfig();
+  const currentSlug = slug === undefined ? '' : slug + "/"
+  const currentUrl = new URL(currentSlug, url).href
 
   if (!robotsMeta) {
     robotsMeta = defaultRobotsMeta;
   }
   const hasContent = content ? true : false;
-  /*
-    TODO: JSON+LD
-  */
+
+  // TODO: JSON + LD
   return(
-    <Head>
+    <head>
       <meta charSet="UTF-8"/>
       {
         (() => {
@@ -99,8 +112,9 @@ const HeadMetaComponent: React.FunctionComponent<{
         })()
       }
       <link href={favicon['url']} rel="icon" type={favicon['type']}/>
-    </Head>
+    </head>
   )
 }
 
 export default HeadMetaComponent;
+*/

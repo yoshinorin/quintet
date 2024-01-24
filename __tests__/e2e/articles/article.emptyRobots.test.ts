@@ -7,6 +7,8 @@ test.beforeEach(async ({ page }) => {
 test.describe('Article - Empty Robots', () => {
 
   test('should fallback to default robots in head meta', async ({ page } ) => {
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noarchive, nofollow, noimageindex, noindex');
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    const sortedRobots = robots.split(',').sort().map(r => r.trim());
+    expect(sortedRobots.join(', ')).toBe('noarchive, nofollow, noimageindex, noindex');
   });
 });

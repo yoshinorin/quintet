@@ -1,22 +1,25 @@
-import type { NextApiRequest } from 'next'
-import { RequestContext } from '../models/requestContext'
+import { headers } from 'next/headers';
+import { RequestContext } from '../models/models';
 import { uuid4 } from './uuid';
 
-export function getRequestContext(request: NextApiRequest): RequestContext {
-
-  if (request instanceof Request) {
+// FIXME: fix types
+export function getRequestContext(h: Headers = headers()): RequestContext {
+  // FIXME: fix types
+  if (h instanceof Headers) {
     return {
-      ipAddress: request.headers.get('x-forwarded-for'),
-      referer: request.headers.get('referer'),
-      ua: request.headers.get('user-agent'),
+      ipAddress: h.get('x-forwarded-for'),
+      referer: h.get('referer'),
+      ua: h.get('user-agent'),
       requestId: uuid4()
     } as RequestContext
   }
-  let xff = request.headers['x-forwarded-for'];
+  let xff = h['x-forwarded-for'];
+  // @ts-ignore
   return {
+    // @ts-ignore
     ipAddress: xff ? (Array.isArray(xff) ? xff[0] : xff.split(',')[0]) : '127.0.0.1',
-    referer: request.headers['referer'],
-    ua: request.headers['user-agent'],
+    referer: h['referer'],
+    ua: h['user-agent'],
     requestId: uuid4()
   } as RequestContext
 }

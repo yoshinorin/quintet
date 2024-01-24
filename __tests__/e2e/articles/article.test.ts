@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { assert } from 'console';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:3000/articles/nested/standard/');
@@ -11,16 +10,19 @@ test.describe('Article', () => {
     await expect(page.locator('meta[name="author"]')).toHaveAttribute('content', 'yoshinorin');
     await expect(page.locator('meta[property="article:author"]')).toHaveAttribute('content', 'yoshinorin');
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'standard');
-    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'blog');
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
     await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'http://localhost:3000/articles/nested/standard/');
     await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute('content', 'E2E Test Site');
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'ja_JP');
-    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'defaultImage.jpg');
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noarchive, nofollow, noimageindex, noindex');
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', 'http://localhost:3000/defaultImage.jpg');
     await expect(page.locator('meta[name="injectedMetaName"]')).toHaveAttribute('content', 'injectedMetaContent');
 
     await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Proin tellus nibh, pretium vitae bibendum in, tempus nec odio...');
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', 'Proin tellus nibh, pretium vitae bibendum in, tempus nec odio...');
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    const sortedRobots = robots.split(',').sort().map(r => r.trim());
+    expect(sortedRobots.join(', ')).toBe('noarchive, nofollow, noimageindex, noindex');
 
     // TODO: assert content value
     await expect(page.locator('meta[property="article:published_time"]')).toHaveAttribute('content');

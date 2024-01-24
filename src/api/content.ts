@@ -1,10 +1,9 @@
-import { NextApiRequest } from 'next';
 import { api } from '../../config';
 import { isIgnoreRequest } from '../utils/filterRequests';
 import { getRequestContext } from '../utils/requestContext';
 import { generateRequestHeaderObject } from './utils/header';
 
-export async function findByPath(req: NextApiRequest, path: string): Promise<Response> {
+export async function findByPath(path: string): Promise<Response> {
 
   if (!path || (path && isIgnoreRequest(path))) {
     return new Response(null, { "status" : 404 });
@@ -17,7 +16,7 @@ export async function findByPath(req: NextApiRequest, path: string): Promise<Res
     path = path + "/"
   }
 
-  const rq = getRequestContext(req);
+  const rq = getRequestContext();
 
   return fetch(
     `${api.url}/contents/${path}`,

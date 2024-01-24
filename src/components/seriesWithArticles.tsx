@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { SeriresWithArticles } from '../models/series';
-import { Article } from '../models/article';
+import {
+  Article,
+  SeriresWithArticles
+} from '../models/models';
 import styles from '../styles/series.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 

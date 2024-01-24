@@ -15,7 +15,13 @@ export interface Content {
   updatedAt: number
 }
 
-export type ContentResponse = Content
+export type ContentResponse = Content;
+
+// TODO: Rename
+export interface ContentResponseWithFetchResponse {
+  res: Response,
+  body: Content
+}
 
 export interface ContentCover {
   title: string,
@@ -25,7 +31,11 @@ export interface ContentCover {
 
 export interface ContentMeta {
   id: string,
-  robots: string,
+  robots: {
+    diff: boolean,
+    actual: string,
+    expected: string
+  }
   words: number,
   shouldInjectResources: Array<ExternalResources>,
   tags: Array<Tag>,

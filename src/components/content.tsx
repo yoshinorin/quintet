@@ -1,12 +1,17 @@
+'use client';
+
 import { useState } from 'react';
-import { Content, ContentMeta } from '../models/content';
-import { Insight } from '../models/insight';
+import {
+  Content,
+  ContentMeta,
+  Insight,
+  BackendMeta
+} from '../models/models';
 import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
 import Accordion from './contentAccordion';
-import handler from '../pages/api/qualtet/system/metadata';
+import handler from '../api/metadata';
 import { appendBackendMeta } from '../utils/converters';
-import { BackendMeta } from '../models/backendMeta';
 
 const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 
@@ -22,9 +27,20 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
       ins = appendBackendMeta(insight, bm);
       setIsFetchedBackendMeta(true);
     }
+
+    let actualRobotsMeta = '';
+    let maybeRobotsMeta = document.querySelector('meta[name="robots"]');
+    if (maybeRobotsMeta) {
+      actualRobotsMeta = maybeRobotsMeta.getAttribute('content').split(',').sort().map(r => r.trim()).join(', ');
+    }
+
     const meta: ContentMeta = {
       id: content.id,
-      robots: content.robotsAttributes,
+      robots: {
+        diff: !(actualRobotsMeta === content.robotsAttributes),
+        actual: actualRobotsMeta,
+        expected: content.robotsAttributes,
+      },
       tags: content.tags,
       words: content.length,
       shouldInjectResources: content.externalResources,
@@ -32,6 +48,7 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
       publishedAt: content.publishedAt,
       updatedAt: content.updatedAt
     }
+
     setData(JSON.stringify({
       attributes: meta,
       insight: ins

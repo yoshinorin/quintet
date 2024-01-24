@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Series } from '../models/series';
+import { Series } from '../models/models';
 import styles from '../styles/series.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 
