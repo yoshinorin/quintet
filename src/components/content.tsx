@@ -31,7 +31,12 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
     let actualRobotsMeta = '';
     let maybeRobotsMeta = document.querySelector('meta[name="robots"]');
     if (maybeRobotsMeta) {
-      actualRobotsMeta = maybeRobotsMeta.getAttribute('content').split(',').sort().map(r => r.trim()).join(', ');
+      const unsortedActualRobotsMeta = maybeRobotsMeta.getAttribute('content').split(',').map(r => r.trim());
+      // TODO: write test code
+      const isSorted = arr => arr.every((v, idx) => idx === 0 || v >= arr[idx - 1]);
+      // @ts-ignore
+      const x = isSorted(unsortedActualRobotsMeta) ? unsortedActualRobotsMeta : [...unsortedActualRobotsMeta].sort();
+      actualRobotsMeta = x.join(', ');
     }
 
     const meta: ContentMeta = {
