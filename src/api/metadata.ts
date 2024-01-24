@@ -1,7 +1,7 @@
-import { url } from '../../config';
+import { api } from '../../config';
 
 export default async function GET() {
-  return fetch(`${url}/system/metadata`, {
+  return fetch(`${api.url}/system/metadata`, {
     method: 'GET'
   });
 }
