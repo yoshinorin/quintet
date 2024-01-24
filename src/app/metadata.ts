@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Content } from '../models/content';
 import { defaultImage, defaultRobotsMeta, locale, siteName } from '../../config';
 import { convertUnixTimeToISODateSrting } from '../utils/time';
-import { fullUrl, fullUrlWithoutTrailingSlash } from '../utils/url';
+import { fullUrl } from '../utils/url';
 
 // TODO: write test code
 export async function generateForArticleOrPage(url: string, content: Content): Promise<Metadata> {
@@ -34,8 +34,8 @@ export async function generateForArticleOrPage(url: string, content: Content): P
       siteName: siteName,
       locale: locale,
       type: 'article',
-      url: fullUrl(url),
-      images: fullUrlWithoutTrailingSlash(defaultImage),
+      url: fullUrl(url, true),
+      images: fullUrl(defaultImage, false),
       authors: [content.authorName],
       tags: tags.length !== 0 ? content.tags.map(t => t.name) : [],
       publishedTime: convertUnixTimeToISODateSrting(content.publishedAt),

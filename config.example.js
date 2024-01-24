@@ -3,7 +3,6 @@ export const api = {
 }
 
 export const siteName = 'yourSiteName';
-export const siteType = 'blog';
 export const mainAuthor = 'yourName';
 export const lang = "ja";
 export const locale = "ja_JP";

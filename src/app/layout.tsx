@@ -11,7 +11,7 @@ import {
   defaultImage,
 } from '../../config';
 import HeadMetaComponent from '../components/headmeta';
-import { fullUrl, fullUrlWithoutTrailingSlash } from '../utils/url';
+import { fullUrl } from '../utils/url';
 
 export const metadata: Metadata = {
   title: siteName,
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     locale: locale,
     title: siteName,
     type: 'website',
-    url: fullUrl(url),
-    images: fullUrlWithoutTrailingSlash(defaultImage)
+    url: fullUrl(url, true),
+    images: fullUrl(defaultImage, false)
   },
   // Twitter og will be generate automatically, evenif I set empty object.
   // twitter: {}

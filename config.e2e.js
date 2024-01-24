@@ -3,7 +3,6 @@ export const api = {
 }
 
 export const siteName = 'E2E Test Site';
-export const siteType = 'blog';
 export const mainAuthor = 'john doe';
 export const lang = "ja";
 export const locale = "ja_JP";
