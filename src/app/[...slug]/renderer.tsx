@@ -8,7 +8,7 @@ import {
 } from '../../models/models';
 import { getScripts } from '../../utils/injectScript';
 import { externalResources as externalResourcesConfig } from '../../../config';
-import { InjectScriptComponent } from '../../components/injectScriptComponent';
+import { InjectScriptComponent } from '../../components/injectScript';
 
 export const Renderer: React.FunctionComponent<{
   content: Content,
