@@ -31,7 +31,11 @@ export interface ContentCover {
 
 export interface ContentMeta {
   id: string,
-  robots: string,
+  robots: {
+    diff: boolean,
+    actual: string,
+    expected: string
+  }
   words: number,
   shouldInjectResources: Array<ExternalResources>,
   tags: Array<Tag>,

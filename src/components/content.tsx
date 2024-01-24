@@ -27,9 +27,20 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
       ins = appendBackendMeta(insight, bm);
       setIsFetchedBackendMeta(true);
     }
+
+    let actualRobotsMeta = '';
+    let maybeRobotsMeta = document.querySelector('meta[name="robots"]');
+    if (maybeRobotsMeta) {
+      actualRobotsMeta = maybeRobotsMeta.getAttribute('content').split(',').sort().map(r => r.trim()).join(', ');
+    }
+
     const meta: ContentMeta = {
       id: content.id,
-      robots: content.robotsAttributes,
+      robots: {
+        diff: !(actualRobotsMeta === content.robotsAttributes),
+        actual: actualRobotsMeta,
+        expected: content.robotsAttributes,
+      },
       tags: content.tags,
       words: content.length,
       shouldInjectResources: content.externalResources,
@@ -37,6 +48,7 @@ const ContentComponent: React.FunctionComponent<{ content: Content, insight: Ins
       publishedAt: content.publishedAt,
       updatedAt: content.updatedAt
     }
+
     setData(JSON.stringify({
       attributes: meta,
       insight: ins
