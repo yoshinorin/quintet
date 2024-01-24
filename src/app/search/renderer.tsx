@@ -1,4 +1,3 @@
-// TODO: migrate to react-server-component
 'use client';
 
 import React, { useState, useEffect } from 'react';
