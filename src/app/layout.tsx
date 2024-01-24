@@ -9,6 +9,8 @@ import {
   url,
   locale,
   defaultImage,
+  favicon,
+  injectMetas
 } from '../../config';
 import { HeadMetaComponent } from '../components/components';
 import { fullUrl } from '../utils/url';
@@ -47,7 +49,10 @@ export default function RootLayout({
   // https://github.com/vercel/next.js/discussions/44506#discussioncomment-7901181
   return (
     <html lang={lang}>
-      <HeadMetaComponent />
+      <HeadMetaComponent
+        favicon={favicon}
+        injectMetas={injectMetas}
+      />
       <body data-theme={`${theme}`}>
         <ClientLayout>
           { children }

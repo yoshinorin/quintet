@@ -8,6 +8,11 @@ import {
   FooterComponent,
   HeaderComponent
 } from '../components/components';
+import {
+  headerItems,
+  footerItems,
+  copyrights
+} from '../../config';
 
 export default function ClientLayout({
   children,
@@ -21,10 +26,15 @@ export default function ClientLayout({
   });
   return (
     <>
-      <HeaderComponent />
+      <HeaderComponent
+        items={headerItems}
+      />
       <> {children} </>
       <BackToTopComponent />
-      <FooterComponent />
+      <FooterComponent
+        copyrights={copyrights}
+        items={footerItems}
+      />
     </>
   )
 };

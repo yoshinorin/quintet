@@ -1,9 +1,7 @@
-import {
+export const HeadMetaComponent: React.FunctionComponent<{
   favicon,
   injectMetas
-} from '../../config';
-
-export const HeadMetaComponent: React.FunctionComponent<{}> = ({}) => {
+}> = ({ favicon, injectMetas }) => {
   // TODO: JSON + LD
   return(
     <head>
