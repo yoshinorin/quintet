@@ -14,7 +14,6 @@ export const Renderer: React.FunctionComponent<{
         }}
       />
       <main>
-        {/* TODO: implement search conditions component */}
         <ArchivesComponent
           archives={archives}
         />
