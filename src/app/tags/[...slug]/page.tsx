@@ -28,6 +28,7 @@ async function handler(req: any) {
     `${API_BASE_URL}/${encodeURI(tagName)}`,
     ctx,
     {
+      interceptIfContainsIgnorePaths: false,
       queryParams: null,
       pagenation: {
         page: currentPage,

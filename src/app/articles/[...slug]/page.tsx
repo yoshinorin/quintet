@@ -6,19 +6,33 @@ import { Metadata } from 'next'
 import { notFound } from "next/navigation";
 import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../../models/models';
 import { isIgnoreRequest } from '../../../utils/filterRequests';
-import { findByPath } from '../../../api/content';
+import { fetchFromApi } from '../../../api/request';
 import { asInsight } from '../../../utils/insight';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { generateForArticleOrPage } from '../../metadata';
 import { sluggize } from '../../../utils/slug';
 import { requestContextFrom } from '../../../utils/requestContext';
+import { api } from '../../../../config';
 
 const PREFIX_URL = 'articles';
+const API_BASE_URL = `${api.url}/contents`;
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const response = await findByPath(path, requestContextFrom(headers()));
+  const ctx = requestContextFrom(headers());
+  // TODO: cleanup
+  if (path.startsWith("/")) {
+    path = path.substr(1, path.length)
+  }
+  if (!path.endsWith("/")) {
+    path = path + "/"
+  }
+  const response = await fetchFromApi(`${API_BASE_URL}/${path}`, ctx, {
+    interceptIfContainsIgnorePaths: true,
+    queryParams: null,
+    pagenation: null
+  });
   throwIfError(response);
   const content = await response.json() as ContentResponse;
   return {

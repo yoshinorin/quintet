@@ -22,6 +22,7 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const ctx = requestContextFrom(headers());
   const response: Response = await fetchFromApi(API_URL, ctx, {
+    interceptIfContainsIgnorePaths: false,
     queryParams: null,
     pagenation: {
       page: 1,

@@ -2,20 +2,35 @@
 
 import { cache } from 'react'
 import { headers } from 'next/headers';
+import { Metadata } from 'next';
 import { permanentRedirect } from "next/navigation";
 import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../models/models';
-import { findByPath } from '../../api/content';
+import { fetchFromApi } from '../../api/request';
 import { asInsight } from '../../utils/insight';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { sluggize } from '../../utils/slug';
 import { requestContextFrom } from '../../utils/requestContext';
 import { generateForArticleOrPage } from '../metadata';
-import { Metadata } from 'next';
+import { api } from '../../../config';
+
+const API_BASE_URL = `${api.url}/contents`;
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const response = await findByPath(path, requestContextFrom(headers()));
+  const ctx = requestContextFrom(headers());
+  // TODO: cleanup
+  if (path.startsWith("/")) {
+    path = path.substr(1, path.length)
+  }
+  if (!path.endsWith("/")) {
+    path = path + "/"
+  }
+  const response = await fetchFromApi(`${API_BASE_URL}/${path}`, ctx, {
+    interceptIfContainsIgnorePaths: true,
+    queryParams: null,
+    pagenation: null
+  });
   throwIfError(response);
   const content = await response.json() as ContentResponse;
   return {
