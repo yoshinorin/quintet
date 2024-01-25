@@ -37,11 +37,11 @@ export default async function Page(req: any) {
 }
 
 async function run(req: any): Promise<any> {
-  const { props } = await get(req);
+  const { props } = await handler(req);
   return <Renderer {...props} />;
 }
 
-async function get(req: any) {
+async function handler(req: any) {
   // NOTE: avoid send request of images
   if (isIgnoreRequest(req.params.slug.join("/"))) {
     return notFound();

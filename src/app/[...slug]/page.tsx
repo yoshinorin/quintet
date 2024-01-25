@@ -34,12 +34,12 @@ export default async function Page(req: any) {
 }
 
 async function run(req: any): Promise<any> {
-  const { props } = await get(req);
+  const { props } = await handler(req);
   return <Renderer {...props} />;
 }
 
-async function get(req: any) {
-  let path = sluggize(req.params.slug);
+async function handler(req: any) {
+  const path = sluggize(req.params.slug);
 
   // TODO move utils & write testcode
   if (path.match(/^\/\d{4}\/\d{2}\/\d{2}\/*/)) {

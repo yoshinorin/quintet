@@ -11,11 +11,11 @@ export default async function Page(req: any) {
 }
 
 async function run(req: any): Promise<any> {
-  const { props } = await get(req);
+  const { props } = await handler(req);
   return <Renderer {...props} />;
 }
 
-async function get(req: any) {
+async function handler(req: any) {
   const response: Response = await getTags(getRequestContext());
   throwIfError(response);
 

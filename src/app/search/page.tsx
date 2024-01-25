@@ -11,11 +11,11 @@ const emptyResult = {
 } as SearchResponseWithCount;
 
 export default async function Page(req: any) {
-  const { props } = await get(req);
+  const { props } = await handler(req);
   return <Renderer {...props} />;
 }
 
-async function get(req: any) {
+async function handler(req: any) {
   // TODO: refactor
   // TODO: assert query params before POST to server
   try {

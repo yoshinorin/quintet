@@ -11,11 +11,11 @@ export default async function Page(req: any) {
 }
 
 async function run(req: any): Promise<any> {
-  const { props } = await get(req);
+  const { props } = await handler(req);
   return <Renderer {...props} />;
 }
 
-async function get(req: any) {
+async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.params.slug[1] ? req.params.slug[1] : 1;
   const response: Response = await getArticlesByTagName(tagName, currentPage, 10, getRequestContext());
