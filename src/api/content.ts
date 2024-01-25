@@ -1,7 +1,7 @@
 import { api } from '../../config';
 import { isIgnoreRequest } from '../utils/filterRequests';
 import { getRequestContext } from '../utils/requestContext';
-import { generateRequestHeaderObject } from './utils/header';
+import { requestHeaderFrom } from './utils/header';
 
 export async function findByPath(path: string): Promise<Response> {
 
@@ -23,7 +23,7 @@ export async function findByPath(path: string): Promise<Response> {
     {
       method: 'GET',
       cache: 'no-cache',
-      headers: generateRequestHeaderObject(rq) as any
+      headers: requestHeaderFrom(rq) as any
     }
   )
 }

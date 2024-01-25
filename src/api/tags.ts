@@ -1,6 +1,6 @@
 import { api } from '../../config';
 import { RequestContext } from '../models/models';
-import { generateRequestHeaderObject } from './utils/header';
+import { requestHeaderFrom } from './utils/header';
 
 export async function getTags(rq: RequestContext): Promise<Response> {
   return fetch(
@@ -8,7 +8,7 @@ export async function getTags(rq: RequestContext): Promise<Response> {
     {
       method: 'GET',
       cache: 'no-cache',
-      headers: generateRequestHeaderObject(rq) as any
+      headers: requestHeaderFrom(rq) as any
     }
   )
 }

@@ -1,6 +1,6 @@
 import { api } from '../../config';
 import { RequestContext } from '../models/models';
-import { generateRequestHeaderObject } from './utils/header';
+import { requestHeaderFrom } from './utils/header';
 
 export async function search(rq: RequestContext, query: Array<string>): Promise<Response> {
   const qs = query.map(q => `q=${q}`)
@@ -9,7 +9,7 @@ export async function search(rq: RequestContext, query: Array<string>): Promise<
     {
       method: 'GET',
       cache: 'no-cache',
-      headers: generateRequestHeaderObject(rq) as any
+      headers: requestHeaderFrom(rq) as any
     }
   )
 }

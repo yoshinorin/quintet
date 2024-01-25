@@ -1,6 +1,6 @@
 import { RequestContext } from '../../models/models';
 
-export function generateRequestHeaderObject(rq: RequestContext): Object {
+export function requestHeaderFrom(rq: RequestContext): Object {
   return {
     'Content-Type': 'application/json',
     'x-forwarded-for': rq.ipAddress,

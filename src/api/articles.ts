@@ -1,6 +1,6 @@
 import { api } from '../../config';
 import { RequestContext } from '../models/models';
-import { generateRequestHeaderObject } from './utils/header';
+import { requestHeaderFrom } from './utils/header';
 
 export async function getArticles(p: number = 1, l: number = 10, rq: RequestContext): Promise<Response> {
   return fetch(
@@ -8,7 +8,7 @@ export async function getArticles(p: number = 1, l: number = 10, rq: RequestCont
     {
       method: 'GET',
       cache: 'no-cache',
-      headers: generateRequestHeaderObject(rq) as any
+      headers: requestHeaderFrom(rq) as any
     }
   )
 }
@@ -19,7 +19,7 @@ export async function getArticlesByTagName(tagName: string, p: number = 1, l: nu
     {
       method: 'GET',
       cache: 'no-cache',
-      headers: generateRequestHeaderObject(rq) as any
+      headers: requestHeaderFrom(rq) as any
     }
   )
 }
