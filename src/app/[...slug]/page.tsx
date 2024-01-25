@@ -40,15 +40,9 @@ async function run(req: any): Promise<any> {
 
 async function get(req: any) {
   let path = sluggize(req.params.slug);
-  // TODO move utils & write testcode
-  if (!path.startsWith("/")) {
-    path = "/" + path;
-  }
+
   // TODO move utils & write testcode
   if (path.match(/^\/\d{4}\/\d{2}\/\d{2}\/*/)) {
-    if (!path.endsWith("/")) {
-      path = `${path}/`
-    }
     // https://nextjs.org/docs/app/api-reference/functions/permanentRedirect
     return permanentRedirect(`/articles${path}`);
   }
