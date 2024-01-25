@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { Archive } from '../models/models';
 import { toLocalDateSrting } from '../utils/time';
 import styles from '../styles/archives.module.scss';
@@ -58,9 +57,10 @@ const FilterdItems: React.FunctionComponent<{ archives: Array<Archive> }> = ({ a
       {archives.map((archive: Archive, idx) => {
         return (
           <li key={idx}>
-            <Link href={`${archive.path}`} prefetch={false} target="_blank">
+            <a href={`${archive.path}`}
+               target="_blank">
                {`${toLocalDateSrting(archive.publishedAt)}`}:{`${archive.title}`}
-            </Link>
+            </a>
           </li>
         );
       })}

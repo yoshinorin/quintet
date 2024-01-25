@@ -48,7 +48,9 @@ export const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithA
           return (
             <article className={styles['article']} key={idx}>
               <div className={styles['wrap']}>
-                <Link href={`${article.path}`} target="_blank" prefetch={false} className='unstyled'>
+                <a href={`${article.path}`}
+                  target="_blank"
+                  className='unstyled'>
                   <blockquote>
                     <p className={styles['header']}>
                       {`${article.title}`}
@@ -57,7 +59,7 @@ export const SeriesWithArticlesComponent: React.FunctionComponent<{ seriresWithA
                       {`${article.content}`}
                     </p>
                   </blockquote>
-                </Link>
+                </a>
               </div>
             </article>
           );

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Tag } from '../models/models';
 
 export const TagComponent: React.FunctionComponent<{ tag: Tag, className: string | null }> = ({ tag, className }) => {
@@ -13,13 +12,12 @@ export const TagComponent: React.FunctionComponent<{ tag: Tag, className: string
       But, it can not. So, I have to find the tagging contents with tagName.
     */}
     return (
-      <Link
+      <a
         href={`/tags/${tag.name}`}
-        prefetch={false}
         className={className ? className : null}
         target="_blank"
         data-tag={tag.name.toLowerCase()}>
           {`${tag.name} ${tag.count ? `(${tag.count})` : ""}`}
-      </Link>
+      </a>
     );
 }
