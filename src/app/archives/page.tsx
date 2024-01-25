@@ -1,11 +1,14 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getArchives } from '../../api/archives';
+import { api } from '../../../config';
+import { fetchFromApi } from '../../api/request';
 import { Archive, ArchiveResponse } from '../../models/models';
 import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
+
+const API_URL = `${api.url}/archives/`;
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -17,7 +20,8 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getArchives(requestContextFrom(headers()));
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(API_URL, ctx);
   throwIfError(response);
 
   const archiveResponse: Array<ArchiveResponse> = await response.json() as Array<ArchiveResponse>;

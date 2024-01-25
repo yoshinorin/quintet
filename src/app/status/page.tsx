@@ -1,9 +1,12 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getStatus } from '../../api/status';
+import { fetchFromApi } from '../../api/request';
 import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
+import { api } from '../../../config';
+
+const API_URL = `${api.url}/system/health`;
 
 export default async function Page(req: any) {
   const { props } = await handler(req);
@@ -11,7 +14,8 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await getStatus(requestContextFrom(headers()));
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(API_URL, ctx);
 
   return {
     props: {

@@ -1,11 +1,15 @@
+import { headers } from 'next/headers';
 import { Sitemap } from '../../models/models';
-import { getSitemap } from '../../api/sitemap';
+import { fetchFromApi } from '../../api/request';
 import { generateSitemapString } from '../../services/sitemap';
-import { url } from '../../../config';
 import { requestContextFrom } from '../../utils/requestContext';
+import { api, url } from '../../../config';
+
+const API_URL = `${api.url}/sitemaps/`;
 
 export async function GET() {
-  const response: Response = await getSitemap(requestContextFrom());
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(API_URL, ctx);
 
   if (response.status !== 200) {
     return new Response('', {
@@ -16,7 +20,7 @@ export async function GET() {
     });
   }
 
-  let sitemapResponse = await response.json() as Array<Sitemap>;
+  const sitemapResponse = await response.json() as Array<Sitemap>;
   const sitemap = sitemapResponse.map(sitemap => {
     return {
       loc: sitemap.loc,

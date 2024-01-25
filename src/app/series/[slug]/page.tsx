@@ -1,7 +1,7 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getSeriesBySeriesName } from '../../../api/series';
+import { fetchFromApi } from '../../../api/request';
 import {
   Article,
   SeriresWithArticlesResponse,
@@ -10,6 +10,9 @@ import {
 import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
+import { api } from '../../../../config';
+
+const API_BASE_URL = `${api.url}/series`;
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -21,7 +24,8 @@ async function run(req: any): Promise<any> {
 }
 async function handler(req: any) {
   const seriesName = req.params.slug;
-  const response: Response = await getSeriesBySeriesName(seriesName, requestContextFrom(headers()));
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(`${API_BASE_URL}/${seriesName}`, ctx);
   throwIfError(response);
 
   const seriresWithArticlesResponse: SeriresWithArticlesResponse = await response.json() as SeriresWithArticlesResponse;

@@ -1,12 +1,16 @@
+import { headers } from 'next/headers';
 import { Feed } from '../../../models/models';
-import { getFeed } from '../../../api/feed';
+import { fetchFromApi } from '../../../api/request';
 import { generateFeedsString } from '../../../services/feeds';
-import { url, siteName, mainAuthor } from '../../../../config';
+import { api, url, siteName, mainAuthor } from '../../../../config';
 import { requestContextFrom } from '../../../utils/requestContext';
+
+const API_URL = `${api.url}/feeds/index`;
 
 //export async function get(ctx: any) {
 export async function GET() {
-  const response: Response = await getFeed(requestContextFrom());
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(API_URL, ctx);
 
   if (response.status !== 200) {
     /* NOTE:
