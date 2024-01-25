@@ -1,5 +1,4 @@
 import { RequestContext } from '../models/models';
-import { requestHeaderFrom } from "./utils/header"
 import { isIgnoreRequest } from '../utils/filterRequests';
 
 // TODO: write test code
@@ -44,4 +43,14 @@ export async function fetchFromApi(
       headers: header as any
     }
   )
+}
+
+function requestHeaderFrom(rq: RequestContext): Object {
+  return {
+    'Content-Type': 'application/json',
+    'x-forwarded-for': rq.ipAddress,
+    'user-agent': rq.ua,
+    'referer': rq.referer,
+    'x-request-id': rq.requestId
+  }
 }
