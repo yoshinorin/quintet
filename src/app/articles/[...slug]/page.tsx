@@ -12,13 +12,13 @@ import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { generateForArticleOrPage } from '../../metadata';
 import { sluggize } from '../../../utils/slug';
-import { getRequestContext } from '../../../utils/requestContext';
+import { requestContextFrom } from '../../../utils/requestContext';
 
 const PREFIX_URL = 'articles';
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const response = await findByPath(path, getRequestContext(headers()));
+  const response = await findByPath(path, requestContextFrom(headers()));
   throwIfError(response);
   const content = await response.json() as ContentResponse;
   return {

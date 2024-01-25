@@ -2,7 +2,7 @@
 
 import { headers } from 'next/headers';
 import { getStatus } from '../../api/status';
-import { getRequestContext } from '../../utils/requestContext';
+import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 
 export default async function Page(req: any) {
@@ -11,7 +11,7 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await getStatus(getRequestContext(headers()));
+  const response: Response = await getStatus(requestContextFrom(headers()));
 
   return {
     props: {

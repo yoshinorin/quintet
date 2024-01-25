@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { getArticles } from '../../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../../models/models';
-import { getRequestContext } from '../../../utils/requestContext';
+import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 
@@ -17,7 +17,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getArticles(req.params.number, 10, getRequestContext(headers()));
+  const response: Response = await getArticles(req.params.number, 10, requestContextFrom(headers()));
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json() as ArticleResponseWithCount;

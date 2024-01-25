@@ -2,10 +2,10 @@ import { Sitemap } from '../../models/models';
 import { getSitemap } from '../../api/sitemap';
 import { generateSitemapString } from '../../services/sitemap';
 import { url } from '../../../config';
-import { getRequestContext } from '../../utils/requestContext';
+import { requestContextFrom } from '../../utils/requestContext';
 
 export async function GET() {
-  const response: Response = await getSitemap(getRequestContext());
+  const response: Response = await getSitemap(requestContextFrom());
 
   if (response.status !== 200) {
     return new Response('', {

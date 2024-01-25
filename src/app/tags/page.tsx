@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { Tag } from '../../models/models';
 import { getTags } from '../../api/tags';
-import { getRequestContext } from '../../utils/requestContext';
+import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 
@@ -17,7 +17,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getTags(getRequestContext(headers()));
+  const response: Response = await getTags(requestContextFrom(headers()));
   throwIfError(response);
 
   return {

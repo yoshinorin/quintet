@@ -1,9 +1,7 @@
 import { RequestContext } from '../models/models';
 import { uuid4 } from './uuid';
 
-export function getRequestContext(h: Headers): RequestContext {
-  console.log(h)
-  // FIXME: fix types
+export function requestContextFrom(h: Headers): RequestContext {
   if (h instanceof Headers) {
     return {
       ipAddress: h.get('x-forwarded-for'),

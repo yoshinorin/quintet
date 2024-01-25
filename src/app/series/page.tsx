@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { getSeries } from '../../api/series';
 import { Series, SeriesResponse } from '../../models/models';
-import { getRequestContext } from '../../utils/requestContext';
+import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 
@@ -18,7 +18,7 @@ async function run(req: any): Promise<any> {
 
 
 async function handler(req: any) {
-  const response: Response = await getSeries(getRequestContext(headers()))
+  const response: Response = await getSeries(requestContextFrom(headers()))
   throwIfError(response);
 
   const seriesResponse: Array<SeriesResponse> = await response.json() as Array<SeriesResponse>;

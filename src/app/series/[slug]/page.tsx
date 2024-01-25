@@ -7,7 +7,7 @@ import {
   SeriresWithArticlesResponse,
   SeriresWithArticles
 } from '../../../models/models';
-import { getRequestContext } from '../../../utils/requestContext';
+import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 
@@ -21,7 +21,7 @@ async function run(req: any): Promise<any> {
 }
 async function handler(req: any) {
   const seriesName = req.params.slug;
-  const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext(headers()));
+  const response: Response = await getSeriesBySeriesName(seriesName, requestContextFrom(headers()));
   throwIfError(response);
 
   const seriresWithArticlesResponse: SeriresWithArticlesResponse = await response.json() as SeriresWithArticlesResponse;

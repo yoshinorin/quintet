@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { getArchives } from '../../api/archives';
 import { Archive, ArchiveResponse } from '../../models/models';
-import { getRequestContext } from '../../utils/requestContext';
+import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 
@@ -17,7 +17,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getArchives(getRequestContext(headers()));
+  const response: Response = await getArchives(requestContextFrom(headers()));
   throwIfError(response);
 
   const archiveResponse: Array<ArchiveResponse> = await response.json() as Array<ArchiveResponse>;

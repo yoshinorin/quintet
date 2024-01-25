@@ -1,7 +1,7 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getRequestContext } from '../../utils/requestContext';
+import { requestContextFrom } from '../../utils/requestContext';
 import { SearchResponse, SearchResponseWithCount } from '../../models/models';
 import { search } from '../../api/search';
 import { Renderer } from './renderer';
@@ -69,7 +69,7 @@ async function handler(req: any) {
 }
 
 async function execute(ctx, words: Array<string>) {
-  const response = await search(getRequestContext(headers()), words);
+  const response = await search(requestContextFrom(headers()), words);
   if (response.status !== 200) {
     return emptyResult;
   }

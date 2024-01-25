@@ -3,7 +3,7 @@
 import { headers } from 'next/headers';
 import { getArticlesByTagName } from '../../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../../models/models';
-import { getRequestContext } from '../../../utils/requestContext';
+import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 
@@ -19,7 +19,7 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.params.slug[1] ? req.params.slug[1] : 1;
-  const response: Response = await getArticlesByTagName(tagName, currentPage, 10, getRequestContext(headers()));
+  const response: Response = await getArticlesByTagName(tagName, currentPage, 10, requestContextFrom(headers()));
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json();

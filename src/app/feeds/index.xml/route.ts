@@ -2,11 +2,11 @@ import { Feed } from '../../../models/models';
 import { getFeed } from '../../../api/feed';
 import { generateFeedsString } from '../../../services/feeds';
 import { url, siteName, mainAuthor } from '../../../../config';
-import { getRequestContext } from '../../../utils/requestContext';
+import { requestContextFrom } from '../../../utils/requestContext';
 
 //export async function get(ctx: any) {
 export async function GET() {
-  const response: Response = await getFeed(getRequestContext());
+  const response: Response = await getFeed(requestContextFrom());
 
   if (response.status !== 200) {
     /* NOTE:
