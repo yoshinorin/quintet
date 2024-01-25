@@ -1,6 +1,7 @@
 'use server';
 
 import { cache } from 'react'
+import { headers } from 'next/headers';
 import { permanentRedirect } from "next/navigation";
 import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../models/models';
 import { findByPath } from '../../api/content';
@@ -8,12 +9,13 @@ import { asInsight } from '../../utils/insight';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { sluggize } from '../../utils/slug';
+import { getRequestContext } from '../../utils/requestContext';
 import { generateForArticleOrPage } from '../metadata';
 import { Metadata } from 'next';
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const response = await findByPath(path);
+  const response = await findByPath(path, getRequestContext(headers()));
   throwIfError(response);
   const content = await response.json() as ContentResponse;
   return {

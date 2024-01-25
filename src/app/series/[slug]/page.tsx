@@ -1,5 +1,6 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { getSeriesBySeriesName } from '../../../api/series';
 import {
   Article,
@@ -20,7 +21,7 @@ async function run(req: any): Promise<any> {
 }
 async function handler(req: any) {
   const seriesName = req.params.slug;
-  const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext());
+  const response: Response = await getSeriesBySeriesName(seriesName, getRequestContext(headers()));
   throwIfError(response);
 
   const seriresWithArticlesResponse: SeriresWithArticlesResponse = await response.json() as SeriresWithArticlesResponse;

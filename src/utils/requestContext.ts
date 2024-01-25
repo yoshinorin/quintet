@@ -1,9 +1,8 @@
-import { headers } from 'next/headers';
 import { RequestContext } from '../models/models';
 import { uuid4 } from './uuid';
 
-// FIXME: fix types
-export function getRequestContext(h: Headers = headers()): RequestContext {
+export function getRequestContext(h: Headers): RequestContext {
+  console.log(h)
   // FIXME: fix types
   if (h instanceof Headers) {
     return {

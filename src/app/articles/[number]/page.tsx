@@ -1,5 +1,6 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { getArticles } from '../../../api/articles';
 import { Article, ArticleResponseWithCount } from '../../../models/models';
 import { getRequestContext } from '../../../utils/requestContext';
@@ -16,7 +17,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getArticles(req.params.number, 10, getRequestContext());
+  const response: Response = await getArticles(req.params.number, 10, getRequestContext(headers()));
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json() as ArticleResponseWithCount;

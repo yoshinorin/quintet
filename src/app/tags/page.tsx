@@ -1,5 +1,6 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { Tag } from '../../models/models';
 import { getTags } from '../../api/tags';
 import { getRequestContext } from '../../utils/requestContext';
@@ -16,7 +17,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getTags(getRequestContext());
+  const response: Response = await getTags(getRequestContext(headers()));
   throwIfError(response);
 
   return {
