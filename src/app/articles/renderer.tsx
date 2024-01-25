@@ -6,8 +6,9 @@ import {
 
 export const Renderer: React.FunctionComponent<{
   count,
+  currentPage,
   articles
-}> = ({ count, articles }) => {
+}> = ({ count, currentPage, articles }) => {
   return (
     <>
       <CoverWithNavigationComponent
@@ -19,7 +20,7 @@ export const Renderer: React.FunctionComponent<{
         />
         <PaginationComponent
           basePath='articles'
-          current={1}
+          current={currentPage}
           total={count}
         />
       </main>

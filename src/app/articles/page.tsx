@@ -20,12 +20,16 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
+  let page = 1;
+  if (req.searchParams['p'] !== undefined) {
+    page = req.searchParams['p'];
+  }
   const ctx = requestContextFrom(headers());
   const response: Response = await fetchFromApi(API_URL, ctx, {
     interceptIfContainsIgnorePaths: false,
     queryParams: null,
     pagenation: {
-      page: 1,
+      page: page,
       limit: 10
     }
   });
@@ -44,8 +48,8 @@ async function handler(req: any) {
 
   return {
     props: {
-      slug: 'articles',
       count: articlesResponseWithCount.count,
+      currentPage: page,
       articles: articles
     }
   }

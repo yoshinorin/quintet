@@ -47,7 +47,7 @@ export const PaginationComponent: React.FunctionComponent<{ basePath: string, cu
                 e.push(
                   <li key={k}
                       className={p[i] !== current ? '' : style['active']}>
-                    <Link href={`/${basePath}/${p[i]}`} prefetch={false}>
+                    <Link href={`/${basePath}?p=${p[i]}`} prefetch={false}>
                       {p[i].toString()}
                     </Link>
                   </li>
