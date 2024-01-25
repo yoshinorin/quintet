@@ -3,8 +3,11 @@
 import { headers } from 'next/headers';
 import { requestContextFrom } from '../../utils/requestContext';
 import { SearchResponse, SearchResponseWithCount } from '../../models/models';
-import { search } from '../../api/search';
+import { fetchFromApi } from '../../api/request';
 import { Renderer } from './renderer';
+import { api } from '../../../config';
+
+const API_URL = `${api.url}/search`;
 
 const emptyResult = {
   count: 0,
@@ -68,8 +71,13 @@ async function handler(req: any) {
 
 }
 
-async function execute(ctx, words: Array<string>) {
-  const response = await search(requestContextFrom(headers()), words);
+async function execute(req, words: Array<string>) {
+
+  const ctx = requestContextFrom(headers());
+  const response = await fetchFromApi(API_URL, ctx, {
+    queryParams: words
+   });
+
   if (response.status !== 200) {
     return emptyResult;
   }
