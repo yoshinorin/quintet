@@ -1,11 +1,14 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getArticles } from '../../../api/articles';
+import { fetchFromApi } from '../../../api/request';
 import { Article, ArticleResponseWithCount } from '../../../models/models';
 import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
+import { api } from '../../../../config';
+
+const API_URL = `${api.url}/articles/`
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -17,7 +20,14 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const response: Response = await getArticles(req.params.number, 10, requestContextFrom(headers()));
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(API_URL, ctx, {
+    queryParams: null,
+    pagenation: {
+      page: req.params.number,
+      limit: 10
+    }
+  });
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json() as ArticleResponseWithCount;

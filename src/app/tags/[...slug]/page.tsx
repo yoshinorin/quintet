@@ -1,11 +1,14 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getArticlesByTagName } from '../../../api/articles';
+import { fetchFromApi } from '../../../api/request';
 import { Article, ArticleResponseWithCount } from '../../../models/models';
 import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
+import { api } from '../../../../config';
+
+const API_BASE_URL = `${api.url}/tags`;
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -19,7 +22,19 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.params.slug[1] ? req.params.slug[1] : 1;
-  const response: Response = await getArticlesByTagName(tagName, currentPage, 10, requestContextFrom(headers()));
+
+  const ctx = requestContextFrom(headers());
+  const response: Response = await fetchFromApi(
+    `${API_BASE_URL}/${encodeURI(tagName)}`,
+    ctx,
+    {
+      queryParams: null,
+      pagenation: {
+        page: currentPage,
+        limit: 10
+      }
+    }
+  );
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json();

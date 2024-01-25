@@ -75,7 +75,8 @@ async function execute(req, words: Array<string>) {
 
   const ctx = requestContextFrom(headers());
   const response = await fetchFromApi(API_URL, ctx, {
-    queryParams: words
+    queryParams: words,
+    pagenation: null
    });
 
   if (response.status !== 200) {
