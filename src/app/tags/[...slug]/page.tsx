@@ -21,8 +21,7 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
-  const currentPage = req.params.slug[1] ? req.params.slug[1] : 1;
-
+  const currentPage = req.searchParams['p'] ? req.searchParams['p'] : 1;
   const ctx = requestContextFrom(headers());
   const response: Response = await fetchFromApi(
     `${API_BASE_URL}/${encodeURI(tagName)}`,
