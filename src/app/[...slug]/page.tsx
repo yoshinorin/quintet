@@ -10,26 +10,19 @@ import { asInsight } from '../../utils/insight';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { sluggize } from '../../utils/slug';
+import { buildUrl } from '../../utils/url';
 import { requestContextFrom } from '../../utils/requestContext';
 import { generateForArticleOrPage } from '../metadata';
 import { api } from '../../../config';
 
-const API_BASE_URL = `${api.url}/contents`;
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
   const ctx = requestContextFrom(headers());
-  // TODO: cleanup
-  if (path.startsWith("/")) {
-    path = path.substr(1, path.length)
-  }
-  if (!path.endsWith("/")) {
-    path = path + "/"
-  }
-  const response = await fetchFromApi(`${API_BASE_URL}/${path}`, ctx, {
-    interceptIfContainsIgnorePaths: true,
-    queryParams: null,
-    pagenation: null
+  const slug = sluggize(['contents', path]);
+  const url = buildUrl(api.url, slug, true);
+  const response = await fetchFromApi(url, null, ctx, {
+    interceptIfContainsIgnorePaths: true
   });
   throwIfError(response);
   const content = await response.json() as ContentResponse;

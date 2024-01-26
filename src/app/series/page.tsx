@@ -7,8 +7,8 @@ import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { api } from '../../../config';
-
-const API_URL = `${api.url}/series/`
+import { buildUrl } from '../../utils/url';
+import { sluggize } from '../../utils/slug';
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -21,7 +21,8 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(API_URL, ctx);
+  const url = buildUrl(api.url, sluggize(['series']), true);
+  const response: Response = await fetchFromApi(url, null, ctx, null);
   throwIfError(response);
 
   const seriesResponse: Array<SeriesResponse> = await response.json() as Array<SeriesResponse>;

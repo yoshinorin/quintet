@@ -3,13 +3,14 @@ import { Sitemap } from '../../models/models';
 import { fetchFromApi } from '../../api/request';
 import { generateSitemapString } from '../../services/sitemap';
 import { requestContextFrom } from '../../utils/requestContext';
-import { api, url } from '../../../config';
-
-const API_URL = `${api.url}/sitemaps/`;
+import { api } from '../../../config';
+import { buildUrl } from '../../utils/url';
+import { sluggize } from '../../utils/slug';
 
 export async function GET() {
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(API_URL, ctx);
+  const url = buildUrl(api.url, sluggize(['sitemaps']), true);
+  const response: Response = await fetchFromApi(url, null, ctx, null);
 
   if (response.status !== 200) {
     return new Response('', {

@@ -6,8 +6,8 @@ import { SearchResponse, SearchResponseWithCount } from '../../models/models';
 import { fetchFromApi } from '../../api/request';
 import { Renderer } from './renderer';
 import { api } from '../../../config';
-
-const API_URL = `${api.url}/search`;
+import { buildQueryParams, buildUrl } from '../../utils/url';
+import { sluggize } from '../../utils/slug';
 
 const emptyResult = {
   count: 0,
@@ -72,13 +72,10 @@ async function handler(req: any) {
 }
 
 async function execute(req, words: Array<string>) {
-
   const ctx = requestContextFrom(headers());
-  const response = await fetchFromApi(API_URL, ctx, {
-    interceptIfContainsIgnorePaths: false,
-    queryParams: words,
-    pagenation: null
-   });
+  const url = buildUrl(api.url, sluggize(['search']), false);
+  const queryParams = buildQueryParams({ key: 'q', values: words })
+  const response = await fetchFromApi(url, queryParams, ctx, null);
 
   if (response.status !== 200) {
     return emptyResult;

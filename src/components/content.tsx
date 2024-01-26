@@ -13,8 +13,8 @@ import { Accordion } from './accordion';
 import { fetchFromApi } from '../api/request';
 import { appendBackendMeta } from '../utils/insight';
 import { publicApi } from '../../config';
-
-const API_URL = `${publicApi.url}/system/metadata`;
+import { buildUrl } from '../utils/url';
+import { sluggize } from '../utils/slug';
 
 export const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 
@@ -23,7 +23,8 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
   const [metaAndInsight, setData] = useState(null);
 
   const fetchBackendMetaData = async () => {
-    const response: Response = await fetchFromApi(API_URL, null);
+    const url = buildUrl(publicApi.url, sluggize(['system', 'metadata']), false);
+    const response: Response = await fetchFromApi(url, null, null, null);
     let ins = insight;
     if (response.status === 200) {
       const bm = await response.json() as BackendMeta;

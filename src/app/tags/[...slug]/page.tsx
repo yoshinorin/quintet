@@ -7,8 +7,8 @@ import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { api } from '../../../../config';
-
-const API_BASE_URL = `${api.url}/tags`;
+import { buildQueryParams, buildUrl } from '../../../utils/url';
+import { sluggize } from '../../../utils/slug';
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -23,18 +23,9 @@ async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.searchParams['p'] ? req.searchParams['p'] : 1;
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(
-    `${API_BASE_URL}/${encodeURI(tagName)}`,
-    ctx,
-    {
-      interceptIfContainsIgnorePaths: false,
-      queryParams: null,
-      pagenation: {
-        page: currentPage,
-        limit: 10
-      }
-    }
-  );
+  const url = buildUrl(api.url, sluggize(['tags', encodeURI(tagName)]), false);
+  const queryParams = buildQueryParams(null, { page: currentPage, limit: 10 })
+  const response: Response = await fetchFromApi(url, queryParams, ctx, null);
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json();

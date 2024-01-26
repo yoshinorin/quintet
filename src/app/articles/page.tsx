@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { fetchFromApi } from '../../api/request';
 import { Article, ArticleResponseWithCount } from '../../models/models';
 import { requestContextFrom } from '../../utils/requestContext';
+import { buildQueryParams, buildUrl } from '../../utils/url';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { api } from '../../../config';
@@ -22,14 +23,9 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const currentPage = req.searchParams['p'] ? req.searchParams['p'] : 1;
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(API_URL, ctx, {
-    interceptIfContainsIgnorePaths: false,
-    queryParams: null,
-    pagenation: {
-      page: currentPage,
-      limit: 10
-    }
-  });
+  const url = buildUrl(api.url, 'articles', true);
+  const queryParams = buildQueryParams(null, { page: currentPage, limit: 10 });
+  const response: Response = await fetchFromApi(url, queryParams, ctx, null);
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount = await response.json() as ArticleResponseWithCount;

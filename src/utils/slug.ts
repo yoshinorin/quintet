@@ -10,7 +10,7 @@ export function sluggize(
         const p = prefix === undefined ? undefined : '/' + prefix;
         const s = slug as Array<string>;
         const arr = [p].concat(s);
-        return arr.join('/');
+        return arr.join('/').replace(/\/{2,}/g, '/');
       } else {
         return slug;
       }

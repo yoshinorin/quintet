@@ -2,15 +2,16 @@ import { headers } from 'next/headers';
 import { Feed } from '../../../models/models';
 import { fetchFromApi } from '../../../api/request';
 import { generateFeedsString } from '../../../services/feeds';
-import { api, url, siteName, mainAuthor } from '../../../../config';
+import { api, siteName, mainAuthor } from '../../../../config';
 import { requestContextFrom } from '../../../utils/requestContext';
-
-const API_URL = `${api.url}/feeds/index`;
+import { sluggize } from '../../../utils/slug';
+import { buildUrl } from '../../../utils/url';
 
 //export async function get(ctx: any) {
 export async function GET() {
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(API_URL, ctx);
+  const url = buildUrl(api.url, sluggize(['feeds', 'index']), false);
+  const response: Response = await fetchFromApi(url, null, ctx, null);
 
   if (response.status !== 200) {
     /* NOTE:

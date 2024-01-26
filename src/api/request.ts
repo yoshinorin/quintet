@@ -2,16 +2,13 @@ import { RequestContext } from '../models/models';
 import { isIgnoreRequest } from '../utils/filterRequests';
 
 // TODO: write test code
+// TODO: more simply
 export async function fetchFromApi(
   endpoint: string,
+  queryParams: string = '',
   ctx: RequestContext | null,
   options: {
     interceptIfContainsIgnorePaths: boolean,
-    queryParams: Array<string>,
-    pagenation: {
-      page: number,
-      limit: number
-    },
   } | null = null
 ): Promise<Response> {
 
@@ -22,27 +19,26 @@ export async function fetchFromApi(
         return new Response(null, { "status" : 404 });
       }
     }
-    let queryParams = '';
-    let pagenationParams = '';
-    if (options.queryParams) {
-      queryParams = options.queryParams.map(q => `q=${q}`).join('&');
-    }
-    if (options.pagenation) {
-      pagenationParams = `page=${options.pagenation.page}&limit=${options.pagenation.limit}`;
-    }
-    endpoint = endpoint + '?' + queryParams + pagenationParams;
   }
 
+  const q = queryParams?? '';
+  const url = buildRequestUrl(endpoint, q);
   const header = ctx ? { header: requestHeaderFrom(ctx) } : {};
 
   return fetch(
-    endpoint,
+    url,
     {
       method: 'GET',
       cache: 'no-cache',
       headers: header as any
     }
   )
+}
+
+// NOTE: internal use only but export for testing.
+export function buildRequestUrl(url: string, queryParams: string): string {
+  const u = queryParams.length > 0 ? `${url}?${queryParams}` : url;
+  return new URL(u).href;
 }
 
 function requestHeaderFrom(rq: RequestContext): Object {

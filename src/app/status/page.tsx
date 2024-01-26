@@ -5,8 +5,8 @@ import { fetchFromApi } from '../../api/request';
 import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { api } from '../../../config';
-
-const API_URL = `${api.url}/system/health`;
+import { buildUrl } from '../../utils/url';
+import { sluggize } from '../../utils/slug';
 
 export default async function Page(req: any) {
   const { props } = await handler(req);
@@ -15,7 +15,8 @@ export default async function Page(req: any) {
 
 async function handler(req: any) {
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(API_URL, ctx);
+  const url = buildUrl(api.url, sluggize(['system', 'health']), false);
+  const response: Response = await fetchFromApi(url, null, ctx, null);
 
   return {
     props: {
