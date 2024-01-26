@@ -35,7 +35,7 @@ const cachedFindByPath = cache(async (path: string) => {
 
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
 export async function generateMetadata({ params: { slug }}: { params: { slug: Array<string> }}): Promise<Metadata> {
-  const sluggized = await sluggize(slug, PREFIX_URL);
+  const sluggized = await sluggize([PREFIX_URL].concat(slug));
   const content = await cachedFindByPath(sluggized);
   return generateForArticleOrPage(sluggized ,content.body);
 }
@@ -54,7 +54,7 @@ async function handler(req: any) {
   if (isIgnoreRequest(req.params.slug.join("/"))) {
     return notFound();
   }
-  const sluggized = await sluggize(req.params.slug, PREFIX_URL);
+  const sluggized = await sluggize([PREFIX_URL].concat(req.params.slug));
   const response: ContentResponseWithFetchResponse = await cachedFindByPath(sluggized);
 
   const content: Content = {

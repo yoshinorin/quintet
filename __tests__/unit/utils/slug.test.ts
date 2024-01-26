@@ -1,24 +1,10 @@
 import { expect, test } from "vitest";
 import { sluggize } from "../../../src/utils/url";
 
-test('should sluggize from string array - without prefix and fallback option', () => {
-  expect(sluggize(['foo', 'bar'])).toEqual('/foo/bar');
+test('should sluggize from array', () => {
+  expect(sluggize(['foo', 'bar'])).toEqual('foo/bar');
 });
 
-test('should sluggize from number array - without prefix and fallback option', () => {
-  expect(sluggize([1, 2])).toEqual('/1/2');
+test('should sluggize from array - contains double slashes', () => {
+  expect(sluggize(['foo//bar', '/hoge/', '/piyo'])).toEqual('foo/bar/hoge/piyo');
 });
-
-test('should sluggize from array - without fallback option', () => {
-  expect(sluggize(['foo', 'bar'], '_prefix')).toEqual('/_prefix/foo/bar');
-});
-
-/* TODO: fix
-test('should sluggize returns fallback (undefined) if slug can not convert to array', () => {
-  expect(sluggize({'hoge': 'piyo'}, '_prefix')).toEqual(undefined);
-});
-
-test('should sluggize returns fallback string if slug can not convert to array', () => {
-  expect(sluggize({'hoge': 'piyo'}, '_prefix', 'fallback_str')).toEqual('fallback_str');
-});
-*/
