@@ -14,6 +14,9 @@ export default defineConfig({
         'config.*.js',
         '*.config.js',
         'next-env.d.ts',
+        'src/app/feeds/index.xml/route.ts',
+        'src/app/sitemap.xml',
+        'src/components/*',
         '**/models/*',      // Just a interface.
         // '**/api/*',      // Need a mock. Coverd with E2E testing.
       ],
