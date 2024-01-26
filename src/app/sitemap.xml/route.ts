@@ -4,8 +4,7 @@ import { fetchFromApi } from '../../api/request';
 import { generateSitemapString } from '../../services/sitemap';
 import { requestContextFrom } from '../../utils/requestContext';
 import { api } from '../../../config';
-import { buildUrl } from '../../utils/url';
-import { sluggize } from '../../utils/slug';
+import { buildUrl, sluggize } from '../../utils/url';
 
 export async function GET() {
   const ctx = requestContextFrom(headers());

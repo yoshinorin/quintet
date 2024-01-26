@@ -7,8 +7,7 @@ import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { api } from '../../../../config';
-import { buildQueryParams, buildUrl } from '../../../utils/url';
-import { sluggize } from '../../../utils/slug';
+import { buildQueryParams, buildUrl, sluggize } from '../../../utils/url';
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));

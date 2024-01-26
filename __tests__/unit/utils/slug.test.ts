@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { sluggize } from "../../../src/utils/slug";
+import { sluggize } from "../../../src/utils/url";
 
 test('should sluggize from string array - without prefix and fallback option', () => {
   expect(sluggize(['foo', 'bar'])).toEqual('/foo/bar');

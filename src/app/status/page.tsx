@@ -5,8 +5,7 @@ import { fetchFromApi } from '../../api/request';
 import { requestContextFrom } from '../../utils/requestContext';
 import { Renderer } from './renderer';
 import { api } from '../../../config';
-import { buildUrl } from '../../utils/url';
-import { sluggize } from '../../utils/slug';
+import { buildUrl, sluggize } from '../../utils/url';
 
 export default async function Page(req: any) {
   const { props } = await handler(req);

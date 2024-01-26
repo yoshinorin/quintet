@@ -11,8 +11,7 @@ import { asInsight } from '../../../utils/insight';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { generateForArticleOrPage } from '../../metadata';
-import { sluggize } from '../../../utils/slug';
-import { buildUrl } from '../../../utils/url';
+import { buildUrl, sluggize } from '../../../utils/url';
 import { requestContextFrom } from '../../../utils/requestContext';
 import { api } from '../../../../config';
 

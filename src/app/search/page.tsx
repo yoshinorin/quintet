@@ -6,8 +6,7 @@ import { SearchResponse, SearchResponseWithCount } from '../../models/models';
 import { fetchFromApi } from '../../api/request';
 import { Renderer } from './renderer';
 import { api } from '../../../config';
-import { buildQueryParams, buildUrl } from '../../utils/url';
-import { sluggize } from '../../utils/slug';
+import { buildQueryParams, buildUrl, sluggize } from '../../utils/url';
 
 const emptyResult = {
   count: 0,

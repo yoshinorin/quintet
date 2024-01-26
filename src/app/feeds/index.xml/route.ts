@@ -4,8 +4,7 @@ import { fetchFromApi } from '../../../api/request';
 import { generateFeedsString } from '../../../services/feeds';
 import { api, siteName, mainAuthor } from '../../../../config';
 import { requestContextFrom } from '../../../utils/requestContext';
-import { sluggize } from '../../../utils/slug';
-import { buildUrl } from '../../../utils/url';
+import { buildUrl, sluggize } from '../../../utils/url';
 
 //export async function get(ctx: any) {
 export async function GET() {

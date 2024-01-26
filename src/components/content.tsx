@@ -13,8 +13,7 @@ import { Accordion } from './accordion';
 import { fetchFromApi } from '../api/request';
 import { appendBackendMeta } from '../utils/insight';
 import { publicApi } from '../../config';
-import { buildUrl } from '../utils/url';
-import { sluggize } from '../utils/slug';
+import { buildUrl, sluggize } from '../utils/url';
 
 export const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
 
