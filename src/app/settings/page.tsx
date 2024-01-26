@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { CoverWithNavigationComponent, DropdownComponent } from '../../components/components';
 import { getTheme } from '../../services/theme';
 import containerStyles from '../../styles/components/container.module.scss';
-import inputStyles from '../../styles/input.module.scss';
 
 export default function Page(){
 
@@ -31,7 +30,7 @@ export default function Page(){
         <section className={`${containerStyles['container']}`}>
           <h2>Theme preferences</h2>
           <hr/>
-          <form className={`${inputStyles['form']}`}>
+          <form>
             <DropdownComponent
               list={['light', 'dark']}
               defaultValue={theme}

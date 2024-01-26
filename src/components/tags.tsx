@@ -5,7 +5,6 @@ import { TagComponent } from './tag';
 import { Tag } from '../models/models';
 import containerStyles from '../styles/components/container.module.scss';
 import style from '../styles/tags.module.scss';
-import inputStyles from '../styles/input.module.scss';
 import {
   tagsPage
 } from '../../config';
@@ -33,9 +32,8 @@ export const TagsComponent: React.FunctionComponent<{ tags: Array<Tag> }> = ({ t
 
   return (
     <section className={`${containerStyles['container']}`}>
-      <form className={`${inputStyles['form']}`}>
+      <form>
         <input
-          className={`${inputStyles['control']} ${inputStyles['textbox']}`}
           placeholder={tagsPage.titlePlaceholder}
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}

@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Archive, ArchiveFormatedDate } from '../models/models';
 import { toDate } from '../utils/time';
 import styles from '../styles/archives.module.scss';
-import inputStyles from '../styles/input.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import {
   archivesPage
@@ -93,7 +92,6 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
         </form>
         <form>
           <input
-            className={`${inputStyles['control']} ${inputStyles['textbox']}`}
             placeholder={archivesPage.titlePlaceholder}
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}

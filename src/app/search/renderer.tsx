@@ -7,7 +7,6 @@ import {
   SearchResultComponent
 } from '../../components/components';
 import { SearchResponse, SearchResponseWithCount } from '../../models/models';
-import inputStyles from '../../styles/input.module.scss';
 import containerStyles from '../../styles/components/container.module.scss';
 
 export const Renderer: React.FunctionComponent<{
@@ -60,12 +59,11 @@ export const Renderer: React.FunctionComponent<{
               <li><a href="https://github.com/yoshinorin/qualtet/blob/27778232dac650153393a10dacfbc2ae62f36ac3/src/main/scala/net/yoshinorin/qualtet/syntax/string.scala#L6">Invalid Chars</a></li>
             </ul>
           </div>
-          <form className={`${inputStyles['form']}`}
+          <form
              onSubmit={e => { e.preventDefault(); }}
             >
             <input
               type='text'
-              className={`${inputStyles['control']} ${inputStyles['textbox']}`}
               // placeholder={TODO}
               value={searchWord}
               onChange={(e) => {

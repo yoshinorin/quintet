@@ -162,6 +162,28 @@ dl {
   }
 }
 
+form {
+  margin-top:     2.5rem;
+  margin-bottom:  2.5rem;
+  input {
+    background:      transparent;
+    max-width:       100%;
+    border:          none;
+    outline:         none;
+    color:           map-get($basic-colors, base);
+    font-size:       map-get($font-size, xxlarge);
+    font-weight:     400;
+
+    &:hover,
+    &:focus {
+        outline: none;
+    }
+    padding-bottom:  0.6rem;
+    margin-right:    0.2rem;
+    border-bottom:   1px solid map-get($border-colors, 'text-box-border-bottom');
+  }
+}
+
 select {
   font-size:      map-get($font-size, xxlarge);
   color:          map-get($basic-colors, 'base');
