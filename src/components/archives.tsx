@@ -34,7 +34,6 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
       dd: d[2]
     } as ArchiveFormatedDate
   });
-  console.log(years)
   years = Array.from(new Set(years));
 
   const [keyword, setKeyword] = useState("");
