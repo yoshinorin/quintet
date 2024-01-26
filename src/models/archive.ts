@@ -5,3 +5,11 @@ export interface Archive {
 }
 
 export type ArchiveResponse = Archive
+
+export interface ArchiveFormatedDate {
+  path: string,
+  title: string,
+  yyyy: string,
+  mm: string,
+  dd: string
+}

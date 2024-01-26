@@ -14,6 +14,18 @@
 .found {
   font-size: map-get($font-size, xlarge);
   font-weight: bold;
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   margin-bottom: 1.5rem;
+}
+
+.dropdowns {
+  display: inline-flex;
+  form {
+    margin-right: 1.25rem;
+  }
+}
+
+.date {
+  margin-right: 1.8rem;
+  font-size:    0.95em;
 }
