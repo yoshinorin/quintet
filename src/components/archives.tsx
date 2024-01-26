@@ -69,15 +69,7 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
 
   return (
     <section className={`${containerStyles.container}`}>
-      <form className={`${inputStyles['form']}`}>
-        <input
-          className={`${inputStyles['control']} ${inputStyles['textbox']}`}
-          placeholder={archivesPage.titlePlaceholder}
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-      </form>
-      <div className={styles['dropdowns']}>
+      <div className={styles['filters']}>
         <form>
           <DropdownComponent
             list={['YYYY'].concat(years)}
@@ -99,6 +91,14 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
               onChange={(e) => setDay(e.target.value)}
             />
         </form>
+        <form>
+          <input
+            className={`${inputStyles['control']} ${inputStyles['textbox']}`}
+            placeholder={archivesPage.titlePlaceholder}
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+      </form>
       </div>
 
       <FilterdItems

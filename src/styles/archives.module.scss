@@ -18,10 +18,12 @@
   margin-bottom: 1.5rem;
 }
 
-.dropdowns {
-  display: inline-flex;
+.filters {
+  display:       inline-flex;
+  flex-wrap:     wrap;
+  margin-top:    2rem;
   form {
-    margin-right: 1.25rem;
+    margin:      1.5rem 1.25rem 1.5rem 0rem;
   }
 }
 
