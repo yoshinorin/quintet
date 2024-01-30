@@ -1,4 +1,4 @@
-import { ArchivesComponent, CoverWithNavigationComponent } from '../../components/components';
+import { ArchivesComponent, CoverComponent } from '../../components/components';
 import { Archive } from '../../models/models';
 
 export const Renderer: React.FunctionComponent<{
@@ -6,7 +6,7 @@ export const Renderer: React.FunctionComponent<{
 }> = ({ archives }) => {
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={{
           title: "Archives",
           tags: null,

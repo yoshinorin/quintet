@@ -1,14 +1,14 @@
 'use client';
 
 import { Tag } from '../../models/models';
-import { CoverWithNavigationComponent, TagsComponent } from '../../components/components';
+import { CoverComponent, TagsComponent } from '../../components/components';
 
 export const Renderer: React.FunctionComponent<{
   tags: Array<Tag>
 }> = ({ tags }) => {
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={{
           title: "Tags",
           tags: null,

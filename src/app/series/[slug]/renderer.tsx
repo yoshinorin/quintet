@@ -1,11 +1,11 @@
-import { CoverWithNavigationComponent, SeriesWithArticlesComponent } from '../../../components/components';
+import { CoverComponent, SeriesWithArticlesComponent } from '../../../components/components';
 
 export const Renderer: React.FunctionComponent<{
   seriresWithArticles
 }> = ({ seriresWithArticles }) => {
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={{
           title: seriresWithArticles.title,
           tags: null,

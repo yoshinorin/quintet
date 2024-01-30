@@ -1,6 +1,6 @@
 import {
   ArticlesComponent,
-  CoverWithNavigationComponent,
+  CoverComponent,
   PaginationComponent
 } from '../../components/components';
 
@@ -11,7 +11,7 @@ export const Renderer: React.FunctionComponent<{
 }> = ({ count, currentPage, articles }) => {
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={null}
       />
       <main>

@@ -1,7 +1,7 @@
 
 import {
   ContentComponent,
-  CoverWithNavigationComponent,
+  CoverComponent,
   InjectScriptComponent
 } from '../../components/components';
 import {
@@ -23,7 +23,7 @@ export const Renderer: React.FunctionComponent<{
   }
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={{
           title: content.title,
           tags: null,

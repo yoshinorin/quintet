@@ -1,4 +1,4 @@
-import { CoverWithNavigationComponent, SeriesComponent } from '../../components/components';
+import { CoverComponent, SeriesComponent } from '../../components/components';
 import { Series } from '../../models/models';
 
 export const Renderer: React.FunctionComponent<{
@@ -6,7 +6,7 @@ export const Renderer: React.FunctionComponent<{
 }> = ({ series }) => {
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={{
           title: "Series",
           tags: null,

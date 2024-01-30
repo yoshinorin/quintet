@@ -1,5 +1,5 @@
 import { Article } from '../models/models';
-import { CoverWithNavigationComponent, RecentArticlesComponent } from '../components/components';
+import { CoverComponent, RecentArticlesComponent } from '../components/components';
 import styles from '../styles/home.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 
@@ -9,7 +9,7 @@ export const Renderer: React.FunctionComponent<{
 
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={null}
       />
       <main>

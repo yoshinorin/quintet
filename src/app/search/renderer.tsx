@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  CoverWithNavigationComponent,
+  CoverComponent,
   SearchResultComponent
 } from '../../components/components';
 import { SearchResponse, SearchResponseWithCount } from '../../models/models';
@@ -39,7 +39,7 @@ export const Renderer: React.FunctionComponent<{
 
   return (
     <>
-      <CoverWithNavigationComponent
+      <CoverComponent
         contentCover={{
           title: "Search (β)",
           tags: null,
