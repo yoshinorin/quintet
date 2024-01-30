@@ -9,6 +9,7 @@ import {
   archivesPage
 } from '../../config';
 import { DropdownComponent } from './components';
+import { sequentialPadPosNum } from '../utils/nums';
 
 export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archive> }> = ({ archives }) => {
 
@@ -63,9 +64,6 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
     setFilteredArticles(resultArticles);
   }, [keyword, selectedYear, selectedMonth, selectedDay]);
 
-  const monthes = [...Array(12)].map((_, i) => (i + 1).toString().padStart(2, '0'));
-  const days = [...Array(31)].map((_, i) => (i + 1).toString().padStart(2, '0'));
-
   return (
     <section className={`${containerStyles.container}`}>
       <div className={styles['filters']}>
@@ -78,14 +76,14 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
         </form>
         <form>
           <DropdownComponent
-              list={['MM'].concat(monthes)}
+              list={['MM'].concat(sequentialPadPosNum(1, 12))}
               defaultValue={selectedMonth}
               onChange={(e) => setMonth(e.target.value)}
             />
         </form>
         <form>
           <DropdownComponent
-              list={['DD'].concat(days)}
+              list={['DD'].concat(sequentialPadPosNum(1, 31))}
               defaultValue={selectedDay}
               onChange={(e) => setDay(e.target.value)}
             />
