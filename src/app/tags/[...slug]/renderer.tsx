@@ -14,7 +14,7 @@ export const Renderer: React.FunctionComponent<{
     <>
       <CoverWithNavigationComponent
         contentCover={{
-          title: "Tags",
+          title: tagName,
           tags: null,
           publishedAt: null,
         }}
