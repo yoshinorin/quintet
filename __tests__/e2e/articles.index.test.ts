@@ -38,7 +38,7 @@ test.describe('Articles', () => {
 
     await expect(articles[9].getByRole('time')).toHaveAttribute('datetime');
 
-    await expect(articles[9].getByRole('time')).toContainText('2023.12.7');
+    await expect(articles[9].getByRole('time')).toContainText('2023.12.07');
     await expect(articles[9].getByRole('heading')).toHaveText('Suspendisse quis tellus vestibulum, vestibulum est non, tincidunt orci.');
     // TODO
     // await expect(articles[9].getAttribute('datetime')).toBe('1701948427');
