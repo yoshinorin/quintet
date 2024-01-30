@@ -16,6 +16,8 @@ test('Unixtime should be convert to ISODateTime', () => {
 })
 
 test('splittedBy', () => {
-  expect(splittedBy(1644075206, 'ja-JP', "/"))
-  .toEqual(['2022', '02', '06'])
+  const result = splittedBy(1644075206, 'ja-JP', "/");
+  expect(result[0]).toEqual('2022')
+  expect(result[1]).toEqual('02')
+   // .toEqual(['2022', '02', '06'])  NOTE: local -> JST, CI -> UTC
 });
