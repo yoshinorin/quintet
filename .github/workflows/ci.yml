@@ -38,7 +38,7 @@ jobs:
         run: npm run test:setup:e2e && npm run test:e2e
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./playwright-report
+          path: ./report
   build:
     runs-on: ${{ matrix.os }}
     strategy:
