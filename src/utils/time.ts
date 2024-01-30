@@ -22,8 +22,11 @@ export function toISODateSrting(unixTime: number): string {
   }
 }
 
-// TODO: refactor naming
-// 2022/2/8 22:59:10 -> 2022.2.8
-export function toJaJpDottedDateString(date: Date): string {
-  return date.toLocaleString('ja-JP').split(' ')[0].replace(/\//g,".");
+export function splittedBy(unixTime: number, locale: string, delimiter: string): Array<string> {
+  return toDate(unixTime).toLocaleDateString(locale, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })
+  .split(delimiter);
 }

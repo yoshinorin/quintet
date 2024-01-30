@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Archive, ArchiveFormatedDate } from '../models/models';
-import { toDate } from '../utils/time';
+import { splittedBy } from '../utils/time';
 import styles from '../styles/archives.module.scss';
 import containerStyles from '../styles/components/container.module.scss';
 import {
@@ -16,14 +16,7 @@ export const ArchivesComponent: React.FunctionComponent<{ archives: Array<Archiv
   // TODO: clean up
   let years: string[] = [];
   const allArticles = archives.map((a) => {
-    // TODO: move somewhere
-    const d = toDate(a.publishedAt).toLocaleDateString('ja-JP', {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .split("/");
-
+    const d = splittedBy(a.publishedAt, 'ja-JP', "/");
     years.push(d[0].toString());
 
     return {
