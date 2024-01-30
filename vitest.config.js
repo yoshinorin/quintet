@@ -7,6 +7,7 @@ export default defineConfig({
       './__tests__/unit/**/*.{test,spec}.?(c|m)[jt]s?(x)'
     ],
     coverage: {
+      reporter: ['text', 'html'],
       exclude: [
         '**/*.tsx',
         '.next/*',
