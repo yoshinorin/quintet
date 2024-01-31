@@ -20,7 +20,7 @@ export default function Page(){
   return (
     <>
       <CoverComponent
-        contentCover={{
+        props={{
           title: "Settings",
           tags: null,
           publishedAt: null,

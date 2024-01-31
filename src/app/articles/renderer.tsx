@@ -12,7 +12,7 @@ export const Renderer: React.FunctionComponent<{
   return (
     <>
       <CoverComponent
-        contentCover={null}
+        props={null}
       />
       <main>
         <ArticlesComponent

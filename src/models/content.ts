@@ -23,12 +23,6 @@ export interface ContentResponseWithFetchResponse {
   body: Content
 }
 
-export interface ContentCover {
-  title: string,
-  tags?: Array<Tag>,
-  publishedAt: number,
-}
-
 export interface ContentMeta {
   id: string,
   robots: {

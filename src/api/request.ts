@@ -1,5 +1,5 @@
 import { RequestContext } from '../models/models';
-import { isIgnoreRequest } from '../utils/filterRequests';
+import { isMatch } from '../utils/match';
 
 // TODO: write test code
 // TODO: more simply
@@ -15,7 +15,7 @@ export async function fetchFromApi(
   // TODO: extract to function & write test code
   if (options) {
     if (options.interceptIfContainsIgnorePaths) {
-      if (!endpoint || (endpoint && isIgnoreRequest(endpoint))) {
+      if (!endpoint || (endpoint && isMatch(endpoint))) {
         return new Response(null, { "status" : 404 });
       }
     }

@@ -10,7 +10,7 @@ export const Renderer: React.FunctionComponent<{
   return (
     <>
       <CoverComponent
-        contentCover={null}
+        props={null}
       />
       <main>
         <div className={`${containerStyles.container} ${styles.wrap}`} >

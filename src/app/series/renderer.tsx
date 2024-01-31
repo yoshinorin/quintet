@@ -7,7 +7,7 @@ export const Renderer: React.FunctionComponent<{
   return (
     <>
       <CoverComponent
-        contentCover={{
+        props={{
           title: "Series",
           tags: null,
           publishedAt: null,

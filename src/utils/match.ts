@@ -1,9 +1,9 @@
-import { isMatch } from 'micromatch';
+import { isMatch as _isMatch } from 'micromatch';
 import { filterRequestPaths } from '../../config';
 
-export function isIgnoreRequest(path: string) {
+export function isMatch(path: string) {
   if (!path || !filterRequestPaths || filterRequestPaths.length == 0) {
     return false;
   }
-  return isMatch(path, filterRequestPaths);
+  return _isMatch(path, filterRequestPaths);
 }

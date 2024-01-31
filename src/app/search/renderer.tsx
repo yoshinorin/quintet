@@ -40,7 +40,7 @@ export const Renderer: React.FunctionComponent<{
   return (
     <>
       <CoverComponent
-        contentCover={{
+        props={{
           title: "Search (β)",
           tags: null,
           publishedAt: null,

@@ -5,7 +5,7 @@ import { headers } from 'next/headers';
 import { Metadata } from 'next'
 import { notFound } from "next/navigation";
 import { ContentResponse, Content, ContentResponseWithFetchResponse } from '../../../models/models';
-import { isIgnoreRequest } from '../../../utils/filterRequests';
+import { isMatch } from '../../../utils/match';
 import { fetchFromApi } from '../../../api/request';
 import { asInsight } from '../../../utils/insight';
 import { Renderer } from './renderer';
@@ -51,7 +51,7 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   // NOTE: avoid send request of images
-  if (isIgnoreRequest(req.params.slug.join("/"))) {
+  if (isMatch(req.params.slug.join("/"))) {
     return notFound();
   }
   const sluggized = await sluggize([PREFIX_URL].concat(req.params.slug));

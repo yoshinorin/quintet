@@ -1,30 +1,36 @@
 import Link from 'next/link';
 import { TagComponent } from './tag';
 import { NavigationComponent } from './navigation';
-import { ContentCover, Tag } from '../models/models';
+import { Tag } from '../models/models';
 import styles from '../styles/components/cover.module.scss';
 import { toDate } from '../utils/time';
 import { title, subTitle, coverBottomItems } from '../../config';
 
-export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCover | null }> = ({ contentCover }) => {
+type Props = {
+  title: string,
+  tags?: Array<Tag>,
+  publishedAt: number,
+}
+
+export const CoverComponent: React.FunctionComponent<{ props: Props | null }> = ({ props }) => {
   return (
     <>
       <div className={styles['cover']}>
         <div className={`${styles['content-header']}`}>
           {
             (() => {
-              if (contentCover) {
+              if (props) {
                 return(
                   <>
                     <h1 className={`${styles['content-title']}`}>
-                      {contentCover.title}
+                      {props.title}
                     </h1>
                     {
                       (() => {
-                        if (contentCover.publishedAt) {
+                        if (props.publishedAt) {
                           return(
                             <span className={`${styles['content-meta']}`}>
-                              { toDate(contentCover.publishedAt).toUTCString() }
+                              { toDate(props.publishedAt).toUTCString() }
                             </span>
                           )
                         }
@@ -32,10 +38,10 @@ export const CoverComponent: React.FunctionComponent<{ contentCover: ContentCove
                     }
                     {
                       (() => {
-                        if (contentCover.tags) {
+                        if (props.tags) {
                           return(
                             <section className={`${styles['tags']}`}>
-                              {contentCover.tags.map((tag: Tag) => {
+                              {props.tags.map((tag: Tag) => {
                                 return(
                                   <TagComponent
                                     tag={tag}
