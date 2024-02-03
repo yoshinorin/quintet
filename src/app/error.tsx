@@ -32,7 +32,7 @@ export default function Error({
       <div style={pageStyles}>
         <h1>Something went wrong...</h1>
         <div style={noteStyles}>
-          <p>This web site returns a 500 error if the backend-server returns any status code other than 404.</p>
+          <p>This web site returns a 500 error even if the backend-server returns any status code other than 500.</p>
           <h5>Reasons</h5>
           <ul>
             <li>
