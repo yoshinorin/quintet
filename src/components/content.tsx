@@ -22,7 +22,8 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
   const [metaAndInsight, setData] = useState(null);
 
   const fetchBackendMetaData = async () => {
-    const url = buildUrl(publicApi.url, sluggize(['system', 'metadata']), false);
+    // TODO: devide into another `function` and move `api` dir.
+    const url = buildUrl(publicApi.url, sluggize(['v1', 'system', 'metadata']), false);
     const response: Response = await fetchFromApi(url, null, null, null);
     let ins = insight;
     if (response.status === 200) {

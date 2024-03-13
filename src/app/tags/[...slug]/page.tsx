@@ -22,7 +22,8 @@ async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.searchParams['p'] ? req.searchParams['p'] : 1;
   const ctx = requestContextFrom(headers());
-  const url = buildUrl(api.url, sluggize(['tags', encodeURI(tagName)]), false);
+    // TODO: devide into another `function` and move `api` dir.
+  const url = buildUrl(api.url, sluggize(['v1', 'tags', encodeURI(tagName)]), false);
   const queryParams = buildQueryParams(null, { page: currentPage, limit: 10 })
   const response: Response = await fetchFromApi(url, queryParams, ctx, null);
   throwIfError(response);

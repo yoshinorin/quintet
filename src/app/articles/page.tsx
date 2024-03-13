@@ -23,7 +23,8 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const currentPage = req.searchParams['p'] ? req.searchParams['p'] : 1;
   const ctx = requestContextFrom(headers());
-  const url = buildUrl(api.url, 'articles', true);
+  // TODO: devide into another `function` and move `api` dir.
+  const url = buildUrl(api.url, 'v1/articles', true);
   const queryParams = buildQueryParams(null, { page: currentPage, limit: 10 });
   const response: Response = await fetchFromApi(url, queryParams, ctx, null);
   throwIfError(response);

@@ -20,7 +20,8 @@ const PREFIX_URL = 'articles';
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
   const ctx = requestContextFrom(headers());
-  const slug = sluggize(['contents', path]);
+  // TODO: devide into another `function` and move `api` dir.
+  const slug = sluggize(['v1', 'contents', path]);
   const url = buildUrl(api.url, slug, true);
   const response = await fetchFromApi(url, null, ctx, {
     interceptIfContainsIgnorePaths: true

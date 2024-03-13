@@ -11,8 +11,7 @@ import { requestContextFrom } from '../../../utils/requestContext';
 import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { api } from '../../../../config';
-
-const API_BASE_URL = `${api.url}/series`;
+import { buildUrl, sluggize } from '../../../utils/url';
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -25,7 +24,9 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const seriesName = req.params.slug;
   const ctx = requestContextFrom(headers());
-  const response: Response = await fetchFromApi(`${API_BASE_URL}/${seriesName}`, ctx);
+  // TODO: devide into another `function` and move `api` dir.
+  const url = buildUrl(api.url, sluggize(['v1', 'series', seriesName]), false);
+  const response: Response = await fetchFromApi(url, null, ctx);
   throwIfError(response);
 
   const seriresWithArticlesResponse: SeriresWithArticlesResponse = await response.json() as SeriresWithArticlesResponse;

@@ -72,7 +72,8 @@ async function handler(req: any) {
 
 async function execute(req, words: Array<string>) {
   const ctx = requestContextFrom(headers());
-  const url = buildUrl(api.url, sluggize(['search']), false);
+  // TODO: devide into another `function` and move `api` dir.
+  const url = buildUrl(api.url, sluggize(['v1', 'search']), false);
   const queryParams = buildQueryParams({ key: 'q', values: words })
   const response = await fetchFromApi(url, queryParams, ctx, null);
 

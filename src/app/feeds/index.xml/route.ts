@@ -9,7 +9,8 @@ import { buildUrl, sluggize } from '../../../utils/url';
 //export async function get(ctx: any) {
 export async function GET() {
   const ctx = requestContextFrom(headers());
-  const apiUrl = buildUrl(api.url, sluggize(['feeds', 'index']), false);
+  // TODO: devide into another `function` and move `api` dir.
+  const apiUrl = buildUrl(api.url, sluggize(['v1', 'feeds', 'index']), false);
   const response: Response = await fetchFromApi(apiUrl, null, ctx, null);
 
   if (response.status !== 200) {

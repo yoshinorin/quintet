@@ -20,7 +20,8 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   const ctx = requestContextFrom(headers());
-  const url = buildUrl(api.url, sluggize(['series']), true);
+  // TODO: devide into another `function` and move `api` dir.
+  const url = buildUrl(api.url, sluggize(['v1', 'series']), true);
   const response: Response = await fetchFromApi(url, null, ctx, null);
   throwIfError(response);
 

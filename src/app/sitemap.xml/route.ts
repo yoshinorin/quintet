@@ -8,7 +8,8 @@ import { buildUrl, sluggize } from '../../utils/url';
 
 export async function GET() {
   const ctx = requestContextFrom(headers());
-  const url = buildUrl(api.url, sluggize(['sitemaps']), true);
+  // TODO: devide into another `function` and move `api` dir.
+  const url = buildUrl(api.url, sluggize(['v1', 'sitemaps']), true);
   const response: Response = await fetchFromApi(url, null, ctx, null);
 
   if (response.status !== 200) {
