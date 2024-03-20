@@ -19,6 +19,13 @@
       width:     auto;
       max-width: 100%;
     }
+
+    video {
+      display:   block;
+      width:     auto;
+      max-width: 100%;
+    }
+
     :not(blockquote):not(li):not(.alert) {
       & > p {
         margin: 1.4em 0 1.3em 0.8em;
