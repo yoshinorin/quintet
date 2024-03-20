@@ -42,7 +42,7 @@ export const ArticlesComponent: React.FunctionComponent<{ articles: Array<Articl
 export const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<Article> }> = ({ articles }) => {
   return <>
     <div className={flexStyles['flex-row']}>
-      <div className={flexStyles['col-35']}>
+      <div className={flexStyles['col-25']}>
         <span className={homeStyles['cat-title']}>
           {
             (() => {
@@ -57,7 +57,7 @@ export const RecentArticlesComponent: React.FunctionComponent<{ articles: Array<
           Recent articles:
         </span>
       </div>
-      <div className={flexStyles['col-65']}>
+      <div className={flexStyles['col-75']}>
         <ArticlesSection
             articles={articles}
           />
