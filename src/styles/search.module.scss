@@ -1,0 +1,42 @@
+@import
+    '_variables';
+
+.group {
+  .result {
+    margin-top:     1em;
+    margin-bottom:  0.2em;
+  }
+}
+
+.result {
+  position:       relative;
+  width:          100%;
+  display:        inline-block;
+  vertical-align: top;
+
+  a {
+    .title {
+      margin:     0;
+      font-weight: bold;
+      font-size:   1.85rem;
+    }
+    .time {
+      font-size:   0.8em;
+      color:       map-get($article-color, 'time');
+    }
+    .excerpt {
+      letter-spacing: 0.05em;
+      color:          map-get($article-color, 'excerpt');
+      font-size:      1.65rem;
+    }
+  }
+
+
+}
+
+.wrap {
+  margin:         0.5em 0.2em 0.5em 0;
+  padding:        0.8em;
+  border:         0.1rem solid map-get($basic-colors, 'steel-gray');
+  border-radius:  0.3rem;
+}

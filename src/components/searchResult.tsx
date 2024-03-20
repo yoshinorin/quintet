@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from '../styles/articles.module.scss';
+import styles from '../styles/search.module.scss';
 import { splittedBy } from '../utils/time';
 import { SearchResponse } from '../models/models';
 
@@ -14,24 +14,22 @@ export const SearchResultComponent: React.FunctionComponent<{
     <div className={styles['found']}>
       {contents.length} / {hits}
     </div>
-    <div id={styles['archives']}>
+    <div id={styles['articles']}>
       {contents.map((content: SearchResponse, idx) => {
         return (
-          <article className={styles['articles']} key={idx}>
+          <article className={styles['result']} key={idx}>
             <div className={styles['wrap']}>
-              <div className={styles['header']}>
+              <Link href={`${content.path}`} prefetch={false} className='unstyled' target="_blank">
                 <time dateTime={`${content.publishedAt}`} className={styles['time']}>
                   {`${splittedBy(content.publishedAt, 'ja-JP', "/").join(',').replaceAll(',', '.')}`}
                 </time>
-                <Link href={`${content.path}`} prefetch={false} className='unstyled' target="_blank">
-                  <h3 className={styles['title']}>
-                    {`${content.title}`}
-                  </h3>
-                  <div className={styles['excerpt']}>
-                    {`${content.content}`}
-                  </div>
-                </Link>
-              </div>
+                <h4 className={styles['title']}>
+                  {`${content.title}`}
+                </h4>
+                <div className={styles['excerpt']}>
+                  {`${content.content}`}
+                </div>
+              </Link>
             </div>
           </article>
         );
