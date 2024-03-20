@@ -82,10 +82,10 @@ const ArticlesSection: React.FunctionComponent<{ articles: Array<Article> }> = (
           <article className={articlesInSection['article']} key={idx}>
             <div className={articlesInSection['wrap']}>
               <div className={articlesInSection['title']}>
-                <time dateTime={`${article.publishedAt}`} className={articlesInSection['time']}>
-                  {`${splittedBy(article.publishedAt, 'ja-JP', "/").join(',').replaceAll(',', '.')}`} - &nbsp;
-                </time>
                 <Link href={`${article.path}`} prefetch={false} className='unstyled'>
+                  <time dateTime={`${article.publishedAt}`} className={articlesInSection['time']}>
+                    {`${splittedBy(article.publishedAt, 'ja-JP', "/").join(',').replaceAll(',', '.')}`} - &nbsp;
+                  </time>
                   {`${article.title}`}
                 </Link>
               </div>
