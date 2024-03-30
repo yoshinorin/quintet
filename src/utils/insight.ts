@@ -47,29 +47,29 @@ export function asInsight(response: Response): Insight {
   } as Insight
 }
 
-export function appendBackendMeta(currentInsight: Insight, backendMetaResponse: BackendMeta): Insight {
+export function mergeBackendMeta(current: Insight, backendMeta: BackendMeta): Insight {
   return Object.assign(
-    currentInsight,
+    current,
     {
       backend: {
         response: {
-          id: currentInsight.backend.response.id,
-          time: currentInsight.backend.response.time
+          id: current.backend.response.id,
+          time: current.backend.response.time
         },
         runtime: {
-          type: backendMetaResponse.runtime.name,
-          vendor: backendMetaResponse.runtime.vendor,
-          version: backendMetaResponse.runtime.version,
+          type: backendMeta.runtime.name,
+          vendor: backendMeta.runtime.vendor,
+          version: backendMeta.runtime.version,
         },
         product: {
-          name: backendMetaResponse.name,
-          version: backendMetaResponse.version,
-          repo: backendMetaResponse.repository,
+          name: backendMeta.name,
+          version: backendMeta.version,
+          repo: backendMeta.repository,
           build: {
-            commit: backendMetaResponse.build.commit,
-            url: backendMetaResponse.build.url,
-            scalaVersion: backendMetaResponse.build.scalaVersion,
-            sbtVersion: backendMetaResponse.build.sbtVersion
+            commit: backendMeta.build.commit,
+            url: backendMeta.build.url,
+            scalaVersion: backendMeta.build.scalaVersion,
+            sbtVersion: backendMeta.build.sbtVersion
           }
         }
       }

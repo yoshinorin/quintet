@@ -11,7 +11,7 @@ import containerStyles from '../styles/components/container.module.scss';
 import contentStyles from '../styles/components/content.module.scss';
 import { Accordion } from './accordion';
 import { fetchFromApi } from '../api/request';
-import { appendBackendMeta } from '../utils/insight';
+import { mergeBackendMeta } from '../utils/insight';
 import { publicApi } from '../../config';
 import { buildUrl, sluggize } from '../utils/url';
 
@@ -28,7 +28,7 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
     let ins = insight;
     if (response.status === 200) {
       const bm = await response.json() as BackendMeta;
-      ins = appendBackendMeta(insight, bm);
+      ins = mergeBackendMeta(insight, bm);
       setIsFetchedBackendMeta(true);
     }
 
