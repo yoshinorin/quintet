@@ -31,16 +31,16 @@
     "pm2": "5.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.72.0"
+    "sass": "1.75.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.1.4",
-    "@playwright/test": "1.42.1",
-    "@types/node": "20.11.30",
-    "@types/react": "18.2.67",
-    "@vitest/coverage-v8": "1.4.0",
-    "typescript": "5.4.3",
-    "vitest": "1.4.0"
+    "@playwright/test": "1.43.1",
+    "@types/node": "20.12.7",
+    "@types/react": "18.2.79",
+    "@vitest/coverage-v8": "1.5.0",
+    "typescript": "5.4.5",
+    "vitest": "1.5.0"
   },
   "engines": {
     "npm": ">=10",
