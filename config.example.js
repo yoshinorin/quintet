@@ -114,5 +114,6 @@ export const filterRequestPaths = [
   '**.jpg',
   '**.png',
   '**.xml',
-  '**.ico'
+  '**.ico',
+  '**.webp'
 ]
