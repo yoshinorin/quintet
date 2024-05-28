@@ -37,7 +37,8 @@ module.exports = withBundleAnalyzer({
     includePaths: [path.join(__dirname, 'styles')]
   },
   experimental: {
-    scrollRestoration: true
+    scrollRestoration: true,
+    // optimizePackageImports: ['<packageName>'],
   },
   eslint: {
     ignoreDuringBuilds: true,
