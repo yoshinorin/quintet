@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { CoverComponent, DropdownComponent } from "../../components/components";
 import { getTheme } from "../../services/theme";
 import containerStyles from "../../styles/components/container.module.scss";

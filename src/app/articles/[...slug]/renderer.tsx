@@ -1,11 +1,11 @@
+import { externalResources as externalResourcesConfig } from "../../../../config";
 import {
   ContentComponent,
   CoverComponent,
   InjectScriptComponent
 } from "../../../components/components";
-import { Content, Insight, InjectScript } from "../../../models/models";
+import { Content, InjectScript, Insight } from "../../../models/models";
 import { getScripts } from "../../../utils/injectScript";
-import { externalResources as externalResourcesConfig } from "../../../../config";
 
 export const Renderer: React.FunctionComponent<{
   content: Content;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Article, Series, SeriresWithArticles } from "../models/models";
-import styles from "../styles/series.module.scss";
 import containerStyles from "../styles/components/container.module.scss";
+import styles from "../styles/series.module.scss";
 
 export const SeriesComponent: React.FunctionComponent<{
   series: Array<Series>;

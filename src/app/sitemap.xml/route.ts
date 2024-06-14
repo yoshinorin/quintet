@@ -1,9 +1,9 @@
 import { headers } from "next/headers";
-import { Sitemap } from "../../models/models";
+import { api } from "../../../config";
 import { fetchFromApi } from "../../api/request";
+import { Sitemap } from "../../models/models";
 import { generateSitemapString } from "../../services/sitemap";
 import { requestContextFrom } from "../../utils/requestContext";
-import { api } from "../../../config";
 import { buildUrl, sluggize } from "../../utils/url";
 
 export async function GET() {

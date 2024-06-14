@@ -1,5 +1,5 @@
-import { NavigationComponent } from "./navigation";
 import styles from "../styles/navigation.module.scss";
+import { NavigationComponent } from "./navigation";
 
 export const HeaderComponent: React.FunctionComponent<{
   items: Array<any>;

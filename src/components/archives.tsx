@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { archivesPage } from "../../config";
 import { Archive, ArchiveFormatedDate } from "../models/models";
-import { splittedBy } from "../utils/time";
 import styles from "../styles/archives.module.scss";
 import containerStyles from "../styles/components/container.module.scss";
-import { archivesPage } from "../../config";
-import { DropdownComponent } from "./components";
 import { sequentialPadPosNum } from "../utils/nums";
+import { splittedBy } from "../utils/time";
+import { DropdownComponent } from "./components";
 
 export const ArchivesComponent: React.FunctionComponent<{
   archives: Array<Archive>;

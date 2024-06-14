@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "../styles/footer.module.scss";
 import containerStyles from "../styles/components/container.module.scss";
+import styles from "../styles/footer.module.scss";
 
 export const FooterComponent: React.FunctionComponent<{
   copyrights: string;

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { TagComponent } from "./tag";
+import React, { useEffect, useState } from "react";
+import { tagsPage } from "../../config";
 import { Tag } from "../models/models";
 import containerStyles from "../styles/components/container.module.scss";
 import style from "../styles/tags.module.scss";
-import { tagsPage } from "../../config";
+import { TagComponent } from "./tag";
 
 export const TagsComponent: React.FunctionComponent<{ tags: Array<Tag> }> = ({
   tags

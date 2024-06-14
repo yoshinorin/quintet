@@ -1,22 +1,22 @@
 "use server";
 
-import { cache } from "react";
-import { headers } from "next/headers";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { permanentRedirect } from "next/navigation";
+import { cache } from "react";
+import { api } from "../../../config";
+import { fetchFromApi } from "../../api/request";
 import {
-  ContentResponse,
   Content,
+  ContentResponse,
   ContentResponseWithFetchResponse
 } from "../../models/models";
-import { fetchFromApi } from "../../api/request";
 import { asInsight } from "../../utils/insight";
-import { Renderer } from "./renderer";
-import { runWithHandleErrorIf, throwIfError } from "../handler";
-import { buildUrl, sluggize } from "../../utils/url";
 import { requestContextFrom } from "../../utils/requestContext";
+import { buildUrl, sluggize } from "../../utils/url";
+import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { generateForArticleOrPage } from "../metadata";
-import { api } from "../../../config";
+import { Renderer } from "./renderer";
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {

@@ -1,5 +1,5 @@
-import { InjectScript } from "../models/script";
 import { ExternalResources } from "../models/externalResource";
+import { InjectScript } from "../models/script";
 
 // TODO: write test code
 export function getScripts(

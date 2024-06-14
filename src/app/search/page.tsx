@@ -1,12 +1,12 @@
 "use server";
 
 import { headers } from "next/headers";
-import { requestContextFrom } from "../../utils/requestContext";
-import { SearchResponse, SearchResponseWithCount } from "../../models/models";
-import { fetchFromApi } from "../../api/request";
-import { Renderer } from "./renderer";
 import { api } from "../../../config";
+import { fetchFromApi } from "../../api/request";
+import { SearchResponse, SearchResponseWithCount } from "../../models/models";
+import { requestContextFrom } from "../../utils/requestContext";
 import { buildQueryParams, buildUrl, sluggize } from "../../utils/url";
+import { Renderer } from "./renderer";
 
 const emptyResult = {
   count: 0,

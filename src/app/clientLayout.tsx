@@ -1,14 +1,14 @@
 "use client";
 
-import "../styles/globals.scss";
 import React, { useEffect } from "react";
-import { getTheme } from "../services/theme";
+import { copyrights, footerItems, headerItems } from "../../config";
 import {
   BackToTopComponent,
   FooterComponent,
   HeaderComponent
 } from "../components/components";
-import { headerItems, footerItems, copyrights } from "../../config";
+import { getTheme } from "../services/theme";
+import "../styles/globals.scss";
 
 export default function ClientLayout({
   children

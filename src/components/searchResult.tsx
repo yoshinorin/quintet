@@ -1,8 +1,8 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
+import { SearchResponse } from "../models/models";
 import styles from "../styles/search.module.scss";
 import { splittedBy } from "../utils/time";
-import { SearchResponse } from "../models/models";
 
 export const SearchResultComponent: React.FunctionComponent<{
   hits: number;

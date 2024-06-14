@@ -1,19 +1,19 @@
-import React from "react";
 import { Metadata } from "next";
-import ClientLayout from "./clientLayout";
-import { getTheme } from "../services/theme";
+import React from "react";
 import {
-  siteName,
-  mainAuthor,
-  lang,
-  url,
-  locale,
   defaultImage,
   favicon,
-  injectMetas
+  injectMetas,
+  lang,
+  locale,
+  mainAuthor,
+  siteName,
+  url
 } from "../../config";
 import { HeadMetaComponent } from "../components/components";
+import { getTheme } from "../services/theme";
 import { fullUrl } from "../utils/url";
+import ClientLayout from "./clientLayout";
 
 export const metadata: Metadata = {
   title: siteName,

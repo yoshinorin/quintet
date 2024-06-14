@@ -1,7 +1,7 @@
 "use client";
 
-import { Tag } from "../../models/models";
 import { CoverComponent, TagsComponent } from "../../components/components";
+import { Tag } from "../../models/models";
 
 export const Renderer: React.FunctionComponent<{
   tags: Array<Tag>;

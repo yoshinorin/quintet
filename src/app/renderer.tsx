@@ -1,10 +1,10 @@
-import { Article } from "../models/models";
 import {
   CoverComponent,
   RecentArticlesComponent
 } from "../components/components";
-import styles from "../styles/home.module.scss";
+import { Article } from "../models/models";
 import containerStyles from "../styles/components/container.module.scss";
+import styles from "../styles/home.module.scss";
 
 export const Renderer: React.FunctionComponent<{
   articles: Array<Article>;

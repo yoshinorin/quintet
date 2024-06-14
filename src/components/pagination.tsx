@@ -1,10 +1,10 @@
 // TODO: refactor all
+import Link from "next/link";
 import { PaginationNumbers } from "../models/models";
 import {
   calcNumberOfPages,
   getNumbersForDisplay
 } from "../services/pagination";
-import Link from "next/link";
 import style from "../styles/components/pagination.module.scss";
 
 // TODO: set default number of articles in one page from config.

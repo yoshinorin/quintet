@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { TagComponent } from "./tag";
-import { NavigationComponent } from "./navigation";
+import { coverBottomItems, subTitle, title } from "../../config";
 import { Tag } from "../models/models";
 import styles from "../styles/components/cover.module.scss";
 import { toDate } from "../utils/time";
-import { title, subTitle, coverBottomItems } from "../../config";
+import { NavigationComponent } from "./navigation";
+import { TagComponent } from "./tag";
 
 type Props = {
   title: string;

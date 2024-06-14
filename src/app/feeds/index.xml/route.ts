@@ -1,8 +1,8 @@
 import { headers } from "next/headers";
-import { Feed } from "../../../models/models";
+import { api, mainAuthor, siteName, url } from "../../../../config";
 import { fetchFromApi } from "../../../api/request";
+import { Feed } from "../../../models/models";
 import { generateFeedsString } from "../../../services/feeds";
-import { api, url, siteName, mainAuthor } from "../../../../config";
 import { requestContextFrom } from "../../../utils/requestContext";
 import { buildUrl, sluggize } from "../../../utils/url";
 

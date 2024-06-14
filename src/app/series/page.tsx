@@ -1,13 +1,13 @@
 "use server";
 
 import { headers } from "next/headers";
+import { api } from "../../../config";
 import { fetchFromApi } from "../../api/request";
 import { Series, SeriesResponse } from "../../models/models";
 import { requestContextFrom } from "../../utils/requestContext";
-import { Renderer } from "./renderer";
-import { runWithHandleErrorIf, throwIfError } from "../handler";
-import { api } from "../../../config";
 import { buildUrl, sluggize } from "../../utils/url";
+import { runWithHandleErrorIf, throwIfError } from "../handler";
+import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));

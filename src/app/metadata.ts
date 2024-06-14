@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import { Content } from "../models/content";
 import {
   defaultImage,
   defaultRobotsMeta,
   locale,
   siteName
 } from "../../config";
+import { Content } from "../models/content";
 import { toISODateSrting } from "../utils/time";
 import { fullUrl } from "../utils/url";
 

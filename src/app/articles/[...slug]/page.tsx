@@ -1,23 +1,23 @@
 "use server";
 
-import { cache } from "react";
-import { headers } from "next/headers";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
+import { cache } from "react";
+import { api } from "../../../../config";
+import { fetchFromApi } from "../../../api/request";
 import {
-  ContentResponse,
   Content,
+  ContentResponse,
   ContentResponseWithFetchResponse
 } from "../../../models/models";
-import { isMatch } from "../../../utils/match";
-import { fetchFromApi } from "../../../api/request";
 import { asInsight } from "../../../utils/insight";
-import { Renderer } from "./renderer";
+import { isMatch } from "../../../utils/match";
+import { requestContextFrom } from "../../../utils/requestContext";
+import { buildUrl, sluggize } from "../../../utils/url";
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { generateForArticleOrPage } from "../../metadata";
-import { buildUrl, sluggize } from "../../../utils/url";
-import { requestContextFrom } from "../../../utils/requestContext";
-import { api } from "../../../../config";
+import { Renderer } from "./renderer";
 
 const PREFIX_URL = "articles";
 

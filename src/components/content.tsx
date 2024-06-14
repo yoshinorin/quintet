@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Content, ContentMeta, Insight, BackendMeta } from "../models/models";
+import { publicApi } from "../../config";
+import { fetchFromApi } from "../api/request";
+import { BackendMeta, Content, ContentMeta, Insight } from "../models/models";
 import containerStyles from "../styles/components/container.module.scss";
 import contentStyles from "../styles/components/content.module.scss";
-import { Accordion } from "./accordion";
-import { fetchFromApi } from "../api/request";
 import { mergeBackendMeta } from "../utils/insight";
-import { publicApi } from "../../config";
 import { buildUrl, sluggize } from "../utils/url";
+import { Accordion } from "./accordion";
 
 export const ContentComponent: React.FunctionComponent<{
   content: Content;
