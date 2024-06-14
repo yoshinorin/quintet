@@ -1,54 +1,58 @@
-import { url } from '../../config';
+import { url } from "../../config";
 
 export function fullUrl(slug: string, trailingSlash: boolean = false): string {
   let s = slug;
   if (trailingSlash) {
-    s = slug === undefined ? '' : slug + "/"
+    s = slug === undefined ? "" : slug + "/";
   }
-  return new URL(s, url).href
+  return new URL(s, url).href;
 }
 
 // FIXME
 export function sluggize(
-  slug: Array<string> | string,  // NOTE: Next.js request context seems <any>.
+  slug: Array<string> | string // NOTE: Next.js request context seems <any>.
 ) {
   if (slug instanceof Array) {
-    return slug.join('/').replace(/\/{2,}/g, '/');
+    return slug.join("/").replace(/\/{2,}/g, "/");
   } else {
     return slug;
   }
 }
 
-export function buildUrl(baseUrl: string, slug: string, trailingSlash: boolean): string {
-  baseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-  slug = slug.startsWith('/') ? slug.slice(1) : slug;
+export function buildUrl(
+  baseUrl: string,
+  slug: string,
+  trailingSlash: boolean
+): string {
+  baseUrl = baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+  slug = slug.startsWith("/") ? slug.slice(1) : slug;
   if (trailingSlash) {
-    slug = slug.endsWith('/') ? slug : `${slug}/`;
+    slug = slug.endsWith("/") ? slug : `${slug}/`;
   } else {
-    slug = slug.endsWith('/') ? slug.slice(0, -1) : slug;
+    slug = slug.endsWith("/") ? slug.slice(0, -1) : slug;
   }
-  return new URL(slug, baseUrl).href
+  return new URL(slug, baseUrl).href;
 }
 
 export type QueryParams = {
   params?: {
-    key: string,
-    values: Array<string>,
-  },
+    key: string;
+    values: Array<string>;
+  };
   pagination?: {
-    page: number,
-    limit: number
-  }
-}
+    page: number;
+    limit: number;
+  };
+};
 
 export function buildQueryParams(params: QueryParams = {}): string {
   const queryParams = params.params;
   const pagenation = params.pagination;
 
-  let q = '';
-  let p = '';
+  let q = "";
+  let p = "";
   if (queryParams) {
-    q = queryParams.values.map(q => `${queryParams.key}=${q}`).join('&');
+    q = queryParams.values.map((q) => `${queryParams.key}=${q}`).join("&");
   }
   if (pagenation) {
     p = `page=${pagenation.page}&limit=${pagenation.limit}`;

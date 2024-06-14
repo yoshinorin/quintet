@@ -1,46 +1,53 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import {
-  Content,
-  ContentMeta,
-  Insight,
-  BackendMeta
-} from '../models/models';
-import containerStyles from '../styles/components/container.module.scss';
-import contentStyles from '../styles/components/content.module.scss';
-import { Accordion } from './accordion';
-import { fetchFromApi } from '../api/request';
-import { mergeBackendMeta } from '../utils/insight';
-import { publicApi } from '../../config';
-import { buildUrl, sluggize } from '../utils/url';
+import { useState } from "react";
+import { Content, ContentMeta, Insight, BackendMeta } from "../models/models";
+import containerStyles from "../styles/components/container.module.scss";
+import contentStyles from "../styles/components/content.module.scss";
+import { Accordion } from "./accordion";
+import { fetchFromApi } from "../api/request";
+import { mergeBackendMeta } from "../utils/insight";
+import { publicApi } from "../../config";
+import { buildUrl, sluggize } from "../utils/url";
 
-export const ContentComponent: React.FunctionComponent<{ content: Content, insight: Insight | null }> = ({content, insight}) => {
-
+export const ContentComponent: React.FunctionComponent<{
+  content: Content;
+  insight: Insight | null;
+}> = ({ content, insight }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFetchedBackendMeta, setIsFetchedBackendMeta] = useState(false);
   const [metaAndInsight, setData] = useState(null);
 
   const fetchBackendMetaData = async () => {
     // TODO: devide into another `function` and move `api` dir.
-    const url = buildUrl(publicApi.url, sluggize(['v1', 'system', 'metadata']), false);
+    const url = buildUrl(
+      publicApi.url,
+      sluggize(["v1", "system", "metadata"]),
+      false
+    );
     const response: Response = await fetchFromApi(url, null, null, null);
     let ins = insight;
     if (response.status === 200) {
-      const bm = await response.json() as BackendMeta;
+      const bm = (await response.json()) as BackendMeta;
       ins = mergeBackendMeta(insight, bm);
       setIsFetchedBackendMeta(true);
     }
 
-    let actualRobotsMeta = '';
+    let actualRobotsMeta = "";
     let maybeRobotsMeta = document.querySelector('meta[name="robots"]');
     if (maybeRobotsMeta) {
-      const unsortedActualRobotsMeta = maybeRobotsMeta.getAttribute('content').split(',').map(r => r.trim());
+      const unsortedActualRobotsMeta = maybeRobotsMeta
+        .getAttribute("content")
+        .split(",")
+        .map((r) => r.trim());
       // TODO: write test code
-      const isSorted = arr => arr.every((v, idx) => idx === 0 || v >= arr[idx - 1]);
+      const isSorted = (arr) =>
+        arr.every((v, idx) => idx === 0 || v >= arr[idx - 1]);
       // @ts-ignore
-      const x = isSorted(unsortedActualRobotsMeta) ? unsortedActualRobotsMeta : [...unsortedActualRobotsMeta].sort();
-      actualRobotsMeta = x.join(', ');
+      const x = isSorted(unsortedActualRobotsMeta)
+        ? unsortedActualRobotsMeta
+        : [...unsortedActualRobotsMeta].sort();
+      actualRobotsMeta = x.join(", ");
     }
 
     const meta: ContentMeta = {
@@ -48,7 +55,7 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
       robots: {
         diff: !(actualRobotsMeta === content.robotsAttributes),
         actual: actualRobotsMeta,
-        expected: content.robotsAttributes,
+        expected: content.robotsAttributes
       },
       tags: content.tags,
       words: content.length,
@@ -56,12 +63,18 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
       authorName: content.authorName,
       publishedAt: content.publishedAt,
       updatedAt: content.updatedAt
-    }
+    };
 
-    setData(JSON.stringify({
-      attributes: meta,
-      insight: ins
-    }, null, 2));
+    setData(
+      JSON.stringify(
+        {
+          attributes: meta,
+          insight: ins
+        },
+        null,
+        2
+      )
+    );
   };
 
   const toggle = () => {
@@ -72,10 +85,10 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
     setIsOpen(!isOpen);
   };
 
-  return(
+  return (
     <article className={contentStyles.content}>
-      <div className={containerStyles.container} >
-        <div className={`${contentStyles['accordion-wrap']}`} >
+      <div className={containerStyles.container}>
+        <div className={`${contentStyles["accordion-wrap"]}`}>
           <Accordion
             open={isOpen}
             onclick={toggle}
@@ -83,13 +96,16 @@ export const ContentComponent: React.FunctionComponent<{ content: Content, insig
             content={metaAndInsight}
           />
         </div>
-        <div className={`${contentStyles['words']}`}>
+        <div className={`${contentStyles["words"]}`}>
           {content.length.toLocaleString()} words
         </div>
       </div>
-      <div className={`${contentStyles['content-main']}`}>
-        <div className={containerStyles.container} dangerouslySetInnerHTML={{ __html: content.content }} />
+      <div className={`${contentStyles["content-main"]}`}>
+        <div
+          className={containerStyles.container}
+          dangerouslySetInnerHTML={{ __html: content.content }}
+        />
       </div>
     </article>
-  )
-}
+  );
+};

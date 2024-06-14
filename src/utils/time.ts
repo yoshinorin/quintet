@@ -22,11 +22,16 @@ export function toISODateSrting(unixTime: number): string {
   }
 }
 
-export function splittedBy(unixTime: number, locale: string, delimiter: string): Array<string> {
-  return toDate(unixTime).toLocaleDateString(locale, {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  })
-  .split(delimiter);
+export function splittedBy(
+  unixTime: number,
+  locale: string,
+  delimiter: string
+): Array<string> {
+  return toDate(unixTime)
+    .toLocaleDateString(locale, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    })
+    .split(delimiter);
 }

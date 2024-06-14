@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Tag } from '../../models/models';
-import { CoverComponent, TagsComponent } from '../../components/components';
+import { Tag } from "../../models/models";
+import { CoverComponent, TagsComponent } from "../../components/components";
 
 export const Renderer: React.FunctionComponent<{
-  tags: Array<Tag>
+  tags: Array<Tag>;
 }> = ({ tags }) => {
   return (
     <>
@@ -12,14 +12,12 @@ export const Renderer: React.FunctionComponent<{
         props={{
           title: "Tags",
           tags: null,
-          publishedAt: null,
+          publishedAt: null
         }}
       />
       <main>
-        <TagsComponent
-          tags={tags}
-        />
+        <TagsComponent tags={tags} />
       </main>
     </>
-  )
-}
+  );
+};

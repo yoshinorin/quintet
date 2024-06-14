@@ -1,0 +1,12 @@
+build
+coverage
+.github/
+report/
+test-results/
+*.log
+*.yml
+*.json
+**/.git
+**/node_modules
+*.scss
+

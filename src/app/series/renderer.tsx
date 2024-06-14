@@ -1,8 +1,8 @@
-import { CoverComponent, SeriesComponent } from '../../components/components';
-import { Series } from '../../models/models';
+import { CoverComponent, SeriesComponent } from "../../components/components";
+import { Series } from "../../models/models";
 
 export const Renderer: React.FunctionComponent<{
-  series: Array<Series>
+  series: Array<Series>;
 }> = ({ series }) => {
   return (
     <>
@@ -10,14 +10,12 @@ export const Renderer: React.FunctionComponent<{
         props={{
           title: "Series",
           tags: null,
-          publishedAt: null,
+          publishedAt: null
         }}
       />
       <main>
-        <SeriesComponent
-          series={series}
-        />
+        <SeriesComponent series={series} />
       </main>
     </>
-  )
-}
+  );
+};

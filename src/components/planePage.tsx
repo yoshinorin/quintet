@@ -1,12 +1,14 @@
-export const PlanePage: React.FunctionComponent<{ title: string, content: string }> = ({ title, content }) => {
-
+export const PlanePage: React.FunctionComponent<{
+  title: string;
+  content: string;
+}> = ({ title, content }) => {
   const pageStyles: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-    textAlign: 'center',
-    flexDirection: 'column',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh",
+    textAlign: "center",
+    flexDirection: "column"
   };
 
   return (

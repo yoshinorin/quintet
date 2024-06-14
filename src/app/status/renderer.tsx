@@ -1,30 +1,23 @@
-import { PlanePage } from '../../components/planePage';
+import { PlanePage } from "../../components/planePage";
 
 export const Renderer: React.FunctionComponent<{
-  statusCode: number
+  statusCode: number;
 }> = ({ statusCode }) => {
   // TODO: improvement (add bc-color, style, statusCode, etc)
-  return(
+  return (
     <>
-      {
-        (() => {
-          if (statusCode === 200) {
-            return(
-              <PlanePage
-                title="Operational"
-                content="API Server is operational."
-              />
-            )
-          } else {
-            return(
-              <PlanePage
-                  title="Down"
-                  content="API Server is down."
-              />
-            )
-          }
-        })()
-      }
+      {(() => {
+        if (statusCode === 200) {
+          return (
+            <PlanePage
+              title="Operational"
+              content="API Server is operational."
+            />
+          );
+        } else {
+          return <PlanePage title="Down" content="API Server is down." />;
+        }
+      })()}
     </>
   );
-}
+};

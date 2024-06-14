@@ -1,27 +1,21 @@
 export const HeadMetaComponent: React.FunctionComponent<{
-  favicon,
-  injectMetas
+  favicon;
+  injectMetas;
 }> = ({ favicon, injectMetas }) => {
   // TODO: JSON + LD
-  return(
+  return (
     <head>
-      {
-        (() => {
-          if (injectMetas) {
-            return(
-              injectMetas.map((m => {
-                return(
-                  <meta name={m.name} content={m.content} key={m.name} />
-                )
-              }))
-            )
-          }
-        })()
-      }
-      <link href={favicon['url']} rel="icon" type={favicon['type']}/>
+      {(() => {
+        if (injectMetas) {
+          return injectMetas.map((m) => {
+            return <meta name={m.name} content={m.content} key={m.name} />;
+          });
+        }
+      })()}
+      <link href={favicon["url"]} rel="icon" type={favicon["type"]} />
     </head>
-  )
-}
+  );
+};
 
 /* NOTE: Before migrate to AppRouter's head metas
 const HeadMetaComponent: React.FunctionComponent<{

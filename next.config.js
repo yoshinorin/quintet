@@ -1,17 +1,24 @@
-const path = require('path');
-const { execSync } = require('child_process');
-const pkg = require('./package.json')
+const path = require("path");
+const { execSync } = require("child_process");
+const pkg = require("./package.json");
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.NEXT_ANALYZE ? process.env.NEXT_ANALYZE === 'true' : 'false',
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.NEXT_ANALYZE
+    ? process.env.NEXT_ANALYZE === "true"
+    : "false"
 });
-
 
 let commitHash = "N/A";
 let commitUrl = "N/A";
 try {
-  commitHash = execSync("git show --format='%h' --no-patch").toString().trim().replaceAll("'","");
-  commitUrl = (pkg.repository && commitHash) ? `${pkg.repository}/commit/${commitHash}` : "N/A";
+  commitHash = execSync("git show --format='%h' --no-patch")
+    .toString()
+    .trim()
+    .replaceAll("'", "");
+  commitUrl =
+    pkg.repository && commitHash
+      ? `${pkg.repository}/commit/${commitHash}`
+      : "N/A";
 } catch {
   // Nothing todo
 }
@@ -34,22 +41,22 @@ module.exports = withBundleAnalyzer({
   */
   trailingSlash: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')]
+    includePaths: [path.join(__dirname, "styles")]
   },
   experimental: {
-    scrollRestoration: true,
+    scrollRestoration: true
     // optimizePackageImports: ['<packageName>'],
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true
   },
   images: {
-    unoptimized: true,
+    unoptimized: true
   },
   swcMinify: true,
   poweredByHeader: false,
-  compress: false,         // already gzipped with the `HTTP server`. No need with `Next.js`.
+  compress: false // already gzipped with the `HTTP server`. No need with `Next.js`.
 });

@@ -1,40 +1,40 @@
 export interface Insight {
   backend: {
     response: {
-      id: string,
-      time: string
-    },
+      id: string;
+      time: string;
+    };
     runtime: {
-      type: string,
-      vendor: string,
-      version: string,
-    },
+      type: string;
+      vendor: string;
+      version: string;
+    };
     product: {
-      name: string,
-      version: string,
-      repo: string,
+      name: string;
+      version: string;
+      repo: string;
       build: {
-        commit: string,
-        url: string,
-        scalaVersion: string
-        sbtVersion: string
-      }
-    }
-  },
+        commit: string;
+        url: string;
+        scalaVersion: string;
+        sbtVersion: string;
+      };
+    };
+  };
   frontend: {
     runtime: {
-      type: string,
-      version: string,
-    },
+      type: string;
+      version: string;
+    };
     product: {
-      name: string,
-      version: string,
-      repo: string,
+      name: string;
+      version: string;
+      repo: string;
       build: {
-        commit: string,
-        url: string,
-        at: string
-      }
-    }
-  },
+        commit: string;
+        url: string;
+        at: string;
+      };
+    };
+  };
 }

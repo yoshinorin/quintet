@@ -1,49 +1,53 @@
-import { expect, test } from 'vitest'
-import { generateFeedsString } from '../../../src/services/feeds';;
-import { Feed } from '../../../src/models/feed';
+import { expect, test } from "vitest";
+import { generateFeedsString } from "../../../src/services/feeds";
+import { Feed } from "../../../src/models/feed";
 
-test('generate sitemap.xml', async () => {
-
+test("generate sitemap.xml", async () => {
   const data: Array<Feed> = [
     {
-      "title": "Standard nested post",
-      "link": "/articles/nested/standard/",
-      "id": "/articles/nested/standard/",
-      "published": 1705489274,
-      "updated": 1705492983
+      title: "Standard nested post",
+      link: "/articles/nested/standard/",
+      id: "/articles/nested/standard/",
+      published: 1705489274,
+      updated: 1705492983
     },
     {
-      "title": "Empty robots",
-      "link": "/articles/nested/empty-robots/",
-      "id": "/articles/nested/empty-robots/",
-      "published": 1705406325,
-      "updated": 1705490022
+      title: "Empty robots",
+      link: "/articles/nested/empty-robots/",
+      id: "/articles/nested/empty-robots/",
+      published: 1705406325,
+      updated: 1705490022
     },
     {
-      "title": "Empty tags",
-      "link": "/articles/nested/empty-tags/",
-      "id": "/articles/nested/empty-tags/",
-      "published": 1705315068,
-      "updated": 1888888888
+      title: "Empty tags",
+      link: "/articles/nested/empty-tags/",
+      id: "/articles/nested/empty-tags/",
+      published: 1705315068,
+      updated: 1888888888
     },
     {
-      "title": "With externalResources",
-      "link": "/articles/nested/with-externalresources/",
-      "id": "/articles/nested/with-externalresources/",
-      "published": 1705239702,
-      "updated": 1705241495
+      title: "With externalResources",
+      link: "/articles/nested/with-externalresources/",
+      id: "/articles/nested/with-externalresources/",
+      published: 1705239702,
+      updated: 1705241495
     },
     {
-      "title": "Partially robots",
-      "link": "/articles/nested/partially-robots/",
-      "id": "/articles/nested/partially-robots/",
-      "published": 1705236309,
-      "updated": 1705239665
+      title: "Partially robots",
+      link: "/articles/nested/partially-robots/",
+      id: "/articles/nested/partially-robots/",
+      published: 1705236309,
+      updated: 1705239665
     }
-  ]
+  ];
 
-  const result = await generateFeedsString('https://example.com', 'yourSiteName', 'yourName', data);
-  expect(result.replace(/\s/g,"")).toEqual(
+  const result = await generateFeedsString(
+    "https://example.com",
+    "yourSiteName",
+    "yourName",
+    data
+  );
+  expect(result.replace(/\s/g, "")).toEqual(
     `<feed xmlns="http://www.w3.org/2005/Atom">
     <title>yourSiteName</title>
     <link href="https://example.com/feeds/index.xml" rel="self"/>
@@ -89,6 +93,6 @@ test('generate sitemap.xml', async () => {
     <updated>2024-01-14T13:41:05.000Z</updated>
     </entry>
     </feed>
-    `.replace(/\s/g,"")
+    `.replace(/\s/g, "")
   );
 });

@@ -1,8 +1,8 @@
 import { BackendMeta, Insight } from "../models/models";
 
 export function asInsight(response: Response): Insight {
-  const reqId = response.headers.get("x-request-id")
-  const resTime = response.headers.get("x-response-time")
+  const reqId = response.headers.get("x-request-id");
+  const resTime = response.headers.get("x-response-time");
 
   return {
     backend: {
@@ -13,7 +13,7 @@ export function asInsight(response: Response): Insight {
       runtime: {
         type: "N/A",
         vendor: "N/A",
-        version: "N/A",
+        version: "N/A"
       },
       product: {
         name: "N/A",
@@ -41,39 +41,37 @@ export function asInsight(response: Response): Insight {
           url: process.env.QUINTET_COMMIT_URL,
           at: process.env.QUINTET_BUILD_AT
         }
-      },
-
+      }
     }
-  } as Insight
+  } as Insight;
 }
 
-export function mergeBackendMeta(current: Insight, backendMeta: BackendMeta): Insight {
-  return Object.assign(
-    current,
-    {
-      backend: {
-        response: {
-          id: current.backend.response.id,
-          time: current.backend.response.time
-        },
-        runtime: {
-          type: backendMeta.runtime.name,
-          vendor: backendMeta.runtime.vendor,
-          version: backendMeta.runtime.version,
-        },
-        product: {
-          name: backendMeta.name,
-          version: backendMeta.version,
-          repo: backendMeta.repository,
-          build: {
-            commit: backendMeta.build.commit,
-            url: backendMeta.build.url,
-            scalaVersion: backendMeta.build.scalaVersion,
-            sbtVersion: backendMeta.build.sbtVersion
-          }
+export function mergeBackendMeta(
+  current: Insight,
+  backendMeta: BackendMeta
+): Insight {
+  return Object.assign(current, {
+    backend: {
+      response: {
+        id: current.backend.response.id,
+        time: current.backend.response.time
+      },
+      runtime: {
+        type: backendMeta.runtime.name,
+        vendor: backendMeta.runtime.vendor,
+        version: backendMeta.runtime.version
+      },
+      product: {
+        name: backendMeta.name,
+        version: backendMeta.version,
+        repo: backendMeta.repository,
+        build: {
+          commit: backendMeta.build.commit,
+          url: backendMeta.build.url,
+          scalaVersion: backendMeta.build.scalaVersion,
+          sbtVersion: backendMeta.build.sbtVersion
         }
       }
     }
-  )
+  });
 }
-

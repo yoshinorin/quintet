@@ -1,11 +1,15 @@
-import { Feed } from '../models/models';
-import { toISODateSrting } from '../utils/time';
+import { Feed } from "../models/models";
+import { toISODateSrting } from "../utils/time";
 
-const FEED_URL = '/feeds/index.xml';
+const FEED_URL = "/feeds/index.xml";
 
-export async function generateFeedsString(url: string, siteName: string, mainAuthor: string, feeds: Array<Feed>): Promise<string> {
-
-  const latest = feeds[0]
+export async function generateFeedsString(
+  url: string,
+  siteName: string,
+  mainAuthor: string,
+  feeds: Array<Feed>
+): Promise<string> {
+  const latest = feeds[0];
 
   // https://validator.w3.org/feed/docs/atom.html
   let atomFeedXml = `
@@ -18,7 +22,7 @@ export async function generateFeedsString(url: string, siteName: string, mainAut
     <author>
       <name>${mainAuthor}</name>
     </author>
-  `
+  `;
 
   feeds.forEach((f) => {
     const u = `${url}${f.link}`;
@@ -31,7 +35,7 @@ export async function generateFeedsString(url: string, siteName: string, mainAut
         <published>${toISODateSrting(f.published)}</published>
         <updated>${toISODateSrting(f.updated)}</updated>
       </entry>
-    `
+    `;
   });
-  return atomFeedXml += '</feed>';
+  return (atomFeedXml += "</feed>");
 }

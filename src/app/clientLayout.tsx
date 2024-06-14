@@ -1,40 +1,31 @@
-'use client';
+"use client";
 
-import '../styles/globals.scss';
-import React, { useEffect } from 'react';
-import { getTheme } from '../services/theme';
+import "../styles/globals.scss";
+import React, { useEffect } from "react";
+import { getTheme } from "../services/theme";
 import {
   BackToTopComponent,
   FooterComponent,
   HeaderComponent
-} from '../components/components';
-import {
-  headerItems,
-  footerItems,
-  copyrights
-} from '../../config';
+} from "../components/components";
+import { headerItems, footerItems, copyrights } from "../../config";
 
 export default function ClientLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   useEffect(() => {
     let theme = getTheme();
     const body = document.body;
-    body.setAttribute('data-theme', theme);
+    body.setAttribute("data-theme", theme);
   });
   return (
     <>
-      <HeaderComponent
-        items={headerItems}
-      />
+      <HeaderComponent items={headerItems} />
       <> {children} </>
       <BackToTopComponent />
-      <FooterComponent
-        copyrights={copyrights}
-        items={footerItems}
-      />
+      <FooterComponent copyrights={copyrights} items={footerItems} />
     </>
-  )
-};
+  );
+}

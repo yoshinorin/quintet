@@ -1,17 +1,17 @@
-'use server';
+"use server";
 
-import { headers } from 'next/headers';
-import { fetchFromApi } from '../../../api/request';
+import { headers } from "next/headers";
+import { fetchFromApi } from "../../../api/request";
 import {
   Article,
   SeriresWithArticlesResponse,
   SeriresWithArticles
-} from '../../../models/models';
-import { requestContextFrom } from '../../../utils/requestContext';
-import { Renderer } from './renderer';
+} from "../../../models/models";
+import { requestContextFrom } from "../../../utils/requestContext";
+import { Renderer } from "./renderer";
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
-import { api } from '../../../../config';
-import { buildUrl, sluggize } from '../../../utils/url';
+import { api } from "../../../../config";
+import { buildUrl, sluggize } from "../../../utils/url";
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -25,30 +25,31 @@ async function handler(req: any) {
   const seriesName = req.params.slug;
   const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
-  const url = buildUrl(api.url, sluggize(['v1', 'series', seriesName]), false);
+  const url = buildUrl(api.url, sluggize(["v1", "series", seriesName]), false);
   const response: Response = await fetchFromApi(url, null, ctx);
   throwIfError(response);
 
-  const seriresWithArticlesResponse: SeriresWithArticlesResponse = await response.json() as SeriresWithArticlesResponse;
+  const seriresWithArticlesResponse: SeriresWithArticlesResponse =
+    (await response.json()) as SeriresWithArticlesResponse;
   const seriresWithArticles: SeriresWithArticles = {
     id: seriresWithArticlesResponse.id,
     name: seriresWithArticlesResponse.name,
     title: seriresWithArticlesResponse.title,
     description: seriresWithArticlesResponse.description,
-    articles: seriresWithArticlesResponse.articles.map(article => {
+    articles: seriresWithArticlesResponse.articles.map((article) => {
       return {
         path: article.path,
         title: article.title,
         content: `${article.content} ...`,
         publishedAt: article.publishedAt,
         updatedAt: article.updatedAt
-      } as Article
+      } as Article;
     })
-  }
+  };
 
   return {
     props: {
       seriresWithArticles: seriresWithArticles
     }
-  }
+  };
 }

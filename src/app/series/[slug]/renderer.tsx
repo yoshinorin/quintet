@@ -1,7 +1,10 @@
-import { CoverComponent, SeriesWithArticlesComponent } from '../../../components/components';
+import {
+  CoverComponent,
+  SeriesWithArticlesComponent
+} from "../../../components/components";
 
 export const Renderer: React.FunctionComponent<{
-  seriresWithArticles
+  seriresWithArticles;
 }> = ({ seriresWithArticles }) => {
   return (
     <>
@@ -9,14 +12,14 @@ export const Renderer: React.FunctionComponent<{
         props={{
           title: seriresWithArticles.title,
           tags: null,
-          publishedAt: null,
+          publishedAt: null
         }}
       />
       <main>
         <SeriesWithArticlesComponent
-           seriresWithArticles={seriresWithArticles}
+          seriresWithArticles={seriresWithArticles}
         />
       </main>
     </>
-  )
-}
+  );
+};

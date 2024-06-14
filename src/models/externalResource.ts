@@ -1,4 +1,4 @@
 export interface ExternalResources {
-  kind: string,
-  values: Array<string>
+  kind: string;
+  values: Array<string>;
 }

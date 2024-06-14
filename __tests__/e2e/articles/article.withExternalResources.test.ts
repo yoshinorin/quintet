@@ -1,7 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:3000/articles/nested/with-externalresources/');
+  await page.goto(
+    "http://localhost:3000/articles/nested/with-externalresources/"
+  );
 });
 
 /* TODO:

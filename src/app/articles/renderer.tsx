@@ -2,28 +2,24 @@ import {
   ArticlesComponent,
   CoverComponent,
   PaginationComponent
-} from '../../components/components';
+} from "../../components/components";
 
 export const Renderer: React.FunctionComponent<{
-  count,
-  currentPage,
-  articles
+  count;
+  currentPage;
+  articles;
 }> = ({ count, currentPage, articles }) => {
   return (
     <>
-      <CoverComponent
-        props={null}
-      />
+      <CoverComponent props={null} />
       <main>
-        <ArticlesComponent
-          articles={articles}
-        />
+        <ArticlesComponent articles={articles} />
         <PaginationComponent
-          basePath='articles'
+          basePath="articles"
           current={currentPage}
           total={count}
         />
       </main>
     </>
-  )
-}
+  );
+};

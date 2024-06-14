@@ -2,13 +2,13 @@ import {
   ArticlesComponent,
   CoverComponent,
   PaginationComponent
-} from '../../../components/components';
+} from "../../../components/components";
 
 export const Renderer: React.FunctionComponent<{
-  tagName,
-  currentPage,
-  count,
-  articles
+  tagName;
+  currentPage;
+  count;
+  articles;
 }> = ({ tagName, currentPage, count, articles }) => {
   return (
     <>
@@ -16,13 +16,11 @@ export const Renderer: React.FunctionComponent<{
         props={{
           title: tagName,
           tags: null,
-          publishedAt: null,
+          publishedAt: null
         }}
       />
       <main>
-        <ArticlesComponent
-          articles={articles}
-        />
+        <ArticlesComponent articles={articles} />
         <PaginationComponent
           basePath={`tags/${tagName}`}
           current={currentPage}
@@ -30,5 +28,5 @@ export const Renderer: React.FunctionComponent<{
         />
       </main>
     </>
-  )
-}
+  );
+};

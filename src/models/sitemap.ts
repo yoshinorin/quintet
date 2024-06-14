@@ -1,5 +1,4 @@
 export interface Sitemap {
-  loc: string,
-  lastMod: string
+  loc: string;
+  lastMod: string;
 }
-

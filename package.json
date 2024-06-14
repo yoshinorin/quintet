@@ -23,7 +23,8 @@
     "test:setup:e2e": "npm run copy:e2econfig && npm run mock",
     "test:e2e": "playwright test",
     "test:teardown:e2e": "docker compose -f docker-compose.mock.yml down",
-    "analyze:win": "set NEXT_ANALYZE=true && next build"
+    "analyze:win": "set NEXT_ANALYZE=true && next build",
+    "format": "prettier . --write"
   },
   "dependencies": {
     "micromatch": "4.0.5",
@@ -38,9 +39,10 @@
     "@types/node": "20.12.12",
     "@types/react": "18.3.3",
     "@vitest/coverage-v8": "1.6.0",
+    "prettier": "3.3.2",
+    "sass": "1.77.2",
     "typescript": "5.4.5",
-    "vitest": "1.6.0",
-    "sass": "1.77.2"
+    "vitest": "1.6.0"
   },
   "engines": {
     "npm": ">=10",

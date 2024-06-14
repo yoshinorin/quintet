@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 
 // TODO: write test code
-export async function runWithHandleErrorIf(fn: (arg: any) => React.FunctionComponent): Promise<any> {
+export async function runWithHandleErrorIf(
+  fn: (arg: any) => React.FunctionComponent
+): Promise<any> {
   try {
     return fn;
-  } catch(e) {
+  } catch (e) {
     // @ts-ignore
     if (e.cause === 404) {
       // TODO: I don't want to use Next.js's notFound helper.

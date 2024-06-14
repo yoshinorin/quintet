@@ -1,7 +1,7 @@
-import React from 'react';
-import { Metadata } from 'next'
-import ClientLayout from './clientLayout';
-import { getTheme } from '../services/theme';
+import React from "react";
+import { Metadata } from "next";
+import ClientLayout from "./clientLayout";
+import { getTheme } from "../services/theme";
 import {
   siteName,
   mainAuthor,
@@ -11,9 +11,9 @@ import {
   defaultImage,
   favicon,
   injectMetas
-} from '../../config';
-import { HeadMetaComponent } from '../components/components';
-import { fullUrl } from '../utils/url';
+} from "../../config";
+import { HeadMetaComponent } from "../components/components";
+import { fullUrl } from "../utils/url";
 
 export const metadata: Metadata = {
   title: siteName,
@@ -32,32 +32,27 @@ export const metadata: Metadata = {
     siteName: siteName,
     locale: locale,
     title: siteName,
-    type: 'website',
+    type: "website",
     url: fullUrl(url, true),
     images: fullUrl(defaultImage, false)
-  },
+  }
   // Twitter og will be generate automatically, evenif I set empty object.
   // twitter: {}
-}
+};
 
 export default function RootLayout({
   children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   const theme = getTheme();
   // https://github.com/vercel/next.js/discussions/44506#discussioncomment-7901181
   return (
     <html lang={lang}>
-      <HeadMetaComponent
-        favicon={favicon}
-        injectMetas={injectMetas}
-      />
+      <HeadMetaComponent favicon={favicon} injectMetas={injectMetas} />
       <body data-theme={`${theme}`}>
-        <ClientLayout>
-          { children }
-        </ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
-};
+}
