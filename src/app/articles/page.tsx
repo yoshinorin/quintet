@@ -9,8 +9,6 @@ import { Renderer } from './renderer';
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { api } from '../../../config';
 
-const API_URL = `${api.url}/articles/`
-
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
 }
