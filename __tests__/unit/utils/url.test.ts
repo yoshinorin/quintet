@@ -32,37 +32,37 @@ test('should returns collect url - baseUrl has trailing slash and slug has prefi
 });
 
 test('should returns collect queryParams - with single queryParam', () => {
-  const queryParam = buildQueryParams({
+  const queryParam = buildQueryParams({ params: {
     key: 'q',
     values: ['abc']
-  });
+  }});
   expect(queryParam).toEqual('q=abc');
 });
 
 test('should returns collect queryParams - with double queryParam', () => {
-  const queryParam = buildQueryParams({
+  const queryParam = buildQueryParams({ params: {
     key: 'q',
     values: ['abc', 'def']
-  });
+  }});
   expect(queryParam).toEqual('q=abc&q=def');
 });
 
 test('should returns collect queryParams - with pagination', () => {
-  const queryParam = buildQueryParams(null, {
+  const queryParam = buildQueryParams({ pagination: {
     page: 3,
     limit: 10
-  });
+  }});
   expect(queryParam).toEqual('page=3&limit=10');
 });
 
 test('should returns collect queryParams - with double queryParams and pagination', () => {
-  const queryParam = buildQueryParams({
+  const queryParam = buildQueryParams({ params: {
     key: 'q',
     values: ['abc', 'def'],
   },
-  {
+  pagination: {
     page: 3,
     limit: 10
-  });
+  }});
   expect(queryParam).toEqual('q=abc&q=def&page=3&limit=10');
 });

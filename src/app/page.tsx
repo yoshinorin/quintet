@@ -22,7 +22,7 @@ async function handler(req: any) {
   const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const url = buildUrl(api.url, 'v1/articles', true);
-  const queryParams = buildQueryParams(null, { page: 1, limit: 5 });
+  const queryParams = buildQueryParams({ pagination: { page: 1, limit: 5 } });
   const response: Response = await fetchFromApi(url, queryParams, ctx, null);
   throwIfError(response);
 

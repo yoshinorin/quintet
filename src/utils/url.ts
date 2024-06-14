@@ -30,15 +30,20 @@ export function buildUrl(baseUrl: string, slug: string, trailingSlash: boolean):
   return new URL(slug, baseUrl).href
 }
 
-export function buildQueryParams(
-  queryParams: {
+export type QueryParams = {
+  params?: {
     key: string,
     values: Array<string>,
-  } = null,
-  pagenation: {
+  },
+  pagination?: {
     page: number,
     limit: number
-  } = null): string {
+  }
+}
+
+export function buildQueryParams(params: QueryParams = {}): string {
+  const queryParams = params.params;
+  const pagenation = params.pagination;
 
   let q = '';
   let p = '';
