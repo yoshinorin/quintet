@@ -2,7 +2,11 @@
 
 import { headers } from "next/headers";
 import { api } from "../../../../config";
-import { fetchFromApi } from "../../../api/request";
+import {
+  RequestOptions,
+  fetchFromApi,
+  requestHeaderFrom
+} from "../../../api/request";
 import { Article, ArticleResponseWithCount } from "../../../models/models";
 import { requestContextFrom } from "../../../utils/requestContext";
 import { buildQueryParams, buildUrl, sluggize } from "../../../utils/url";
@@ -21,17 +25,20 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.searchParams["p"] ? req.searchParams["p"] : 1;
-  const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const url = buildUrl(
     api.url,
     sluggize(["v1", "tags", encodeURI(tagName)]),
     false
   );
-  const queryParams = buildQueryParams({
-    pagination: { page: currentPage, limit: 10 }
-  });
-  const response: Response = await fetchFromApi(url, queryParams, ctx, null);
+  const ctx = requestContextFrom(headers());
+  const options: RequestOptions = {
+    headers: requestHeaderFrom(ctx),
+    queryParams: buildQueryParams({
+      pagination: { page: currentPage, limit: 10 }
+    })
+  };
+  const response: Response = await fetchFromApi(url, options);
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount =

@@ -5,7 +5,11 @@ import { headers } from "next/headers";
 import { permanentRedirect } from "next/navigation";
 import { cache } from "react";
 import { api } from "../../../config";
-import { fetchFromApi } from "../../api/request";
+import {
+  RequestOptions,
+  fetchFromApi,
+  requestHeaderFrom
+} from "../../api/request";
 import {
   Content,
   ContentResponse,
@@ -20,13 +24,15 @@ import { Renderer } from "./renderer";
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const slug = sluggize(["v1", "contents", path]);
   const url = buildUrl(api.url, slug, true);
-  const response = await fetchFromApi(url, null, ctx, {
+  const ctx = requestContextFrom(headers());
+  const options: RequestOptions = {
+    headers: requestHeaderFrom(ctx),
     interceptIfContainsIgnorePaths: true
-  });
+  };
+  const response = await fetchFromApi(url, options);
   throwIfError(response);
   const content = (await response.json()) as ContentResponse;
   return {

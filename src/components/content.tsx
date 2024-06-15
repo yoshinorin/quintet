@@ -25,7 +25,7 @@ export const ContentComponent: React.FunctionComponent<{
       sluggize(["v1", "system", "metadata"]),
       false
     );
-    const response: Response = await fetchFromApi(url, null, null, null);
+    const response: Response = await fetchFromApi(url);
     let ins = insight;
     if (response.status === 200) {
       const bm = (await response.json()) as BackendMeta;

@@ -1,28 +1,30 @@
 import { RequestContext } from "../models/models";
 import { isMatch } from "../utils/match";
 
+export type RequestOptions = {
+  headers?: object;
+  queryParams?: string;
+  interceptIfContainsIgnorePaths?: boolean;
+};
+
 // TODO: write test code
 // TODO: more simply
 export async function fetchFromApi(
   endpoint: string,
-  queryParams: string = "",
-  ctx: RequestContext | null,
-  options: {
-    interceptIfContainsIgnorePaths: boolean;
-  } | null = null
+  {
+    headers = {},
+    queryParams = "",
+    interceptIfContainsIgnorePaths = false
+  }: RequestOptions = {}
 ): Promise<Response> {
-  // TODO: extract to function & write test code
-  if (options) {
-    if (options.interceptIfContainsIgnorePaths) {
-      if (!endpoint || (endpoint && isMatch(endpoint))) {
-        return new Response(null, { status: 404 });
-      }
+  if (interceptIfContainsIgnorePaths) {
+    if (!endpoint || (endpoint && isMatch(endpoint))) {
+      return new Response(null, { status: 404 });
     }
   }
 
-  const q = queryParams ?? "";
-  const url = buildRequestUrl(endpoint, q);
-  const header = ctx ? { header: requestHeaderFrom(ctx) } : {};
+  const url = buildRequestUrl(endpoint, queryParams);
+  const header = headers ? { header: headers } : {};
 
   return fetch(url, {
     method: "GET",
@@ -37,7 +39,7 @@ export function buildRequestUrl(url: string, queryParams: string): string {
   return new URL(u).href;
 }
 
-function requestHeaderFrom(rq: RequestContext): Object {
+export function requestHeaderFrom(rq: RequestContext): Object {
   return {
     "Content-Type": "application/json",
     "x-forwarded-for": rq.ipAddress,

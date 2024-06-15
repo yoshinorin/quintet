@@ -1,6 +1,10 @@
 import { headers } from "next/headers";
 import { api, mainAuthor, siteName, url } from "../../../../config";
-import { fetchFromApi } from "../../../api/request";
+import {
+  RequestOptions,
+  fetchFromApi,
+  requestHeaderFrom
+} from "../../../api/request";
 import { Feed } from "../../../models/models";
 import { generateFeedsString } from "../../../services/feeds";
 import { requestContextFrom } from "../../../utils/requestContext";
@@ -8,10 +12,13 @@ import { buildUrl, sluggize } from "../../../utils/url";
 
 //export async function get(ctx: any) {
 export async function GET() {
-  const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const apiUrl = buildUrl(api.url, sluggize(["v1", "feeds", "index"]), false);
-  const response: Response = await fetchFromApi(apiUrl, null, ctx, null);
+  const ctx = requestContextFrom(headers());
+  const options: RequestOptions = {
+    headers: requestHeaderFrom(ctx)
+  };
+  const response: Response = await fetchFromApi(apiUrl, options);
 
   if (response.status !== 200) {
     /* NOTE:

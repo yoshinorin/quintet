@@ -2,7 +2,11 @@
 
 import { headers } from "next/headers";
 import { api } from "../../../config";
-import { fetchFromApi } from "../../api/request";
+import {
+  RequestOptions,
+  fetchFromApi,
+  requestHeaderFrom
+} from "../../api/request";
 import { SearchResponse, SearchResponseWithCount } from "../../models/models";
 import { requestContextFrom } from "../../utils/requestContext";
 import { buildQueryParams, buildUrl, sluggize } from "../../utils/url";
@@ -73,13 +77,16 @@ async function handler(req: any) {
 }
 
 async function execute(req, words: Array<string>) {
-  const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const url = buildUrl(api.url, sluggize(["v1", "search"]), false);
-  const queryParams = buildQueryParams({
-    params: { key: "q", values: words }
-  });
-  const response = await fetchFromApi(url, queryParams, ctx, null);
+  const ctx = requestContextFrom(headers());
+  const options: RequestOptions = {
+    headers: requestHeaderFrom(ctx),
+    queryParams: buildQueryParams({
+      params: { key: "q", values: words }
+    })
+  };
+  const response = await fetchFromApi(url, options);
 
   if (response.status !== 200) {
     return emptyResult;

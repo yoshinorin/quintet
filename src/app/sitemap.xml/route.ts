@@ -1,16 +1,23 @@
 import { headers } from "next/headers";
 import { api } from "../../../config";
-import { fetchFromApi } from "../../api/request";
+import {
+  RequestOptions,
+  fetchFromApi,
+  requestHeaderFrom
+} from "../../api/request";
 import { Sitemap } from "../../models/models";
 import { generateSitemapString } from "../../services/sitemap";
 import { requestContextFrom } from "../../utils/requestContext";
 import { buildUrl, sluggize } from "../../utils/url";
 
 export async function GET() {
-  const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const url = buildUrl(api.url, sluggize(["v1", "sitemaps"]), true);
-  const response: Response = await fetchFromApi(url, null, ctx, null);
+  const ctx = requestContextFrom(headers());
+  const options: RequestOptions = {
+    headers: requestHeaderFrom(ctx)
+  };
+  const response: Response = await fetchFromApi(url, options);
 
   if (response.status !== 200) {
     return new Response("", {

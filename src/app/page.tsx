@@ -2,7 +2,11 @@
 
 import { headers } from "next/headers";
 import { api } from "../../config";
-import { fetchFromApi } from "../api/request";
+import {
+  RequestOptions,
+  fetchFromApi,
+  requestHeaderFrom
+} from "../api/request";
 import { Article, ArticleResponseWithCount } from "../models/models";
 import { requestContextFrom } from "../utils/requestContext";
 import { buildQueryParams, buildUrl } from "../utils/url";
@@ -19,11 +23,14 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  const ctx = requestContextFrom(headers());
   // TODO: devide into another `function` and move `api` dir.
   const url = buildUrl(api.url, "v1/articles", true);
-  const queryParams = buildQueryParams({ pagination: { page: 1, limit: 5 } });
-  const response: Response = await fetchFromApi(url, queryParams, ctx, null);
+  const ctx = requestContextFrom(headers());
+  const options: RequestOptions = {
+    headers: requestHeaderFrom(ctx),
+    queryParams: buildQueryParams({ pagination: { page: 1, limit: 5 } })
+  };
+  const response: Response = await fetchFromApi(url, options);
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount =

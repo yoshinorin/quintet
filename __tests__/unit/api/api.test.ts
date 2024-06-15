@@ -1,14 +1,10 @@
 import { expect, test } from "vitest";
-import { fetchFromApi } from "../../../src/api/request";
+import { RequestOptions, fetchFromApi } from "../../../src/api/request";
 
 test("should returns 404 if path contains ignore chars", async () => {
-  const response = await fetchFromApi(
-    "https://example.com/hoge.svg",
-    "",
-    null,
-    {
-      interceptIfContainsIgnorePaths: true
-    }
-  );
+  const options: RequestOptions = {
+    interceptIfContainsIgnorePaths: true
+  };
+  const response = await fetchFromApi("https://example.com/hoge.svg", options);
   expect(response.status).toEqual(404);
 });
