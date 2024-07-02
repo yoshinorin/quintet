@@ -60,7 +60,7 @@ export const Renderer: React.FunctionComponent<{
       <main>
         <section className={`${containerStyles.container}`}>
           {(() => {
-            if (isProblemDetails(props)) {
+            if (isProblemDetails(props) && qs.length !== 0) {
               const messages = [];
               props.errors.forEach((e, idx) => {
                 // @ts-ignore
