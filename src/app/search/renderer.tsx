@@ -6,35 +6,46 @@ import {
   CoverComponent,
   SearchResultComponent
 } from "../../components/components";
-import { SearchResponse, SearchResponseWithCount } from "../../models/models";
+import { SearchSuccessResult } from "../../models/models";
+import { ProblemDetails, isProblemDetails } from "../../models/problemDetails";
 import containerStyles from "../../styles/components/container.module.scss";
 
 export const Renderer: React.FunctionComponent<{
-  hits: number;
-  count: number;
-  contents: Array<SearchResponse>;
-  queryStrings: Array<string>;
-}> = ({ hits, count, contents, queryStrings }) => {
-  let contentsWithCount: SearchResponseWithCount = {
-    count: 0,
-    contents: []
+  props: SearchSuccessResult | ProblemDetails;
+  qs: Array<any>;
+}> = ({ props, qs }) => {
+  let result: SearchSuccessResult = {
+    statusCode: 200,
+    queryStrings: [],
+    contents: [],
+    hits: 0,
+    count: 0
   };
+
+  if (!isProblemDetails(props)) {
+    const s = props as SearchSuccessResult;
+    result.queryStrings = qs;
+    result.contents = s.contents;
+    result.hits = s.hits;
+    result.count = s.count;
+  }
+
   const router = useRouter();
-  const [searchWord, setSearchWord] = useState(queryStrings.join(" "));
-  const [searchResults, setSearchResults] = useState(contents);
+  const [searchWord, setSearchWord] = useState(result.queryStrings.join(" "));
+  const [searchResults, setSearchResults] = useState(result.contents);
 
   useEffect(() => {
     if (searchWord === "") {
-      setSearchResults(contentsWithCount.contents);
+      setSearchResults(result.contents);
       return;
     }
 
     const searchKeywords = searchWord.trim().toLowerCase();
     if (searchKeywords.length == 0) {
-      setSearchResults(contentsWithCount.contents);
+      setSearchResults(result.contents);
       return;
     }
-    setSearchResults(contents);
+    setSearchResults(result.contents);
   }, [searchWord]);
 
   return (
@@ -48,25 +59,24 @@ export const Renderer: React.FunctionComponent<{
       />
       <main>
         <section className={`${containerStyles.container}`}>
-          <div className="alert warning">
-            <p>
-              <strong>NOTE:</strong>
-              The search feature is <strong>WIP</strong> and it has some
-              undocumented limitations. For more details please see belows.
-            </p>
-            <ul>
-              <li>
-                <a href="https://github.com/yoshinorin/qualtet/blob/27778232dac650153393a10dacfbc2ae62f36ac3/src/main/scala/net/yoshinorin/qualtet/domains/search/SearchService.scala#L33-L44">
-                  Validation
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/yoshinorin/qualtet/blob/27778232dac650153393a10dacfbc2ae62f36ac3/src/main/scala/net/yoshinorin/qualtet/syntax/string.scala#L6">
-                  Invalid Chars
-                </a>
-              </li>
-            </ul>
-          </div>
+          {(() => {
+            if (isProblemDetails(props)) {
+              const messages = [];
+              props.errors.forEach((e, idx) => {
+                // @ts-ignore
+                messages.push(<li key={idx}>{e.message}</li>);
+              });
+              return (
+                <div className="alert warning">
+                  <p>
+                    <strong>ERROR</strong>
+                  </p>
+                  <ul>{messages}</ul>
+                </div>
+              );
+            }
+          })()}
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -86,9 +96,9 @@ export const Renderer: React.FunctionComponent<{
             />
           </form>
           <SearchResultComponent
-            hits={hits}
-            count={count}
-            contents={contents}
+            hits={result.hits}
+            count={result.count}
+            contents={result.contents}
           />
         </section>
       </main>

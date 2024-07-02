@@ -10,3 +10,11 @@ export interface SearchResponseWithCount {
   count: number;
   contents: Array<SearchResponse>;
 }
+
+export interface SearchSuccessResult {
+  statusCode: number;
+  hits: number;
+  count: number;
+  contents: Array<SearchResponse>;
+  queryStrings: Array<string>;
+}
