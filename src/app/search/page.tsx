@@ -34,10 +34,12 @@ export default async function Page(req: any) {
     return <Renderer props={err} qs={[]} />;
   }
 
-  const qs =
+  let qs =
     req.searchParams["q"] instanceof Array
       ? req.searchParams["q"]
       : [req.searchParams["q"]];
+
+  qs = qs.map((x) => x.trim()).filter((x) => x.length !== 0);
 
   const result: SearchSuccessResult | ProblemDetails = await handler(req, qs);
   return <Renderer props={result} qs={qs} />;
