@@ -52,7 +52,7 @@ export const Renderer: React.FunctionComponent<{
     <>
       <CoverComponent
         props={{
-          title: "Search (β)",
+          title: "Search",
           tags: null,
           publishedAt: null
         }}
