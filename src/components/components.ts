@@ -11,6 +11,7 @@ export * from "./headmeta";
 export * from "./injectScript";
 export * from "./navigation";
 export * from "./pagination";
+export * from "./pinned";
 export * from "./planePage";
 export * from "./searchResult";
 export * from "./series";

@@ -113,6 +113,11 @@ $home-colors: (
   'background':            var(--home-background-color),
 );
 
+$pinned-colors: (
+  'background':            var(--pinned-background-color),
+  'border':                var(--pinned-border-color),
+);
+
 $cover-colors: (
   'background':            var(--cover-background-color),
   'title':                 var(--cover-title-color),

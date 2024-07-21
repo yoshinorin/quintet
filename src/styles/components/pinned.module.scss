@@ -1,0 +1,55 @@
+@import
+    '../_variables';
+
+.pinned {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  padding: 2em 1em 2em 1em;
+  border-radius: 0.5em;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pinned-card {
+  background-color: map-get($pinned-colors, 'background');
+  border: 0.01em solid map-get($pinned-colors, 'border');
+  border-radius: 0.3em;
+  padding: 0.6em 1em 0.2em 1em;
+  display: flex;
+  flex-direction: column;
+  color: map-get($basic-colors, 'base');
+
+  &:hover {
+    background-color: map-get($home-colors, 'background');
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .title {
+    font-style: italic;
+    font-size: medium;
+
+    font-size: 1em;
+  }
+
+  .description {
+    font-size: 0.7em;
+    margin-left: 0.3em;
+  }
+
+  .link {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    align-self: flex-end;
+  }
+}
