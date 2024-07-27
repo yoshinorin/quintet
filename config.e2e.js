@@ -50,6 +50,12 @@ export const coverBottomItems = [
   }
 ];
 
+export const pinned = [
+  { title: "title1", description: "example description1", url: "/" },
+  { title: "title2", description: "example description2", url: "/" },
+  { title: "title3", description: "example description3", url: "/" }
+];
+
 // NOTE: HTML support
 export const copyrights = "&copy; jhon due";
 
