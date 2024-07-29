@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { publicApi } from "../../config";
-import { fetchFromApi } from "../api/request";
+import { fetchSystemMetadata } from "../api";
 import { BackendMeta, Content, ContentMeta, Insight } from "../models/models";
 import containerStyles from "../styles/components/container.module.scss";
 import contentStyles from "../styles/components/content.module.scss";
 import { mergeBackendMeta } from "../utils/insight";
-import { buildUrl, sluggize } from "../utils/url";
 import { Accordion } from "./accordion";
 
 export const ContentComponent: React.FunctionComponent<{
@@ -19,13 +17,7 @@ export const ContentComponent: React.FunctionComponent<{
   const [metaAndInsight, setData] = useState(null);
 
   const fetchBackendMetaData = async () => {
-    // TODO: devide into another `function` and move `api` dir.
-    const url = buildUrl(
-      publicApi.url,
-      sluggize(["v1", "system", "metadata"]),
-      false
-    );
-    const response: Response = await fetchFromApi(url);
+    const response: Response = await fetchSystemMetadata();
     let ins = insight;
     if (response.status === 200) {
       const bm = (await response.json()) as BackendMeta;

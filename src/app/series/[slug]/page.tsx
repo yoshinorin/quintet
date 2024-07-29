@@ -1,19 +1,12 @@
 "use server";
 
 import { headers } from "next/headers";
-import { api } from "../../../../config";
-import {
-  RequestOptions,
-  fetchFromApi,
-  requestHeaderFrom
-} from "../../../api/request";
+import { fetchSeries } from "../../../api";
 import {
   Article,
   SeriresWithArticles,
   SeriresWithArticlesResponse
 } from "../../../models/models";
-import { requestContextFrom } from "../../../utils/requestContext";
-import { buildUrl, sluggize } from "../../../utils/url";
 import { runWithHandleErrorIf, throwIfError } from "../../handler";
 import { Renderer } from "./renderer";
 
@@ -27,13 +20,7 @@ async function run(req: any): Promise<any> {
 }
 async function handler(req: any) {
   const seriesName = req.params.slug;
-  // TODO: devide into another `function` and move `api` dir.
-  const url = buildUrl(api.url, sluggize(["v1", "series", seriesName]), false);
-  const ctx = requestContextFrom(headers());
-  const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
-  };
-  const response: Response = await fetchFromApi(url, options);
+  const response: Response = await fetchSeries(headers(), seriesName);
   throwIfError(response);
 
   const seriresWithArticlesResponse: SeriresWithArticlesResponse =

@@ -1,20 +1,13 @@
 "use server";
 
 import { headers } from "next/headers";
-import { api } from "../../../config";
-import {
-  RequestOptions,
-  fetchFromApi,
-  requestHeaderFrom
-} from "../../api/request";
+import { fetchSearch } from "../../api";
 import {
   SearchResponse,
   SearchResponseWithCount,
   SearchSuccessResult
 } from "../../models/models";
 import { ProblemDetails, isProblemDetails } from "../../models/problemDetails";
-import { requestContextFrom } from "../../utils/requestContext";
-import { buildQueryParams, buildUrl, sluggize } from "../../utils/url";
 import { Renderer } from "./renderer";
 
 const emptyResult = {
@@ -87,17 +80,7 @@ async function execute(
   req,
   words: Array<string>
 ): Promise<SearchResponseWithCount | ProblemDetails> {
-  // TODO: devide into another `function` and move `api` dir.
-  const url = buildUrl(api.url, sluggize(["v1", "search"]), false);
-  const ctx = requestContextFrom(headers());
-  const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
-    queryParams: buildQueryParams({
-      params: { key: "q", values: words }
-    })
-  };
-
-  const response = await fetchFromApi(url, options);
+  const response = await fetchSearch(headers(), words);
   const responseBody = await response.json();
 
   if (response.status !== 200) {

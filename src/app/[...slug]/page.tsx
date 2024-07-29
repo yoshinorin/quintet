@@ -4,35 +4,21 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { permanentRedirect } from "next/navigation";
 import { cache } from "react";
-import { api } from "../../../config";
-import {
-  RequestOptions,
-  fetchFromApi,
-  requestHeaderFrom
-} from "../../api/request";
+import { fetchContent } from "../../api";
 import {
   Content,
   ContentResponse,
   ContentResponseWithFetchResponse
 } from "../../models/models";
 import { asInsight } from "../../utils/insight";
-import { requestContextFrom } from "../../utils/requestContext";
-import { buildUrl, sluggize } from "../../utils/url";
+import { sluggize } from "../../utils/url";
 import { runWithHandleErrorIf, throwIfError } from "../handler";
 import { generateForArticleOrPage } from "../metadata";
 import { Renderer } from "./renderer";
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  // TODO: devide into another `function` and move `api` dir.
-  const slug = sluggize(["v1", "contents", path]);
-  const url = buildUrl(api.url, slug, true);
-  const ctx = requestContextFrom(headers());
-  const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
-    interceptIfContainsIgnorePaths: true
-  };
-  const response = await fetchFromApi(url, options);
+  const response = await fetchContent(headers(), path);
   throwIfError(response);
   const content = (await response.json()) as ContentResponse;
   return {

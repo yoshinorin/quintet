@@ -1,15 +1,8 @@
 "use server";
 
 import { headers } from "next/headers";
-import { api } from "../../config";
-import {
-  RequestOptions,
-  fetchFromApi,
-  requestHeaderFrom
-} from "../api/request";
+import { fetchArticles } from "../api";
 import { Article, ArticleResponseWithCount } from "../models/models";
-import { requestContextFrom } from "../utils/requestContext";
-import { buildQueryParams, buildUrl } from "../utils/url";
 import { runWithHandleErrorIf, throwIfError } from "./handler";
 import { Renderer } from "./renderer";
 
@@ -23,14 +16,7 @@ async function run(req: any): Promise<any> {
 }
 
 async function handler(req: any) {
-  // TODO: devide into another `function` and move `api` dir.
-  const url = buildUrl(api.url, "v1/articles", true);
-  const ctx = requestContextFrom(headers());
-  const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
-    queryParams: buildQueryParams({ pagination: { page: 1, limit: 5 } })
-  };
-  const response: Response = await fetchFromApi(url, options);
+  const response: Response = await fetchArticles(headers(), 1, 5);
   throwIfError(response);
 
   const articlesResponseWithCount: ArticleResponseWithCount =
