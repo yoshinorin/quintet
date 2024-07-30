@@ -7,12 +7,11 @@ import { parseOrThrow, runWithHandleErrorIf } from "../handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
-  return runWithHandleErrorIf(await run(req));
-}
-
-async function run(req: any): Promise<any> {
-  const { props } = await handler(req);
-  return <Renderer {...props} />;
+  const fn = async (r: any): Promise<any> => {
+    const { props } = await handler(r);
+    return <Renderer {...props} />;
+  };
+  return runWithHandleErrorIf(await fn(req));
 }
 
 async function handler(req: any) {

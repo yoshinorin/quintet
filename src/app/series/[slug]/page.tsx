@@ -11,13 +11,13 @@ import { parseOrThrow, runWithHandleErrorIf } from "../../handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
-  return runWithHandleErrorIf(await run(req));
+  const fn = async (r: any): Promise<any> => {
+    const { props } = await handler(r);
+    return <Renderer {...props} />;
+  };
+  return runWithHandleErrorIf(await fn(req));
 }
 
-async function run(req: any): Promise<any> {
-  const { props } = await handler(req);
-  return <Renderer {...props} />;
-}
 async function handler(req: any) {
   const seriesName = req.params.slug;
   const response: Response = await fetchSeries(headers(), seriesName);
