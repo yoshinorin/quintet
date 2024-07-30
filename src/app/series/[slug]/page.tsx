@@ -7,7 +7,7 @@ import {
   SeriresWithArticles,
   SeriresWithArticlesResponse
 } from "../../../models/models";
-import { runWithHandleErrorIf, throwIfError } from "../../handler";
+import { parseOrThrow, runWithHandleErrorIf } from "../../handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
@@ -21,10 +21,8 @@ async function run(req: any): Promise<any> {
 async function handler(req: any) {
   const seriesName = req.params.slug;
   const response: Response = await fetchSeries(headers(), seriesName);
-  throwIfError(response);
-
-  const seriresWithArticlesResponse: SeriresWithArticlesResponse =
-    (await response.json()) as SeriresWithArticlesResponse;
+  const seriresWithArticlesResponse =
+    await parseOrThrow<SeriresWithArticlesResponse>(response);
   const seriresWithArticles: SeriresWithArticles = {
     id: seriresWithArticlesResponse.id,
     name: seriresWithArticlesResponse.name,

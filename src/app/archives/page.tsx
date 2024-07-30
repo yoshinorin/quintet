@@ -1,10 +1,10 @@
 "use server";
 
 import { headers } from "next/headers";
-import { Archive, ArchiveResponse } from "../../models/models";
-import { runWithHandleErrorIf, throwIfError } from "../handler";
-import { Renderer } from "./renderer";
 import { fetchArchives } from "../../api";
+import { Archive, ArchiveResponse } from "../../models/models";
+import { parseOrThrow, runWithHandleErrorIf } from "../handler";
+import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
   return runWithHandleErrorIf(await run(req));
@@ -17,10 +17,7 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   const response: Response = await fetchArchives(headers());
-  throwIfError(response);
-
-  const archiveResponse: Array<ArchiveResponse> =
-    (await response.json()) as Array<ArchiveResponse>;
+  const archiveResponse = await parseOrThrow<Array<ArchiveResponse>>(response);
   const archives: Array<Archive> = archiveResponse.map((article) => {
     return {
       path: article.path,

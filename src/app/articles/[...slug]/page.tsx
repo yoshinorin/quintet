@@ -13,7 +13,7 @@ import {
 import { asInsight } from "../../../utils/insight";
 import { isMatch } from "../../../utils/match";
 import { sluggize } from "../../../utils/url";
-import { runWithHandleErrorIf, throwIfError } from "../../handler";
+import { parseOrThrow, runWithHandleErrorIf } from "../../handler";
 import { generateForArticleOrPage } from "../../metadata";
 import { Renderer } from "./renderer";
 
@@ -22,8 +22,7 @@ const PREFIX_URL = "articles";
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
   const response = await fetchContent(headers(), path);
-  throwIfError(response);
-  const content = (await response.json()) as ContentResponse;
+  const content = await parseOrThrow<ContentResponse>(response);
   return {
     res: response,
     body: content

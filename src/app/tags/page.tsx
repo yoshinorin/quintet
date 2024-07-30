@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { fetchAllTags } from "../../api";
 import { Tag } from "../../models/models";
-import { runWithHandleErrorIf, throwIfError } from "../handler";
+import { parseOrThrow, runWithHandleErrorIf } from "../handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
@@ -17,11 +17,11 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   const response: Response = await fetchAllTags(headers());
-  throwIfError(response);
+  const tags = await parseOrThrow<Array<Tag>>(response);
 
   return {
     props: {
-      tags: (await response.json()) as Array<Tag>
+      tags: tags
     }
   };
 }

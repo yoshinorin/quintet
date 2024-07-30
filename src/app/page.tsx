@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { fetchArticles } from "../api";
 import { Article, ArticleResponseWithCount } from "../models/models";
-import { runWithHandleErrorIf, throwIfError } from "./handler";
+import { parseOrThrow, runWithHandleErrorIf } from "./handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
@@ -17,10 +17,8 @@ async function run(req: any): Promise<any> {
 
 async function handler(req: any) {
   const response: Response = await fetchArticles(headers(), 1, 5);
-  throwIfError(response);
-
-  const articlesResponseWithCount: ArticleResponseWithCount =
-    (await response.json()) as ArticleResponseWithCount;
+  const articlesResponseWithCount =
+    await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(
     (article) => {
       return {

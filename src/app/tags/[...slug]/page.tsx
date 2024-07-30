@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { fetchTag } from "../../../api";
 import { Article, ArticleResponseWithCount } from "../../../models/models";
-import { runWithHandleErrorIf, throwIfError } from "../../handler";
+import { parseOrThrow, runWithHandleErrorIf } from "../../handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
@@ -19,10 +19,8 @@ async function handler(req: any) {
   const tagName = decodeURI(req.params.slug[0]);
   const currentPage = req.searchParams["p"] ? req.searchParams["p"] : 1;
   const response: Response = await fetchTag(headers(), tagName, currentPage);
-  throwIfError(response);
-
-  const articlesResponseWithCount: ArticleResponseWithCount =
-    await response.json();
+  const articlesResponseWithCount =
+    await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(
     (article) => {
       return {
