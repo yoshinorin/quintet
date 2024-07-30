@@ -16,9 +16,8 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   useEffect(() => {
-    let theme = getTheme();
-    const body = document.body;
-    body.setAttribute("data-theme", theme);
+    const theme = getTheme();
+    document.body.setAttribute("data-theme", theme);
   });
   return (
     <>
