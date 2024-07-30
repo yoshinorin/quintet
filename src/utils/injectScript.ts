@@ -1,7 +1,6 @@
 import { ExternalResources } from "../models/externalResource";
 import { InjectScript } from "../models/script";
 
-// TODO: write test code
 export function getScripts(
   externalResources: Array<ExternalResources>,
   externalResourcesConfig: Array<any>
