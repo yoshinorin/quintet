@@ -17,6 +17,7 @@ export default defineConfig({
         "src/app/feeds/index.xml/route.ts",
         "src/app/sitemap.xml",
         "src/components/*",
+        "__tests__",
         "**/models/*" // Just a interface.
         // '**/api/*',      // Need a mock. Coverd with E2E testing.
       ]
