@@ -7,7 +7,6 @@ export interface ProblemDetails {
   errors: [code: string, message: string];
 }
 
-// TODO: Write test code
 export function isProblemDetails(value: unknown): value is ProblemDetails {
   if (typeof value !== "object" || value === null) {
     return false;
