@@ -27,22 +27,22 @@
     "format": "prettier . --write"
   },
   "dependencies": {
-    "micromatch": "4.0.5",
-    "next": "14.2.5",
+    "micromatch": "4.0.8",
+    "next": "14.2.12",
     "pm2": "5.4.2",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.2.5",
-    "@playwright/test": "1.45.2",
-    "@types/node": "20.14.11",
-    "@types/react": "18.3.3",
-    "@vitest/coverage-v8": "2.0.3",
+    "@next/bundle-analyzer": "14.2.12",
+    "@playwright/test": "1.47.1",
+    "@types/node": "22.5.5",
+    "@types/react": "18.3.7",
+    "@vitest/coverage-v8": "2.1.1",
     "prettier": "3.3.3",
-    "sass": "1.77.8",
-    "typescript": "5.5.3",
-    "vitest": "2.0.3"
+    "sass": "1.79.1",
+    "typescript": "5.6.2",
+    "vitest": "2.1.1"
   },
   "engines": {
     "npm": ">=10",
