@@ -15,7 +15,7 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await fetchAllTags(headers());
+  const response: Response = await fetchAllTags(await headers());
   const tags = await parseOrThrow<Array<Tag>>(response);
 
   return {

@@ -19,8 +19,8 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const seriesName = req.params.slug;
-  const response: Response = await fetchSeries(headers(), seriesName);
+  const { slug } = await req.params;
+  const response: Response = await fetchSeries(await headers(), slug);
   const seriresWithArticlesResponse =
     await parseOrThrow<SeriresWithArticlesResponse>(response);
   const seriresWithArticles: SeriresWithArticles = {

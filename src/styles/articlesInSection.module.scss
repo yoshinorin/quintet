@@ -1,5 +1,5 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 .article {
   position:       relative;
@@ -24,7 +24,7 @@
   }
   .time {
     font-size:  0.8em;
-    color:      map-get($article-color, 'time');
+    color:      map.get(variables.$article-color, 'time');
   }
 }
 

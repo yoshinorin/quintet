@@ -15,7 +15,7 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await fetchArchives(headers());
+  const response: Response = await fetchArchives(await headers());
   const archiveResponse = await parseOrThrow<Array<ArchiveResponse>>(response);
   const archives: Array<Archive> = archiveResponse.map((article) => {
     return {

@@ -6,7 +6,7 @@ import { fetchFeeds } from "../../../api";
 
 //export async function get(ctx: any) {
 export async function GET() {
-  const response: Response = await fetchFeeds(headers());
+  const response: Response = await fetchFeeds(await headers());
 
   if (response.status !== 200) {
     /* NOTE:

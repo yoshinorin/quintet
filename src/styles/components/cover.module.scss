@@ -1,29 +1,29 @@
-@import
-    '../_variables';
+@use "sass:map";
+@use '../_variables';
 
 .cover {
   display:                     table;
-  background:                  map-get($cover-colors, 'background');
+  background:                  map.get(variables.$cover-colors, 'background');
   width:                       100%;
-  padding:                     calc(#{map-get($header, 'height')} * 20) 0 calc(#{map-get($header, 'height')} * 10) 0;
+  padding:                     calc(#{map.get(variables.$header, 'height')} * 20) 0 calc(#{map.get(variables.$header, 'height')} * 10) 0;
   height:                      40%;
   max-height:                  250px;
-  z-index:                     map-get($z-indexes, 'cover');
+  z-index:                     map.get(variables.$z-indexes, 'cover');
 
   .content-header {
     display:         table-cell;
     vertical-align:  middle;
     text-align:      center;
-    padding-right:   map-get($main, padding-right-left);
-    padding-left:    map-get($main, padding-right-left);
+    padding-right:   map.get(variables.$main, padding-right-left);
+    padding-left:    map.get(variables.$main, padding-right-left);
     .site-title {
       margin:        0 auto;
       max-width:     18rem;
     }
     .site-meta {
-      max-width:      map-get($main, 'max-width');
+      max-width:      map.get(variables.$main, 'max-width');
       font-size:      1.3rem;
-      color:          map-get($cover-colors, 'meta') !important;
+      color:          map.get(variables.$cover-colors, 'meta') !important;
       font-weight:    400;
       letter-spacing: 0.05em;
       margin:         0 auto;
@@ -31,18 +31,18 @@
     }
     .content-title {
       margin:        0 auto;
-      color:         map-get($cover-colors, 'title');
-      font:          $font-families-base;
+      color:         map.get(variables.$cover-colors, 'title');
+      font:          variables.$font-families-base;
       font-weight:   400;
       font-size:     2.5rem;
-      max-width:     map-get($main, 'max-width');
+      max-width:     map.get(variables.$main, 'max-width');
       margin-bottom: 0.3em;
       border-bottom: solid 1px #949494;
     }
     .content-meta {
-      max-width:      map-get($main, 'max-width');
+      max-width:      map.get(variables.$main, 'max-width');
       font-size:      1.6rem;
-      color:          map-get($cover-colors, 'meta') !important;
+      color:          map.get(variables.$cover-colors, 'meta') !important;
       font-weight:    400;
       font-style:     italic;
       letter-spacing: 0.05em;
@@ -55,7 +55,7 @@
     margin-top:      1.5em;
     font-style:     italic;
     a {
-      color:          map-get($cover-colors, 'tag-link');
+      color:          map.get(variables.$cover-colors, 'tag-link');
       margin:         2px 2px 2px 2px;
       font-size:      1.5rem;
       opacity:        0.6;

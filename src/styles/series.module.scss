@@ -1,14 +1,14 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 #series {
   margin-top: 4rem;
   a {
-    color: map-get($basic-colors, 'series-link');
+    color: map.get(variables.$basic-colors, 'series-link');
   }
 
   li {
-    font-size: map-get($font-size, normal);
+    font-size: map.get(variables.$font-size, normal);
   }
 
   blockquote {
@@ -28,7 +28,7 @@
 
     .header {
       margin:       0;
-      font-size:    map-get($font-size, x-large);
+      font-size:    map.get(variables.$font-size, x-large);
     }
 
     .excerpt {

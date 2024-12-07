@@ -15,8 +15,13 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const currentPage = req.searchParams["p"] ? req.searchParams["p"] : 1;
-  const response: Response = await fetchArticles(headers(), currentPage, 10);
+  const queryString = await req.searchParams;
+  const currentPage = queryString.p ? queryString.p : 1;
+  const response: Response = await fetchArticles(
+    await headers(),
+    currentPage,
+    10
+  );
   const articlesResponseWithCount =
     await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(

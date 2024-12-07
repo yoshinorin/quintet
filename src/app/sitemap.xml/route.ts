@@ -4,7 +4,7 @@ import { Sitemap } from "../../models/models";
 import { generateSitemapString } from "../../services/sitemap";
 
 export async function GET() {
-  const response: Response = await fetchSitemap(headers());
+  const response: Response = await fetchSitemap(await headers());
 
   if (response.status !== 200) {
     return new Response("", {

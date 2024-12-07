@@ -1,5 +1,5 @@
-@import
-    '../variables';
+@use "sass:map";
+@use '../variables';
 
 .alert {
   position:    relative;
@@ -28,22 +28,22 @@
     }
   }
   &.info {
-    border-color:     map-get($basic-colors, 'info');
-    background-color: map-get($basic-colors, 'info-op2');
+    border-color:     map.get(variables.$basic-colors, 'info');
+    background-color: map.get(variables.$basic-colors, 'info-op2');
     &:not(.no-icon) {
       &:before {
         content: "◆";
-        color:   map-get($basic-colors, 'info');
+        color:   map.get(variables.$basic-colors, 'info');
       }
     }
   }
   &.warning {
-    border-color:     map-get($basic-colors, 'warning');
-    background-color: map-get($basic-colors, 'warning-op2');
+    border-color:     map.get(variables.$basic-colors, 'warning');
+    background-color: map.get(variables.$basic-colors, 'warning-op2');
     &:not(.no-icon) {
       &:before {
         content: "▲";
-        color:   map-get($basic-colors, 'warning');
+        color:   map.get(variables.$basic-colors, 'warning');
       }
     }
   }

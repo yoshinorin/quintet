@@ -18,7 +18,7 @@ import { Renderer } from "./renderer";
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const response = await fetchContent(headers(), path);
+  const response = await fetchContent(await headers(), path);
   const content = await parseOrThrow<ContentResponse>(response);
   return {
     res: response,
@@ -27,11 +27,13 @@ const cachedFindByPath = cache(async (path: string) => {
 });
 
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
-export async function generateMetadata({
-  params: { slug }
-}: {
-  params: { slug: Array<string> };
+export async function generateMetadata(props: {
+  params: Promise<{ slug: Array<string> }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const sluggized = await sluggize(slug);
   const content = await cachedFindByPath(sluggized);
   return generateForArticleOrPage(sluggized, content.body);
@@ -46,7 +48,8 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const path = sluggize(req.params.slug);
+  const { slug } = await req.params;
+  const path = sluggize(slug);
 
   // TODO move utils & write testcode
   if (`/${path}`.replace(/\/{2,}/g, "/").match(/^\/\d{4}\/\d{2}\/\d{2}\/*/)) {

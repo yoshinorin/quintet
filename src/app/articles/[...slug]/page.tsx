@@ -21,7 +21,7 @@ const PREFIX_URL = "articles";
 
 // TODO: move somewhere if possible
 const cachedFindByPath = cache(async (path: string) => {
-  const response = await fetchContent(headers(), path);
+  const response = await fetchContent(await headers(), path);
   const content = await parseOrThrow<ContentResponse>(response);
   return {
     res: response,
@@ -30,11 +30,13 @@ const cachedFindByPath = cache(async (path: string) => {
 });
 
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
-export async function generateMetadata({
-  params: { slug }
-}: {
-  params: { slug: Array<string> };
+export async function generateMetadata(props: {
+  params: Promise<{ slug: Array<string> }>;
 }): Promise<Metadata> {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const sluggized = await sluggize([PREFIX_URL].concat(slug));
   const content = await cachedFindByPath(sluggized);
   return generateForArticleOrPage(sluggized, content.body);
@@ -49,11 +51,13 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
+  const { slug } = await req.params;
+
   // NOTE: avoid send request of images
-  if (isMatch(req.params.slug.join("/"))) {
+  if (isMatch(slug.join("/"))) {
     return notFound();
   }
-  const sluggized = await sluggize([PREFIX_URL].concat(req.params.slug));
+  const sluggized = await sluggize([PREFIX_URL].concat(slug));
   const response: ContentResponseWithFetchResponse =
     await cachedFindByPath(sluggized);
 

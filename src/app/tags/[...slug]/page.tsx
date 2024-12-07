@@ -15,9 +15,16 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const tagName = decodeURI(req.params.slug[0]);
-  const currentPage = req.searchParams["p"] ? req.searchParams["p"] : 1;
-  const response: Response = await fetchTag(headers(), tagName, currentPage);
+  const { slug } = await req.params;
+  const tagName = decodeURI(slug[0]);
+
+  const queryString = await req.searchParams;
+  const currentPage = queryString.p ? queryString.p : 1;
+  const response: Response = await fetchTag(
+    await headers(),
+    tagName,
+    currentPage
+  );
   const articlesResponseWithCount =
     await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(

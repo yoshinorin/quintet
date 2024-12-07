@@ -1,21 +1,21 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 .nav-root {
   display:                     block;
   width:                       100%;
-  height:                      map-get($header, height);
+  height:                      map.get(variables.$header, height);
   background:                  transparent;
   position:                    fixed;
   top:                         0;
-  z-index:                     map-get($z-indexes, header);
+  z-index:                     map.get(variables.$z-indexes, header);
 }
 .nav-wrap {
   display:       block;
-  max-width:     map-get($main, max-width);
+  max-width:     map.get(variables.$main, max-width);
   margin:        0 auto;
-  padding-right: map-get($main, padding-right-left);
-  padding-left:  map-get($main, padding-right-left);
+  padding-right: map.get(variables.$main, padding-right-left);
+  padding-left:  map.get(variables.$main, padding-right-left);
 }
 .nav-icon {
   padding-top: 6px;
@@ -65,5 +65,5 @@
 }
 
 .cover-bottom-nav {
-  background:   map-get($navigation-colors, 'background');
+  background:   map.get(variables.$navigation-colors, 'background');
 }

@@ -1,5 +1,5 @@
-@import
-    '../_variables';
+@use "sass:map";
+@use '../_variables';
 
 .pinned {
   display: grid;
@@ -18,16 +18,16 @@
 }
 
 .pinned-card {
-  background-color: map-get($pinned-colors, 'background');
-  border: 0.01em solid map-get($pinned-colors, 'border');
+  background-color: map.get(variables.$pinned-colors, 'background');
+  border: 0.01em solid map.get(variables.$pinned-colors, 'border');
   border-radius: 0.3em;
   padding: 0.6em 1em 0.2em 1em;
   display: flex;
   flex-direction: column;
-  color: map-get($basic-colors, 'base');
+  color: map.get(variables.$basic-colors, 'base');
 
   &:hover {
-    background-color: map-get($home-colors, 'background');
+    background-color: map.get(variables.$home-colors, 'background');
   }
 
   p {

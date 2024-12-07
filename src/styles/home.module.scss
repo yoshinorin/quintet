@@ -1,5 +1,5 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 .wrap {
   margin-top:  6rem;
@@ -19,6 +19,6 @@
   padding:  0.3rem 1.2rem 0.3rem 1.2rem;
 
   &:hover {
-    background-color:  map-get($home-colors, 'background');
+    background-color:  map.get(variables.$home-colors, 'background');
   }
 }

@@ -1,10 +1,10 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 #footer {
-  background: map-get($footer-colors, background);
-  color:      map-get($basic-colors, steel-gray);
-  font-size:  map-get($font-size, medium);
+  background: map.get(variables.$footer-colors, background);
+  color:      map.get(variables.$basic-colors, steel-gray);
+  font-size:  map.get(variables.$font-size, medium);
   text-align: center;
   margin-top: 40px;
   min-height: 180px;
@@ -13,9 +13,9 @@
 
   .copyrights {
     padding-top:  65px;
-    color:        map-get($footer-colors, 'copyright');
+    color:        map.get(variables.$footer-colors, 'copyright');
     a {
-      color:      map-get($footer-colors, 'copyright-link');
+      color:      map.get(variables.$footer-colors, 'copyright-link');
     }
   }
 }
@@ -27,7 +27,7 @@
 }
 
 .flex-container .footer-item {
-  color:       map-get($footer-colors, 'font') !important;
+  color:       map.get(variables.$footer-colors, 'font') !important;
   font-size:   13px;
   width:       33%;
 }

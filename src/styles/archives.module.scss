@@ -1,18 +1,18 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 #archives {
   a {
-    color: map-get($basic-colors, 'archives-link');
+    color: map.get(variables.$basic-colors, 'archives-link');
   }
 
   li {
-    font-size: map-get($font-size, normal);
+    font-size: map.get(variables.$font-size, normal);
   }
 }
 
 .found {
-  font-size: map-get($font-size, xlarge);
+  font-size: map.get(variables.$font-size, xlarge);
   font-weight: bold;
   margin-top: 3rem;
   margin-bottom: 1.5rem;

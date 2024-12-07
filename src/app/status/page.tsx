@@ -10,7 +10,7 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await fetchStatus(headers());
+  const response: Response = await fetchStatus(await headers());
   return {
     props: {
       statusCode: response.status

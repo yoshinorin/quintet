@@ -15,7 +15,7 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await fetchAllSeries(headers());
+  const response: Response = await fetchAllSeries(await headers());
   const seriesResponse = await parseOrThrow<Array<SeriesResponse>>(response);
   const series: Array<Series> = seriesResponse.map((series) => {
     return {

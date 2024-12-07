@@ -1,11 +1,11 @@
-@import
-    '_themes',
-    '_variables',
-    './components/alert.module';
+@use "sass:map";
+@use '_themes';
+@use '_variables';
+@use 'components/alert.module';
 
 html {
-  font-family: $font-families-base;
-  font-size:   map-get($font-size, base);
+  font-family: variables.$font-families-base;
+  font-size:   map.get(variables.$font-size, base);
 }
 
 body {
@@ -13,11 +13,11 @@ body {
   height:         100%;
   margin:         0;
   padding:        0;
-  font-size:      map-get($font-size, xlarge);
-  line-height:    $line-height;
-  letter-spacing: $letter-spacing;
-  color:            map-get($basic-colors, 'base');
-  background-color: map-get($main, background-color);
+  font-size:      map.get(variables.$font-size, xlarge);
+  line-height:    variables.$line-height;
+  letter-spacing: variables.$letter-spacing;
+  color:            map.get(variables.$basic-colors, 'base');
+  background-color: map.get(variables.$main, background-color);
 }
 
 h1,
@@ -27,14 +27,14 @@ h4,
 h5,
 h6 {
   letter-spacing: -0.02em;
-  font-family:    $font-families-headings;
+  font-family:    variables.$font-families-headings;
   line-height:    1.45em;
-  color:          map-get($basic-colors, headings);
+  color:          map.get(variables.$basic-colors, headings);
 }
 
 h1 {
   margin: 2.7em 0 0.9em 0;
-  border-bottom: 0.02em solid map-get($border-colors, 'h1-border-bottom');
+  border-bottom: 0.02em solid map.get(variables.$border-colors, 'h1-border-bottom');
   line-height: 1.75em;
 }
 h2 {
@@ -50,7 +50,7 @@ h6 {
   margin: 1em 0 0 0;
 }
 
-@each $key, $value in $headings-font-size {
+@each $key, $value in variables.$headings-font-size {
   #{$key} {
     font-size: $value;
   }
@@ -61,7 +61,7 @@ p {
 }
 
 sub {
-  font-size: map-get($font-size, small);
+  font-size: map.get(variables.$font-size, small);
   opacity: 0.7;
   line-height: 1rem;
 }
@@ -73,12 +73,12 @@ dl {
 }
 
 .footnote-ref {
-  font-size: map-get($font-size, ssmall);
+  font-size: map.get(variables.$font-size, ssmall);
 }
 
 .footnotes {
   p {
-    font-size: map-get($font-size, ssmall);
+    font-size: map.get(variables.$font-size, ssmall);
   }
   ol {
     font-size: 0.9rem;
@@ -96,11 +96,11 @@ a {
   &:active,
   &:visited {
       cursor:          pointer;
-      color:           map-get($basic-colors, 'unstyled-link');
+      color:           map.get(variables.$basic-colors, 'unstyled-link');
       text-decoration: none;
   }
   &:hover {
-      color:           map-get($basic-colors, 'unstyled-link');
+      color:           map.get(variables.$basic-colors, 'unstyled-link');
       text-decoration: underline;
   }
 }
@@ -133,15 +133,15 @@ table {
   th {
     padding:       0.1em 0.5em;
     font-weight:   bold;
-    border-bottom: 0.1em solid map-get($border-colors, 'th-border-bottom');
+    border-bottom: 0.1em solid map.get(variables.$border-colors, 'th-border-bottom');
   }
   td {
     padding: 0.1em 0.5em;
   }
   tr {
-    background:     map-get($table-colors, 'tr-background');
+    background:     map.get(variables.$table-colors, 'tr-background');
     &:nth-child(2n) {
-      background:   map-get($table-colors, 'tr-background-secondary');
+      background:   map.get(variables.$table-colors, 'tr-background-secondary');
     }
   }
 }
@@ -150,7 +150,7 @@ hr {
   margin:     0.4em 0 0;
   outline:    none;
   border:     none;
-  border-top: 1px solid map-get($border-colors, 'hr-border-top');
+  border-top: 1px solid map.get(variables.$border-colors, 'hr-border-top');
 }
 
 dl {
@@ -169,44 +169,44 @@ form {
     width:           100%;
     border:          none;
     outline:         none;
-    color:           map-get($basic-colors, base);
-    font-size:       map-get($font-size, xxlarge);
+    color:           map.get(variables.$basic-colors, base);
+    font-size:       map.get(variables.$font-size, xxlarge);
     font-weight:     400;
 
     &:hover,
     &:focus {
         outline:        none;
-        border-bottom:  0.2rem solid map-get($basic-colors, 'info');
+        border-bottom:  0.2rem solid map.get(variables.$basic-colors, 'info');
     }
     padding-bottom:  0.6rem;
     margin-right:    0.2rem;
-    border-bottom:   0.1rem solid map-get($border-colors, 'text-box-border-bottom');
+    border-bottom:   0.1rem solid map.get(variables.$border-colors, 'text-box-border-bottom');
   }
 }
 
 select {
-  font-size:      map-get($font-size, xxlarge);
-  color:          map-get($basic-colors, 'steel-gray');
+  font-size:      map.get(variables.$font-size, xxlarge);
+  color:          map.get(variables.$basic-colors, 'steel-gray');
   background:     transparent;
-  border:         0.1rem solid map-get($basic-colors, 'steel-gray');
+  border:         0.1rem solid map.get(variables.$basic-colors, 'steel-gray');
   border-radius:  0.3rem;
   padding:        0.4rem 2.7rem 0.4rem 0.7rem;
   &:hover,
   &:focus {
       outline:        none;
-      color:          map-get($basic-colors, 'base');
-      border:         0.2rem solid map-get($basic-colors, 'info');
+      color:          map.get(variables.$basic-colors, 'base');
+      border:         0.2rem solid map.get(variables.$basic-colors, 'info');
   }
 }
 
 acronym,
 abbr {
-  border-bottom: 0.1em dotted map-get($basic-colors, 'base');
+  border-bottom: 0.1em dotted map.get(variables.$basic-colors, 'base');
 }
 
 // TODO: move somewhere?
 blockquote {
-  border-left:   0.15em solid map-get($border-colors, 'blockquote-border-left');
+  border-left:   0.15em solid map.get(variables.$border-colors, 'blockquote-border-left');
   padding:       0 1em;
   font-style:    italic;
   margin:        1.7em 0 1.7em 1.7em;
@@ -224,10 +224,10 @@ blockquote {
 }
 
 code {
-  font-family:        $font-families-code;
-  font-size:          map-get($font-size, small);
-  color:              map-get($highlight-colors, 'base');
-  background-color:   map-get($code-basic-colors, 'background');
+  font-family:        variables.$font-families-code;
+  font-size:          map.get(variables.$font-size, small);
+  color:              map.get(variables.$highlight-colors, 'base');
+  background-color:   map.get(variables.$code-basic-colors, 'background');
   border-radius:      2px;
   display:            inline;
   font-weight:        400;
@@ -256,16 +256,16 @@ figure {
 // TODO: fix important
 figure.highlight,
 .codeblock {
-  background:       map-get($highlight-colors, 'background');
-  color:            map-get($highlight-font-colors, 'night-rider');
-  border:           0.1em solid map-get($highlight-colors, 'border-color');
+  background:       map.get(variables.$highlight-colors, 'background');
+  color:            map.get(variables.$highlight-font-colors, 'night-rider');
+  border:           0.1em solid map.get(variables.$highlight-colors, 'border-color');
   border-radius:    0.3em;
   overflow-x:       auto;
   overflow-y:       hidden;
   display:          block;
-  color:            map-get($basic-colors, 'base');
+  color:            map.get(variables.$basic-colors, 'base');
   line-height:      2.45rem !important;
-  font-size:        map-get($font-size, large);
+  font-size:        map.get(variables.$font-size, large);
 
   table {
     display: block;
@@ -276,7 +276,7 @@ figure.highlight,
   .gutter,
   .code,
   .tag {
-    font-family:      $font-families-code;
+    font-family:      variables.$font-families-code;
     border:           none;
     cursor:           text;
   }
@@ -288,45 +288,45 @@ figure.highlight,
     overflow-y:     hidden;
   }
   figcaption {
-    font-family:  $font-families-code;
-    background:   map-get($highlight-colors, 'background');
-    color:        map-get($basic-colors, 'base');
+    font-family:  variables.$font-families-code;
+    background:   map.get(variables.$highlight-colors, 'background');
+    color:        map.get(variables.$basic-colors, 'base');
   }
   .gutter {
-    border-right-color:  map-get($highlight-colors, 'border-light') !important;
+    border-right-color:  map.get(variables.$highlight-colors, 'border-light') !important;
     border-right:        1px solid;
-    background:          map-get($highlight-colors, 'border-color') !important;
+    background:          map.get(variables.$highlight-colors, 'border-color') !important;
     opacity:             0.7;
   }
   .code {
     padding:       0.1em 0.1em 0.3em 0.6em;
     width:         100%;
-    background:    map-get($highlight-colors, 'background');
+    background:    map.get(variables.$highlight-colors, 'background');
 
     pre {
-      max-width: calc(#{map-get($main, 'max-width')} - 50px);
+      max-width: calc(#{map.get(variables.$main, 'max-width')} - 50px);
     }
   }
   .line {
-    height:    map-get($highlight-colors, line-height);
-    font-size: map-get($highlight-colors, font-size);
+    height:    map.get(variables.$highlight-colors, line-height);
+    font-size: map.get(variables.$highlight-colors, font-size);
   }
   // common
   .comment,
   .quote,
   .variable {
-    color: map-get($highlight-font-colors, 'night-rider');
+    color: map.get(variables.$highlight-font-colors, 'night-rider');
   }
   .keyword,
   .selector-tag,
   .built_in,
   .name,
   .tag {
-    color: map-get($code-basic-colors, 'tag');
+    color: map.get(variables.$code-basic-colors, 'tag');
   }
   .literal,
   .number {
-    color: map-get($highlight-font-colors, 'bondi-blue');
+    color: map.get(variables.$highlight-font-colors, 'bondi-blue');
   }
   .string,
   .title,
@@ -337,27 +337,27 @@ figure.highlight,
   .template-variable,
   .type,
   .addition {
-    color: map-get($highlight-font-colors, 'egyptian-blue');
+    color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
   }
   .keyword {
-    color: map-get($highlight-font-colors, 'cardinal');
+    color: map.get(variables.$highlight-font-colors, 'cardinal');
   }
   .deletion,
   .selector-attr,
   .selector-pseudo,
   .meta {
-    color: map-get($code-basic-colors, 'meta');
+    color: map.get(variables.$code-basic-colors, 'meta');
   }
   .doctag {
-    color: map-get($code-basic-colors, 'doctag');
+    color: map.get(variables.$code-basic-colors, 'doctag');
   }
   .attr {
-    color: map-get($code-basic-colors, 'attr');
+    color: map.get(variables.$code-basic-colors, 'attr');
   }
   .symbol,
   .bullet,
   .link {
-    color: map-get($code-basic-colors, 'link');
+    color: map.get(variables.$code-basic-colors, 'link');
   }
   .emphasis {
     font-style: italic;
@@ -370,27 +370,27 @@ figure.highlight,
   &.cpp .code,
   &.c .code {
     .preprocessor {
-      color: map-get($highlight-font-colors, 'persimmon');
+      color: map.get(variables.$highlight-font-colors, 'persimmon');
     }
     .meta-keyword {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .title  {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
   }
   // C#
   &.cs .code {
     .preprocessor,
     .preprocessor .keyword {
-      color: map-get($highlight-font-colors, 'night-rider');
+      color: map.get(variables.$highlight-font-colors, 'night-rider');
     }
     .title {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .xmlDocTag,
     .doctag {
-      color: map-get($highlight-font-colors, 'asparagus');
+      color: map.get(variables.$highlight-font-colors, 'asparagus');
     }
   }
   // CSS
@@ -398,150 +398,150 @@ figure.highlight,
     .at_rule,
     .important,
     .meta {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .attribute,
     .hexcolor,
     .function {
-      color: map-get($highlight-font-colors, 'bondi-blue');
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
     }
     .attr_selector,
     .value {
-      color: map-get($highlight-font-colors, 'night-rider');
+      color: map.get(variables.$highlight-font-colors, 'night-rider');
     }
     .id,
     .class,
     .pseudo,
     .selector-pseudo {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .tag,
     .selector-tag {
-      color: map-get($highlight-font-colors, 'asparagus');
+      color: map.get(variables.$highlight-font-colors, 'asparagus');
     }
   }
   // Diff
   &.diff .code {
     .chunk,
     .meta {
-      color:       map-get($highlight-font-colors, 'scampi');
+      color:       map.get(variables.$highlight-font-colors, 'scampi');
       font-weight: bold;
     }
     .addition {
-      color:            map-get($highlight-font-colors, 'limeade');
-      background-color: map-get($highlight-font-colors, 'honeydew');
+      color:            map.get(variables.$highlight-font-colors, 'limeade');
+      background-color: map.get(variables.$highlight-font-colors, 'honeydew');
     }
     .deletion {
-      color:            map-get($highlight-font-colors, 'free-speech-red');
-      background-color: map-get($highlight-font-colors, 'misty-rose');
+      color:            map.get(variables.$highlight-font-colors, 'free-speech-red');
+      background-color: map.get(variables.$highlight-font-colors, 'misty-rose');
     }
   }
   // Scala/Java
   &.scala .code,
   &.java .code {
     .title {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .javadoc {
-      color: map-get($highlight-font-colors, 'pewter');
+      color: map.get(variables.$highlight-font-colors, 'pewter');
     }
     .meta,
     .annotation,
     .javadoctag {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .params {
-      color: map-get($highlight-font-colors, 'bahama-blue');
+      color: map.get(variables.$highlight-font-colors, 'bahama-blue');
     }
   }
   // JavaScript
   &.js .code {
     .built_in,
     .title {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .javadoc {
-      color: map-get($highlight-font-colors, 'pewter');
+      color: map.get(variables.$highlight-font-colors, 'pewter');
     }
     .tag,
     .javadoctag {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .tag .title {
-      color: map-get($highlight-font-colors, 'night-rider');
+      color: map.get(variables.$highlight-font-colors, 'night-rider');
     }
     .regexp {
-      color: map-get($highlight-font-colors, 'persimmon');
+      color: map.get(variables.$highlight-font-colors, 'persimmon');
     }
   }
   // JSON
   &.json .code {
     .attribute {
-      color: map-get($highlight-font-colors, 'egyptian-blue');
+      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
     }
   }
   // Nginx
   &.nginx .code {
     .title,
     .attribute {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .built_in {
-      color: map-get($highlight-font-colors, 'bondi-blue');
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
     }
     .regexp {
-      color: map-get($highlight-font-colors, 'egyptian-blue');
+      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
     }
   }
   // PHP
   &.php .code {
     .phpdoc,
     .doctag {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .regexp {
-      color: map-get($highlight-font-colors, 'persimmon');
+      color: map.get(variables.$highlight-font-colors, 'persimmon');
     }
     .title {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
   }
   // Ruby
   &.ruby .code {
     .parent,
     .title {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .prompt,
     .constant,
     .number,
     .subst .keyword,
     .symbol {
-      color: map-get($highlight-font-colors, 'bondi-blue');
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
     }
   }
   // SQL
   &.sql {
     .built_in {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
   }
   // XML, HTML
   &.xml,
   &.html {
     .tag {
-      color: map-get($highlight-font-colors, 'night-rider');
+      color: map.get(variables.$highlight-font-colors, 'night-rider');
     }
     .value {
-      color: map-get($highlight-font-colors, 'egyptian-blue');
+      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
     }
     .attribute,
     .attr {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .title,
     .name {
-      color: map-get($highlight-font-colors, 'asparagus');
+      color: map.get(variables.$highlight-font-colors, 'asparagus');
     }
   }
   // SCSS
@@ -549,16 +549,16 @@ figure.highlight,
     .tag,
     .at_rule,
     .important {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .number,
     .hexcolor,
     .function,
     .attribute {
-      color: map-get($highlight-font-colors, 'bondi-blue');
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
     }
     .built_in {
-      color: map-get($highlight-font-colors, 'persimmon');
+      color: map.get(variables.$highlight-font-colors, 'persimmon');
     }
     .id,
     .pseudo,
@@ -566,35 +566,35 @@ figure.highlight,
     .preprocessor,
     .selector-class,
     .selector-id {
-      color: map-get($highlight-font-colors, 'scampi');
+      color: map.get(variables.$highlight-font-colors, 'scampi');
     }
     .tag,
     .selector-tag {
-      color: map-get($highlight-font-colors, 'asparagus');
+      color: map.get(variables.$highlight-font-colors, 'asparagus');
     }
   }
   // Go
   &.go {
     .typename {
-      color: map-get($highlight-font-colors, 'cardinal');
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
     }
     .built_in,
     .constant {
-      color: map-get($highlight-font-colors, 'bondi-blue');
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
     }
   }
   // YAML
   &.yml {
     .line
     .attr {
-      color: map-get($highlight-font-colors, 'asparagus');
+      color: map.get(variables.$highlight-font-colors, 'asparagus');
     }
     .line,
     .string,
     .type,
     .literal,
     .meta {
-      color: map-get($highlight-font-colors, 'egyptian-blue');
+      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
     }
   }
 }

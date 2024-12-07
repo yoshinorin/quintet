@@ -16,7 +16,8 @@ const emptyResult = {
 } as SearchResponseWithCount;
 
 export default async function Page(req: any) {
-  if (req.searchParams["q"] === undefined) {
+  const queryString = await req.searchParams;
+  if (queryString.q === undefined) {
     const err = {
       title: "Unknown Error",
       status: 422,
@@ -27,10 +28,7 @@ export default async function Page(req: any) {
     return <Renderer props={err} qs={[]} />;
   }
 
-  let qs =
-    req.searchParams["q"] instanceof Array
-      ? req.searchParams["q"]
-      : [req.searchParams["q"]];
+  let qs = queryString.q instanceof Array ? queryString.q : [queryString.q];
 
   qs = qs.map((x) => x.trim()).filter((x) => x.length !== 0);
 
@@ -80,7 +78,7 @@ async function execute(
   req,
   words: Array<string>
 ): Promise<SearchResponseWithCount | ProblemDetails> {
-  const response = await fetchSearch(headers(), words);
+  const response = await fetchSearch(await headers(), words);
   const responseBody = await response.json();
 
   if (response.status !== 200) {

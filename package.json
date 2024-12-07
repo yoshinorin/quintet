@@ -7,7 +7,7 @@
   "scripts": {
     "copy:localconfig": "node -e \"require('fs').copyFileSync('config.local.js', 'config.js')\"",
     "copy:e2econfig": "node -e \"require('fs').copyFileSync('config.e2e.js', 'config.js')\"",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "server": "set NEXT_ANALYZE=false && npm run copy:localconfig && next dev",
     "server:mock": "set NEXT_ANALYZE=false && npm run copy:e2econfig && next dev",
     "build": "set NEXT_ANALYZE=false && next build",
@@ -28,24 +28,27 @@
   },
   "dependencies": {
     "micromatch": "4.0.8",
-    "next": "14.2.14",
+    "next": "15.0.4",
     "pm2": "5.4.2",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.2.14",
+    "@next/bundle-analyzer": "15.0.4",
     "@playwright/test": "1.47.2",
     "@types/node": "22.7.4",
-    "@types/react": "18.3.11",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
     "@vitest/coverage-v8": "2.1.2",
     "prettier": "3.3.3",
-    "sass": "1.79.4",
+    "sass": "1.82.0",
     "typescript": "5.6.2",
     "vitest": "2.1.2"
   },
   "engines": {
     "npm": ">=10",
     "node": ">=22"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@19.0.0-rc.1"
   }
 }

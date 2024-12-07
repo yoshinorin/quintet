@@ -15,7 +15,7 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await fetchArticles(headers(), 1, 5);
+  const response: Response = await fetchArticles(await headers(), 1, 5);
   const articlesResponseWithCount =
     await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(

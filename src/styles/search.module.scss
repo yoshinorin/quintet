@@ -1,5 +1,5 @@
-@import
-    '_variables';
+@use "sass:map";
+@use '_variables';
 
 .group {
   .result {
@@ -22,11 +22,11 @@
     }
     .time {
       font-size:   0.8em;
-      color:       map-get($article-color, 'time');
+      color:       map.get(variables.$article-color, 'time');
     }
     .excerpt {
       letter-spacing: 0.05em;
-      color:          map-get($article-color, 'excerpt');
+      color:          map.get(variables.$article-color, 'excerpt');
       font-size:      1.65rem;
     }
   }
@@ -37,6 +37,6 @@
 .wrap {
   margin:         0.5em 0.2em 0.5em 0;
   padding:        0.8em;
-  border:         0.1rem solid map-get($basic-colors, 'steel-gray');
+  border:         0.1rem solid map.get(variables.$basic-colors, 'steel-gray');
   border-radius:  0.3rem;
 }

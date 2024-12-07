@@ -1,12 +1,12 @@
-@import
-    '../_variables';
+@use "sass:map";
+@use '../_variables';
 
 .container {
   display:       block;
-  max-width:     map-get($main, max-width);
+  max-width:     map.get(variables.$main, max-width);
   margin:        0 auto;
-  padding-right: map-get($main, padding-right-left);
-  padding-left:  map-get($main, padding-right-left);
+  padding-right: map.get(variables.$main, padding-right-left);
+  padding-left:  map.get(variables.$main, padding-right-left);
 }
 
 .flex-container {

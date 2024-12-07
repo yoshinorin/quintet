@@ -41,7 +41,9 @@ module.exports = withBundleAnalyzer({
   */
   trailingSlash: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, "styles")]
+    includePaths: [path.join(__dirname, "styles")],
+    // FIXME: delete this option after versionup
+    silenceDeprecations: ["legacy-js-api"]
   },
   experimental: {
     scrollRestoration: true
