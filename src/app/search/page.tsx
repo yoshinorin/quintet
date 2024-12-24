@@ -3,7 +3,6 @@
 import { headers } from "next/headers";
 import { fetchSearch } from "../../api";
 import {
-  SearchResponse,
   SearchResponseWithCount,
   SearchSuccessResult
 } from "../../models/models";
@@ -92,12 +91,7 @@ async function execute(
   let contents = [];
   contents = (searchResponseWithCount as SearchResponseWithCount).contents.map(
     (content) => {
-      return {
-        path: content.path,
-        title: content.title,
-        content: content.content,
-        publishedAt: content.publishedAt
-      } as SearchResponse;
+      return content;
     }
   );
 

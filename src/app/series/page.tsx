@@ -18,12 +18,7 @@ async function handler(req: any) {
   const response: Response = await fetchAllSeries(await headers());
   const seriesResponse = await parseOrThrow<Array<SeriesResponse>>(response);
   const series: Array<Series> = seriesResponse.map((series) => {
-    return {
-      id: series.id,
-      name: series.name,
-      title: series.title,
-      description: series.description
-    } as Series;
+    return series;
   });
 
   return {

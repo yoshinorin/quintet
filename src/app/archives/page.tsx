@@ -18,11 +18,7 @@ async function handler(req: any) {
   const response: Response = await fetchArchives(await headers());
   const archiveResponse = await parseOrThrow<Array<ArchiveResponse>>(response);
   const archives: Array<Archive> = archiveResponse.map((article) => {
-    return {
-      path: article.path,
-      title: article.title,
-      publishedAt: article.publishedAt
-    } as Archive;
+    return article;
   });
 
   return {
