@@ -1,8 +1,8 @@
 import { headers } from "next/headers";
 import { mainAuthor, siteName, url } from "../../../../config";
-import { fetchFeeds } from "../../../api";
 import { Feed } from "../../../models/models";
 import { generateFeedsString } from "../../../services/feeds";
+import { fetchFeeds } from "../../../api";
 
 //export async function get(ctx: any) {
 export async function GET() {
@@ -23,8 +23,14 @@ export async function GET() {
 
   let feedResponses = (await response.json()) as Array<Feed>;
   const feeds = feedResponses.map((feed) => {
-    return feed;
-  });
+    return {
+      title: feed.title,
+      link: feed.link,
+      id: feed.id,
+      published: feed.published,
+      updated: feed.updated
+    };
+  }) as Array<Feed>;
 
   const feedXmlString = await generateFeedsString(
     url,

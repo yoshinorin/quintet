@@ -29,7 +29,13 @@ async function handler(req: any) {
     await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(
     (article) => {
-      return article;
+      return {
+        path: article.path,
+        title: article.title,
+        content: `${article.content} ...`,
+        publishedAt: article.publishedAt,
+        updatedAt: article.updatedAt
+      } as Article;
     }
   );
 

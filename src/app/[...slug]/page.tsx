@@ -6,6 +6,7 @@ import { permanentRedirect } from "next/navigation";
 import { cache } from "react";
 import { fetchContent } from "../../api";
 import {
+  Content,
   ContentResponse,
   ContentResponseWithFetchResponse
 } from "../../models/models";
@@ -58,10 +59,18 @@ async function handler(req: any) {
 
   const response: ContentResponseWithFetchResponse =
     await cachedFindByPath(path);
+  const content: Content = {
+    title: response.body.title,
+    robotsAttributes: response.body.robotsAttributes,
+    externalResources: response.body.externalResources,
+    content: response.body.content,
+    length: response.body.length,
+    publishedAt: response.body.publishedAt
+  } as Content;
 
   return {
     props: {
-      content: response.body,
+      content: content,
       insight: asInsight(response.res)
     }
   };
