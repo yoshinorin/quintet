@@ -25,6 +25,7 @@ export const defaultRobotsMeta = "noarchive, nofollow, noimageindex, noindex";
 
 export const archivesPage = {
   titlePlaceholder: "filter by title",
+  pathPlaceholder: "filter by path",
   found: "posts"
 };
 export const tagsPage = {

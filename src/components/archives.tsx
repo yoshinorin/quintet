@@ -29,6 +29,7 @@ export const ArchivesComponent: React.FunctionComponent<{
   years = Array.from(new Set(years));
 
   const [inputtedTitle, setTitle] = useState("");
+  const [inputtedPath, setPath] = useState("");
   const [selectedYear, setYear] = useState("YYYY");
   const [selectedMonth, setMonth] = useState("MM");
   const [selectedDay, setDay] = useState("DD");
@@ -55,8 +56,24 @@ export const ArchivesComponent: React.FunctionComponent<{
       resultArticles = resultArticles.filter((a) => a.dd === selectedDay);
     }
 
+    const searchPath = inputtedPath.trim().toLowerCase();
+    if (searchPath.length !== 0) {
+      // TODO: write test code and move somewhere.
+      for (let i = 0; i < searchPath.length; i++) {
+        const code = searchPath.charCodeAt(i);
+        if (code < 0 || code > 127) {
+          setFilteredArticles(resultArticles);
+          return;
+        }
+      }
+      resultArticles = resultArticles.filter((a) =>
+        // NOTE: `path` is `/articles/yyyy/mm/dd/post-title/`
+        a.path.split("/").at(-2).toLowerCase().includes(searchPath)
+      );
+    }
+
     setFilteredArticles(resultArticles);
-  }, [inputtedTitle, selectedYear, selectedMonth, selectedDay]);
+  }, [inputtedTitle, inputtedPath, selectedYear, selectedMonth, selectedDay]);
 
   return (
     <section className={`${containerStyles.container}`}>
@@ -87,6 +104,13 @@ export const ArchivesComponent: React.FunctionComponent<{
             placeholder={archivesPage.titlePlaceholder}
             value={inputtedTitle}
             onChange={(e) => setTitle(e.target.value)}
+          />
+        </form>
+        <form>
+          <input
+            placeholder={archivesPage.pathPlaceholder}
+            value={inputtedPath}
+            onChange={(e) => setPath(e.target.value)}
           />
         </form>
       </div>
