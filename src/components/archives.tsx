@@ -28,7 +28,7 @@ export const ArchivesComponent: React.FunctionComponent<{
   });
   years = Array.from(new Set(years));
 
-  const [keyword, setKeyword] = useState("");
+  const [inputtedTitle, setTitle] = useState("");
   const [selectedYear, setYear] = useState("YYYY");
   const [selectedMonth, setMonth] = useState("MM");
   const [selectedDay, setDay] = useState("DD");
@@ -36,10 +36,10 @@ export const ArchivesComponent: React.FunctionComponent<{
 
   useEffect(() => {
     let resultArticles = allArticles;
-    const searchKeywords = keyword.trim().toLowerCase();
-    if (searchKeywords.length !== 0) {
+    const searchTitle = inputtedTitle.trim().toLowerCase();
+    if (searchTitle.length !== 0) {
       resultArticles = resultArticles.filter((a) =>
-        a.title.toLowerCase().includes(searchKeywords)
+        a.title.toLowerCase().includes(searchTitle)
       );
     }
 
@@ -56,7 +56,7 @@ export const ArchivesComponent: React.FunctionComponent<{
     }
 
     setFilteredArticles(resultArticles);
-  }, [keyword, selectedYear, selectedMonth, selectedDay]);
+  }, [inputtedTitle, selectedYear, selectedMonth, selectedDay]);
 
   return (
     <section className={`${containerStyles.container}`}>
@@ -85,8 +85,8 @@ export const ArchivesComponent: React.FunctionComponent<{
         <form>
           <input
             placeholder={archivesPage.titlePlaceholder}
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
+            value={inputtedTitle}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </form>
       </div>
