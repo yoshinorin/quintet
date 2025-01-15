@@ -32,7 +32,7 @@ module.exports = withBundleAnalyzer({
     QUINTET_COMMIT_URL: commitUrl,
     QUINTET_RUNTIME: "Node.js",
     QUINTET_RUNTIME_VERSION: process.version ? process.version : "N/A",
-    QUINTET_BUILD_AT: (Math.floor(Date.now() / 1000)).toString()
+    QUINTET_BUILD_AT: Math.floor(Date.now() / 1000).toString()
   },
   /*
   serverRuntimeConfig: {
