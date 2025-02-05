@@ -1,4 +1,5 @@
 import styles from "../styles/accordion.module.scss";
+import { PreContent } from "./precontent";
 
 export const Accordion: React.FunctionComponent<{
   open: boolean;
@@ -12,7 +13,7 @@ export const Accordion: React.FunctionComponent<{
         className={`'unstyled' ${styles["menu-button"]}`}
         onClick={onclick}
         dangerouslySetInnerHTML={{ __html: title }}></span>
-      {open && <pre className="accordion-content">{content}</pre>}
+      {open && <PreContent content={content} />}
     </div>
   );
 };

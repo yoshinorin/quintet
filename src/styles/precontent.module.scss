@@ -1,0 +1,16 @@
+@use "sass:map";
+@use '_variables';
+
+.content {
+  border:             0.1em solid map.get(variables.$highlight-colors, 'border-color');
+  font-family:        variables.$font-families-code;
+  font-size:          map.get(variables.$font-size, small);
+  color:              map.get(variables.$highlight-colors, 'base');
+  background-color:   map.get(variables.$code-basic-colors, 'background');
+  line-height:        2.25rem;
+  border-radius:      2px;
+  margin:             0.5em 0.25em;
+  padding:            0.5em 0.5em;
+  overflow-x:         auto;
+  overflow-y:         hidden;
+}

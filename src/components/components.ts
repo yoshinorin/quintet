@@ -13,6 +13,7 @@ export * from "./navigation";
 export * from "./pagination";
 export * from "./pinned";
 export * from "./planePage";
+export * from "./precontent";
 export * from "./searchResult";
 export * from "./series";
 export * from "./tag";
