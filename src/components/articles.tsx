@@ -3,7 +3,6 @@ import { Article } from "../models/models";
 import styles from "../styles/articles.module.scss";
 import articlesInSection from "../styles/articlesInSection.module.scss";
 import buttonStyles from "../styles/components/button.module.scss";
-import containerStyles from "../styles/components/container.module.scss";
 import flexStyles from "../styles/components/flex.module.scss";
 import homeStyles from "../styles/home.module.scss";
 import { splittedBy } from "../utils/time";
@@ -12,7 +11,7 @@ export const ArticlesComponent: React.FunctionComponent<{
   articles: Array<Article>;
 }> = ({ articles }) => {
   return (
-    <section className={`${containerStyles.container} ${styles["group"]}`}>
+    <>
       {articles.map((article: Article, idx) => {
         return (
           <article className={styles["article"]} key={idx}>
@@ -41,7 +40,7 @@ export const ArticlesComponent: React.FunctionComponent<{
           </article>
         );
       })}
-    </section>
+    </>
   );
 };
 

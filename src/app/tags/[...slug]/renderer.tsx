@@ -3,6 +3,8 @@ import {
   CoverComponent,
   PaginationComponent
 } from "../../../components/components";
+import articlesStyles from "../../../styles/articles.module.scss";
+import styles from "../../../styles/components/container.module.scss";
 
 export const Renderer: React.FunctionComponent<{
   tagName;
@@ -20,12 +22,14 @@ export const Renderer: React.FunctionComponent<{
         }}
       />
       <main>
-        <ArticlesComponent articles={articles} />
-        <PaginationComponent
-          basePath={`tags/${tagName}`}
-          current={currentPage}
-          total={count}
-        />
+        <section className={`${styles.container} ${articlesStyles.group}`}>
+          <ArticlesComponent articles={articles} />
+          <PaginationComponent
+            basePath={`tags/${tagName}`}
+            current={currentPage}
+            total={count}
+          />
+        </section>
       </main>
     </>
   );
