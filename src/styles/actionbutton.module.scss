@@ -1,8 +1,10 @@
 @use "sass:map";
 @use '_variables';
 
-.menu-button {
+.action-button {
   font-size:         1.45rem;
+  width:             90px;
+  text-align:        center;
   display:           inline-block;
   color:             map.get(variables.$basic-colors, 'base');
   background:        transparent;

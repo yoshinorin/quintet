@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000/articles/nested/standard/");
@@ -94,19 +94,38 @@ test.describe("Article", () => {
     // await expect(tags[1]).toHaveValue('Cats');
   });
 
-  test("should clickable `Attributes / Insight` button - with screenshot", async ({
+  test("should clickable `Attributes` button - with screenshot", async ({
     page
   }, testInfo) => {
-    const button = await page.locator("main>article>div>div>div>span");
-    await expect(button).toHaveText("Attributes / Insight ▼");
+    const buttons = await page.locator("main>article>div>div>div").all();
+    const button = await buttons[0].locator("span");
+    await expect(button).toHaveText("Attributes ▼");
 
     await button.click();
-    const content = await page.locator("main>article>div>div>div>pre");
+    const content = await page.locator("main>article>div>pre");
 
     // TODO: assert JSON
     await expect(content).toContainText("attributes");
     // NOTE: content id
     await expect(content).toContainText("01h81rme1cy11e3ffgagtym2xh");
+
+    const screenshot = await page.screenshot({ fullPage: true });
+    await testInfo.attach("screenshot", {
+      body: screenshot,
+      contentType: "image/png"
+    });
+  });
+
+  test("should clickable `Insight` button - with screenshot", async ({
+    page
+  }, testInfo) => {
+    const buttons = await page.locator("main>article>div>div>div").all();
+    const button = await buttons[1].locator("span");
+    await expect(button).toHaveText("Insight ▼");
+
+    await button.click();
+    const content = await page.locator("main>article>div>pre");
+
     // NOTE: commit hash
     await expect(content).toContainText("24af403");
 

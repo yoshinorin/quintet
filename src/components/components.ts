@@ -1,4 +1,4 @@
-export * from "./accordion";
+export * from "./actionbutton";
 export * from "./archives";
 export * from "./articles";
 export * from "./backtotop";

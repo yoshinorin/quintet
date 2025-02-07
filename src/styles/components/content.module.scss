@@ -40,8 +40,12 @@
       }
     }
   }
-  .accordion-wrap {
+  .actionbutton-wrap {
     margin-top: 0.7em;
+    display:          flex;
+    flex-direction:   row;
+    gap:              1rem;
+    flex-wrap:        wrap;
   }
 }
 
