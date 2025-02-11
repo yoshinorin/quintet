@@ -19,11 +19,14 @@ async function handler(req: any) {
   const tagName = decodeURI(slug[0]);
 
   const queryString = await req.searchParams;
+  const order = queryString.order === "random" ? queryString.order : "desc";
   const currentPage = queryString.p ? queryString.p : 1;
   const response: Response = await fetchTag(
     await headers(),
     tagName,
-    currentPage
+    currentPage,
+    10,
+    order
   );
   const articlesResponseWithCount =
     await parseOrThrow<ArticleResponseWithCount>(response);
@@ -42,7 +45,8 @@ async function handler(req: any) {
       tagName: tagName,
       currentPage: currentPage,
       count: articlesResponseWithCount.count,
-      articles: articles
+      articles: articles,
+      randomness: order === "random"
     }
   };
 }

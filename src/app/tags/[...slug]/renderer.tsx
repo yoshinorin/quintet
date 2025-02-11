@@ -1,8 +1,10 @@
 import {
   ArticlesComponent,
   CoverComponent,
+  LinkButton,
   PaginationComponent
 } from "../../../components/components";
+import buttonStyles from "../../../styles/actionbutton.module.scss";
 import articlesStyles from "../../../styles/articles.module.scss";
 import styles from "../../../styles/components/container.module.scss";
 
@@ -11,7 +13,8 @@ export const Renderer: React.FunctionComponent<{
   currentPage;
   count;
   articles;
-}> = ({ tagName, currentPage, count, articles }) => {
+  randomness;
+}> = ({ tagName, currentPage, count, articles, randomness }) => {
   return (
     <>
       <CoverComponent
@@ -23,12 +26,24 @@ export const Renderer: React.FunctionComponent<{
       />
       <main>
         <section className={`${styles.container} ${articlesStyles.group}`}>
+          <div className={`${buttonStyles["actionbutton-wrap"]}`}>
+            <LinkButton
+              title="Random"
+              href={`/tags/${tagName}/?order=random`}
+            />
+          </div>
           <ArticlesComponent articles={articles} />
-          <PaginationComponent
-            basePath={`tags/${tagName}`}
-            current={currentPage}
-            total={count}
-          />
+          {(() => {
+            if (!randomness) {
+              return (
+                <PaginationComponent
+                  basePath={`tags/${tagName}`}
+                  current={currentPage}
+                  total={count}
+                />
+              );
+            }
+          })()}
         </section>
       </main>
     </>

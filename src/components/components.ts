@@ -9,6 +9,7 @@ export * from "./footer";
 export * from "./header";
 export * from "./headmeta";
 export * from "./injectScript";
+export * from "./linkbutton";
 export * from "./navigation";
 export * from "./pagination";
 export * from "./pinned";

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { fetchSystemMetadata } from "../api";
 import { BackendMeta, Content, ContentMeta, Insight } from "../models/models";
+import buttonStyles from "../styles/actionbutton.module.scss";
 import containerStyles from "../styles/components/container.module.scss";
 import contentStyles from "../styles/components/content.module.scss";
 import { mergeBackendMeta } from "../utils/insight";
@@ -86,7 +87,7 @@ export const ContentComponent: React.FunctionComponent<{
   return (
     <article className={contentStyles.content}>
       <div className={containerStyles.container}>
-        <div className={`${contentStyles["actionbutton-wrap"]}`}>
+        <div className={`${buttonStyles["actionbutton-wrap"]}`}>
           <ActionButton onclick={toggleAttributes} title="Attributes ▼" />
           <ActionButton onclick={toggleMetadata} title="Insight ▼" />
         </div>

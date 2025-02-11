@@ -6,14 +6,15 @@ import { RequestOptions, fetchFromApi, requestHeaderFrom } from "./request";
 export function fetchArticles(
   headers: Headers,
   currentPage: number,
-  limit: number
+  limit: number,
+  order: string
 ): Promise<Response> {
   const url = buildUrl(api.url, "v1/articles", true);
   const ctx = requestContextFrom(headers);
   const options: RequestOptions = {
     headers: requestHeaderFrom(ctx),
     queryParams: buildQueryParams({
-      pagination: { page: currentPage, limit: limit }
+      pagination: { page: currentPage, limit: limit, order: order }
     })
   };
   return fetchFromApi(url, options);
@@ -117,7 +118,9 @@ export function fetchAllTags(headers: Headers): Promise<Response> {
 export function fetchTag(
   headers: Headers,
   tagName: string,
-  currentPage: number
+  currentPage: number,
+  limit: number,
+  order: string
 ): Promise<Response> {
   const url = buildUrl(
     api.url,
@@ -128,7 +131,7 @@ export function fetchTag(
   const options: RequestOptions = {
     headers: requestHeaderFrom(ctx),
     queryParams: buildQueryParams({
-      pagination: { page: currentPage, limit: 10 }
+      pagination: { page: currentPage, limit: limit, order: order }
     })
   };
   return fetchFromApi(url, options);

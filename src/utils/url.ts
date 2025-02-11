@@ -42,6 +42,7 @@ export type QueryParams = {
   pagination?: {
     page: number;
     limit: number;
+    order: string;
   };
 };
 
@@ -55,6 +56,9 @@ export function buildQueryParams(params: QueryParams = {}): string {
     q = queryParams.values.map((q) => `${queryParams.key}=${q}`).join("&");
   }
   if (pagenation) {
+    if (pagenation.order === "random") {
+      return `order=random`;
+    }
     p = `page=${pagenation.page}&limit=${pagenation.limit}`;
   }
 

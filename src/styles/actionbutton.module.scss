@@ -1,6 +1,14 @@
 @use "sass:map";
 @use '_variables';
 
+.actionbutton-wrap {
+  margin-top: 0.7em;
+  display:          flex;
+  flex-direction:   row;
+  gap:              1rem;
+  flex-wrap:        wrap;
+}
+
 .action-button {
   font-size:         1.45rem;
   width:             90px;
