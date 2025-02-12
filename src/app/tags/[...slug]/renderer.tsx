@@ -31,6 +31,7 @@ export const Renderer: React.FunctionComponent<{
               title="Random"
               href={`/tags/${tagName}/?order=random`}
             />
+            <LinkButton title="Reset" href={`/tags/${tagName}/`} />
           </div>
           <ArticlesComponent articles={articles} />
           {(() => {

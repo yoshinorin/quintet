@@ -102,5 +102,10 @@ test.describe("Articles", () => {
 
     const articles = await page.locator("main>section>article").all();
     await assert(articles.length === 5);
+
+    await page.locator("text=Reset").click();
+    await expect(page.getByLabel("Page navigation")).toHaveCount(1);
+    const articlesAfterReset = await page.locator("main>section>article").all();
+    await assert(articlesAfterReset.length === 10);
   });
 });

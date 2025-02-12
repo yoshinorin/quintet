@@ -21,6 +21,7 @@ export const Renderer: React.FunctionComponent<{
         <section className={`${styles.container} ${articlesStyles.group}`}>
           <div className={`${buttonStyles["actionbutton-wrap"]}`}>
             <LinkButton title="Random" href="/articles/?order=random" />
+            <LinkButton title="Reset" href="/articles/" />
           </div>
           <ArticlesComponent articles={articles} />
           {(() => {
