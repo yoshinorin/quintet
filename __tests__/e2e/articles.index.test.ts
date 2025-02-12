@@ -99,5 +99,8 @@ test.describe("Articles", () => {
 
     await page.locator("text=Random").click();
     await expect(page.getByLabel("Page navigation")).toHaveCount(0);
+
+    const articles = await page.locator("main>section>article").all();
+    await assert(articles.length === 5);
   });
 });

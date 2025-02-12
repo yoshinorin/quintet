@@ -17,11 +17,12 @@ export default async function Page(req: any) {
 async function handler(req: any) {
   const queryString = await req.searchParams;
   const order = queryString.order === "random" ? queryString.order : "desc";
+  const randomness = order === "random";
   const currentPage = queryString.p ? queryString.p : 1;
   const response: Response = await fetchArticles(
     await headers(),
     currentPage,
-    10,
+    randomness ? 5 : 10,
     order
   );
   const articlesResponseWithCount =
@@ -43,7 +44,7 @@ async function handler(req: any) {
       count: articlesResponseWithCount.count,
       currentPage: currentPage,
       articles: articles,
-      randomness: order === "random"
+      randomness: randomness
     }
   };
 }

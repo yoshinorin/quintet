@@ -57,7 +57,11 @@ export function buildQueryParams(params: QueryParams = {}): string {
   }
   if (pagenation) {
     if (pagenation.order === "random") {
-      return `order=random`;
+      p = `order=random`;
+      if (pagenation.limit) {
+        return `${p}&limit=${pagenation.limit}`;
+      }
+      return p;
     }
     p = `page=${pagenation.page}&limit=${pagenation.limit}`;
   }

@@ -20,12 +20,13 @@ async function handler(req: any) {
 
   const queryString = await req.searchParams;
   const order = queryString.order === "random" ? queryString.order : "desc";
+  const randomness = order === "random";
   const currentPage = queryString.p ? queryString.p : 1;
   const response: Response = await fetchTag(
     await headers(),
     tagName,
     currentPage,
-    10,
+    randomness ? 5 : 10,
     order
   );
   const articlesResponseWithCount =
@@ -46,7 +47,7 @@ async function handler(req: any) {
       currentPage: currentPage,
       count: articlesResponseWithCount.count,
       articles: articles,
-      randomness: order === "random"
+      randomness: randomness
     }
   };
 }

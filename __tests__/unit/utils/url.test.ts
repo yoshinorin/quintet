@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { buildUrl, buildQueryParams } from "../../../src/utils/url";
+import { buildQueryParams, buildUrl } from "../../../src/utils/url";
 
 test("should returns collect url - with out queryParam and pagination", () => {
   const url = buildUrl("https://example.com", "slug/nested", false);
@@ -55,7 +55,8 @@ test("should returns collect queryParams - with pagination", () => {
   const queryParam = buildQueryParams({
     pagination: {
       page: 3,
-      limit: 10
+      limit: 10,
+      order: "desc"
     }
   });
   expect(queryParam).toEqual("page=3&limit=10");
@@ -69,8 +70,24 @@ test("should returns collect queryParams - with double queryParams and paginatio
     },
     pagination: {
       page: 3,
-      limit: 10
+      limit: 10,
+      order: "desc"
     }
   });
   expect(queryParam).toEqual("q=abc&q=def&page=3&limit=10");
+});
+
+test("should returns collect queryParams - with random order", () => {
+  const queryParam = buildQueryParams({
+    params: {
+      key: "q",
+      values: ["abc", "def"]
+    },
+    pagination: {
+      page: 3,
+      limit: 10,
+      order: "random"
+    }
+  });
+  expect(queryParam).toEqual("order=random&limit=10");
 });
