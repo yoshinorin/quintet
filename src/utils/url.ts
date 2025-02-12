@@ -50,27 +50,23 @@ export function buildQueryParams(params: QueryParams = {}): string {
   const queryParams = params.params;
   const pagenation = params.pagination;
 
-  let q = "";
-  let p = "";
-  if (queryParams) {
-    q = queryParams.values.map((q) => `${queryParams.key}=${q}`).join("&");
-  }
-  if (pagenation) {
-    if (pagenation.order === "random") {
-      p = `order=random`;
-      if (pagenation.limit) {
-        return `${p}&limit=${pagenation.limit}`;
-      }
-      return p;
+  if (pagenation && pagenation.order === "random") {
+    const query = ["order=random"];
+    if (pagenation.limit) {
+      query.push(`limit=${pagenation.limit}`);
     }
-    p = `page=${pagenation.page}&limit=${pagenation.limit}`;
+    return query.join("&");
   }
 
-  if (q.length > 0) {
-    if (p.length === 0) {
-      return q;
-    }
-    return `${q}&${p}`;
+  const query: string[] = [];
+  if (queryParams) {
+    query.push(
+      ...queryParams.values.map((value) => `${queryParams.key}=${value}`)
+    );
   }
-  return p;
+  if (pagenation) {
+    query.push(`page=${pagenation.page}`, `limit=${pagenation.limit}`);
+  }
+
+  return query.join("&");
 }
