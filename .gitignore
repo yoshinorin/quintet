@@ -42,6 +42,11 @@ analyze/
 config.js
 config.local.js
 
+# Copilot
+.github/copilot-instructions.md
+.github/copilot/*.md
+.github/copilot/**/*.md
+
 # images
 # can i use case-insensitive?
 /public/**/*.jpg
