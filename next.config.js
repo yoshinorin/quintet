@@ -2,11 +2,14 @@ const path = require("path");
 const { execSync } = require("child_process");
 const pkg = require("./package.json");
 
+/*
+// https://nextjs.org/docs/app/building-your-application/optimizing/package-bundling
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.NEXT_ANALYZE
     ? process.env.NEXT_ANALYZE === "true"
     : "false"
 });
+*/
 
 let commitHash = "N/A";
 let commitUrl = "N/A";
@@ -23,7 +26,7 @@ try {
   // Nothing todo
 }
 
-module.exports = withBundleAnalyzer({
+module.exports = {
   env: {
     QUINTET_PRODUCT_NAME: pkg.name ? pkg.name : "N/A",
     QUINTET_VERSION: pkg.version ? pkg.version : "N/A",
@@ -60,4 +63,4 @@ module.exports = withBundleAnalyzer({
   },
   poweredByHeader: false,
   compress: false // already gzipped with the `HTTP server`. No need with `Next.js`.
-});
+};

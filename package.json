@@ -8,11 +8,11 @@
     "copy:localconfig": "node -e \"require('fs').copyFileSync('config.local.js', 'config.js')\"",
     "copy:e2econfig": "node -e \"require('fs').copyFileSync('config.e2e.js', 'config.js')\"",
     "dev": "next dev --turbopack",
-    "server": "set NEXT_ANALYZE=false && npm run copy:localconfig && next dev",
-    "server:mock": "set NEXT_ANALYZE=false && npm run copy:e2econfig && next dev",
-    "build": "set NEXT_ANALYZE=false && next build",
+    "server": "npm run copy:localconfig && next dev",
+    "server:mock": "npm run copy:e2econfig && next dev",
+    "build": "next build",
     "rebuild": "npm install && next build",
-    "start": "set NEXT_ANALYZE=false && next start",
+    "start": "next start",
     "pm2:start": "pm2 kill && pm2 start ecosystem.config.js && pm2 save",
     "pm2:restart": "npm run rebuild && pm2 kill && pm2 restart ecosystem.config.js && pm2 save",
     "pm2:status": "pm2 ls",
@@ -33,7 +33,6 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.2.3",
     "@playwright/test": "1.51.1",
     "@types/node": "22.13.10",
     "@types/react": "19.0.12",
