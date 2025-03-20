@@ -27,21 +27,21 @@
   },
   "dependencies": {
     "micromatch": "4.0.8",
-    "next": "15.2.1",
-    "pm2": "5.4.3",
+    "next": "15.2.3",
+    "pm2": "6.0.5",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.2.1",
-    "@playwright/test": "1.50.1",
-    "@types/node": "22.13.9",
-    "@types/react": "19.0.10",
-    "@vitest/coverage-v8": "3.0.8",
+    "@next/bundle-analyzer": "15.2.3",
+    "@playwright/test": "1.51.1",
+    "@types/node": "22.13.10",
+    "@types/react": "19.0.12",
+    "@vitest/coverage-v8": "3.0.9",
     "prettier": "3.5.3",
-    "sass": "1.85.1",
+    "sass": "1.86.0",
     "typescript": "5.8.2",
-    "vitest": "3.0.8"
+    "vitest": "3.0.9"
   },
   "engines": {
     "npm": ">=10",
