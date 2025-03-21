@@ -31,7 +31,7 @@ export default function Page() {
           <hr />
           <form>
             <DropdownComponent
-              list={["light", "dark"]}
+              options={["light", "dark"]}
               defaultValue={theme}
               onChange={onChange}
             />

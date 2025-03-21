@@ -80,21 +80,21 @@ export const ArchivesComponent: React.FunctionComponent<{
       <div className={styles["filters"]}>
         <form>
           <DropdownComponent
-            list={["YYYY"].concat(years)}
+            options={["YYYY"].concat(years)}
             defaultValue={selectedYear}
             onChange={(e) => setYear(e.target.value)}
           />
         </form>
         <form>
           <DropdownComponent
-            list={["MM"].concat(sequentialPadPosNum(1, 12))}
+            options={["MM"].concat(sequentialPadPosNum(1, 12))}
             defaultValue={selectedMonth}
             onChange={(e) => setMonth(e.target.value)}
           />
         </form>
         <form>
           <DropdownComponent
-            list={["DD"].concat(sequentialPadPosNum(1, 31))}
+            options={["DD"].concat(sequentialPadPosNum(1, 31))}
             defaultValue={selectedDay}
             onChange={(e) => setDay(e.target.value)}
           />

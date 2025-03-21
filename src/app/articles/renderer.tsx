@@ -1,9 +1,9 @@
 import {
   ArticlesComponent,
   CoverComponent,
-  LinkButton,
   PaginationComponent
 } from "../../components/components";
+import { OrderSelector } from "../../components/orderSelector";
 import buttonStyles from "../../styles/actionbutton.module.scss";
 import articlesStyles from "../../styles/articles.module.scss";
 import styles from "../../styles/components/container.module.scss";
@@ -12,20 +12,19 @@ export const Renderer: React.FunctionComponent<{
   count;
   currentPage;
   articles;
-  randomness;
-}> = ({ count, currentPage, articles, randomness }) => {
+  order;
+}> = ({ count, currentPage, articles, order }) => {
   return (
     <>
       <CoverComponent props={null} />
       <main>
         <section className={`${styles.container} ${articlesStyles.group}`}>
           <div className={`${buttonStyles["actionbutton-wrap"]}`}>
-            <LinkButton title="Random" href="/articles/?order=random" />
-            <LinkButton title="Reset" href="/articles/" />
+            <OrderSelector currentOrder={order} basePath="articles" />
           </div>
           <ArticlesComponent articles={articles} />
           {(() => {
-            if (!randomness) {
+            if (order !== "random") {
               return (
                 <PaginationComponent
                   basePath="articles"
