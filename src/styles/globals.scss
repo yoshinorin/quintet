@@ -280,12 +280,18 @@ figure.highlight,
     border:           none;
     cursor:           text;
   }
-  &.plain {
+  &.plain,
+  &.plaintext {
     .gutter {
         display: none;
     }
     overflow-x:     auto;
     overflow-y:     hidden;
+    .code {
+      pre {
+        margin-left:   0.5em;
+      }
+    }
   }
   figcaption {
     font-family:  variables.$font-families-code;
