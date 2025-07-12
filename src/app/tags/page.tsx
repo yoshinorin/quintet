@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { fetchAllTags } from "../../api";
 import { Tag } from "../../models/models";
-import { parseOrThrow, runWithHandleErrorIf } from "../handler";
+import { parseOrThrow, runWithHandleError } from "../handler";
 import { Renderer } from "./renderer";
 
 export default async function Page(req: any) {
@@ -11,7 +11,7 @@ export default async function Page(req: any) {
     const { props } = await handler(r);
     return <Renderer {...props} />;
   };
-  return runWithHandleErrorIf(await fn(req));
+  return runWithHandleError(await fn(req));
 }
 
 async function handler(req: any) {

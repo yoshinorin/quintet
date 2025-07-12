@@ -13,7 +13,7 @@ import {
 import { asInsight } from "../../../utils/insight";
 import { isMatch } from "../../../utils/match";
 import { sluggize } from "../../../utils/url";
-import { parseOrThrow, runWithHandleErrorIf } from "../../handler";
+import { parseOrThrow, runWithHandleError } from "../../handler";
 import { generateForArticleOrPage } from "../../metadata";
 import { Renderer } from "./renderer";
 
@@ -47,7 +47,7 @@ export default async function Page(req: any) {
     const { props } = await handler(r);
     return <Renderer {...props} />;
   };
-  return runWithHandleErrorIf(await fn(req));
+  return runWithHandleError(await fn(req));
 }
 
 async function handler(req: any) {
