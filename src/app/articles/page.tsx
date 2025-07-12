@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { fetchArticles } from "../../api";
+import { getValidOrder, Order } from "../../api/order";
 import { Article, ArticleResponseWithCount } from "../../models/models";
 import { parseOrThrow, runWithHandleErrorIf } from "../handler";
 import { Renderer } from "./renderer";
@@ -16,8 +17,8 @@ export default async function Page(req: any) {
 
 async function handler(req: any) {
   const queryString = await req.searchParams;
-  const order = queryString.order;
-  const randomness = order === "random";
+  const order = getValidOrder(queryString.order);
+  const randomness = order === Order.RANDOM;
   const currentPage = queryString.p ? queryString.p : 1;
   const response: Response = await fetchArticles(
     await headers(),

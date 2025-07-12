@@ -1,20 +1,27 @@
 import { api, publicApi } from "../../config";
 import { requestContextFrom } from "../utils/requestContext";
 import { buildQueryParams, buildUrl, sluggize } from "../utils/url";
+import { Order } from "./order";
 import { RequestOptions, fetchFromApi, requestHeaderFrom } from "./request";
+
+export interface PaginationParams {
+  page: number;
+  limit: number;
+  order: Order;
+}
 
 export function fetchArticles(
   headers: Headers,
   currentPage: number,
   limit: number,
-  order: string
+  order: Order
 ): Promise<Response> {
   const url = buildUrl(api.url, "v1/articles", true);
   const ctx = requestContextFrom(headers);
   const options: RequestOptions = {
     headers: requestHeaderFrom(ctx),
     queryParams: buildQueryParams({
-      pagination: { page: currentPage, limit: limit, order: order }
+      pagination: { page: currentPage, limit, order } as PaginationParams
     })
   };
   return fetchFromApi(url, options);
@@ -120,7 +127,7 @@ export function fetchTag(
   tagName: string,
   currentPage: number,
   limit: number,
-  order: string
+  order: Order
 ): Promise<Response> {
   const url = buildUrl(
     api.url,
@@ -131,7 +138,7 @@ export function fetchTag(
   const options: RequestOptions = {
     headers: requestHeaderFrom(ctx),
     queryParams: buildQueryParams({
-      pagination: { page: currentPage, limit: limit, order: order }
+      pagination: { page: currentPage, limit, order } as PaginationParams
     })
   };
   return fetchFromApi(url, options);
