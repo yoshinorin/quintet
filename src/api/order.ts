@@ -1,7 +1,7 @@
 export enum Order {
-  DEFAULT = 'default',
-  DESC = 'desc',
-  RANDOM = 'random'
+  DEFAULT = "default",
+  DESC = "desc",
+  RANDOM = "random"
 }
 
 export function getValidOrder(orderParam: string | undefined): Order {
@@ -13,4 +13,8 @@ export function getValidOrder(orderParam: string | undefined): Order {
     default:
       return Order.DEFAULT;
   }
+}
+
+export function isRandomOrder(order: Order): boolean {
+  return order === Order.RANDOM;
 }

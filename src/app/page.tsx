@@ -16,7 +16,12 @@ export default async function Page(req: any) {
 }
 
 async function handler(req: any) {
-  const response: Response = await fetchArticles(await headers(), 1, 5, Order.DEFAULT);
+  const response: Response = await fetchArticles(
+    await headers(),
+    1,
+    5,
+    Order.DEFAULT
+  );
   const articlesResponseWithCount =
     await parseOrThrow<ArticleResponseWithCount>(response);
   const articles: Array<Article> = articlesResponseWithCount.articles.map(

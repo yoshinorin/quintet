@@ -11,13 +11,12 @@ test("should returns 404 if path contains ignore chars", async () => {
   expect(response.status).toEqual(404);
 });
 
-
 describe("PaginationParams", () => {
   it("should accept valid PaginationParams object", () => {
     const params: PaginationParams = {
       page: 1,
       limit: 10,
-      order: Order.DESC,
+      order: Order.DESC
     };
 
     expect(params.page).toBe(1);
@@ -29,13 +28,13 @@ describe("PaginationParams", () => {
     const defaultParams: PaginationParams = {
       page: 1,
       limit: 20,
-      order: Order.DEFAULT,
+      order: Order.DEFAULT
     };
 
     const randomParams: PaginationParams = {
       page: 2,
       limit: 5,
-      order: Order.RANDOM,
+      order: Order.RANDOM
     };
 
     expect(defaultParams.order).toBe(Order.DEFAULT);
@@ -46,7 +45,7 @@ describe("PaginationParams", () => {
     const params: PaginationParams = {
       page: 1,
       limit: 10,
-      order: Order.DESC,
+      order: Order.DESC
     };
 
     expect(typeof params.page).toBe("number");
@@ -61,7 +60,7 @@ describe("PaginationParams", () => {
     const params: PaginationParams = {
       page: 1,
       limit: 10,
-      order: validOrder,
+      order: validOrder
     };
 
     expect(params.order).toBe(Order.DESC);

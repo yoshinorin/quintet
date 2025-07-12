@@ -2,7 +2,7 @@
 
 import { headers } from "next/headers";
 import { fetchTag } from "../../../api";
-import { getValidOrder, Order } from "../../../api/order";
+import { getValidOrder, isRandomOrder } from "../../../api/order";
 import { Article, ArticleResponseWithCount } from "../../../models/models";
 import { parseOrThrow, runWithHandleErrorIf } from "../../handler";
 import { Renderer } from "./renderer";
@@ -21,7 +21,7 @@ async function handler(req: any) {
 
   const queryString = await req.searchParams;
   const order = getValidOrder(queryString.order);
-  const randomness = order === Order.RANDOM;
+  const randomness = isRandomOrder(order);
   const currentPage = queryString.p ? queryString.p : 1;
   const response: Response = await fetchTag(
     await headers(),
