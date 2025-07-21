@@ -18,7 +18,7 @@ export const TagComponent: React.FunctionComponent<{
   }
   return (
     <a
-      href={`/tags/${tag.name}`}
+      href={`/tags${tag.path}`}
       className={className ? className : null}
       target="_blank"
       data-tag={tag.name.toLowerCase()}>

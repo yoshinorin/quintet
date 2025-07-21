@@ -16,14 +16,14 @@ export const SeriesComponent: React.FunctionComponent<{
                 <blockquote key={idx}>
                   <p className={styles["header"]}>
                     <Link
-                      href={`/series/${s.name}`}
+                      href={`/series${s.path}`}
                       prefetch={false}
                       className="unstyled">
                       {`${s.title}`}
                     </Link>
                   </p>
                   <Link
-                    href={`/series/${s.name}`}
+                    href={`/series${s.path}`}
                     prefetch={false}
                     className={`${styles["excerpt"]} unstyled`}>
                     {`${s.description}`}

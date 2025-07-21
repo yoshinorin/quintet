@@ -85,9 +85,9 @@ export function fetchAllSeries(headers: Headers): Promise<Response> {
 
 export function fetchSeries(
   headers: Headers,
-  seriesName: string
+  seriesPath: string
 ): Promise<Response> {
-  const url = buildUrl(api.url, sluggize(["v1", "series", seriesName]), false);
+  const url = buildUrl(api.url, sluggize(["v1", "series", seriesPath]), false);
   const ctx = requestContextFrom(headers);
   const options: RequestOptions = {
     headers: requestHeaderFrom(ctx)

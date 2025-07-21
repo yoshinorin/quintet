@@ -3,6 +3,7 @@ import { Article } from "./article";
 export interface Series {
   id: string;
   name: string;
+  path: string;
   title: number;
   description: string;
 }
