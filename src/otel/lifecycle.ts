@@ -24,9 +24,12 @@ export function initializeOtel() {
       return;
     }
 
+    process.env.OTEL_TRACES_EXPORTER = "otlp";
+    process.env.OTEL_EXPORTER_OTLP_ENDPOINT=
+    process.env.OTEL_NODE_RESOURCE_DETECTORS ="env,host,os";
     process.env.OTEL_EXPORTER_OTLP_HEADERS = config.apiKey;
     process.env.OTEL_SERVICE_NAME = config.serviceName;
-    process.env.OTEL_RESOURCE_ATTRIBUTES = `service.name=${config.serviceName},service.version=${process.env.npm_package_version || "1.0.0"},deployment.environment=${process.env.NODE_ENV || "development"},service.instance.id=${process.env.HOSTNAME || process.env.COMPUTERNAME || "unknown"},host.name=${process.env.HOSTNAME || process.env.COMPUTERNAME || "localhost"}`;
+    process.env.OTEL_RESOURCE_ATTRIBUTES = `service.name=${config.serviceName},service.namespace="website",service.version=${process.env.npm_package_version || "1.0.0"},deployment.environment=${process.env.NODE_ENV || "development"},service.instance.id=${process.env.HOSTNAME || process.env.COMPUTERNAME || "unknown"},host.name=${process.env.HOSTNAME || process.env.COMPUTERNAME || "localhost"}`;
 
     initializeNativeOtel(config);
 
