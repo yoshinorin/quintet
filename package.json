@@ -14,7 +14,7 @@
     "rebuild": "npm install && next build",
     "start": "next start",
     "pm2:start": "pm2 kill && pm2 start ecosystem.config.js && pm2 save",
-    "pm2:restart": "NODE_OPTIONS='--require @opentelemetry/auto-instrumentations-node/register' npm run rebuild && pm2 kill && pm2 restart ecosystem.config.js && pm2 save",
+    "pm2:restart": "npm run rebuild && pm2 kill && pm2 restart ecosystem.config.js && pm2 save",
     "pm2:status": "pm2 ls",
     "pm2:stop": "pm2 stop ecosystem.config.js",
     "mock:up": "docker compose -f docker-compose.mock.yml up -d",
