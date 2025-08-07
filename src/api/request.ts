@@ -1,4 +1,5 @@
 import { RequestContext } from "../models/models";
+import { injectPropagation } from "../otel/propagation";
 import { isMatch } from "../utils/match";
 
 export type RequestOptions = {
@@ -40,11 +41,17 @@ export function buildRequestUrl(url: string, queryParams: string): string {
 }
 
 export function requestHeaderFrom(rq: RequestContext): Object {
-  return {
+  const baseHeaders = {
     "Content-Type": "application/json",
     "x-forwarded-for": rq.ipAddress,
     "user-agent": rq.ua,
     referer: rq.referer,
     "x-request-id": rq.requestId
+  };
+  const otelHeaders = injectPropagation();
+
+  return {
+    ...baseHeaders,
+    ...otelHeaders
   };
 }
