@@ -6,7 +6,7 @@ import {
   siteName
 } from "../../config";
 import { Content } from "../models/content";
-import { toISODateSrting } from "../utils/time";
+import { toISODateString } from "../utils/time";
 import { fullUrl } from "../utils/url";
 
 // TODO: write test code
@@ -48,8 +48,8 @@ export async function generateForArticleOrPage(
       images: fullUrl(defaultImage, false),
       authors: [content.authorName],
       tags: tags.length !== 0 ? content.tags.map((t) => t.name) : [],
-      publishedTime: toISODateSrting(content.publishedAt),
-      modifiedTime: toISODateSrting(content.updatedAt)
+      publishedTime: toISODateString(content.publishedAt),
+      modifiedTime: toISODateString(content.updatedAt)
     }
   };
 }

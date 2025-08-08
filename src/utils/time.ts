@@ -6,7 +6,7 @@ export function toDate(unixTime: number): Date {
   }
 }
 
-export function toLocalDateSrting(unixTime: number): String {
+export function toLocalDateString(unixTime: number): String {
   try {
     return new Date(unixTime * 1000).toLocaleDateString();
   } catch {
@@ -14,7 +14,7 @@ export function toLocalDateSrting(unixTime: number): String {
   }
 }
 
-export function toISODateSrting(unixTime: number): string {
+export function toISODateString(unixTime: number): string {
   try {
     return new Date(unixTime * 1000).toISOString();
   } catch {

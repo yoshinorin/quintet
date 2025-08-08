@@ -48,12 +48,12 @@ export type QueryParams = {
 
 export function buildQueryParams(params: QueryParams = {}): string {
   const queryParams = params.params;
-  const pagenation = params.pagination;
+  const pagination = params.pagination;
 
-  if (pagenation && pagenation.order === "random") {
+  if (pagination && pagination.order === "random") {
     const query = ["order=random"];
-    if (pagenation.limit) {
-      query.push(`limit=${pagenation.limit}`);
+    if (pagination.limit) {
+      query.push(`limit=${pagination.limit}`);
     }
     return query.join("&");
   }
@@ -64,8 +64,8 @@ export function buildQueryParams(params: QueryParams = {}): string {
       ...queryParams.values.map((value) => `${queryParams.key}=${value}`)
     );
   }
-  if (pagenation) {
-    query.push(`page=${pagenation.page}`, `limit=${pagenation.limit}`);
+  if (pagination) {
+    query.push(`page=${pagination.page}`, `limit=${pagination.limit}`);
   }
 
   return query.join("&");

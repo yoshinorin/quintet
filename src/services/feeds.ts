@@ -1,5 +1,5 @@
 import { Feed } from "../models/models";
-import { toISODateSrting } from "../utils/time";
+import { toISODateString } from "../utils/time";
 
 const FEED_URL = "/feeds/index.xml";
 
@@ -17,7 +17,7 @@ export async function generateFeedsString(
     <title>${siteName}</title>
     <link href="${url}${FEED_URL}" rel="self"/>
     <link href="${url}"/>
-    <updated>${toISODateSrting(latest.updated)}</updated>
+    <updated>${toISODateString(latest.updated)}</updated>
     <id>${url}</id>
     <author>
       <name>${mainAuthor}</name>
@@ -32,8 +32,8 @@ export async function generateFeedsString(
         <title>${f.title}</title>
         <link href="${u}" />
         <id>${u}</id>
-        <published>${toISODateSrting(f.published)}</published>
-        <updated>${toISODateSrting(f.updated)}</updated>
+        <published>${toISODateString(f.published)}</published>
+        <updated>${toISODateString(f.updated)}</updated>
       </entry>
     `;
   });
