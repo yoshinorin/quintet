@@ -106,6 +106,12 @@ function initializeNativeOtel(config: {
           ignoreOutgoingRequestHook: (options) => {
             const url = options.path || "";
             return url.includes("/_next") || url.includes("/__nextjs");
+          },
+          requestHook: (span, req) => {
+            const method = req.method || "GET";
+            // @ts-ignore
+            const url = "url" in req ? req.url || "/" : req.path || "/";
+            span.updateName(`${method} ${url}`);
           }
         }
       })
