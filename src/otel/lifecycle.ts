@@ -57,7 +57,7 @@ function initializeNativeOtel(config: {
 
   const exporterConfig = {
     headers,
-    timeoutMillis: isProduction ? 10000 : 5000
+    timeoutMillis: isProduction ? 10000 : 1000
   };
 
   const traceExporter = new OTLPTraceExporter({
