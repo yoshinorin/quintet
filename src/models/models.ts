@@ -1,3 +1,4 @@
+export * from "./adjacentContent";
 export * from "./archive";
 export * from "./article";
 export * from "./backendMeta";

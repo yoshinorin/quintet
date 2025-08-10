@@ -4,13 +4,19 @@ import {
   CoverComponent,
   InjectScriptComponent
 } from "../../../components/components";
-import { Content, InjectScript, Insight } from "../../../models/models";
+import {
+  AdjacentContent,
+  Content,
+  InjectScript,
+  Insight
+} from "../../../models/models";
 import { getScripts } from "../../../utils/injectScript";
 
 export const Renderer: React.FunctionComponent<{
   content: Content;
   insight: Insight;
-}> = ({ content, insight }) => {
+  adjacentContent?: AdjacentContent | null;
+}> = ({ content, insight, adjacentContent }) => {
   let externalResourceSrc: Array<InjectScript> = [];
   const hasExternalResources =
     content.externalResources && externalResourcesConfig;
@@ -30,7 +36,11 @@ export const Renderer: React.FunctionComponent<{
         }}
       />
       <main>
-        <ContentComponent content={content} insight={insight} />
+        <ContentComponent
+          content={content}
+          insight={insight}
+          adjacentContent={adjacentContent}
+        />
         {(() => {
           // TODO: DRY with (`/articles/[...slug]/renderer.tsx`)
           if (hasExternalResources) {

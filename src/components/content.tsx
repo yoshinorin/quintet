@@ -1,25 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchSystemMetadata } from "../api";
-import { BackendMeta, Content, ContentMeta, Insight } from "../models/models";
+import {
+  AdjacentContent,
+  BackendMeta,
+  Content,
+  ContentMeta,
+  Insight
+} from "../models/models";
 import buttonStyles from "../styles/actionbutton.module.scss";
 import containerStyles from "../styles/components/container.module.scss";
 import contentStyles from "../styles/components/content.module.scss";
 import { mergeBackendMeta } from "../utils/insight";
 import { ActionButton } from "./actionbutton";
+import { AdjacentContentComponent } from "./adjacentContent";
 import { PreContent } from "./precontent";
 
 export const ContentComponent: React.FunctionComponent<{
   content: Content;
   insight: Insight | null;
-}> = ({ content, insight }) => {
+  adjacentContent?: AdjacentContent | null;
+}> = ({ content, insight, adjacentContent }) => {
   const [isAttributesOpen, setIsAttributesOpen] = useState(false);
   const [attributes, setAttributes] = useState(null);
 
   const [isMetadataOpen, setIsMetadataOpen] = useState(false);
   const [isFetchedBackendMeta, setIsFetchedBackendMeta] = useState(false);
   const [metadata, setMetaData] = useState(null);
+
+  const [showAdjacentContent, setShowAdjacentContent] = useState(false);
 
   const formatAttributes = () => {
     let actualRobotsMeta = "";
@@ -69,6 +79,33 @@ export const ContentComponent: React.FunctionComponent<{
     setMetaData(JSON.stringify({ insight: ins }, null, 2));
   };
 
+  useEffect(() => {
+    if (adjacentContent) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setShowAdjacentContent(true);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      const footerElement = document.querySelector("footer");
+      if (footerElement) {
+        observer.observe(footerElement);
+      }
+
+      return () => {
+        if (footerElement) {
+          observer.unobserve(footerElement);
+        }
+      };
+    }
+  }, [adjacentContent]);
+
   const toggleAttributes = () => {
     formatAttributes();
     setIsMetadataOpen(false);
@@ -102,6 +139,9 @@ export const ContentComponent: React.FunctionComponent<{
           className={containerStyles.container}
           dangerouslySetInnerHTML={{ __html: content.content }}
         />
+        {showAdjacentContent && adjacentContent && (
+          <AdjacentContentComponent adjacentContent={adjacentContent} />
+        )}
       </div>
     </article>
   );
