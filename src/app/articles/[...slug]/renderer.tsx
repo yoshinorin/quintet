@@ -15,8 +15,7 @@ import { getScripts } from "../../../utils/injectScript";
 export const Renderer: React.FunctionComponent<{
   content: Content;
   insight: Insight;
-  adjacentContent?: AdjacentContent | null;
-}> = ({ content, insight, adjacentContent }) => {
+}> = ({ content, insight }) => {
   let externalResourceSrc: Array<InjectScript> = [];
   const hasExternalResources =
     content.externalResources && externalResourcesConfig;
@@ -36,11 +35,7 @@ export const Renderer: React.FunctionComponent<{
         }}
       />
       <main>
-        <ContentComponent
-          content={content}
-          insight={insight}
-          adjacentContent={adjacentContent}
-        />
+        <ContentComponent content={content} insight={insight} />
         {(() => {
           // TODO: DRY with (`/articles/[...slug]/renderer.tsx`)
           if (hasExternalResources) {

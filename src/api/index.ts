@@ -51,17 +51,22 @@ export function fetchContent(
 }
 
 export function fetchAdjacentContent(
-  headers: Headers,
+  headers: Headers | null = null,
   id: string
 ): Promise<Response> {
   const slug = sluggize(["v1", "contents", id, "adjacent"]);
   const url = buildUrl(api.url, slug, true);
-  const ctx = requestContextFrom(headers);
-  const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
-    interceptIfContainsIgnorePaths: true
-  };
-  return fetchFromApi(url, options);
+
+  if (headers) {
+    const ctx = requestContextFrom(headers);
+    const options: RequestOptions = {
+      headers: requestHeaderFrom(ctx),
+      interceptIfContainsIgnorePaths: true
+    };
+    return fetchFromApi(url, options);
+  } else {
+    return fetchFromApi(url);
+  }
 }
 
 export function fetchFeeds(headers: Headers): Promise<Response> {

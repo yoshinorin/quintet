@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchSystemMetadata } from "../api";
+import { useCallback, useEffect, useState } from "react";
+import { fetchAdjacentContent, fetchSystemMetadata } from "../api";
 import {
   AdjacentContent,
   BackendMeta,
@@ -16,12 +16,47 @@ import { mergeBackendMeta } from "../utils/insight";
 import { ActionButton } from "./actionbutton";
 import { AdjacentContentComponent } from "./adjacentContent";
 import { PreContent } from "./precontent";
+import { Spinner } from "./spinner";
+
+function useAdjacentContent(contentId: string) {
+  const [adjacentContent, setAdjacentContent] =
+    useState<AdjacentContent | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchAdjacent = useCallback(async () => {
+    if (isLoading || adjacentContent) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetchAdjacentContent(null, contentId);
+      if (response.ok) {
+        const data = (await response.json()) as AdjacentContent;
+        setAdjacentContent(data);
+      }
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to fetch adjacent content"
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [contentId, isLoading, adjacentContent]);
+
+  return {
+    adjacentContent,
+    isLoading,
+    error,
+    fetchAdjacent
+  };
+}
 
 export const ContentComponent: React.FunctionComponent<{
   content: Content;
   insight: Insight | null;
-  adjacentContent?: AdjacentContent | null;
-}> = ({ content, insight, adjacentContent }) => {
+}> = ({ content, insight }) => {
   const [isAttributesOpen, setIsAttributesOpen] = useState(false);
   const [attributes, setAttributes] = useState(null);
 
@@ -29,7 +64,9 @@ export const ContentComponent: React.FunctionComponent<{
   const [isFetchedBackendMeta, setIsFetchedBackendMeta] = useState(false);
   const [metadata, setMetaData] = useState(null);
 
-  const [showAdjacentContent, setShowAdjacentContent] = useState(false);
+  const { adjacentContent, isLoading, fetchAdjacent } = useAdjacentContent(
+    content.id
+  );
 
   const formatAttributes = () => {
     let actualRobotsMeta = "";
@@ -80,31 +117,29 @@ export const ContentComponent: React.FunctionComponent<{
   };
 
   useEffect(() => {
-    if (adjacentContent) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setShowAdjacentContent(true);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fetchAdjacent();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      const footerElement = document.querySelector("footer");
-      if (footerElement) {
-        observer.observe(footerElement);
-      }
-
-      return () => {
-        if (footerElement) {
-          observer.unobserve(footerElement);
-        }
-      };
+    const footerElement = document.querySelector("footer");
+    if (footerElement) {
+      observer.observe(footerElement);
     }
-  }, [adjacentContent]);
+
+    return () => {
+      if (footerElement) {
+        observer.unobserve(footerElement);
+      }
+    };
+  }, [fetchAdjacent]);
 
   const toggleAttributes = () => {
     formatAttributes();
@@ -139,7 +174,12 @@ export const ContentComponent: React.FunctionComponent<{
           className={containerStyles.container}
           dangerouslySetInnerHTML={{ __html: content.content }}
         />
-        {showAdjacentContent && adjacentContent && (
+        {isLoading && (
+          <div className={contentStyles["spinner-container"]}>
+            <Spinner />
+          </div>
+        )}
+        {adjacentContent && (
           <AdjacentContentComponent adjacentContent={adjacentContent} />
         )}
       </div>

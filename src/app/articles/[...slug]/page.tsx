@@ -4,9 +4,8 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-import { fetchAdjacentContent, fetchContent } from "../../../api";
+import { fetchContent } from "../../../api";
 import {
-  AdjacentContent,
   Content,
   ContentResponse,
   ContentResponseWithFetchResponse
@@ -29,18 +28,6 @@ const cachedFindByPath = cache(async (path: string) => {
     body: content
   };
 });
-
-const fetchAdjacentContentForPage = async (id: string) => {
-  try {
-    const response = await fetchAdjacentContent(await headers(), id);
-    if (response.ok) {
-      return (await response.json()) as AdjacentContent;
-    }
-  } catch (error) {
-    // Ignore errors
-  }
-  return null;
-};
 
 // https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching
 export async function generateMetadata(props: {
@@ -88,13 +75,10 @@ async function handler(req: any) {
     updatedAt: response.body.updatedAt
   } as Content;
 
-  const adjacentContent = await fetchAdjacentContentForPage(response.body.id);
-
   return {
     props: {
       content: content,
-      insight: asInsight(response.res),
-      adjacentContent
+      insight: asInsight(response.res)
     }
   };
 }

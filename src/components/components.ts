@@ -17,6 +17,6 @@ export * from "./pinned";
 export * from "./precontent";
 export * from "./searchResult";
 export * from "./series";
+export * from "./spinner";
 export * from "./tag";
 export * from "./tags";
-
