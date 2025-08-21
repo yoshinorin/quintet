@@ -55,7 +55,7 @@ export function fetchAdjacentContent(
   id: string
 ): Promise<Response> {
   const slug = sluggize(["v1", "contents", id, "adjacent"]);
-  const url = buildUrl(api.url, slug, true);
+  const url = buildUrl(publicApi.url, slug, true);
 
   if (headers) {
     const ctx = requestContextFrom(headers);
