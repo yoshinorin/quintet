@@ -99,7 +99,9 @@ function initializeNativeOtel(config: {
             const url = req.url || "";
             return (
               url.startsWith("/_next") ||
+              url.startsWith("/api/status") ||
               url.includes("/__nextjs") ||
+              url.includes("/favicon.svg") ||
               url.includes("/favicon.ico")
             );
           },
