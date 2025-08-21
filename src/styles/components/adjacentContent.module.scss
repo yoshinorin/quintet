@@ -32,12 +32,11 @@
 }
 
 .label {
-  font-size: 1.35rem;
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-style: italic;
   color: map.get(variables.$basic-colors, 'base');
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 2.0rem;
   display: block;
 }
 
