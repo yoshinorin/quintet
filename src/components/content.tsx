@@ -34,6 +34,8 @@ function useAdjacentContent(contentId: string) {
       const response = await fetchAdjacentContent(null, contentId);
       if (response.ok) {
         const data = (await response.json()) as AdjacentContent;
+        // NOTE: Intentional delay to ensure feedback recognition.
+        await new Promise(resolve => setTimeout(resolve, 500));
         setAdjacentContent(data);
       }
     } catch (err) {
