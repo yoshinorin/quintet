@@ -1,5 +1,6 @@
 import { RequestContext } from "../models/models";
 import { injectPropagation } from "../otel/propagation";
+import { logger } from "../utils/logger";
 import { isMatch } from "../utils/match";
 
 export type RequestOptions = {
@@ -26,12 +27,25 @@ export async function fetchFromApi(
 
   const url = buildRequestUrl(endpoint, queryParams);
   const header = headers ? { header: headers } : {};
+  const startTime = Date.now();
 
-  return fetch(url, {
+  const response = await fetch(url, {
     method: "GET",
     cache: "no-cache",
     headers: header as any
   });
+
+  const duration = Date.now() - startTime;
+  logger.httpResponse(
+    "HTTP Response",
+    "GET",
+    url,
+    response.status,
+    duration,
+    headers
+  );
+
+  return response;
 }
 
 // NOTE: internal use only but export for testing.
