@@ -45,7 +45,7 @@ export function fetchContent(
   const ctx = requestContextFrom(headers);
   const options: RequestOptions = {
     headers: requestHeaderFrom(ctx),
-    interceptIfContainsIgnorePaths: true
+    blockIgnoredPaths: true
   };
   return fetchFromApi(url, options);
 }
@@ -61,7 +61,7 @@ export function fetchAdjacentContent(
     const ctx = requestContextFrom(headers);
     const options: RequestOptions = {
       headers: requestHeaderFrom(ctx),
-      interceptIfContainsIgnorePaths: true
+      blockIgnoredPaths: true
     };
     return fetchFromApi(url, options);
   } else {

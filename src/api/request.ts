@@ -6,7 +6,7 @@ import { isMatch } from "../utils/match";
 export type RequestOptions = {
   headers?: object;
   queryParams?: string;
-  interceptIfContainsIgnorePaths?: boolean;
+  blockIgnoredPaths?: boolean;
 };
 
 // TODO: write test code
@@ -16,10 +16,10 @@ export async function fetchFromApi(
   {
     headers = {},
     queryParams = "",
-    interceptIfContainsIgnorePaths = false
+    blockIgnoredPaths = false
   }: RequestOptions = {}
 ): Promise<Response> {
-  if (interceptIfContainsIgnorePaths) {
+  if (blockIgnoredPaths) {
     if (!endpoint || (endpoint && isMatch(endpoint))) {
       return new Response(null, { status: 404 });
     }
