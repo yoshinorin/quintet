@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { ActionButton } from "../../components/actionbutton";
 import { CoverComponent, DropdownComponent } from "../../components/components";
 import { getTheme } from "../../services/theme";
+import buttonStyles from "../../styles/actionbutton.module.scss";
 import containerStyles from "../../styles/components/container.module.scss";
 
 export default function Page() {
@@ -14,6 +16,11 @@ export default function Page() {
     const body = document.body;
     body.setAttribute("data-theme", event.target.value);
     setSelectedOption(event.target.value);
+  }
+
+  function handleReset() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   return (
@@ -36,6 +43,12 @@ export default function Page() {
               onChange={onChange}
             />
           </form>
+
+          <h2>Reset Settings</h2>
+          <hr />
+          <div className={`${buttonStyles["actionbutton-wrap"]}`}>
+            <ActionButton title="Reset" onclick={handleReset} />
+          </div>
         </section>
       </main>
     </>
