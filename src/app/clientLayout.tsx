@@ -18,7 +18,7 @@ export default function ClientLayout({
   useEffect(() => {
     const theme = getTheme();
     document.body.setAttribute("data-theme", theme);
-  });
+  }, []);
   return (
     <>
       <HeaderComponent items={headerItems} />

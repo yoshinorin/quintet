@@ -11,7 +11,6 @@ import {
   url
 } from "../../config";
 import { HeadMetaComponent } from "../components/components";
-import { getTheme } from "../services/theme";
 import { fullUrl } from "../utils/url";
 import ClientLayout from "./clientLayout";
 
@@ -45,12 +44,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const theme = getTheme();
   // https://github.com/vercel/next.js/discussions/44506#discussioncomment-7901181
   return (
     <html lang={lang}>
       <HeadMetaComponent favicon={favicon} injectMetas={injectMetas} />
-      <body data-theme={`${theme}`}>
+      {/* suppressHydrationWarning: Server-side has no localStorage, but client-side sets data-theme attribute */}
+      <body suppressHydrationWarning={true}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (() => {
+              try {
+                document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+              } catch (e) {}
+            })();
+          `
+          }}
+        />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
