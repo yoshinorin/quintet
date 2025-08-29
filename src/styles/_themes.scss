@@ -86,6 +86,7 @@
 :root [data-theme=dark] {
   --color-basic-base:                     #aab2b9;
   --color-basic-headings:                 #989da1;
+  --color-basic-archives-link:            #a05151;
   --color-basic-link:                     #b44b30;
   --color-basic-unstyled-link:            #b44b30;
   --code-basic-background-color:          #494949;
@@ -104,6 +105,11 @@
   --cover-title-color:                    #dbdbdb;
   --cover-meta-color:                     #d4d4d4;
   --cover-tag-link-color:                 #d4d4d4;
+
+  --tag-front-color:                      #d86666;
+  --tag-front-hover-color:                #ffffff;
+  --tag-background-color:                 #583131;
+  --tag-background-hover-color:           #910909;
 
   --footer-backgrount-color:              #140f16;
 
