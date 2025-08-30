@@ -119,6 +119,9 @@ export const ContentComponent: React.FunctionComponent<{
   };
 
   useEffect(() => {
+    const isArticlesPage = window.location.pathname.startsWith("/articles/");
+    if (!isArticlesPage) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
