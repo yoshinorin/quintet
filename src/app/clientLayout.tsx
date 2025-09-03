@@ -7,7 +7,11 @@ import {
   FooterComponent,
   HeaderComponent
 } from "../components/components";
-import { getTheme } from "../services/theme";
+import {
+  getTheme,
+  getSyntaxTheme,
+  getEffectiveSyntaxTheme
+} from "../services/theme";
 import "../styles/globals.scss";
 
 export default function ClientLayout({
@@ -17,7 +21,13 @@ export default function ClientLayout({
 }) {
   useEffect(() => {
     const theme = getTheme();
+    const syntaxTheme = getSyntaxTheme();
+    const effectiveSyntaxTheme = getEffectiveSyntaxTheme(syntaxTheme, theme);
     document.body.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute(
+      "data-syntax-theme",
+      effectiveSyntaxTheme
+    );
   }, []);
   return (
     <>

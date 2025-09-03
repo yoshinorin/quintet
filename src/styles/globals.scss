@@ -1,5 +1,6 @@
 @use "sass:map";
 @use '_themes';
+@use '_syntax-themes';
 @use '_variables';
 @use 'components/alert.module';
 
@@ -316,6 +317,7 @@ figure.highlight,
   .line {
     height:    map.get(variables.$highlight-colors, line-height);
     font-size: map.get(variables.$highlight-colors, font-size);
+    color:     map.get(variables.$highlight-colors, 'base');
   }
   // common
   .comment,

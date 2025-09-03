@@ -3,19 +3,37 @@
 import { useState } from "react";
 import { ActionButton } from "../../components/actionbutton";
 import { CoverComponent, DropdownComponent } from "../../components/components";
-import { getTheme } from "../../services/theme";
+import { SYNTAX_PREVIEW_HTML } from "../../constants/syntaxPreview";
+import {
+  getSyntaxTheme,
+  getTheme,
+  setSyntaxTheme,
+  setTheme
+} from "../../services/theme";
 import buttonStyles from "../../styles/actionbutton.module.scss";
 import containerStyles from "../../styles/components/container.module.scss";
 
 export default function Page() {
   const theme = getTheme();
+  const syntaxTheme = getSyntaxTheme();
 
   const [selectedOption, setSelectedOption] = useState("");
+  const [selectedSyntaxOption, setSelectedSyntaxOption] = useState("");
+
   function onChange(event) {
-    localStorage.setItem("theme", event.target.value);
-    const body = document.body;
-    body.setAttribute("data-theme", event.target.value);
-    setSelectedOption(event.target.value);
+    const newTheme = event.target.value;
+    setTheme(newTheme);
+    setSelectedOption(newTheme);
+
+    const currentSyntaxTheme = getSyntaxTheme();
+    if (currentSyntaxTheme === "default") {
+      setSyntaxTheme("default");
+    }
+  }
+
+  function onSyntaxChange(event) {
+    setSyntaxTheme(event.target.value);
+    setSelectedSyntaxOption(event.target.value);
   }
 
   function handleReset() {
@@ -43,6 +61,21 @@ export default function Page() {
               onChange={onChange}
             />
           </form>
+
+          <h2>Syntax Highlighting Theme</h2>
+          <hr />
+          <form>
+            <DropdownComponent
+              options={["default", "light", "dark"]}
+              defaultValue={syntaxTheme}
+              onChange={onSyntaxChange}
+            />
+          </form>
+
+          <figure
+            className="highlight scala"
+            dangerouslySetInnerHTML={{ __html: SYNTAX_PREVIEW_HTML }}
+          />
 
           <h2>Reset Settings</h2>
           <hr />
