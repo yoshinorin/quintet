@@ -54,7 +54,7 @@ export function buildRequestUrl(url: string, queryParams: string): string {
   return new URL(u).href;
 }
 
-export function requestHeaderFrom(rq: RequestContext): Object {
+export function makeRequestHeader(rq: RequestContext): Object {
   const baseHeaders = {
     "Content-Type": "application/json",
     "x-forwarded-for": rq.ipAddress,

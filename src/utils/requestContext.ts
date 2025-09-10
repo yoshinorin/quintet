@@ -1,7 +1,7 @@
 import { RequestContext } from "../models/models";
 import { uuid4 } from "./uuid";
 
-export function requestContextFrom(h: Headers): RequestContext {
+export function make(h: Headers): RequestContext {
   if (h instanceof Headers) {
     return {
       ipAddress: h.get("x-forwarded-for"),

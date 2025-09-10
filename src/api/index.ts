@@ -1,8 +1,8 @@
 import { api, publicApi } from "../../config";
-import { requestContextFrom } from "../utils/requestContext";
+import { make as makeRequestContext } from "../utils/requestContext";
 import { buildQueryParams, buildUrl, sluggize } from "../utils/url";
 import { Order } from "./order";
-import { RequestOptions, fetchFromApi, requestHeaderFrom } from "./request";
+import { RequestOptions, fetchFromApi, makeRequestHeader } from "./request";
 
 export interface PaginationParams {
   page: number;
@@ -17,9 +17,9 @@ export function fetchArticles(
   order: Order
 ): Promise<Response> {
   const url = buildUrl(api.url, "v1/articles", true);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
+    headers: makeRequestHeader(ctx),
     queryParams: buildQueryParams({
       pagination: { page: currentPage, limit, order } as PaginationParams
     })
@@ -29,9 +29,9 @@ export function fetchArticles(
 
 export function fetchArchives(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, "v1/archives", true);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -42,9 +42,9 @@ export function fetchContent(
 ): Promise<Response> {
   const slug = sluggize(["v1", "contents", path]);
   const url = buildUrl(api.url, slug, true);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
+    headers: makeRequestHeader(ctx),
     blockIgnoredPaths: true
   };
   return fetchFromApi(url, options);
@@ -58,9 +58,9 @@ export function fetchAdjacentContent(
   const url = buildUrl(publicApi.url, slug, true);
 
   if (headers) {
-    const ctx = requestContextFrom(headers);
+    const ctx = makeRequestContext(headers);
     const options: RequestOptions = {
-      headers: requestHeaderFrom(ctx),
+      headers: makeRequestHeader(ctx),
       blockIgnoredPaths: true
     };
     return fetchFromApi(url, options);
@@ -71,9 +71,9 @@ export function fetchAdjacentContent(
 
 export function fetchFeeds(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "feeds", "index"]), false);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -83,9 +83,9 @@ export function fetchSearch(
   words: Array<string>
 ): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "search"]), false);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
+    headers: makeRequestHeader(ctx),
     queryParams: buildQueryParams({
       params: { key: "q", values: words }
     })
@@ -95,9 +95,9 @@ export function fetchSearch(
 
 export function fetchAllSeries(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "series"]), true);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -107,36 +107,36 @@ export function fetchSeries(
   seriesPath: string
 ): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "series", seriesPath]), false);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
 
 export function fetchSitemap(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "sitemaps"]), true);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
 
 export function fetchStatus(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "system", "health"]), false);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
 
 export function fetchAllTags(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "tags"]), true);
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx)
+    headers: makeRequestHeader(ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -153,9 +153,9 @@ export function fetchTag(
     sluggize(["v1", "tags", encodeURI(tagName)]),
     false
   );
-  const ctx = requestContextFrom(headers);
+  const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: requestHeaderFrom(ctx),
+    headers: makeRequestHeader(ctx),
     queryParams: buildQueryParams({
       pagination: { page: currentPage, limit, order } as PaginationParams
     })
