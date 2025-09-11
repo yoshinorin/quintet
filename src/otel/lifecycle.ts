@@ -1,7 +1,7 @@
 import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentations-node";
-import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
-import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
-import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-grpc";
+import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-grpc";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-grpc";
 import { BatchLogRecordProcessor } from "@opentelemetry/sdk-logs";
 import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
 import { NodeSDK } from "@opentelemetry/sdk-node";
@@ -46,11 +46,8 @@ export function initializeOtel() {
 let sdkInstance: NodeSDK | null = null;
 
 function initializeNativeOtel(config: {
-  traceEndpoint: string;
-  metricEndpoint: string;
-  logEndpoint: string;
+  otelEndpoint: string;
   apiKey: string;
-  serviceName: string;
 }) {
   const headers = config.apiKey ? config.apiKey : {};
   const isProduction = process.env.NODE_ENV === "production";
@@ -61,17 +58,17 @@ function initializeNativeOtel(config: {
   };
 
   const traceExporter = new OTLPTraceExporter({
-    url: config.traceEndpoint,
+    url: config.otelEndpoint,
     ...exporterConfig
   });
 
   const metricExporter = new OTLPMetricExporter({
-    url: config.metricEndpoint,
+    url: config.otelEndpoint,
     ...exporterConfig
   });
 
   const logExporter = new OTLPLogExporter({
-    url: config.logEndpoint,
+    url: config.otelEndpoint,
     ...exporterConfig
   });
 
