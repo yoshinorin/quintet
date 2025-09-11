@@ -1,5 +1,14 @@
 import { url } from "../../config";
 
+export function isValid(url: string): boolean {
+  try {
+    new URL(url);
+    return url.startsWith("http://") || url.startsWith("https://");
+  } catch {
+    return false;
+  }
+}
+
 export function fullUrl(slug: string, trailingSlash: boolean = false): string {
   let s = slug;
   if (trailingSlash) {

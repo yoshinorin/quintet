@@ -1,5 +1,16 @@
 import { expect, test } from "vitest";
-import { buildQueryParams, buildUrl } from "../../../src/utils/url";
+import { buildQueryParams, buildUrl, isValid } from "../../../src/utils/url";
+
+test("should returns true if valid url", () => {
+  expect(isValid("https://example.com")).toBeTruthy();
+  expect(isValid("http://example.com")).toBeTruthy();
+});
+
+test("should returns false if invalid url", () => {
+  expect(isValid("ftp://example.com")).toBeFalsy();
+  expect(isValid("example.com")).toBeFalsy();
+  expect(isValid("")).toBeFalsy();
+});
 
 test("should returns collect url - with out queryParam and pagination", () => {
   const url = buildUrl("https://example.com", "slug/nested", false);
