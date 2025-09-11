@@ -5,18 +5,16 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-grpc";
 import { BatchLogRecordProcessor } from "@opentelemetry/sdk-logs";
 import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
 import { NodeSDK } from "@opentelemetry/sdk-node";
-import { getOtelConfig } from "./config";
+import type { OtelConfig } from "./config";
 
 let isInitialized = false;
 
-export function initializeOtel() {
+export function initializeOtel(config: OtelConfig) {
   if (isInitialized) {
     return;
   }
 
   try {
-    const config = getOtelConfig();
-
     if (!config) {
       console.log(
         "OpenTelemetry configuration not found, skipping initialization"
