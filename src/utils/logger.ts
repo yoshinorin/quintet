@@ -4,34 +4,49 @@ interface LogMetadata {
   [key: string]: any;
 }
 
-class PinoLogger {
-  private pinoLogger: pino.Logger;
+export type PostProcess = (
+  level: string,
+  message: string,
+  metadata: Record<string, any>
+) => void;
+const noop: PostProcess = () => {};
 
-  constructor() {
+export class PinoLogger {
+  private pinoLogger: pino.Logger;
+  private postProcess: PostProcess;
+
+  constructor(postProcess: PostProcess = noop) {
     this.pinoLogger = pino({
       level: process.env.NODE_ENV === "production" ? "info" : "debug",
-      formatters: {
-        level: (label) => ({ level: label })
-      },
+      formatters: { level: (label) => ({ level: label }) },
       timestamp: pino.stdTimeFunctions.isoTime,
       messageKey: "message"
     });
+    this.postProcess = postProcess;
   }
 
   debug(metadata: LogMetadata) {
-    this.pinoLogger.debug(metadata || {});
+    const meta = metadata || {};
+    this.pinoLogger.debug(meta);
+    this.postProcess("debug", meta.message, meta);
   }
 
   info(metadata: LogMetadata) {
-    this.pinoLogger.info(metadata || {});
+    const meta = metadata || {};
+    this.pinoLogger.info(meta);
+    this.postProcess("info", meta.message, meta);
   }
 
   warn(metadata: LogMetadata) {
-    this.pinoLogger.warn(metadata || {});
+    const meta = metadata || {};
+    this.pinoLogger.warn(meta);
+    this.postProcess("warn", meta.message, meta);
   }
 
   error(metadata: LogMetadata) {
-    this.pinoLogger.error(metadata || {});
+    const meta = metadata || {};
+    this.pinoLogger.error(meta);
+    this.postProcess("error", meta.message, meta);
   }
 
   httpResponse(
@@ -61,5 +76,12 @@ class PinoLogger {
   }
 }
 
-// Singleton instance
-export const logger = new PinoLogger();
+let instance: PinoLogger | undefined;
+let initialized = false;
+export function makeInstance(postProcess?: PostProcess): PinoLogger {
+  if (!initialized || !instance) {
+    instance = new PinoLogger(postProcess || noop);
+    initialized = true;
+  }
+  return instance;
+}

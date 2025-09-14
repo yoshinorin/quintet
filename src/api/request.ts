@@ -1,6 +1,7 @@
 import { RequestContext } from "../models/models";
+import { emit } from "../otel/logger";
 import { injectPropagation } from "../otel/propagation";
-import { logger } from "../utils/logger";
+import { makeInstance } from "../utils/logger";
 import { isMatch } from "../utils/match";
 
 export type RequestOptions = {
@@ -8,6 +9,8 @@ export type RequestOptions = {
   queryParams?: string;
   blockIgnoredPaths?: boolean;
 };
+
+const logger = makeInstance(emit);
 
 // TODO: write test code
 // TODO: more simply
@@ -28,9 +31,10 @@ export async function fetchFromApi(
   const url = buildRequestUrl(endpoint, queryParams);
   const header = headers ? { header: headers } : {};
   const startTime = Date.now();
+  const method = "GET";
 
   const response = await fetch(url, {
-    method: "GET",
+    method: method,
     cache: "no-cache",
     headers: header as any
   });
@@ -38,7 +42,7 @@ export async function fetchFromApi(
   const duration = Date.now() - startTime;
   logger.httpResponse(
     "HTTP Response",
-    "GET",
+    method,
     url,
     response.status,
     duration,
