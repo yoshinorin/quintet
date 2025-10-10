@@ -77,11 +77,9 @@ export class PinoLogger {
 }
 
 let instance: PinoLogger | undefined;
-let initialized = false;
 export function makeInstance(postProcess?: PostProcess): PinoLogger {
-  if (!initialized || !instance) {
+  if (!instance) {
     instance = new PinoLogger(postProcess || noop);
-    initialized = true;
   }
   return instance;
 }
