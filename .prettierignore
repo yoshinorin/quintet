@@ -9,4 +9,5 @@ test-results/
 **/.git
 **/node_modules
 *.scss
+*.md
 
