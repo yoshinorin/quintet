@@ -30,21 +30,27 @@ function useAdjacentContent(contentId: string) {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const response = await fetchAdjacentContent(null, contentId);
-      if (response.ok) {
-        const data = (await response.json()) as AdjacentContent;
-        // NOTE: Intentional delay to ensure feedback recognition.
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        setAdjacentContent(data);
+    const maxRetries = 3;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const response = await fetchAdjacentContent(null, contentId);
+        if (response.ok) {
+          const data = (await response.json()) as AdjacentContent;
+          // NOTE: Intentional delay to ensure feedback recognition.
+          await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
+          setAdjacentContent(data);
+          setIsLoading(false);
+          return;
+        }
+      } catch (err) {
+        // Nothing todo
       }
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to fetch adjacent content"
-      );
-    } finally {
-      setIsLoading(false);
+
+      if (attempt < maxRetries) {
+        await new Promise((resolve) => setTimeout(resolve, 1000 * attempt));
+      }
     }
+    setError("Failed to fetch prev, next content.");
   }, [contentId, isLoading, adjacentContent]);
 
   return {
@@ -66,9 +72,8 @@ export const ContentComponent: React.FunctionComponent<{
   const [isFetchedBackendMeta, setIsFetchedBackendMeta] = useState(false);
   const [metadata, setMetaData] = useState(null);
 
-  const { adjacentContent, isLoading, fetchAdjacent } = useAdjacentContent(
-    content.id
-  );
+  const { adjacentContent, isLoading, error, fetchAdjacent } =
+    useAdjacentContent(content.id);
 
   const formatAttributes = () => {
     let actualRobotsMeta = "";
@@ -179,13 +184,24 @@ export const ContentComponent: React.FunctionComponent<{
           className={containerStyles.container}
           dangerouslySetInnerHTML={{ __html: content.content }}
         />
-        {isLoading && (
-          <div className={contentStyles["spinner-container"]}>
-            <Spinner />
+        {(isLoading || error || adjacentContent) && (
+          <div>
+            {isLoading && !error && (
+              <div className={contentStyles["spinner-container"]}>
+                <Spinner />
+              </div>
+            )}
+            {error && (
+              <div className={containerStyles.container}>
+                <div className={"alert error"}>
+                  <p>{error}</p>
+                </div>
+              </div>
+            )}
+            {adjacentContent && (
+              <AdjacentContentComponent adjacentContent={adjacentContent} />
+            )}
           </div>
-        )}
-        {adjacentContent && (
-          <AdjacentContentComponent adjacentContent={adjacentContent} />
         )}
       </div>
     </article>
