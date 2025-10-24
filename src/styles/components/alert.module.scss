@@ -47,4 +47,14 @@
       }
     }
   }
+  &.error {
+    border-color:     map.get(variables.$basic-colors, 'error');
+    background-color: map.get(variables.$basic-colors, 'error-op2');
+    &:not(.no-icon) {
+      &:before {
+        content: "";
+        color:   map.get(variables.$basic-colors, 'error');
+      }
+    }
+  }
 }
