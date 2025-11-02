@@ -8,3 +8,5 @@
 * When requirements are ambiguous, ask clarifying questions before implementation
 * When conducting research, provide primary sources when available.
 * Never reference, modify, or write to directories above the current directory where the agent is running.
+* When creating commit messages, write them in English as a single sentence.
+* Use Conventional Commits format for commit messages (e.g., feat:, fix:, refactor:, docs:, chore:).
