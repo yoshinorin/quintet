@@ -319,290 +319,267 @@ figure.highlight,
     font-size: map.get(variables.$highlight-colors, font-size);
     color:     map.get(variables.$highlight-colors, 'base');
   }
-  // common
-  .comment,
-  .quote,
-  .variable {
+
+  // TextMate scope-based syntax highlighting (syntect)
+
+  // Text (base text, used in PHP and other embedded languages)
+  .text {
+    color: map.get(variables.$highlight-colors, 'base');
+
+    &.plain {
+      color: map.get(variables.$highlight-colors, 'base');
+    }
+  }
+
+  // Embedding (PHP, etc.)
+  .embedding {
+    color: map.get(variables.$highlight-colors, 'base');
+  }
+
+  // Source (source code)
+  .source {
+    color: map.get(variables.$highlight-colors, 'base');
+  }
+
+  // Comment
+  .comment {
     color: map.get(variables.$highlight-font-colors, 'night-rider');
   }
-  .keyword,
-  .selector-tag,
+
+  // Keyword
+  .keyword {
+    color: map.get(variables.$highlight-font-colors, 'cardinal');
+  }
+
+  // Storage (type declarations, modifiers)
+  .storage {
+    color: map.get(variables.$highlight-font-colors, 'cardinal');
+  }
+
+  // String
+  .string {
+    color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
+  }
+
+  // Constant
+  .constant {
+    color: map.get(variables.$highlight-font-colors, 'bondi-blue');
+
+    &.language {
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
+    }
+
+    &.numeric {
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
+    }
+
+    &.character {
+      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
+    }
+  }
+
+  // Entity (function names, type names, class names, tags)
+  .entity {
+    &.name {
+      &.function {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+
+      &.type {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+
+      &.class {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+
+      &.val {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+
+      &.tag {
+        color: map.get(variables.$highlight-font-colors, 'asparagus');
+      }
+
+      &.section {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+    }
+
+    &.other {
+      &.attribute-name {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+
+      &.inherited-class {
+        color: map.get(variables.$highlight-font-colors, 'scampi');
+      }
+    }
+  }
+
+  // Support (built-in functions, types)
+  .support {
+    &.function {
+      color: map.get(variables.$highlight-font-colors, 'scampi');
+    }
+
+    &.type {
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
+    }
+
+    &.class {
+      color: map.get(variables.$highlight-font-colors, 'scampi');
+    }
+
+    &.constant {
+      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
+    }
+  }
+
+  // Variable
+  .variable {
+    color: map.get(variables.$highlight-font-colors, 'bahama-blue');
+
+    &.parameter {
+      color: map.get(variables.$highlight-font-colors, 'scampi');
+    }
+
+    &.language {
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
+    }
+
+    &.other {
+      color: map.get(variables.$highlight-font-colors, 'base');
+    }
+  }
+
+  // Punctuation
+  .punctuation {
+    color: map.get(variables.$highlight-font-colors, 'night-rider');
+  }
+
+  // Meta (preprocessor, docstrings)
+  .meta {
+    &.preprocessor {
+      color: map.get(variables.$highlight-font-colors, 'persimmon');
+    }
+
+    &.tag {
+      color: map.get(variables.$highlight-font-colors, 'night-rider');
+    }
+  }
+
+  // Invalid
+  .invalid {
+    color: map.get(variables.$highlight-font-colors, 'free-speech-red');
+
+    &.illegal {
+      color: map.get(variables.$highlight-font-colors, 'free-speech-red');
+      background-color: map.get(variables.$highlight-font-colors, 'misty-rose');
+    }
+
+    &.deprecated {
+      color: map.get(variables.$highlight-font-colors, 'free-speech-red');
+    }
+  }
+
+  // Markup (for Markdown, etc.)
+  .markup {
+    &.heading {
+      color: map.get(variables.$highlight-font-colors, 'scampi');
+      font-weight: bold;
+    }
+
+    &.bold {
+      font-weight: bold;
+    }
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.inserted {
+      color: map.get(variables.$highlight-font-colors, 'limeade');
+      background-color: map.get(variables.$highlight-font-colors, 'honeydew');
+    }
+
+    &.deleted {
+      color: map.get(variables.$highlight-font-colors, 'free-speech-red');
+      background-color: map.get(variables.$highlight-font-colors, 'misty-rose');
+    }
+
+    &.list {
+      color: map.get(variables.$highlight-font-colors, 'cardinal');
+    }
+
+    &.quote {
+      color: map.get(variables.$highlight-font-colors, 'night-rider');
+      font-style: italic;
+    }
+  }
+
+  // Backward compatibility: keep some highlight.js classes
+  .quote {
+    color: map.get(variables.$highlight-font-colors, 'night-rider');
+  }
+
+  .number {
+    color: map.get(variables.$highlight-font-colors, 'bondi-blue');
+  }
+
+  .literal {
+    color: map.get(variables.$highlight-font-colors, 'bondi-blue');
+  }
+
   .built_in,
   .name,
   .tag {
     color: map.get(variables.$code-basic-colors, 'tag');
   }
-  .literal,
-  .number {
-    color: map.get(variables.$highlight-font-colors, 'bondi-blue');
-  }
-  .string,
+
   .title,
   .section,
-  .attribute,
-  .literal,
+  .attribute {
+    color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
+  }
+
+  .selector-tag,
+  .selector-attr,
+  .selector-pseudo {
+    color: map.get(variables.$code-basic-colors, 'meta');
+  }
+
   .template-tag,
   .template-variable,
   .type,
   .addition {
     color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
   }
-  .keyword {
-    color: map.get(variables.$highlight-font-colors, 'cardinal');
-  }
-  .deletion,
-  .selector-attr,
-  .selector-pseudo,
-  .meta {
+
+  .deletion {
     color: map.get(variables.$code-basic-colors, 'meta');
   }
+
   .doctag {
     color: map.get(variables.$code-basic-colors, 'doctag');
   }
+
   .attr {
     color: map.get(variables.$code-basic-colors, 'attr');
   }
+
   .symbol,
   .bullet,
   .link {
     color: map.get(variables.$code-basic-colors, 'link');
   }
+
   .emphasis {
     font-style: italic;
   }
+
   .strong {
     font-weight: bold;
   }
-  // by languages
-  // C/C++
-  &.cpp .code,
-  &.c .code {
-    .preprocessor {
-      color: map.get(variables.$highlight-font-colors, 'persimmon');
-    }
-    .meta-keyword {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .title  {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-  }
-  // C#
-  &.cs .code {
-    .preprocessor,
-    .preprocessor .keyword {
-      color: map.get(variables.$highlight-font-colors, 'night-rider');
-    }
-    .title {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .xmlDocTag,
-    .doctag {
-      color: map.get(variables.$highlight-font-colors, 'asparagus');
-    }
-  }
-  // CSS
-  &.css .code {
-    .at_rule,
-    .important,
-    .meta {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .attribute,
-    .hexcolor,
-    .function {
-      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
-    }
-    .attr_selector,
-    .value {
-      color: map.get(variables.$highlight-font-colors, 'night-rider');
-    }
-    .id,
-    .class,
-    .pseudo,
-    .selector-pseudo {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .tag,
-    .selector-tag {
-      color: map.get(variables.$highlight-font-colors, 'asparagus');
-    }
-  }
-  // Diff
-  &.diff .code {
-    .chunk,
-    .meta {
-      color:       map.get(variables.$highlight-font-colors, 'scampi');
-      font-weight: bold;
-    }
-    .addition {
-      color:            map.get(variables.$highlight-font-colors, 'limeade');
-      background-color: map.get(variables.$highlight-font-colors, 'honeydew');
-    }
-    .deletion {
-      color:            map.get(variables.$highlight-font-colors, 'free-speech-red');
-      background-color: map.get(variables.$highlight-font-colors, 'misty-rose');
-    }
-  }
-  // Scala/Java
-  &.scala .code,
-  &.java .code {
-    .title {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .javadoc {
-      color: map.get(variables.$highlight-font-colors, 'pewter');
-    }
-    .meta,
-    .annotation,
-    .javadoctag {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .params {
-      color: map.get(variables.$highlight-font-colors, 'bahama-blue');
-    }
-  }
-  // JavaScript
-  &.js .code {
-    .built_in,
-    .title {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .javadoc {
-      color: map.get(variables.$highlight-font-colors, 'pewter');
-    }
-    .tag,
-    .javadoctag {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .tag .title {
-      color: map.get(variables.$highlight-font-colors, 'night-rider');
-    }
-    .regexp {
-      color: map.get(variables.$highlight-font-colors, 'persimmon');
-    }
-  }
-  // JSON
-  &.json .code {
-    .attribute {
-      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
-    }
-  }
-  // Nginx
-  &.nginx .code {
-    .title,
-    .attribute {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .built_in {
-      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
-    }
-    .regexp {
-      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
-    }
-  }
-  // PHP
-  &.php .code {
-    .phpdoc,
-    .doctag {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .regexp {
-      color: map.get(variables.$highlight-font-colors, 'persimmon');
-    }
-    .title {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-  }
-  // Ruby
-  &.ruby .code {
-    .parent,
-    .title {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .prompt,
-    .constant,
-    .number,
-    .subst .keyword,
-    .symbol {
-      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
-    }
-  }
-  // SQL
-  &.sql {
-    .built_in {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-  }
-  // XML, HTML
-  &.xml,
-  &.html {
-    .tag {
-      color: map.get(variables.$highlight-font-colors, 'night-rider');
-    }
-    .value {
-      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
-    }
-    .attribute,
-    .attr {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .title,
-    .name {
-      color: map.get(variables.$highlight-font-colors, 'asparagus');
-    }
-  }
-  // SCSS
-  &.scss {
-    .tag,
-    .at_rule,
-    .important {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .number,
-    .hexcolor,
-    .function,
-    .attribute {
-      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
-    }
-    .built_in {
-      color: map.get(variables.$highlight-font-colors, 'persimmon');
-    }
-    .id,
-    .pseudo,
-    .class,
-    .preprocessor,
-    .selector-class,
-    .selector-id {
-      color: map.get(variables.$highlight-font-colors, 'scampi');
-    }
-    .tag,
-    .selector-tag {
-      color: map.get(variables.$highlight-font-colors, 'asparagus');
-    }
-  }
-  // Go
-  &.go {
-    .typename {
-      color: map.get(variables.$highlight-font-colors, 'cardinal');
-    }
-    .built_in,
-    .constant {
-      color: map.get(variables.$highlight-font-colors, 'bondi-blue');
-    }
-  }
-  // YAML
-  &.yml {
-    .line
-    .attr {
-      color: map.get(variables.$highlight-font-colors, 'asparagus');
-    }
-    .line,
-    .string,
-    .type,
-    .literal,
-    .meta {
-      color: map.get(variables.$highlight-font-colors, 'egyptian-blue');
-    }
-  }
 }
+

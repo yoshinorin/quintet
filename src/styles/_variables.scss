@@ -96,6 +96,7 @@ $highlight-colors:(
 );
 
 $highlight-font-colors: (
+  'base':                  var(--highlight-font-base),
   'night-rider':           var(--highlight-font-night-rider),
   'bondi-blue':            var(--highlight-font-bondi-blue),
   'persimmon':             var(--highlight-font-persimmon),
