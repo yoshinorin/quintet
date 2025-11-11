@@ -48,12 +48,12 @@ module.exports = {
     // FIXME: delete this option after versionup
     silenceDeprecations: ["legacy-js-api"]
   },
+  turbopack: {
+    root: __dirname
+  },
   experimental: {
     scrollRestoration: true
     // optimizePackageImports: ['<packageName>'],
-  },
-  eslint: {
-    ignoreDuringBuilds: true
   },
   typescript: {
     ignoreBuildErrors: true
