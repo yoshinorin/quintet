@@ -65,6 +65,7 @@ module.exports = {
   compress: false, // already gzipped with the `HTTP server`. No need with `Next.js`.
   serverExternalPackages: [
     "@opentelemetry/auto-instrumentations-node",
-    "@opentelemetry/sdk-node"
+    "@opentelemetry/sdk-node",
+    "pino"
   ]
 };
