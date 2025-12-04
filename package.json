@@ -34,7 +34,7 @@
     "@opentelemetry/sdk-metrics": "2.1.0",
     "@opentelemetry/sdk-node": "0.206.0",
     "micromatch": "4.0.8",
-    "next": "16.0.1",
+    "next": "16.0.7",
     "pino": "10.0.0",
     "pm2": "6.0.13",
     "react": "19.2.0",
