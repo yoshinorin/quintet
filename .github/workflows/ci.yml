@@ -43,6 +43,8 @@ jobs:
           path: ./report
   build:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
     strategy:
       matrix:
         os: [ubuntu-latest]
