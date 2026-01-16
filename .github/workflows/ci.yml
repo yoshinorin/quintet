@@ -5,6 +5,8 @@ on: [push, pull_request]
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
     strategy:
       matrix:
         os: [ubuntu-latest]
