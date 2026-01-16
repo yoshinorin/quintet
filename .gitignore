@@ -61,6 +61,7 @@ config.local.js
 /public/articles/
 /public/robots.txt
 /public/favicon.ico
+/public
 /test-results/
 /playwright-report/
 /blob-report/
