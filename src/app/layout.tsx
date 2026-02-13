@@ -11,6 +11,7 @@ import {
   url
 } from "../../config";
 import { HeadMetaComponent } from "../components/components";
+import DevTools from "../components/dev/DevTools";
 import { fullUrl } from "../utils/url";
 import ClientLayout from "./clientLayout";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
           }}
         />
         <ClientLayout>{children}</ClientLayout>
+        <DevTools />
       </body>
     </html>
   );
