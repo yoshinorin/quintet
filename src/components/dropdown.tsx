@@ -24,23 +24,14 @@ export const KeyValueDropdownComponent: React.FC<DropdownProps> = ({
     }
   };
 
-  const current = defaultValue
-    ? options.find((option) => option.value === defaultValue)?.label
-    : "";
-
   return (
     <div>
-      {/* defaultValue={current} doesn't work */}
       <select value={defaultValue} onChange={handleChange}>
         {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            selected={option.label == current}>
+          <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
-        ;
       </select>
     </div>
   );
