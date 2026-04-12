@@ -43,6 +43,9 @@ const NavbarItem: React.FunctionComponent<{ item; idx }> = ({ item, idx }) => {
       key={idx}
       className={`${styles["nav-icon"]}`}
       title={item.title}
+      {...(item.external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
       dangerouslySetInnerHTML={{ __html: item.content }}></Link>
   );
 };
