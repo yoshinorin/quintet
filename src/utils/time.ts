@@ -25,13 +25,15 @@ export function toISODateString(unixTime: number): string {
 export function splittedBy(
   unixTime: number,
   locale: string,
-  delimiter: string
+  delimiter: string,
+  timeZone?: string
 ): Array<string> {
   return toDate(unixTime)
     .toLocaleDateString(locale, {
       year: "numeric",
       month: "2-digit",
-      day: "2-digit"
+      day: "2-digit",
+      ...(timeZone ? { timeZone } : {})
     })
     .split(delimiter);
 }

@@ -15,3 +15,17 @@ test("splittedBy", () => {
   expect(result[1]).toEqual("02");
   // .toEqual(['2022', '02', '06'])  NOTE: local -> JST, CI -> UTC
 });
+
+test("splittedBy: with timezone", () => {
+  // 2022-02-05T15:33:26Z is 2022-02-06 00:33 in JST
+  expect(splittedBy(1644075206, "ja-JP", "/", "Asia/Tokyo")).toEqual([
+    "2022",
+    "02",
+    "06"
+  ]);
+  expect(splittedBy(1644075206, "ja-JP", "/", "UTC")).toEqual([
+    "2022",
+    "02",
+    "05"
+  ]);
+});
