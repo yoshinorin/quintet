@@ -33,6 +33,12 @@ export const tagsPage = {
   found: "tags"
 };
 
+export const statisticsPage = {
+  timeZone: "Asia/Tokyo",
+  timeZones: ["UTC"],
+  excludeYears: []
+};
+
 export const headerItems = [
   {
     url: "/",

@@ -12,4 +12,5 @@ export * from "./script";
 export * from "./search";
 export * from "./series";
 export * from "./sitemap";
+export * from "./statistics";
 export * from "./tag";

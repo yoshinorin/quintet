@@ -33,12 +33,33 @@ export const tagsPage = {
   found: "tags"
 };
 
+// NOTE: optional. `timeZone` is the default IANA timezone used to bucket the
+// statistics page (monthly/day-of-week/hour). Defaults to "Asia/Tokyo" if omitted.
+// `timeZones` are additional choices for the timezone dropdown (shown only when
+// there are 2 or more choices in total).
+// `excludeYears` excludes posts published in the given years (judged in the
+// selected timezone) from every aggregation on the statistics page.
+// `topTags` is the number of tags shown in the "Top Tags" pie chart; the rest
+// are aggregated into "Others". Defaults to 15.
+export const statisticsPage = {
+  timeZone: "Asia/Tokyo",
+  timeZones: ["UTC", "Asia/Tokyo"],
+  excludeYears: ["1984"],
+  topTags: 15
+};
+
 export const headerItems = [
   {
     url: "/",
     position: "left", //left or right
     text: "Home",
     content: "Home" // HTML support
+  },
+  {
+    url: "/statistics",
+    position: "left",
+    text: "Statistics",
+    content: "Statistics"
   }
 ];
 

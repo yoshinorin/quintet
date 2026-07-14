@@ -18,5 +18,7 @@ export * from "./precontent";
 export * from "./searchResult";
 export * from "./series";
 export * from "./spinner";
+// NOTE: ./statistics and ./statisticsChart are intentionally NOT re-exported here.
+// They pull in recharts, which must only be bundled for the /statistics route.
 export * from "./tag";
 export * from "./tags";
