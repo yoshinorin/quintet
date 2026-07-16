@@ -13,6 +13,7 @@
 # next.js
 /.next/
 /out/
+next-env.d.ts
 
 # production
 /build
@@ -46,7 +47,7 @@ config.local.js
 .github/copilot-instructions.md
 .github/copilot/*.md
 .github/copilot/**/*.md
-.claude
+#.claude
 
 # images
 # can i use case-insensitive?
