@@ -3,6 +3,7 @@ export * from "./archives";
 export * from "./articles";
 export * from "./backtotop";
 export * from "./content";
+export * from "./contributionCalendarSvg";
 export * from "./cover";
 export * from "./dropdown";
 export * from "./footer";

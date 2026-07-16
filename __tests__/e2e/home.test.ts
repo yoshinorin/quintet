@@ -68,4 +68,22 @@ test.describe("Home", () => {
       contentType: "image/png"
     });
   });
+
+  test("should render the contribution calendar for the past year", async ({
+    page
+  }) => {
+    // the whole calendar links to the statistics page
+    const calendar = page
+      .locator('a[href="/statistics/"]')
+      .filter({ has: page.locator("svg rect") });
+    await expect(calendar).toBeVisible();
+    // rolling window: always the past 365 days regardless of leap years
+    await expect(calendar.locator("rect")).toHaveCount(365);
+
+    // NOTE: the mock posts are all published in 2023-12, outside the window
+    await expect(page.getByText("0 posts in the last year")).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Show more →" })
+    ).toHaveAttribute("href", "/statistics/");
+  });
 });

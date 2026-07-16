@@ -137,6 +137,48 @@ export function aggregateActivity(
   };
 }
 
+const DAY_MILLIS = 24 * 60 * 60 * 1000;
+
+// weekday (Monday = 0) of a calendar date; pure calendar math, no timezone involved
+const dayIndexOf = (utcMillis: number) =>
+  (new Date(utcMillis).getUTCDay() + 6) % 7;
+
+function dateStringOf(utcMillis: number): string {
+  const dt = new Date(utcMillis);
+  const mm = String(dt.getUTCMonth() + 1).padStart(2, "0");
+  const dd = String(dt.getUTCDate()).padStart(2, "0");
+  return `${dt.getUTCFullYear()}-${mm}-${dd}`;
+}
+
+// Monday-first weeks between two dates (inclusive), padded with null
+function buildWeeks(
+  startUtcMillis: number,
+  endUtcMillis: number,
+  counts: Map<string, number>
+): Array<Array<ContributionDay | null>> {
+  const weeks: Array<Array<ContributionDay | null>> = [];
+  let week: Array<ContributionDay | null> = new Array(
+    dayIndexOf(startUtcMillis)
+  ).fill(null);
+
+  // NOTE: iterating in UTC, so adding 24h per step is safe (no DST)
+  for (let t = startUtcMillis; t <= endUtcMillis; t += DAY_MILLIS) {
+    const date = dateStringOf(t);
+    week.push({ date, count: counts.get(date) ?? 0 });
+    if (week.length === 7) {
+      weeks.push(week);
+      week = [];
+    }
+  }
+  if (week.length > 0) {
+    while (week.length < 7) {
+      week.push(null);
+    }
+    weeks.push(week);
+  }
+  return weeks;
+}
+
 // GitHub contribution graph like calendar for the given year
 export function buildContributionCalendar(
   publishedAt: Array<number>,
@@ -155,37 +197,70 @@ export function buildContributionCalendar(
     total += 1;
   }
 
-  // weekday (Monday = 0) of a calendar date; pure calendar math, no timezone involved
-  const dayIndexOf = (utcMillis: number) =>
-    (new Date(utcMillis).getUTCDay() + 6) % 7;
-
   const yearNum = parseInt(year, 10);
-  const weeks: Array<Array<ContributionDay | null>> = [];
-  let week: Array<ContributionDay | null> = new Array(
-    dayIndexOf(Date.UTC(yearNum, 0, 1))
-  ).fill(null);
+  return {
+    year,
+    total,
+    weeks: buildWeeks(
+      Date.UTC(yearNum, 0, 1),
+      Date.UTC(yearNum, 11, 31),
+      counts
+    )
+  };
+}
 
-  const end = Date.UTC(yearNum, 11, 31);
-  // NOTE: iterating in UTC, so adding 24h per step is safe (no DST)
-  for (let t = Date.UTC(yearNum, 0, 1); t <= end; t += 24 * 60 * 60 * 1000) {
-    const dt = new Date(t);
-    const mm = String(dt.getUTCMonth() + 1).padStart(2, "0");
-    const dd = String(dt.getUTCDate()).padStart(2, "0");
-    const date = `${year}-${mm}-${dd}`;
-    week.push({ date, count: counts.get(date) ?? 0 });
-    if (week.length === 7) {
-      weeks.push(week);
-      week = [];
+// the calendar date (as UTC millis) of a unix time in the given timezone.
+// NOTE: the Intl.DateTimeFormat instance is created once and reused, because
+// creating it per call costs far more than formatting.
+function makeUtcMillisExtractor(
+  timeZone: string
+): (unixTime: number) => number {
+  const format = new Intl.DateTimeFormat("en-US", {
+    timeZone: timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  });
+  return (unixTime: number) => {
+    const parts: { [key: string]: string } = {};
+    for (const p of format.formatToParts(toDate(unixTime))) {
+      parts[p.type] = p.value;
     }
-  }
-  if (week.length > 0) {
-    while (week.length < 7) {
-      week.push(null);
+    return Date.UTC(
+      parseInt(parts["year"], 10),
+      parseInt(parts["month"], 10) - 1,
+      parseInt(parts["day"], 10)
+    );
+  };
+}
+
+// GitHub like rolling calendar: the past 365 days ending at `now` (in the given timezone)
+export function buildRollingContributionCalendar(
+  publishedAt: Array<number>,
+  now: Date,
+  timeZone: string = STATISTICS_TIME_ZONE
+): ContributionCalendar {
+  const utcMillisOf = makeUtcMillisExtractor(timeZone);
+  const end = utcMillisOf(Math.floor(now.getTime() / 1000));
+  const start = end - 364 * DAY_MILLIS;
+
+  const counts = new Map<string, number>();
+  let total = 0;
+  for (const unixTime of publishedAt ?? []) {
+    const t = utcMillisOf(unixTime);
+    if (t < start || t > end) {
+      continue;
     }
-    weeks.push(week);
+    const date = dateStringOf(t);
+    counts.set(date, (counts.get(date) ?? 0) + 1);
+    total += 1;
   }
 
-  return { year, total, weeks };
+  return {
+    year: dateStringOf(end).slice(0, 4),
+    total,
+    weeks: buildWeeks(start, end, counts)
+  };
 }
 
 export type StackableBucketKind = "months" | "daysOfWeek" | "hours";

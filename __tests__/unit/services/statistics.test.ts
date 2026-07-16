@@ -4,6 +4,7 @@ import {
   aggregateActivity,
   aggregateStatistics,
   buildContributionCalendar,
+  buildRollingContributionCalendar,
   calcYearsActive,
   excludeByYears,
   rankTags,
@@ -275,6 +276,44 @@ test("rankTags: limit larger than input returns all tags", () => {
 
 test("rankTags: empty input returns empty array", () => {
   expect(rankTags([], 20)).toEqual([]);
+});
+
+test("buildRollingContributionCalendar: covers the past 365 days ending at now", () => {
+  const result = buildRollingContributionCalendar(
+    publishedAt,
+    toDate(epoch20240615)
+  );
+  const days = result.weeks.flat().filter((day) => day !== null);
+
+  expect(days.length).toEqual(365);
+  expect(days[0].date).toEqual("2023-06-17");
+  expect(days.at(-1).date).toEqual("2024-06-15");
+  // 2023-06-17 is Saturday, so the Monday-first week is padded with 5 nulls
+  expect(result.weeks[0].slice(0, 5)).toEqual([null, null, null, null, null]);
+  // only the 2024-06-15 post is inside the window; the 2022 posts are not
+  expect(result.total).toEqual(1);
+  expect(days.at(-1).count).toEqual(1);
+});
+
+test("buildRollingContributionCalendar: the end date is judged in the given timezone", () => {
+  // 2022-03-15T20:00:00Z is already 2022-03-16 in JST
+  const jst = buildRollingContributionCalendar(
+    [],
+    toDate(epoch20220315Boundary)
+  );
+  const utc = buildRollingContributionCalendar(
+    [],
+    toDate(epoch20220315Boundary),
+    "UTC"
+  );
+  const lastDateOf = (calendar) =>
+    calendar.weeks
+      .flat()
+      .filter((day) => day !== null)
+      .at(-1).date;
+
+  expect(lastDateOf(jst)).toEqual("2022-03-16");
+  expect(lastDateOf(utc)).toEqual("2022-03-15");
 });
 
 test("calcYearsActive: counts calendar years from the oldest post", () => {

@@ -1,12 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import {
-  ActivityBuckets,
-  ContributionCalendar,
-  Statistics,
-  TagRank
-} from "../models/models";
+import { ActivityBuckets, Statistics, TagRank } from "../models/models";
 import {
   aggregateActivity,
   buildContributionCalendar,
@@ -16,7 +11,14 @@ import {
 } from "../services/statistics";
 import containerStyles from "../styles/components/container.module.scss";
 import styles from "../styles/statistics.module.scss";
+import {
+  CellTooltipView,
+  ContributionCalendarView,
+  WEEKDAY_LABELS,
+  useCellTooltip
+} from "./contributionCalendar";
 import { KeyValueDropdownComponent } from "./dropdown";
+import { StatCard } from "./statCard";
 import {
   CountBarChartComponent,
   StackedCountBarChartComponent,
@@ -26,21 +28,6 @@ import {
 } from "./statisticsChart";
 
 const ALL_YEARS = "all";
-const WEEKDAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const MONTH_LABELS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
-];
 
 export const StatisticsComponent: React.FunctionComponent<{
   statistics: Statistics;
@@ -222,59 +209,6 @@ function withWeekdayLabels(stacked: {
   };
 }
 
-const StatCard: React.FunctionComponent<{
-  value: number;
-  label: string;
-  href?: string;
-}> = ({ value, label, href }) => {
-  const body = (
-    <>
-      <div className={styles["stat-value"]}>{value}</div>
-      <div className={styles["stat-label"]}>{label}</div>
-    </>
-  );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        className={`${styles["stat-card"]} ${styles["stat-card-link"]}`}>
-        {body}
-      </a>
-    );
-  }
-  return <div className={styles["stat-card"]}>{body}</div>;
-};
-
-interface CellTooltip {
-  x: number;
-  y: number;
-  text: string;
-}
-
-function useCellTooltip() {
-  const [tooltip, setTooltip] = useState<CellTooltip | null>(null);
-  const show = (e: React.MouseEvent, text: string) =>
-    setTooltip({ x: e.clientX, y: e.clientY, text });
-  const hide = () => setTooltip(null);
-  return { tooltip, show, hide };
-}
-
-const CellTooltipView: React.FunctionComponent<{
-  tooltip: CellTooltip | null;
-}> = ({ tooltip }) => {
-  if (!tooltip) {
-    return null;
-  }
-  return (
-    <div
-      className={styles["punch-tooltip"]}
-      style={{ left: tooltip.x + 12, top: tooltip.y - 36 }}>
-      {tooltip.text}
-    </div>
-  );
-};
-
 const PunchCard: React.FunctionComponent<{
   punchCard: Array<Array<number>>;
 }> = ({ punchCard }) => {
@@ -318,74 +252,6 @@ const PunchCard: React.FunctionComponent<{
           return (
             <div key={h} className={styles["punch-col-label"]}>
               {h % 3 === 0 ? String(h).padStart(2, "0") : ""}
-            </div>
-          );
-        })}
-      </div>
-      <CellTooltipView tooltip={tooltip} />
-    </div>
-  );
-};
-
-// month label ("Mar") for the week which contains the first day of a month
-function monthLabelOf(week: Array<{ date: string } | null>): string {
-  for (const day of week) {
-    if (day && parseInt(day.date.slice(8), 10) === 1) {
-      return MONTH_LABELS[parseInt(day.date.slice(5, 7), 10) - 1];
-    }
-  }
-  return "";
-}
-
-const ContributionCalendarView: React.FunctionComponent<{
-  calendar: ContributionCalendar;
-}> = ({ calendar }) => {
-  const max = Math.max(
-    ...calendar.weeks.flat().map((day) => (day ? day.count : 0))
-  );
-  const { tooltip, show, hide } = useCellTooltip();
-
-  return (
-    <div className={styles["contrib-wrap"]}>
-      <div className={styles["contrib"]}>
-        <div className={styles["contrib-daylabels"]}>
-          {WEEKDAY_LABELS.map((label) => {
-            return <div key={label}>{label}</div>;
-          })}
-        </div>
-        {calendar.weeks.map((week, wi) => {
-          return (
-            <div className={styles["contrib-week"]} key={wi}>
-              <div className={styles["contrib-month-label"]}>
-                {monthLabelOf(week)}
-              </div>
-              {week.map((day, di) => {
-                if (!day) {
-                  return (
-                    <div
-                      key={di}
-                      className={`${styles["contrib-cell"]} ${styles["contrib-cell-empty"]}`}
-                    />
-                  );
-                }
-                const label = `${day.date} - ${day.count} posts`;
-                return (
-                  <div
-                    key={day.date}
-                    className={styles["contrib-cell"]}
-                    aria-label={label}
-                    data-date={day.date}
-                    onMouseMove={(e) => show(e, label)}
-                    onMouseLeave={hide}>
-                    {day.count > 0 && max > 0 && (
-                      <div
-                        className={styles["contrib-cell-fill"]}
-                        style={{ opacity: 0.25 + 0.75 * (day.count / max) }}
-                      />
-                    )}
-                  </div>
-                );
-              })}
             </div>
           );
         })}

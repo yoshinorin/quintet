@@ -208,6 +208,41 @@
   font-size:  map.get(variables.$font-size, ssmall);
 }
 
+// lightweight inline SVG calendar (home page)
+.contrib-svg-total {
+  font-size:      map.get(variables.$font-size, small);
+  color:          map.get(variables.$basic-colors, 'steel-gray');
+  margin-bottom:  0.8rem;
+}
+
+.contrib-svg {
+  display:  block;
+  width:    100%;
+  height:   auto;
+}
+
+// SVG2 geometry properties: keeps the repeated size attributes off every
+// <rect>. Must match CELL_SIZE in contributionCalendarSvg.tsx
+.contrib-svg rect {
+  width:   10px;
+  height:  10px;
+  rx:      2px;
+}
+
+.contrib-svg-month-label {
+  fill:       map.get(variables.$basic-colors, 'steel-gray');
+  font-size:  9px;
+}
+
+.contrib-svg-cell {
+  fill: map.get(variables.$table-colors, 'tr-background-secondary');
+}
+
+.contrib-svg-cell-fill {
+  // GitHub contribution graph like green
+  fill: #26a641;
+}
+
 .tag-legend {
   display:         flex;
   flex-direction:  column;
