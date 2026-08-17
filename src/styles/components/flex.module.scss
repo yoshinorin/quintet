@@ -6,6 +6,15 @@
   margin-bottom: 2rem;
 }
 
+.col-25 {
+  flex: 0 0 auto;
+}
+
+.col-75 {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 @media screen and (min-width: 900px) {
   .col-25 {
     flex: 0 0 25%;
