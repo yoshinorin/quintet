@@ -43,11 +43,6 @@ figure.highlight,
       }
     }
   }
-  figcaption {
-    font-family:  variables.$font-families-code;
-    background:   map.get(variables.$highlight-colors, 'background');
-    color:        map.get(variables.$basic-colors, 'base');
-  }
   .gutter {
     border-right-color:  map.get(variables.$highlight-colors, 'border-light') !important;
     border-right:        1px solid;
