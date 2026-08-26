@@ -75,7 +75,8 @@ function initializeNativeOtel(config: {
     exportIntervalMillis: isProduction ? 10000 : 5000
   });
 
-  const logProcessor = new BatchLogRecordProcessor(logExporter, {
+  const logProcessor = new BatchLogRecordProcessor({
+    exporter: logExporter,
     maxExportBatchSize: isProduction ? 128 : 32,
     exportTimeoutMillis: isProduction ? 10000 : 5000
   });

@@ -17,7 +17,8 @@ export function make(h: Headers): RequestContext {
     ipAddress: xff
       ? Array.isArray(xff)
         ? xff[0]
-        : xff.split(",")[0]
+        : // @ts-ignore
+          xff.split(",")[0]
       : "127.0.0.1",
     referer: h["referer"],
     ua: h["user-agent"],
