@@ -34,7 +34,7 @@
     "@opentelemetry/sdk-metrics": "2.10.0",
     "@opentelemetry/sdk-node": "0.221.0",
     "micromatch": "4.0.8",
-    "next": "16.2.9",
+    "next": "16.3.2",
     "pino": "10.3.1",
     "pm2": "7.0.3",
     "react": "19.2.8",
@@ -42,14 +42,14 @@
     "recharts": "3.10.1"
   },
   "devDependencies": {
-    "@playwright/test": "1.59.1",
+    "@playwright/test": "1.62.1",
     "@types/node": "26.1.2",
     "@types/react": "19.2.17",
-    "@vitest/coverage-v8": "4.1.10",
-    "prettier": "3.8.4",
+    "@vitest/coverage-v8": "4.1.11",
+    "prettier": "3.9.6",
     "sass": "1.102.0",
     "typescript": "6.0.3",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   },
   "engines": {
     "npm": ">=11.11",
