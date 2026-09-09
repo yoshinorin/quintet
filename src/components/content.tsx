@@ -15,6 +15,7 @@ import contentStyles from "../styles/components/content.module.scss";
 import { mergeBackendMeta } from "../utils/insight";
 import { ActionButton } from "./actionbutton";
 import { AdjacentContentComponent } from "./adjacentContent";
+import { ImageLightbox, ZoomedImage } from "./imageLightbox";
 import { PreContent } from "./precontent";
 import { Spinner } from "./spinner";
 
@@ -71,6 +72,8 @@ export const ContentComponent: React.FunctionComponent<{
   const [isMetadataOpen, setIsMetadataOpen] = useState(false);
   const [isFetchedBackendMeta, setIsFetchedBackendMeta] = useState(false);
   const [metadata, setMetaData] = useState(null);
+
+  const [zoomedImage, setZoomedImage] = useState<ZoomedImage | null>(null);
 
   const { adjacentContent, isLoading, error, fetchAdjacent } =
     useAdjacentContent(content.id);
@@ -166,6 +169,17 @@ export const ContentComponent: React.FunctionComponent<{
     setIsMetadataOpen(!isMetadataOpen);
   };
 
+  const handleContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target;
+    if (!(target instanceof HTMLImageElement) || target.closest("a")) {
+      return;
+    }
+    event.preventDefault();
+    setZoomedImage({ src: target.currentSrc || target.src, alt: target.alt });
+  };
+
+  const closeZoomedImage = () => setZoomedImage(null);
+
   return (
     <article className={contentStyles.content}>
       <div className={containerStyles.container}>
@@ -182,6 +196,7 @@ export const ContentComponent: React.FunctionComponent<{
       <div className={`${contentStyles["content-main"]}`}>
         <div
           className={containerStyles.container}
+          onClick={handleContentClick}
           dangerouslySetInnerHTML={{ __html: content.content }}
         />
         {(isLoading || error || adjacentContent) && (
@@ -204,6 +219,7 @@ export const ContentComponent: React.FunctionComponent<{
           </div>
         )}
       </div>
+      <ImageLightbox image={zoomedImage} onClose={closeZoomedImage} />
     </article>
   );
 };

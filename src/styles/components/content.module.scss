@@ -18,6 +18,11 @@
       display:   block;
       width:     auto;
       max-width: 100%;
+      cursor:    zoom-in;
+    }
+
+    a > img {
+      cursor: pointer;
     }
 
     video {
