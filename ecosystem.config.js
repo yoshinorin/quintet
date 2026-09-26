@@ -3,8 +3,8 @@ module.exports = {
     {
       name: "quintet",
       // cwd: '.next/',
-      script: "npm",
-      // script: './node_modules/next/dist/bin/next',
+      // script: "npm",
+      script: "./node_modules/next/dist/bin/next",
       args: "start",
       exec_mode: "cluster",
       // exec_mode: 'fork',
