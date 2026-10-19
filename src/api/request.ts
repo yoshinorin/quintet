@@ -5,7 +5,7 @@ import { makeInstance } from "../utils/logger";
 import { isMatch } from "../utils/match";
 
 export type RequestOptions = {
-  headers?: object;
+  headers?: HeadersInit;
   queryParams?: string;
   blockIgnoredPaths?: boolean;
 };
@@ -29,14 +29,13 @@ export async function fetchFromApi(
   }
 
   const url = buildRequestUrl(endpoint, queryParams);
-  const header = headers ? { header: headers } : {};
   const startTime = Date.now();
   const method = "GET";
 
   const response = await fetch(url, {
     method: method,
     cache: "no-cache",
-    headers: header as any
+    headers
   });
 
   const duration = Date.now() - startTime;
@@ -46,7 +45,7 @@ export async function fetchFromApi(
     url,
     response.status,
     duration,
-    headers
+    maskHeaders(headers)
   );
 
   return response;
@@ -58,18 +57,52 @@ export function buildRequestUrl(url: string, queryParams: string): string {
   return new URL(u).href;
 }
 
-export function makeRequestHeader(rq: RequestContext): Object {
-  const baseHeaders = {
-    "Content-Type": "application/json",
-    "x-forwarded-for": rq.ipAddress,
-    "user-agent": rq.ua,
-    referer: rq.referer,
-    "x-request-id": rq.requestId
-  };
-  const otelHeaders = injectPropagation();
+// RFC 9110 Section 7.6.1 hop-by-hop headers, plus headers fetch recomputes.
+const EXCLUDED_HEADERS = [
+  "connection",
+  "keep-alive",
+  "proxy-connection",
+  "te",
+  "transfer-encoding",
+  "upgrade",
+  "host",
+  "content-length"
+];
 
-  return {
-    ...baseHeaders,
-    ...otelHeaders
-  };
+const MASKED_HEADERS = ["cookie", "authorization"];
+
+// NOTE: internal use only but export for testing.
+export function forwardableHeaders(incoming: Headers): Headers {
+  const h = new Headers(incoming);
+  const connectionTokens = (incoming.get("connection") ?? "")
+    .split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+  [...EXCLUDED_HEADERS, ...connectionTokens].forEach((k) => h.delete(k));
+  return h;
+}
+
+// NOTE: internal use only but export for testing.
+export function maskHeaders(headers: HeadersInit): Record<string, string> {
+  const masked: Record<string, string> = {};
+  new Headers(headers).forEach((v, k) => {
+    masked[k] = MASKED_HEADERS.includes(k) ? "***" : v;
+  });
+  return masked;
+}
+
+export function makeRequestHeader(
+  incoming: Headers,
+  rq: RequestContext
+): Headers {
+  const h = forwardableHeaders(incoming);
+  h.set("Content-Type", "application/json");
+  if (rq.ipAddress) {
+    h.set("x-forwarded-for", rq.ipAddress);
+  }
+  if (rq.requestId) {
+    h.set("x-request-id", rq.requestId);
+  }
+  Object.entries(injectPropagation()).forEach(([k, v]) => h.set(k, v));
+  return h;
 }

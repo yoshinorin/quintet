@@ -19,7 +19,7 @@ export function fetchArticles(
   const url = buildUrl(api.url, "v1/articles", true);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx),
+    headers: makeRequestHeader(headers, ctx),
     queryParams: buildQueryParams({
       pagination: { page: currentPage, limit, order } as PaginationParams
     })
@@ -31,7 +31,7 @@ export function fetchArchives(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, "v1/archives", true);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -44,7 +44,7 @@ export function fetchContent(
   const url = buildUrl(api.url, slug, true);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx),
+    headers: makeRequestHeader(headers, ctx),
     blockIgnoredPaths: true
   };
   return fetchFromApi(url, options);
@@ -60,7 +60,7 @@ export function fetchAdjacentContent(
   if (headers) {
     const ctx = makeRequestContext(headers);
     const options: RequestOptions = {
-      headers: makeRequestHeader(ctx),
+      headers: makeRequestHeader(headers, ctx),
       blockIgnoredPaths: true
     };
     return fetchFromApi(url, options);
@@ -73,7 +73,7 @@ export function fetchFeeds(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "feeds", "index"]), false);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -85,7 +85,7 @@ export function fetchSearch(
   const url = buildUrl(api.url, sluggize(["v1", "search"]), false);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx),
+    headers: makeRequestHeader(headers, ctx),
     queryParams: buildQueryParams({
       params: { key: "q", values: words }
     })
@@ -97,7 +97,7 @@ export function fetchAllSeries(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "series"]), true);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -109,7 +109,7 @@ export function fetchSeries(
   const url = buildUrl(api.url, sluggize(["v1", "series", seriesPath]), false);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -118,7 +118,7 @@ export function fetchSitemap(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "sitemaps"]), true);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -127,7 +127,7 @@ export function fetchStatus(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "system", "health"]), false);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -136,7 +136,7 @@ export function fetchAllTags(headers: Headers): Promise<Response> {
   const url = buildUrl(api.url, sluggize(["v1", "tags"]), true);
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx)
+    headers: makeRequestHeader(headers, ctx)
   };
   return fetchFromApi(url, options);
 }
@@ -155,7 +155,7 @@ export function fetchTag(
   );
   const ctx = makeRequestContext(headers);
   const options: RequestOptions = {
-    headers: makeRequestHeader(ctx),
+    headers: makeRequestHeader(headers, ctx),
     queryParams: buildQueryParams({
       pagination: { page: currentPage, limit, order } as PaginationParams
     })
